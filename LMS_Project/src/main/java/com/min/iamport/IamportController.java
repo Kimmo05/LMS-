@@ -4,8 +4,14 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +33,9 @@ import oracle.jdbc.proxy.annotation.Post;
 @RequestMapping(value = "/payment/**")
 public class IamportController {
 	IamportClient client;
+	
+	@Autowired
+//	private PayDao dao;
 	
 	public IamportController() {
 		this.client = this.getTestClient();
@@ -59,17 +68,66 @@ public class IamportController {
 	}
 	
 	
-	//결제
+	//결제!!@@@
 	@PostMapping("pay")
 	public void getPay(String merchant_uid, String imp_uid) {
-		System.out.println("결제 완료입니다~");
-		System.out.println("merchant_uid 는 ?? : " + merchant_uid); //주문 고유번호
-		System.out.println("imp_uid는 ?? : " + imp_uid); //거래 고유번호
+		System.out.println("merchant_uid 는 ?? : " + merchant_uid);
+		System.out.println("imp_uid는 ?? : " + imp_uid); //주문번호
+		
+		try {
+			//payco와 kcp만 지원
+			//카카오페이의 경우 pay_response를 활용
+			//IamportResponse<PaymentBalance> payment_response = client.paymentBalanceByImpUid(test_Imp_uid);
+			IamportResponse<Payment> pay_response = client.paymentByImpUid(imp_uid);
+			
+			System.out.println(pay_response.getResponse().getMerchantUid()); //주문번호 o
+			System.out.println(pay_response.getResponse().getBuyerName()); //구매자이름 o
+			System.out.println(pay_response.getResponse().getName()); // 주문명 o
+			System.out.println(pay_response.getResponse().getAmount()); // 가격 o
+			System.out.println(pay_response.getResponse().getStatus()); // 주문상태 o
+			System.out.println(pay_response.getResponse().getPayMethod()); // 결제수단 o
+			System.out.println(pay_response.getResponse().getPaidAt()); // 결제시각 o
+			System.out.println(pay_response.getResponse().getPgProvider()); //payco (pg사)
+			System.out.println(pay_response.getResponse().getPgTid()); // 20220517
+
+//			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//			String formatData = simpleDateFormat.format(pay_response.getResponse().getPaidAt());
+//			System.out.println(formatData + "변환된 날짜"); 
+			
+			Map<String, Object> map= new HashMap<String, Object>();
+			map.put("ord_num", pay_response.getResponse().getImpUid()); // 주문번호
+			map.put("ord_buyer",pay_response.getResponse().getBuyerName()); // 구매자이름
+			map.put("ord_seq", "3"); // 과정번호
+			map.put("ord_price", pay_response.getResponse().getAmount()); //가격
+			map.put("ord_method", pay_response.getResponse().getPayMethod()); //결제수단
+			map.put("ord_pg", pay_response.getResponse().getPgProvider()); // payco(pg사)
+			map.put("ord_status", pay_response.getResponse().getStatus()); //결제상태
+			map.put("ord_date", pay_response.getResponse().getPaidAt()); //결제일자
+			map.put("ord_content", pay_response.getResponse().getName()); //결제명
+			map.put("ord_raw", "10000");
+			map.put("ord_discount", "100");
+			
+			//insert 가자
+//			int n = dao.payInsert(map);
+//			System.out.println(n + "@@@!!@@@@@@@@");
+			
+		} catch (IamportResponseException e) {
+			
+			System.out.println(e.getMessage());
+			
+			switch(e.getHttpStatusCode()) {
+			case 401: System.out.println("401임다");break;
+			case 500: System.out.println("500임다");break;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		//vo로 넣어서 db 저장? or Map 넣어서 db 저장
 		this.getToken();
 	}
 	
-	//취소
+	//취소@@@@
 	@RequestMapping(value = "cancel", method = RequestMethod.POST)
 	public String testCancelPaymentAlreadyCancelledImpUid() {
         String test_already_cancelled_imp_uid = "imp_317120240807";
@@ -113,7 +171,7 @@ public class IamportController {
 	@ResponseBody
 	public String getPayInfo() {
 		
-		String test_Imp_uid = "imp_591748521370"; //payco 주문 아이디
+		String test_Imp_uid = "imp_422570689158"; //payco 주문 아이디
 		
 		try {
 			//payco와 kcp만 지원
