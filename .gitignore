@@ -1,7 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,maven,dbeaver,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,maven,dbeaver,eclipse
 
-.gitkeep
+
 ### DBeaver ###
 # ide config file
 .dbeaver-data-sources*.xml
