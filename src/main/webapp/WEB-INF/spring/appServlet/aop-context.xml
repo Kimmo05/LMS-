@@ -7,7 +7,7 @@
 
 	<bean id="daoLogger" class="com.min.aop.DaoAop"/>
 	<aop:config>
-		<aop:pointcut expression="execution(public * com.min.edu.model.mapper.*Dao*.*(..))" id="daoPoint"/>
+		<aop:pointcut expression="execution(public * com.min.model.mapper.*Dao*.*(..))" id="daoPoint"/>
 		<aop:aspect ref="daoLogger">
 			<aop:before method="before" pointcut-ref="daoPoint"/>
 		</aop:aspect>

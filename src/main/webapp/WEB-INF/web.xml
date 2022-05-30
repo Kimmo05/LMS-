@@ -5,7 +5,9 @@
 	version="4.0">
 
 	<display-name>LMS_Project</display-name>
-	
+	<welcome-file-list>
+		<welcome-file>index.do</welcome-file>
+	</welcome-file-list>
 	<!-- Root Context -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -21,7 +23,10 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+			<param-value>
+			/WEB-INF/spring/appServlet/servlet-context.xml
+			/WEB-INF/spring/appServlet/aop-context.xml
+			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -51,7 +56,7 @@
 	<!-- Logger Filter -->
 	<filter>
 		<filter-name>loggerFilter</filter-name>
-		<filter-class>com.min.edu.filter.AccessFilter</filter-class>
+		<filter-class>com.min.filter.AccessFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>loggerFilter</filter-name>
