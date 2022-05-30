@@ -178,14 +178,14 @@
               <h6 class="mt-3 f-14 f-w-600">프로필 밑에 이름</h6></a>
             <p class="mb-0 font-roboto">프로필 밑에 설명</p>
             <ul>
-              <li><span><span class="counter">19.8</span>k</span>
-                <p>팔로우</p>
+              <li><span><span class="counter">수치1</span>k</span>
+                <p>정보1</p>
               </li>
-              <li><span>2 year</span>
-                <p>Experince</p>
+              <li><span>수치2</span>
+                <p>정보2</p>
               </li>
-              <li><span><span class="counter">95.2</span>k</span>
-                <p>Follower </p>
+              <li><span><span class="counter">수치3</span>k</span>
+                <p>정보3 </p>
               </li>
             </ul>
           </div>
@@ -199,17 +199,41 @@
                   </li>
                   <li class="sidebar-main-title">
                     <div>
-                      <h6>General             </h6>
+                      <h6>General </h6>
                     </div>
                   </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>Dashboard</span></a>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>회원관리</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="index.do">Default</a></li>
-                      <li><a href="dashboard-02.html">Ecommerce</a></li>
+                      <li><a href="./index.do">메뉴1</a></li>
+                      <li><a href="./index.do">메뉴2</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>
+                    <ul class="nav-submenu menu-content">
+                      <li><a href="./index.do">메뉴1</a></li>
+                      <li><a href="./index.do">메뉴2</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
+                    <ul class="nav-submenu menu-content">
+                      <li><a href="./index.do">메뉴1</a></li>
+                      <li><a href="./index.do">메뉴2</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a>
+                    <ul class="nav-submenu menu-content">
+                      <li><a href="./index.do">메뉴1</a></li>
+                      <li><a href="./index.do">메뉴2</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>
+                    <ul class="nav-submenu menu-content">
+                      <li><a href="./index.do">메뉴1</a></li>
+                      <li><a href="./index.do">메뉴2</a></li>
                     </ul>
                   </li>
                  
-                  <li><a class="nav-link menu-title link-nav" href="support-ticket.html"><i data-feather="headphones"></i><span>Support Ticket</span></a></li>
+                  <li><a class="nav-link menu-title link-nav" href="support-ticket.html"><i data-feather="headphones"></i><span>고객 문의사항</span></a></li>
                 </ul>
               </div>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -326,7 +350,6 @@
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/theme-customizer/customizer.js"></script>
     <!-- login js-->
     <!-- Plugin used-->
 </body>
