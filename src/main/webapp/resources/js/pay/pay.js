@@ -77,27 +77,39 @@ var mile = 0;
 	 function requestPay4() {
 	      IMP.request_pay({ // param
 	          pg: "tosspay",
-	          pay_method: "card",
-	          merchant_uid: "ORD20180131-0001112",
 	          name: "송중기 kakaoApi결제 테스트",
 	          amount: 100,
-	          buyer_email: "jgjg05@gmail.com",
 	          buyer_name: "송중기",
-	          buyer_tel: "010-4242-4242",
 	          buyer_addr: "서울특별시 강남구 신사동",
-	          buyer_postcode: "01181"
-	      }, function (rsp) { // callback
-	          if (rsp.success) {
-	        	  var msg = '결제가 완료되었습니다.';
+	      }, function(rsp) {
+			    if ( rsp.success ) {
+			    	var msg = '결제가 완료되었습니다.';
 	    			msg += '\n고유ID : ' + rsp.imp_uid;
 	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
 	    			msg += '\n결제 금액 : ' + rsp.paid_amount;
-	    			
+	    			msg += '\n카드 승인번호 : ' + rsp.apply_num;
 	    			alert(msg);
-	          } else {
-	              alert("실패");
-	          }
-	      });
+			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+			    	jQuery.ajax({
+			    		url: "./payment/pay.do", 
+			    		type: 'POST',
+			    		dataType: 'json',
+			    		data: {
+				    		imp_uid : rsp.imp_uid,
+				    		merchant_uid : rsp.merchant_uid
+				    		//기타 필요한 데이터가 있으면 추가 전달
+			    		}
+			    	}).done(function(data){
+			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+						alert("정상");			    			
+			    	});
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			        
+			        alert(msg);
+			    }
+			});
 	    }
 	 
 	  
