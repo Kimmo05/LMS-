@@ -16,4 +16,10 @@ public class TestController {
 	public String AdminMain() {
 		return "admin/admin_main";
 	}
+	
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	public String home() {
+		
+		return "user/TestApi";
+	}
 }
