@@ -11,4 +11,9 @@ public class TestController {
 	public String Test() {
 		return "index";
 	}
+	
+	@RequestMapping(value = "/adminMain.do", method = RequestMethod.GET)
+	public String AdminMain() {
+		return "admin/admin_main";
+	}
 }
