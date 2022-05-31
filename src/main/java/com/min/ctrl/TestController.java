@@ -20,6 +20,6 @@ public class TestController {
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home() {
 		
-		return "user/TestApi";
+		return "user/payments";
 	}
 }
