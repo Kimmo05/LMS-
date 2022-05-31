@@ -24,7 +24,6 @@ public class PayDaoImpl implements PayDao{
 		return sqlSession.selectList(NS+"paySelect");
 	}
 	
-	
 	//결제 insert
 	@Override
 	public int payInsert(Map<String, Object> map) {
