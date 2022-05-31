@@ -2,8 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 <typeAliases>
+<typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
 </typeAliases>
 
 <mappers>
+<mapper resource="sqls/Tag_Statement.xml"/>
+<mapper resource="sqls/Statistics_Statement.xml"/>
 </mappers>
 </configuration>
