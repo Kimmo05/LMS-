@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.daoImpl.TagDaoImpl">
+<!-- 과정id와 있는 과목 태그를 조회한다 -->
+<select id="selectTagClassAndSubject" resultType="TagVo">
+<![CDATA[SELECT s.SUB_NUM AS SUB_NUM ,cs.CSU_CLASSNUMBER AS CLASSNUMBER ,JSON_QUERY(s.SUB_TAG,'$' RETURNING VARCHAR2) AS TAG 
+					FROM  SUBJECT s
+					LEFT JOIN CLASS_SUBJECT cs ON cs.CSU_SUBJECTNUMBER = s.SUB_NUM]]>
+
+</select>
+<update id="updateTag">
+
+</update>
+<insert id="insertTagNew">
+
+</insert>
+</mapper>
