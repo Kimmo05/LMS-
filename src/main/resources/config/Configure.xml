@@ -3,10 +3,12 @@
 <configuration>
 <typeAliases>
 <typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
+<typeAlias type="com.min.vo.PayVo" alias="PayVo"/>
 </typeAliases>
 
 <mappers>
 <mapper resource="sqls/Tag_Statement.xml"/>
 <mapper resource="sqls/Statistics_Statement.xml"/>
+<mapper resource="sqls/pay_statement.xml"/>
 </mappers>
 </configuration>

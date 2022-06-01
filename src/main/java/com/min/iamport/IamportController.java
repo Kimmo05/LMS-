@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.min.dao.PayDao;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
@@ -35,7 +36,7 @@ public class IamportController {
 	IamportClient client;
 	
 	@Autowired
-//	private PayDao dao;
+	private PayDao dao;
 	
 	public IamportController() {
 		this.client = this.getTestClient();
@@ -68,8 +69,8 @@ public class IamportController {
 	}
 	
 	
-	//결제!!@@@
-	@PostMapping("pay")
+	//결제 및 insert
+	@PostMapping("pay.do")
 	public void getPay(String merchant_uid, String imp_uid) {
 		System.out.println("merchant_uid 는 ?? : " + merchant_uid);
 		System.out.println("imp_uid는 ?? : " + imp_uid); //주문번호
@@ -95,21 +96,27 @@ public class IamportController {
 //			System.out.println(formatData + "변환된 날짜"); 
 			
 			Map<String, Object> map= new HashMap<String, Object>();
-			map.put("ord_num", pay_response.getResponse().getImpUid()); // 주문번호
-			map.put("ord_buyer",pay_response.getResponse().getBuyerName()); // 구매자이름
-			map.put("ord_seq", "3"); // 과정번호
-			map.put("ord_price", pay_response.getResponse().getAmount()); //가격
-			map.put("ord_method", pay_response.getResponse().getPayMethod()); //결제수단
-			map.put("ord_pg", pay_response.getResponse().getPgProvider()); // payco(pg사)
-			map.put("ord_status", pay_response.getResponse().getStatus()); //결제상태
-			map.put("ord_date", pay_response.getResponse().getPaidAt()); //결제일자
-			map.put("ord_content", pay_response.getResponse().getName()); //결제명
-			map.put("ord_raw", "10000");
-			map.put("ord_discount", "100");
+			map.put("pay_num", pay_response.getResponse().getImpUid()); // 주문번호
+			map.put("pay_tra_buyer","thdwndrl1234"); // 구매자아이디
+			map.put("pay_cla_num", "CLA003"); // 과정번호
+			map.put("pay_price", pay_response.getResponse().getAmount()); //가격
+			map.put("pay_method", pay_response.getResponse().getPayMethod()); //결제수단
+			map.put("pay_pg", pay_response.getResponse().getPgProvider()); // payco(pg사)
+			map.put("pay_status", pay_response.getResponse().getStatus()); //결제상태
+			map.put("pay_date", pay_response.getResponse().getPaidAt()); //결제일자
+			map.put("pay_content", pay_response.getResponse().getName()); //결제명
+			map.put("pay_raw", "10000");
+			map.put("pay_discount", "100");
+			map.put("pay_candate", "");
+			map.put("pay_cancate", "");
+			map.put("pay_cancontent", "");
+			map.put("pay_ucounum", "");
+			map.put("pay_umilage", "");
+			
 			
 			//insert 가자
-//			int n = dao.payInsert(map);
-//			System.out.println(n + "@@@!!@@@@@@@@");
+			int n = dao.payInsert(map);
+			System.out.println(n + "@@@!!@@@@@@@@");
 			
 		} catch (IamportResponseException e) {
 			
@@ -127,8 +134,8 @@ public class IamportController {
 		this.getToken();
 	}
 	
-	//취소@@@@
-	@RequestMapping(value = "cancel", method = RequestMethod.POST)
+	//환불 승인.
+	@RequestMapping(value = "cancel.do", method = RequestMethod.POST)
 	public String testCancelPaymentAlreadyCancelledImpUid() {
         String test_already_cancelled_imp_uid = "imp_317120240807";
         CancelData cancel_data = new CancelData(test_already_cancelled_imp_uid, true); //imp_uid를 통한 전액취소
@@ -158,16 +165,14 @@ public class IamportController {
         return "nextpage";
     }
 	
-	@RequestMapping(value = "moveNext" ,method = RequestMethod.GET)
+	@RequestMapping(value = "moveNext.do" ,method = RequestMethod.GET)
 	public String nextPage() {
 		System.out.println("NEXTPAGE 진입");
 		return "nextpage";
 	}
 	
-	/*
-	 * 주문조회
-	 */
-	@PostMapping("payInfo")
+	//주문조회
+	@PostMapping("payInfo.do")
 	@ResponseBody
 	public String getPayInfo() {
 		
