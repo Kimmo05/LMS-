@@ -1,5 +1,5 @@
-//마일리지 div 따로 만들어주고 거기 숫자 찍어주기 , 그 숫자로 연산 및 db 계산값 Controller 보내주기
-//가격 전송, 결제내용 전송 
+//마일리지 숫자로 연산 및 db 계산값 Controller 보내주기
+//결제내용 전송 
   		
   		//결제하기버튼
   		function checkPay(){
@@ -28,19 +28,40 @@
   	  
   		//마일리지 사용하기 버튼
   		function useMilage(){
-  			 const getMoney = document.getElementById('money');
-  			 var moneyText = getMoney.innerText;
+			//총 금액 가져오기
+  			const getMoney = document.getElementById('money');
+			var moneyText = getMoney.innerText;
+			//총 할인금액 가져오기
+			const getTotalDiscount = document.getElementById('totalDiscount');
+			var totalDiscount = getTotalDiscount.innerText;
+			//쿠폰금액 가져오기
+			const getCoupon = document.getElementById('useCoupon');
+			var couponAmount = parseInt(getCoupon.innerText);
+			//사용 마일리지
+			const getUsedMilage = document.getElementById('useMileage');
+  			
+			//마일리지 입력값 가져오기
   			 var getMile = document.getElementById('milage').value;
 //   			 if(보유마일리지>사용마일리지){
 //   				 alert("보유마일리지가 부족합니다!")
 //   			 }else{실행};
+
+			 //숫자만 빼오기
   			 var regex = /[^0-9]/g;
   			 var changeMoney = moneyText.replace(regex, "");
-  			 var calc = changeMoney-getMile;
-
+			 
+  			 var totalCalc = changeMoney-getMile;
+			 var calcTotalDiscount = couponAmount+parseInt(getMile);
+			 
+		
   			 alert("마일리지가 사용되었습니다!");
+			 getTotalDiscount.innerHTML
+				= '<p style="color:tomato;">'+calcTotalDiscount+'</p>';
+			 getUsedMilage.innerHTML
+				= '<p style="color:tomato;">'+getMile+'</p>';
   			 getMoney.innerHTML 
-  			    = '<h4>결제금액</h4><h2>'+calc+' 원</h2>';
+  			    = '<h4><i class="fa fa-credit-card-alt"></i>&nbsp;&nbsp;Final Amount &nbsp;&nbsp;<small class="text-muted">최종 금액</small></h4><br><h1><i class="fa fa-krw"></i>&nbsp;'+totalCalc+'</h1>';
+							
   		}
   		
   

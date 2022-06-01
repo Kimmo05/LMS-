@@ -54,7 +54,7 @@
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-header pb-0">
-                    <h5>Payment</h5>
+                    <h5><i class="fa fa-credit-card-alt"></i>&nbsp;&nbsp; Payment</h5>
                     <span>강좌를 결제합니다.</span>
                     <hr>
                   </div>
@@ -63,21 +63,23 @@
                     <h6 class="card-title">JSP과정</h6><br>
                     <p>&nbsp; jsp과정 설명은 ~~이다</p> 
                     <hr>
-                    <h5>Pay info &nbsp;&nbsp;<small class="text-muted">강좌정보</small></h5><br>
+                    <h5>Pay info &nbsp;&nbsp;<small class="text-muted">금액정보</small></h5><br>
                     <dl class="row">
 					  <dt class="col-sm-3">강좌금액</dt>
 					  <dd class="col-sm-9">30000</dd>
-					   <dt class="col-sm-3">사용 쿠폰</dt>
-					  <dd class="col-sm-9">0</dd>
+					  <dt class="col-sm-3">사용 쿠폰</dt>
+					  <dd class="col-sm-9"><div id="useCoupon">0</div></dd>
 					  <dt class="col-sm-3">사용 마일리지</dt>
-					  <dd class="col-sm-9">0</dd>
+					  <dd class="col-sm-9"><div id="useMileage">0</div></dd>
 					  <dt class="col-sm-3">총 할인금액</dt>
-					  <dd class="col-sm-9">0</dd>
+					  <dd class="col-sm-9"><div id="totalDiscount">0</div></dd>
 					</dl>
 					<br>
+					<h5>Coupon &nbsp;&nbsp;<small class="text-muted">쿠폰사용</small></h5><br>
+					<button class="btn btn-primary" type="button">쿠폰 사용하기</button><br><br>
                     <div class ="btns">
-	 					<h5>Milage&nbsp;&nbsp;<small class="text-muted">마일리지 사용</small></h5><input type="number" name="milage" id="milage">&nbsp;
-	 					<input type="button" id="check6" onclick="useMilage()" value="사용하기"><br><br>
+	 					<h5>Milage&nbsp;&nbsp;<small class="text-muted">마일리지 사용</small></h5><br><input type="number" name="milage" id="milage">&nbsp;
+	 					<button class="btn btn-info btn-sm" type="button" onclick="useMilage()">사용하기</button><br><br>
 						<br>
 						<h5>Method of payment &nbsp;&nbsp;<small class="text-muted">결제방식 선택</small></h5><br>
 					 	<input type="radio" name="selectPay" value="payco">&nbsp;페이코&nbsp;&nbsp;<img src="./resources/images/pay/payco.png"/>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -86,14 +88,17 @@
 					 	<br>
 						<hr>
 						
-						<div id='money'>
-							<h4>결제금액</h4>
-							<h2>30000 원</h2>
+						<div id='money' class="figure text-end d-block">
+							<h4><i class="fa fa-credit-card-alt"></i>&nbsp;&nbsp;Final Amount &nbsp;&nbsp;<small class="text-muted">최종 금액</small></h4><br>
+							<h1><i class="fa fa-krw"></i>&nbsp;30000</h1>
 						</div>
-						<input type="button" id="check6" onclick="checkPay()" value="결제">
-						
-						<h1><a href="javascript:doCheck()">정보확인</a></h1>
-						<a href="javascript:doF()">결제 취소</a>
+						<br>
+						<div class="figure text-end d-block">
+							<button class="btn btn-danger btn-lg" type="button" onclick="checkPay()">&nbsp;&nbsp;&nbsp;&nbsp;결제하기&nbsp;&nbsp;&nbsp;&nbsp;</button>
+							<button class="btn btn-light btn-lg" type="button" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;뒤로가기&nbsp;&nbsp;&nbsp;&nbsp;</button>
+							<h1><a href="javascript:doCheck()">정보확인</a></h1>
+							<a href="javascript:doF()">결제 취소</a>
+						</div>
 					</div>
                   </div>
                 </div>
