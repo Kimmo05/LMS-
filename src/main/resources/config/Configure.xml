@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
+
 <typeAliases>
+<typeAlias type="com.min.vo.SubjectVo" alias="SubjectVo"/>
 <typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
 <typeAlias type="com.min.vo.PayVo" alias="PayVo"/>
 </typeAliases>
@@ -10,5 +12,7 @@
 <mapper resource="sqls/Tag_Statement.xml"/>
 <mapper resource="sqls/Statistics_Statement.xml"/>
 <mapper resource="sqls/pay_statement.xml"/>
+<mapper resource="sqls/Subject_Statement.xml"/>
 </mappers>
+
 </configuration>
