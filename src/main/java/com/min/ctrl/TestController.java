@@ -3,6 +3,7 @@ package com.min.ctrl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TestController {
@@ -21,5 +22,16 @@ public class TestController {
 	public String home() {
 		
 		return "user/payments";
+	}
+	
+	@RequestMapping(value = "/prefer.do",method = RequestMethod.GET)
+	public String prefer() {
+		return "commons/prefercheck";
+	}
+	
+	@RequestMapping(value = "/getSubjectList.do",method = RequestMethod.POST)
+	@ResponseBody
+	public String getSubject() {
+		return "통신성공";
 	}
 }
