@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.daoImpl.SubjectDaoImpl">
+
+<!-- 1) 과목 등록 -->
+<insert id="subInsertSubject" parameterType="java.util.Map">
+	<selectKey keyProperty="subSeq" resultType="java.lang.Integer" order="BEFORE">
+		SELECT SUB_SEQ.NEXTVAL AS SUB_NUM FROM DUAL
+	</selectKey>
+	INSERT INTO SUBJECT (SUB_NUM, SUB_TITLE, SUB_CONTENT, 
+						SUB_COD_CODE, SUB_REGDATE,SUB_REG_ID, 
+					 	SUB_REG_CODE, SUB_STATUS) 
+			VALUES (TO_CHAR(SYSDATE,'yyyyMMdd')||'SUB'||SUB_SEQ.NEXTVAL,#{sub_title},#{sub_content},
+					#{sub_cod_code},SYSDATE,#{sub_reg_id},
+					'REG'||SUB_REG_SEQ.NEXTVAL,'W')
+</insert>
+
+<insert id="subInsertRegister" parameterType="java.util.Map">
+	INSERT INTO SUB_REGISTER(REG_CODE, REG_AUTH, REG_ID)
+				VALUES(#{reg_code},#{reg_auth},#{reg_id})
+</insert>
+
+<insert id=""></insert>
+
+</mapper>

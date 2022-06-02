@@ -6,7 +6,7 @@ public class TagVo implements Serializable {
 
 	private static final long serialVersionUID = 6803176712430898707L;
 	private String sub_num;
-	private String classnumber;
+	private String cla_num;
 	private String tag;
 
 	public TagVo() {
@@ -20,13 +20,7 @@ public class TagVo implements Serializable {
 		this.sub_num = sub_num;
 	}
 
-	public String getClassname() {
-		return classnumber;
-	}
 
-	public void setClassname(String classname) {
-		this.classnumber = classname;
-	}
 
 	public String getTag() {
 		return tag;
@@ -36,17 +30,27 @@ public class TagVo implements Serializable {
 		this.tag = tag;
 	}
 
-	@Override
-	public String toString() {
-		return "TagVo [sub_num=" + sub_num + ", classname=" + classnumber + ", tag=" + tag + "]";
+	public String getCla_num() {
+		return cla_num;
 	}
 
-	public TagVo(String sub_num, String classname, String tag) {
+	public void setCla_num(String cla_num) {
+		this.cla_num = cla_num;
+	}
+
+	public TagVo(String sub_num, String cla_num, String tag) {
 		super();
 		this.sub_num = sub_num;
-		this.classnumber = classname;
+		this.cla_num = cla_num;
 		this.tag = tag;
 	}
+
+	@Override
+	public String toString() {
+		return "TagVo [sub_num=" + sub_num + ", cla_num=" + cla_num + ", tag=" + tag + "]";
+	}
+
+
 	
 
 
