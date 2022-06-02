@@ -6,6 +6,7 @@
 <typeAlias type="com.min.vo.SubjectVo" alias="SubjectVo"/>
 <typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
 <typeAlias type="com.min.vo.PayVo" alias="PayVo"/>
+<typeAlias type="com.min.vo.SubjectCodeVo" alias="SubjectCodeVo"/>
 </typeAliases>
 
 <mappers>

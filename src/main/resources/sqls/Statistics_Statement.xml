@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="Statistics">
+<select id="selectSubjectCode" resultType="java.lang.String">
+SELECT JSON_ARRAYAGG(COD_CODE ORDER BY COD_NAME RETURNING VARCHAR2) AS COD_CODE,
+		JSON_ARRAYAGG(COD_NAME  ORDER BY COD_NAME RETURNING VARCHAR2) AS COD_NAME
+FROM SUB_CODE sc
+</select>
 </mapper>

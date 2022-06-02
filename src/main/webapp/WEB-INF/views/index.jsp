@@ -4,7 +4,6 @@
 <html>
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <meta charset="UTF-8">
 <title>첫 페이지</title>
 	<%@ include file="./commons/header.jsp"  %>
@@ -28,14 +27,16 @@
                     <li class="breadcrumb-item">Color Version</li>
                     <li class="breadcrumb-item active">Layout Light</li>
                   </ol>
-                </div>
-                <div class="col-sm-6">
-               <h1>테스트용 시작 메인 페이지</h1>
-                <a href="./adminMain.do">관리자 페이지로 이동하기</a>
-                <br>
-                <a href="./home.do">결제 페이지로 이동하기</a>
+                  
+                   <h1>테스트용 시작 메인 페이지</h1>
+                <a href="./adminMain.do">관리자 페이지로 이동하기</a><br>
+                <a href="./home.do">결제 페이지로 이동하기</a><br>
+                <a href="./prefer.do">사용자 선호조사 페이지</a>
                 <hr>
                 이 선위로 아무거나 막 적어도 됩니다. 
+                </div>
+                <div class="col-sm-6">
+              
                 </div>
               </div>
             </div>

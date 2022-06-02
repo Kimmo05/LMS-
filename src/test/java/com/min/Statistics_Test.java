@@ -2,6 +2,7 @@ package com.min;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,23 +36,35 @@ public class Statistics_Test {
 		logger.info("selectTagTest 실행");
 		List<TagVo> lists = dao.selectTagClassAndSubject();
 		String temp;
-		System.out.println("LISTS="+lists.get(1));
+		
 		Pattern p = Pattern.compile("#([a-zA-Z0-9가-힣]*)");
+//		temp = dao.selectTagAll();
 		JSONParser parser = new JSONParser();
+		JSONArray tags = new JSONArray();
+//		tags = (JSONArray)parser.parse(temp);
 		JSONArray arr = new JSONArray();
-		for ( TagVo vo : lists) {
-			arr = (JSONArray)parser.parse(vo.getTag());
+		JSONArray addTags = new JSONArray();
+		List<String> insertTags = new ArrayList<String>();
+		for (TagVo vo : lists) {
+			arr = (JSONArray)parser.parse(vo.getTag().toString());
 			for (int i = 0; i < arr.size(); i++) {
 				Matcher m = p.matcher(arr.get(i).toString());
 				while(m.find()) {
 					temp = m.group().replace(" ", "_").replace("#", "").toString().toLowerCase() ;
-					if(!arr.contains(temp)) {
-						arr.add(temp);
+					System.out.println(temp);
+					//만약에 기존 태그중에 없으면 새로운 태그 추가 
+					if(!tags.contains(temp)&&!addTags.contains(temp)) {
+						addTags.add(temp);
 					}
 				}
 			}
 		}
-		System.out.println(arr.toString());
+		for (int i = 0; i < addTags.size(); i++) {
+			insertTags.add(addTags.get(i).toString());
+		}
+		
+//		System.out.println(tags.toString());
+		System.out.println(addTags.toString());
 	//	System.out.println(tag);
 	//	while(iter.hasNext()) {
 	//		if(iter.next().equalsIgnoreCase(keyword)) {
