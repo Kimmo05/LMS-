@@ -1,0 +1,28 @@
+#tag{
+	width: 70px;
+	height: 40px;
+	    margin-top: 8px;
+    font-size: 13px;
+        border-width: 0px;
+    border-style: initial;
+    border-color: initial;
+    border-image: initial;
+    background: transparent;
+    outline: none;
+}
+.subName{
+	float:left;
+	background-color: #CCCCCC;
+	margin: 5px;
+	font-size: 13px;
+	line-height: 32px;
+	display: block;
+    height: 30px;
+    padding: 0 9px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: #eff0f2;
+    color: #000;
+}
+.tag_text{
+}

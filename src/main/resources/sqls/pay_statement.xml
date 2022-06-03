@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.daoImpl.PayDaoImpl">
+	<select id="paySelect" resultType="PayVo">
+		SELECT PAY_NUM,
+			 PAY_TRA_BUYER,
+			 PAY_CLA_NUM,
+			 PAY_PRICE,
+			 PAY_METHOD,
+			 PAY_PG,
+			 PAY_STATUS,
+			 PAY_DATE,
+			 PAY_CONTENT,
+			 PAY_RAW, PAY_DISCOUNT,
+			 PAY_CANDATE,
+			 PAY_CANCATE,
+			 PAY_CANCONTENT, 
+			 PAY_UCOUNUM, 
+			 PAY_UMILAGE
+		FROM PAY
+	</select>
+	
+	<insert id="payInsert" parameterType="java.util.Map">
+		INSERT INTO PAY
+		(PAY_NUM,
+		 PAY_TRA_BUYER,
+		 PAY_CLA_NUM,
+		 PAY_PRICE, 
+		 PAY_METHOD, 
+		 PAY_PG, 
+		 PAY_STATUS, 
+		 PAY_DATE, 
+		 PAY_CONTENT, 
+		 PAY_RAW, 
+		 PAY_DISCOUNT, 
+		 PAY_CANDATE, 
+		 PAY_CANCATE, 
+		 PAY_CANCONTENT, 
+		 PAY_UCOUNUM, 
+		 PAY_UMILAGE)
+		VALUES(#{pay_num},
+		 #{pay_tra_buyer},
+		 #{pay_cla_num},
+		 #{pay_price},
+		 #{pay_method},
+		 #{pay_pg},
+		 #{pay_status},
+		 #{pay_date},
+		 #{pay_content},
+		 #{pay_raw},
+		 #{pay_discount},
+		 #{pay_candate},
+		 #{pay_cancate}, 
+		 #{pay_cancontent},
+		 #{pay_ucounum},
+		 #{pay_umilage})
+	</insert>
+	
+</mapper>

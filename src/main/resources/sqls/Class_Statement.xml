@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.min.daoImpl.Class">
+
+<select id="classSelectAll" resultType="ClassVo">
+SELECT CLA_NUM , CLA_TITLE , CASE WHEN LENGTH(CLA_CONTENT) > 30 THEN SUBSTR(CLA_CONTENT,0,30) || '...' ELSE CLA_CONTENT END CLA_CONTENT, TO_CHAR(CLA_STARTDATE,'YYYY-MM-DD') AS CLA_STARTDATE,
+	   CLA_DAILYTIME , CLA_TOTALTIME, CLA_MAXPEO , CLA_PRICE, JSON_QUERY(CLA_LIKE ,'$' RETURNING VARCHAR2) AS CLA_LIKE, CLA_STATUS
+	FROM CLASS c
+	ORDER BY CLA_NUM
+</select>
+
+<select id="classSelected" resultType="ClassVo">
+SELECT SUBSTR(CLA_NUM,4)+0 AS CLA_NUM , CLA_TITLE , CASE WHEN LENGTH(CLA_CONTENT) > 30 THEN SUBSTR(CLA_CONTENT,0,30) || '...' ELSE CLA_CONTENT END CLA_CONTENT,CLA_STARTDATE,
+	   CLA_DAILYTIME , CLA_TOTALTIME, CLA_MAXPEO , CLA_PRICE, JSON_QUERY(CLA_LIKE ,'$' RETURNING VARCHAR2) AS CLA_LIKE, CLA_STATUS
+	FROM CLASS c
+	WHERE CLA_STATUS = #{cla_status}
+	ORDER BY CLA_NUM
+</select>
+
+<select id="classSelectDetail" resultType="ClassVo" parameterType="ClassVo">
+SELECT CLA_NUM, CLA_TITLE , CLA_CONTENT , CLA_MAXPEO , CLA_PRICE , CLA_DAILYTIME ,
+	   CLA_STARTDATE , CLA_TOTALTIME ,  JSON_QUERY(CLA_LIKE ,'$' RETURNING VARCHAR2) AS CLA_LIKE, 
+	   TO_CHAR(CLA_REGDATE,'YYYY-MM-DD') AS CLA_REGDATE, CLA_STATUS 
+	FROM CLASS c 
+	WHERE CLA_NUM = #{cla_num}
+</select>
+
+<select id="classSelectedIns" resultType="java.util.List" parameterType="java.lang.String">
+SELECT SUB_NUM ,SUB_INS ,CSU_CLA_NUM
+	FROM SUBJECT ,CLASS_SUBJECT
+	WHERE SUB_NUM = CSU_SUB_NUM AND CSU_CLA_NUM = #{csu_cla_num}
+</select>
+
+<insert id="classFormInsert" parameterType="java.util.Map">
+INSERT INTO CLASS (CLA_NUM, CLA_TITLE, CLA_CONTENT, 
+				   CLA_STATUS)
+			VALUES((SELECT 'CLA'||LPAD(MAX(SUBSTR(CLA_NUM,4)+1),3,'0') FROM CLASS), #{cla_title}, #{cla_content},
+				   '모집중')
+</insert>
+
+<insert id="classSubjectInsert" parameterType="java.util.Map">
+INSERT INTO CLASS_SUBJECT (CSU_SEQ, CSU_SUB_NUM, CSU_CLA_NUM)
+	 			   VALUES (CLASS_SUBJECT_SEQ.NEXTVAL, #{csu_sub_num}, (SELECT MAX(CLA_NUM)FROM CLASS c))
+</insert>
+
+<update id="classUpdate" parameterType="java.util.Map">
+UPDATE CLASS SET CLA_TITLE = #{cla_title},
+				 CLA_CONTENT = #{cla_content},
+				 CLA_MAXPEO = #{cla_maxpeo},
+				 CLA_PRICE = #{cla_price},
+				 CLA_DAILYTIME = #{cla_dailytime},
+				 CLA_STARTDATE = #{cla_startdate},
+				 CLA_TOTALTIME = #{cla_totaltime},
+				 CLA_STATUS = '준비중'
+			 WHERE CLA_NUM = #{cla_num}
+</update>
+
+
+
+<!-- 임시 과목 선택 리스트 -->
+<select id="subjectSelected" resultType="SubjectVo">
+SELECT SUB_NUM, SUB_TITLE  
+	FROM SUBJECT
+</select>
+
+</mapper>
