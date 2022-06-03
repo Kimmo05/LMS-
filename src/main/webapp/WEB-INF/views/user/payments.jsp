@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>첫 페이지</title>
+<title>결제하기</title>
   <!-- jQuery -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
   <!-- iamport.payment.js -->

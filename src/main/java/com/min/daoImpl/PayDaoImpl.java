@@ -18,16 +18,21 @@ public class PayDaoImpl implements PayDao{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	//주문 전체조회
+	//관리자 주문 전체조회
 	@Override
-	public List<PayVo> paySelect() {
-		return sqlSession.selectList(NS+"paySelect");
+	public List<PayVo> paySelectAll() {
+		return sqlSession.selectList(NS+"paySelectAll");
 	}
 	
 	//결제 insert
 	@Override
 	public int payInsert(Map<String, Object> map) {
 		return sqlSession.insert(NS+"payInsert",map);
+	}
+
+	@Override
+	public List<PayVo> paySelectStatus(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"paySelectStatus",map);
 	}
 
 	

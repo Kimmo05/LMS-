@@ -102,7 +102,7 @@ public class IamportController {
 			map.put("pay_price", pay_response.getResponse().getAmount()); //가격
 			map.put("pay_method", pay_response.getResponse().getPayMethod()); //결제수단
 			map.put("pay_pg", pay_response.getResponse().getPgProvider()); // payco(pg사)
-			map.put("pay_status", pay_response.getResponse().getStatus()); //결제상태
+			map.put("pay_status", "결제"); //결제상태(결제,환불대기,환불승인)
 			map.put("pay_date", pay_response.getResponse().getPaidAt()); //결제일자
 			map.put("pay_content", pay_response.getResponse().getName()); //결제명
 			map.put("pay_raw", "10000");
