@@ -3,7 +3,6 @@
 <configuration>
 
 <typeAliases>
-
 	<typeAlias type="com.min.vo.ClassBoardVo" alias="ClassBoardVo"/>
 	<typeAlias type="com.min.vo.ClassPeopleVo" alias="ClassPeopleVo"/>
 	<typeAlias type="com.min.vo.ClassSubjectVo" alias="ClassSubjectVo"/>
@@ -12,9 +11,9 @@
 	<typeAlias type="com.min.vo.MessageBoardVo" alias="MessageBoardVo"/>
 	<typeAlias type="com.min.vo.VoteVo" alias="VoteVo"/>
 	<typeAlias type="com.min.vo.SubjectVo" alias="SubjectVo"/>
-<typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
-<typeAlias type="com.min.vo.PayVo" alias="PayVo"/>
-<typeAlias type="com.min.vo.SubjectCodeVo" alias="SubjectCodeVo"/>
+	<typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
+	<typeAlias type="com.min.vo.PayVo" alias="PayVo"/>
+	<typeAlias type="com.min.vo.SubjectCodeVo" alias="SubjectCodeVo"/>
 </typeAliases>
 
 <mappers>

@@ -36,6 +36,7 @@ public class SubjectCodeVo implements Serializable {
 		this.cod_name = cod_name;
 		this.cod_tag = cod_tag;
 	}
-	
+	public SubjectCodeVo() {
+	}
 	
 }
