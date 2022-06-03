@@ -1,4 +1,4 @@
-package com.min.edu;
+package com.min;
 
 
 import java.util.HashMap;
@@ -28,7 +28,7 @@ public class Class_Test {
 	@Autowired
 	private IClassSubjectDao dao2;
 	
-//	@Test
+	@Test
 	public void classSelectAll() {
 		List<ClassVo> lists = dao.classSelectAll();
 		System.out.println(lists);

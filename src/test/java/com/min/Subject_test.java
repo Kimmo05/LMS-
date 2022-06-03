@@ -1,4 +1,4 @@
-package com.min.edu;
+package com.min;
 
 import static org.junit.Assert.*;
 

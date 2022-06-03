@@ -18,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.min.dao.IStatisticsDao;
 import com.min.dao.ITagDao;
+import com.min.vo.SubjectCodeVo;
 import com.min.vo.TagVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,14 +29,16 @@ public class Statistics_Test {
 	
 	private Logger logger = LoggerFactory.getLogger(Statistics_Test.class);
 	@Autowired
-	private ITagDao dao;
+	private ITagDao tDao;
+	@Autowired
+	private IStatisticsDao sDao;
 	
 	
 	@SuppressWarnings("unchecked")
-	@Test
+//	@Test
 	public void selectTagTest() throws ParseException {
 		logger.info("selectTagTest 실행");
-		List<TagVo> lists = dao.selectTagClassAndSubject();
+		List<TagVo> lists = tDao.selectTagClassAndSubject();
 		String temp;
 		
 		Pattern p = Pattern.compile("#([a-zA-Z0-9가-힣]*)");
@@ -72,5 +76,9 @@ public class Statistics_Test {
 	//			break;
 	//		}
 	//	}
+	}
+	@Test
+	public void test(){
+		System.out.println("테스트");
 	}
 }

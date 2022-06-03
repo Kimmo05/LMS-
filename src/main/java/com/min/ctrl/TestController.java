@@ -29,9 +29,5 @@ public class TestController {
 		return "commons/prefercheck";
 	}
 	
-	@RequestMapping(value = "/getSubjectList.do",method = RequestMethod.POST)
-	@ResponseBody
-	public String getSubject() {
-		return "통신성공";
-	}
+	
 }
