@@ -42,6 +42,7 @@ public class payController{
 		return "admin/adminSelectPay";
 	}
 	
+	//관리자 전체조회 상태별 조회
 	@RequestMapping(value = "/changePage.do", method = RequestMethod.GET)
 	public String changePage(String getText,Model model) {
 		System.out.println(getText);
@@ -52,5 +53,29 @@ public class payController{
 		model.addAttribute("lists",lists);
 		model.addAttribute("status",getText);
 		return "admin/adminSelectPay";
+	}
+	
+	//관리자 환불신청 페이지 이동
+	@RequestMapping(value = "/changeStatus.do", method = RequestMethod.GET)
+	public String changeStatus(Model model) {
+		logger.info("-----changeStatus 이동 -------");
+		Map<String, Object> map= new HashMap<String, Object>();
+		map.put("pay_status","환불대기");
+		List<PayVo> lists = dao.paySelectStatus(map);
+		model.addAttribute("lists",lists);
+		return "admin/changeStatus";
+	}
+	
+	//관리자 환불신청 상태별 페이지 변경
+	@RequestMapping(value = "/changeStatusSelect.do", method = RequestMethod.GET)
+	public String changeStatusSelect(String getText,Model model) {
+		System.out.println(getText);
+			
+		Map<String, Object> map= new HashMap<String, Object>();
+		map.put("pay_status", getText);
+		List<PayVo> lists = dao.paySelectStatus(map);
+		model.addAttribute("lists",lists);
+		model.addAttribute("status",getText);
+		return "admin/changeStatus";
 	}
 }
