@@ -71,7 +71,7 @@ public class IamportController {
 	
 	//결제 및 insert
 	@PostMapping("pay.do")
-	public void getPay(String merchant_uid, String imp_uid) {
+	public void getPay(String merchant_uid, String imp_uid,String payRow,String payDiscount,int payUmilage,String payCounum) {
 		System.out.println("merchant_uid 는 ?? : " + merchant_uid);
 		System.out.println("imp_uid는 ?? : " + imp_uid); //주문번호
 		
@@ -97,21 +97,30 @@ public class IamportController {
 			
 			Map<String, Object> map= new HashMap<String, Object>();
 			map.put("pay_num", pay_response.getResponse().getImpUid()); // 주문번호
-			map.put("pay_tra_buyer","thdwndrl1234"); // 구매자아이디
-			map.put("pay_cla_num", "CLA003"); // 과정번호
+			map.put("pay_tra_buyer","thdwndrl1234"); // 구매자아이디 : 세션값 받아오기
+			map.put("pay_cla_num", "CLA003"); // 과정번호 : 결제 페이지에서 전송
 			map.put("pay_price", pay_response.getResponse().getAmount()); //가격
 			map.put("pay_method", pay_response.getResponse().getPayMethod()); //결제수단
 			map.put("pay_pg", pay_response.getResponse().getPgProvider()); // payco(pg사)
 			map.put("pay_status", "결제"); //결제상태(결제,환불대기,환불승인)
 			map.put("pay_date", pay_response.getResponse().getPaidAt()); //결제일자
 			map.put("pay_content", pay_response.getResponse().getName()); //결제명
-			map.put("pay_raw", "10000");
-			map.put("pay_discount", "100");
+			map.put("pay_raw", payRow);	//결제페이지에서 전송
+			map.put("pay_discount", payDiscount);	//결제페이지에서 전송
 			map.put("pay_candate", "");
 			map.put("pay_cancate", "");
 			map.put("pay_cancontent", "");
-			map.put("pay_ucounum", "");
-			map.put("pay_umilage", "");
+			if(payUmilage == 0) {
+				map.put("pay_ucounum", "");
+			}else {
+				map.put("pay_ucounum", payCounum);
+			}
+			if(payUmilage == 0) {
+				map.put("pay_umilage", "");
+			}else {
+				map.put("pay_umilage", payUmilage);
+			}
+			
 			
 			
 			//insert 가자

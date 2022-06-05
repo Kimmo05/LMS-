@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.min.dao.PayDao;
+import com.min.vo.CouponVo;
 import com.min.vo.PayVo;
 
 
@@ -28,8 +29,13 @@ public class payController{
 	
 	//결제페이지 이동
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-	public String home() {
-		
+	public String home(Model model) {
+		logger.info("----------- payments 이동 ---------");
+		Map<String, Object> map = new HashMap<String, Object>();
+		//세션의 로그인된 아이디로 값 변경 필요.
+		map.put("cou_tra_id", "thdwndrl1234");
+		List<CouponVo> lists = dao.couponSelect(map);
+		model.addAttribute("lists",lists);
 		return "user/payments";
 	}
 	
@@ -78,4 +84,5 @@ public class payController{
 		model.addAttribute("status",getText);
 		return "admin/changeStatus";
 	}
+	
 }

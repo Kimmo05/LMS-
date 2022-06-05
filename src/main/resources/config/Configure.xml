@@ -4,6 +4,7 @@
 <typeAliases>
 <typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
 <typeAlias type="com.min.vo.PayVo" alias="PayVo"/>
+<typeAlias type="com.min.vo.CouponVo" alias="CouponVo"/>
 </typeAliases>
 
 <mappers>

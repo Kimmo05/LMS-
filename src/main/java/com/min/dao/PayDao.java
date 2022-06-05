@@ -3,6 +3,7 @@ package com.min.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.min.vo.CouponVo;
 import com.min.vo.PayVo;
 
 public interface PayDao {
@@ -15,4 +16,7 @@ public interface PayDao {
 	
 	//결제시 테이블 insert
 	public int payInsert(Map<String, Object> map);
+	
+	//결제시 쿠폰조회
+	public List<CouponVo> couponSelect(Map<String, Object> map);
 }

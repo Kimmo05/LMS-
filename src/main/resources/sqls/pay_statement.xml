@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.min.daoImpl.PayDaoImpl">
+
+	<!-- 관리자 결제 전체조회 -->
 	<select id="paySelectAll" resultType="PayVo">
 		SELECT PAY_NUM,
 		PAY_TRA_BUYER,
@@ -22,6 +24,7 @@
 		ORDER BY PAY_DATE DESC
 	</select>
 	
+	<!-- 관리자 전체조회 페이지 상태변경시 쿼리 -->
 	<select id="paySelectStatus" resultType="PayVo">
 		SELECT PAY_NUM,
 		PAY_TRA_BUYER,
@@ -44,6 +47,7 @@
 		ORDER BY PAY_DATE DESC
 	</select>
 	
+	<!-- 결제 -->
 	<insert id="payInsert" parameterType="java.util.Map">
 		INSERT INTO PAY
 		(PAY_NUM,
@@ -80,4 +84,14 @@
 		 #{pay_umilage})
 	</insert>
 	
+	<!-- 보유쿠폰 조회/ 결제시 사용가능 쿠폰 조회/ delflag Y일시 사용가능-->
+	<select id="couponSelect" parameterType="java.util.Map" resultType="CouponVo">
+	SELECT COU_CODE,
+	 COU_TRA_ID,
+	 COU_NAME,
+	 COU_PER, 
+	 COU_DELFLAG, 
+	 COU_DATE
+	 FROM COUPON WHERE COU_TRA_ID =#{cou_tra_id}
+	</select>
 </mapper>
