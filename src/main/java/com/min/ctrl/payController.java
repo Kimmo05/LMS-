@@ -39,6 +39,16 @@ public class payController{
 		return "user/payments";
 	}
 	
+	//결제완료시 결제완료 페이지로 이동
+	@RequestMapping(value = "/paySuccess.do", method = RequestMethod.GET)
+	public String paySuccess(Model model,String paynum,String finalAmount) {
+		System.out.println(paynum);
+		System.out.println(finalAmount);
+		model.addAttribute("paynum",paynum);
+		model.addAttribute("finalAmount",finalAmount);
+		return "user/paySuccess";
+	}
+	
 	//관리자 결제정보 전체조회로 이동
 	@RequestMapping(value = "/adminSelectPay.do", method = RequestMethod.GET)
 	public String adminSelectPay(Model model) {

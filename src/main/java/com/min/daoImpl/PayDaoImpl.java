@@ -43,5 +43,17 @@ public class PayDaoImpl implements PayDao{
 		return sqlSession.selectList(NS+"couponSelect",map);
 	}
 
+	//쿠폰사용 결제시 보유쿠폰 상태 변경
+	@Override
+	public int updateCoupon(Map<String, Object> map) {
+		return sqlSession.update(NS+"updateCoupon",map);
+	}
+
+	//마일리지사용 결제시 마일리지 상태 변경
+	@Override
+	public int updateMileage(Map<String, Object> map) {
+		return sqlSession.update(NS+"updateMileage",map);
+	}
+
 	
 }

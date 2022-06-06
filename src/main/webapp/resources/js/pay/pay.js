@@ -127,8 +127,8 @@
 		 IMP.request_pay({
 			    pg : pgText,  // KG이니시스 일반결제창 호출(상점아이디 MID-a 적용)
 			    amount : finalAmount,
-			    name : "api 페이코 주문 테스트",
-			    buyer_name : "송중기",
+			    name : "api 페이코 주문 테스트", //강의명으로 수정
+			    buyer_name : "송중기", //세션값으로 변경
 			    buyer_email : "buyer@iamport.kr"
 			  }, function(rsp) {
 			    if ( rsp.success ) {
@@ -156,6 +156,7 @@
 			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 						alert("정상");			    			
 			    	});
+					location.href="./paySuccess.do?paynum="+rsp.imp_uid+"&finalAmount="+rsp.paid_amount;
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;

@@ -19,4 +19,10 @@ public interface PayDao {
 	
 	//결제시 쿠폰조회
 	public List<CouponVo> couponSelect(Map<String, Object> map);
+	
+	//쿠폰사용 결제시 보우큐폰 상태 수정
+	public int updateCoupon(Map<String,Object> map);
+	
+	//마일리지사용 결제시 마일리지 차감
+	public int updateMileage(Map<String,Object> map);
 }

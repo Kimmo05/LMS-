@@ -94,4 +94,31 @@
 	 COU_DATE
 	 FROM COUPON WHERE COU_TRA_ID =#{cou_tra_id}
 	</select>
+	
+	<!-- 쿠폰 지급 -->
+	<insert id="couponInsert" parameterType="java.util.Map">
+	INSERT INTO COUPON
+	(COU_CODE,
+	 COU_TRA_ID,
+	 COU_NAME,
+	 COU_PER,
+	 COU_DELFLAG,
+	 COU_DATE)
+	VALUES(TO_CHAR(SYSDATE,'YYYYMMDD')||'_'||10||'_C'||LPAD(COU_SEQ.NEXTVAL,3,'0'),
+	'thdwndrl1234',
+	'그냥주는쿠폰',
+	10,
+	'Y',
+	SYSDATE);
+	</insert>
+	
+	<!-- 쿠폰사용 결제시 보우큐폰 상태 수정 -->
+	<update id="updateCoupon" parameterType="java.util.Map">
+	UPDATE COUPON SET COU_DELFLAG ='N' WHERE COU_CODE =#{cou_code}
+	</update>
+	
+	<!-- 마일리지 사용 결제시 보유마일리지 상태 수정  -->
+	<update id="updateMileage" parameterType="java.util.Map">
+	UPDATE TRAINEE SET TRA_MILAGE = TRA_MILAGE-#{useMilage} WHERE TRA_ID =#{tra_id}
+	</update>
 </mapper>
