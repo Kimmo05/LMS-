@@ -99,9 +99,8 @@
                
               <span class="icofont icofont-support"></span> 일반회원 로그인</a></div>
       <div class="container-fluid p-0">
-      <sec:authorize access="isAnonymous()">
+ 
    <h3>  <p><a class="ms-2" href="./">메인으로</a></p></h3>
-     </sec:authorize>
      <sec:authorize access="isAuthenticated()">
      <h3><p><a class="ms-2" href="./main.do">메인으로</a></p></h3>
      </sec:authorize>

@@ -15,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import com.min.service.IMemberService;
+import com.min.vo.InfoUser;
 import com.min.vo.MemberVo;
 
 
@@ -49,22 +50,23 @@ public class UserAuthService  implements AuthenticationProvider{
 				
 		
 //		// 로그인한 사용자의 부가정보를 담아준다.
-//		InfoUser user_info = new InfoUser();
-//		user_info.setId(dto.getId());
-//		user_info.setAuth(dto.getAuth());
-//		user_info.setName(dto.getName());
-//		user_info.setEmail(dto.getEmail());
-//		user_info.setBirth(dto.getBirth());
-//		user_info.setPhone(dto.getPhone());
-//		user_info.setMilage(dto.getMilage());
-//		
+		InfoUser user_info = new InfoUser();
+		user_info.setId(dto.getId());
+		user_info.setAuth(dto.getAuth());
+		user_info.setName(dto.getName());
+		user_info.setEmail(dto.getEmail());
+		user_info.setBirth(dto.getBirth());
+		user_info.setPhone(dto.getPhone());
+		user_info.setMilage(dto.getMilage());
+		user_info.setRegdate(dto.getRegdate());
+		user_info.setDelflag(dto.getDelflag());
 		
         // 반환할 값을 만든다.
         UsernamePasswordAuthenticationToken result 
         	= new UsernamePasswordAuthenticationToken(username, user_pw, roles);
         
         // 로그인한 사용자의 정보를 detail 에 넣어준다.
-        result.setDetails(dto);
+        result.setDetails(user_info);
         
 		return result;
 	}
