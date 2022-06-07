@@ -15,6 +15,10 @@
 	<typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
 	<typeAlias type="com.min.vo.PayVo" alias="PayVo"/>
 	<typeAlias type="com.min.vo.SubjectCodeVo" alias="SubjectCodeVo"/>
+	<typeAlias type="com.min.vo.MemberVo" alias="MemberVo"/>
+	<typeAlias type="java.util.Map" alias="map"/>
+	<typeAlias type="java.lang.Integer" alias="Integer"/>
+	<typeAlias type="com.min.vo.RowNumVo" alias="RowNumVo"/>
 </typeAliases>
 
 <mappers>
@@ -23,6 +27,7 @@
 <mapper resource="sqls/pay_statement.xml"/>
 <mapper resource="sqls/Subject_Statement.xml"/>
 <mapper resource="sqls/Tag_Statement.xml"/>
+<mapper resource="sqls/Member_Statement.xml"/>
 </mappers>
 
 </configuration>
