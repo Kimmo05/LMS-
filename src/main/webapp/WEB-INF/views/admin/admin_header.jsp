@@ -220,7 +220,7 @@
                    <c:if test = "${auth eq '[ROLE_ADMIN]'}">
                     <li class="sidebar-main-title">
                     <div>
-                            <button class="btn btn-primary btn-lg" type="button"><a href="./adminPage.do"><i data-feather="log-out"></i>관리자 페이지</a></button> 
+                            <button class="btn btn-primary btn-lg" type="button"><a href="./main.do"><i data-feather="log-out"></i>메인 페이지</a></button> 
                     </div>
                   </li>
                  </c:if>

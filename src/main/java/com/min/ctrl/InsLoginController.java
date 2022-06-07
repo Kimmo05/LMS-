@@ -30,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @RequestMapping(value = "/ins/*")
-
 public class InsLoginController {
 
 	@Autowired
