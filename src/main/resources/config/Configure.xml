@@ -10,6 +10,7 @@
 	<typeAlias type="com.min.vo.MessageBoardVo" alias="MessageBoardVo"/>
 	<typeAlias type="com.min.vo.VoteVo" alias="VoteVo"/>
 	<typeAlias type="com.min.vo.SubjectVo" alias="SubjectVo"/>
+	<typeAlias type="com.min.vo.SubjectCurVo" alias="SubjectCurVo"/>
 </typeAliases>
 
 <mappers>

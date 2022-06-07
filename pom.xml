@@ -228,6 +228,25 @@
 		</dependency>
 
 
+		<!-- ck-editor -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.3.3</version>
+		</dependency>
+		<dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>2.2</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.7</version>
+		</dependency>
+		
+
 	</dependencies>
 	<build>
 		<finalName>LMS_Project</finalName>

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.min.dao.IClassDao;
+import com.min.vo.ClassSubjectVo;
 import com.min.vo.ClassVo;
 import com.min.vo.SubjectVo;
 
@@ -59,10 +60,20 @@ public class ClassDaoImpl implements IClassDao{
 		return sqlSession.update(NS+"classUpdate", vo);
 	}
 	
+	@Override
+	public int classTimeUpdate() {
+		return sqlSession.update(NS+"classTimeUpdate");
+	}
+	
+	@Override
+	public int classTimeSearch(String cla_num) {
+		return sqlSession.selectOne(NS+"classTimeSearch",cla_num);
+	}
 	
 	// 임시
 	@Override
 	public List<SubjectVo> subjectSelected() {
+//	public List<String> subjectSelected() {
 		return sqlSession.selectList(NS+"subjectSelected");
 	}
 	
