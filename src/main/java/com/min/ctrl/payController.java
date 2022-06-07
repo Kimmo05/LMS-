@@ -45,6 +45,7 @@ public class payController{
 	//결제완료시 결제완료 페이지로 이동
 	@RequestMapping(value = "/paySuccess.do", method = RequestMethod.GET)
 	public String paySuccess(Model model,String paynum,String finalAmount) {
+		logger.info("--------결제성공 이동 ---------");
 		System.out.println(paynum);
 		System.out.println(finalAmount);
 		model.addAttribute("paynum",paynum);
