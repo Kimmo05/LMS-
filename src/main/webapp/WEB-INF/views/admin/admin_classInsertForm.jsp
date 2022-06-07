@@ -2,11 +2,8 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <%@ include file="./admin_header.jsp" %>
+<title>Insert title here</title>
 <body>
 <div class="page-body">
           <div class="container-fluid">
@@ -60,11 +57,13 @@
                             <c:forEach items="${lists}" var="vo">
                               <option>${vo.sub_num}</option>
                               <option disabled="disabled">${vo.sub_title}</option>
+<%--                               <option disabled="disabled">${vo.subjectcurVo.cur_time}</option> --%>
                             </c:forEach>
                             </select>
                             <br>
                             <label class="form-label" for="exampleFormControlInput1">선택한 과목</label>
                             <input readonly="readonly" class="form-control" type="text" id="changeInput" name="subList">
+<!--                             <input readonly="readonly" class="form-control" type="text" id="changeInput" name="subListTime"> -->
                             <br>
                             <label class="form-label" for="exampleFormControlInput1">추가된 과목</label>
                             <span id="subListed"></span>
@@ -97,14 +96,9 @@ var selectBoxChange = function(value){
 	$("#changeInput").val(value);
 	$("#changeInput").clone().appendTo("#subListed");
 }
-
-
-
 function deleteOne(){
 	$("#changeInput:first").remove();
 }
-
-
 </script>
 <%@include file="./admin_footer.jsp" %>
 </html>

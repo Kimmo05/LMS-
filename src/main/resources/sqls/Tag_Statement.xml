@@ -8,20 +8,17 @@
 		JSON_QUERY(s.SUB_TAG,'$' RETURNING VARCHAR2) AS TAG 
 					FROM  SUBJECT s
 					LEFT JOIN CLASS_SUBJECT cs ON cs.CSU_SUB_NUM  = s.SUB_NUM]]>
-
 </select>
 <!-- 태그 테이블의 모든 태그를 JSON Array형식으로 가져온다 -->
 <select id="selectTagAll" resultType="java.lang.String">
 SELECT JSON_ARRAYAGG(TAG_NAME ORDER BY TAG_NAME RETURNING VARCHAR2) AS TAGS  FROM TAG t
 </select>
 <!-- 새로 추가된 태그를 업데이트한다. -->
-<update id="updateTag" parameterType="java.lang.String">
+<update id="updateTag" parameterType="java.util.Map">
 UPDATE TAG SET TAG_IDS =#{json}
 </update>
 <!-- 기존에 없는 태그를 추가한다 -->
-<insert id="insertTagNew">
-<foreach collection="list" item="tag">
+<insert id="insertTagNew" parameterType="java.lang.String">
 INSERT INTO TAG(TAG_NAME) VALUES(#{tag})
-</foreach>
 </insert>
 </mapper>
