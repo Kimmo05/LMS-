@@ -20,9 +20,13 @@ public interface IClassDao {
 	public int classSubjectInsert(Map<String, Object> vo);
 	// 과정 수정
 	public int classUpdate(Map<String, Object> vo);
-	
+	// 과정 과목 리스트 총 시간 입력
+	public int classTimeUpdate();
+	// 과정 종료일 계산 필요 수
+	public int classTimeSearch(String cla_num);
 	
 	
 	// 과목 리스트 뽑기(임시)
 	public List<SubjectVo> subjectSelected();
+//	public List<String> subjectSelected();
 }

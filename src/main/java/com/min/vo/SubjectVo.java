@@ -1,6 +1,5 @@
 package com.min.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +10,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class SubjectVo {
-	
+
 	/*
 	 * Subject Table Vo
-	 * sub_num 과목 번호      
+	 * sub_num 과목 번호
 	 * sub_title 과목명
 	 * sub_content 과목설명
 	 * sub_keyword 과목키워드
@@ -44,7 +42,7 @@ public class SubjectVo {
 	private String sub_score;
 	private String sub_status;
 	private String sub_rejection;
-	
+
 	/*
 	 * SUB_REGISTER TABLE Vo
 	 * reg_code 등록자 코드
@@ -54,7 +52,6 @@ public class SubjectVo {
 	private String reg_code;
 	private String reg_auth;
 	private String reg_id;
-	
+
 
 }
-
