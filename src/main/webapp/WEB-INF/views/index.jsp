@@ -6,7 +6,7 @@
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="UTF-8">
 <title>첫 페이지</title>
-	<%@ include file="./commons/header.jsp"  %>
+	<%@ include file="./admin/admin_header.jsp"  %>
 </head>
 <body>
 
@@ -14,7 +14,6 @@
        <div class="page-wrapper compact-wrapper" id="pageWrapper">
 	
 		<div class="page-body-wrapper horizontal-menu">
-		<%@ include file="./commons/sidebar.jsp"  %>
         <div class="page-body">
           <div class="container-fluid">
             <div class="page-header">
@@ -42,7 +41,7 @@
             </div>
           </div>
           </div>
-		<%@ include file="./commons/footer.jsp"  %>
+		<%@ include file="./admin/admin_footer.jsp"  %>
 		</div>
 		</div>
 </body>
