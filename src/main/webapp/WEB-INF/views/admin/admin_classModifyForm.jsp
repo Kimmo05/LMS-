@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <%@ include file="./admin_header.jsp" %>
 <body>
 <!-- Page Sidebar Ends-->
@@ -81,19 +78,19 @@
                       <div class="row">
                         <div class="col">
                           <div class="mb-3">
-                            <label class="form-label" for="exampleFormControlInput6">과정 총 교육시간</label>
-                            <input name="cla_totaltime" class="form-control" id="exampleFormControlInput6" type="number" placeholder="과정의 총 교육시간을 입력해주세요">
-                          </div>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <div class="mb-3">
                             <label class="form-label" for="exampleFormControlInput7">과정 시작일</label>
-                            <input name="cla_startdate" class="form-control" id="exampleFormControlInput7" type="date" placeholder="과정의 시작일을 입력해주세요">
+                            <input name="cla_startdate" class="form-control" id="exampleFormControlInput6" type="date" placeholder="과정의 시작일을 입력해주세요">
                           </div>
                         </div>
                       </div>
+<!--                       <div class="row"> -->
+<!--                         <div class="col"> -->
+<!--                           <div class="mb-3"> -->
+<!--                             <label class="form-label" for="exampleFormControlInput7">과정 시작일</label> -->
+<!--                             <input name="cla_enddate" class="form-control" id="exampleFormControlInput7" type="date" readonly="readonly"> -->
+<!--                           </div> -->
+<!--                         </div> -->
+<!--                       </div> -->
 <!--                       <div class="row"> -->
 <!--                         <div class="col"> -->
 <!--                           <div class="mb-3"> -->
