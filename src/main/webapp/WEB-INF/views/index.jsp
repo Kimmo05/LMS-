@@ -9,7 +9,6 @@
 	<%@ include file="./commons/header.jsp"  %>
 </head>
 <body>
-
       <!-- Page Body Start-->
        <div class="page-wrapper compact-wrapper" id="pageWrapper">
 	
