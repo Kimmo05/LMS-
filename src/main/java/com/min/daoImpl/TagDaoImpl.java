@@ -25,4 +25,14 @@ public class TagDaoImpl implements ITagDao {
 	public String selectTagAll() {
 		return session.selectOne(NS+"selectTagAll");
 	}
+
+	@Override
+	public int updateTag() {
+		return 0;
+	}
+
+	@Override
+	public int insertTagNew(String tag) {
+		return session.insert(NS+"insertTagNew",tag);
+	}
 }

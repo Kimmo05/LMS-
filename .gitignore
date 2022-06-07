@@ -1,12 +1,22 @@
-# Created by https://www.toptal.com/developers/gitignore/api/java,maven,dbeaver,eclipse
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,maven,dbeaver,eclipse
+# Created by https://www.toptal.com/developers/gitignore/api/eclipse,dbeaver,database,maven,java,web
+# Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,dbeaver,database,maven,java,web
+
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.pdb
+*.sqlite3
 
 
 ### DBeaver ###
 # ide config file
 .dbeaver-data-sources*.xml
+
 .dbeaver/
 .properties
+
 ### Eclipse ###
 .metadata
 bin/
@@ -118,5 +128,7 @@ buildNumber.properties
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 
+
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,dbeaver,eclipse
 /LMS_Project/
+

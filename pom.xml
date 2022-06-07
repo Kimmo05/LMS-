@@ -10,8 +10,8 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>11</java-version>
-		<org.springframework-version>4.3.30.RELEASE</org.springframework-version>
-		<org.springframework.security>4.2.20.RELEASE</org.springframework.security>
+	    <org.springframework-version>4.3.25.RELEASE</org.springframework-version>
+	    <org.springframework-security>4.2.3.RELEASE</org.springframework-security>
 		<org.aspectj-version>1.9.6</org.aspectj-version>
 		<org.slf4j-version>1.7.25</org.slf4j-version>
 	</properties>
@@ -23,6 +23,34 @@
 		</repository>
 	</repositories>
 	<dependencies>
+	<dependency>
+	<!-- security -->
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${org.springframework-security}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+		<version>${org.springframework-security}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework-security}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+				<version>${org.springframework-security}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+				<version>${org.springframework-security}</version>
+		</dependency>
+	
+	
 		<!-- 아임포트 dependency -->
 		<dependency>
 			<groupId>com.github.iamport</groupId>
@@ -53,7 +81,7 @@
 			<artifactId>lombok</artifactId>
 			<version>1.18.12</version>
 			<scope>provided</scope>
-		</dependency>	
+		</dependency>
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -182,18 +210,7 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		<!-- Spring Security 암호화 -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-			<version>${org.springframework.security}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-			<version>${org.springframework.security}</version>
-		</dependency>
+		
 		<!-- Jackson Library -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -212,13 +229,31 @@
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-		<!-- Lombok -->
+<!-- FileUpload에 필요한 라이브러리 -->
+			<dependency>
+			    <groupId>commons-io</groupId>
+			    <artifactId>commons-io</artifactId>
+			    <version>2.2</version>
+			</dependency>
+			<dependency>
+			    <groupId>commons-fileupload</groupId>
+			    <artifactId>commons-fileupload</artifactId>
+			    <version>1.4</version>
+			</dependency>
+		
+		<!-- 섬네일 이미지 생성 -->
+			<dependency>
+  				  <groupId>net.coobird</groupId>
+   				 <artifactId>thumbnailator</artifactId>
+   				 <version>0.4.17</version>
+			</dependency>
+      <!-- transaction 처리 -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.12</version>
-			<scope>provided</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
+
 
 		<!-- Test -->
 		<dependency>
@@ -238,6 +273,26 @@
 	<build>
 		<finalName>LMS_Project</finalName>
 		<plugins>
+<!--			<plugin>-->
+<!--				<groupId>org.codehaus.mojo</groupId>-->
+<!--				<artifactId>tomcat-maven-plugin</artifactId>-->
+<!--				<version>1.1</version>-->
+<!--				<configuration>-->
+<!--					<url>http://localhost:8075/manager/text</url>-->
+<!--					<path>/${project.build.finalName}</path>-->
+<!--					<username>admin</username>-->
+<!--					<password>admin</password>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
+<!--			<plugin>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-war-plugin</artifactId>-->
+<!--				<version>3.3.2</version>-->
+<!--				<configuration>-->
+<!--					<warSourceDirectory>src/main/webapp</warSourceDirectory>-->
+<!--					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>-->
+<!--				</configuration>-->
+<!--			</plugin>-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
