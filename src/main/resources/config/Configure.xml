@@ -22,6 +22,7 @@
 <mapper resource="sqls/Class_Statement.xml"/>
 <mapper resource="sqls/pay_statement.xml"/>
 <mapper resource="sqls/Subject_Statement.xml"/>
+<mapper resource="sqls/Tag_Statement.xml"/>
 </mappers>
 
 </configuration>

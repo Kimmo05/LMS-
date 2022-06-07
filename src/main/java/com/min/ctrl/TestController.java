@@ -15,11 +15,13 @@ import com.min.vo.PayVo;
 
 @Controller
 public class TestController {
+
 	
 	@RequestMapping(value = "/index.do" , method = RequestMethod.GET)
 	public String Test() {
 		return "index";
 	}
+
 	
 	@RequestMapping(value = "/adminMain.do", method = RequestMethod.GET)
 	public String AdminMain() {
@@ -28,12 +30,13 @@ public class TestController {
 	
 	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
 	public String home() {
-		
 		return "user/payments";
 	}
+
 	
 	@RequestMapping(value = "/prefer.do",method = RequestMethod.GET)
 	public String prefer() {
 		return "commons/prefercheck";
 	}
+
 }

@@ -7,15 +7,22 @@ import org.springframework.stereotype.Repository;
 import com.min.dao.IStatisticsDao;
 import com.min.vo.SubjectCodeVo;
 
+import java.util.Map;
+
 @Repository
 public class StatisticsDaoImpl implements IStatisticsDao {
 
-	private final String NS = "com.min.StatisticsDaoImpl.";
-	@Autowired
-	private SqlSessionTemplate session ;
-	@Override
-	public String selectSubjectCode() {
-		return session.selectOne(NS+"selectSubjectCode");
-	}
+    private final String NS = "com.min.StatisticsDaoImpl.";
+    @Autowired
+    private SqlSessionTemplate session;
 
+    @Override
+    public String selectSubjectCode() {
+        return session.selectOne(NS + "selectSubjectCode");
+    }
+
+    @Override
+    public int updatePrefer(Map<String, Object> map) {
+        return session.update(NS + "updatePrefer", map);
+    }
 }
