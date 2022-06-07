@@ -25,4 +25,10 @@
     color: #000;
 }
 .tag_text{
+    line-height: 32px;
+}
+
+.cancelImg{
+    cursor: pointer;
+    vertical-align: middle;
 }

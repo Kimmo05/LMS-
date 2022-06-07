@@ -64,7 +64,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>loggerFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 	  <!-- security 부분 -->
   	<filter>
@@ -86,7 +86,7 @@
 	<listener>
 	    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
-	
+
 	<!-- Error Page -->
 	<error-page>
 		<error-code>404</error-code>

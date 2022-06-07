@@ -7,5 +7,7 @@ public interface ITagDao {
 
 	public List<TagVo> selectTagClassAndSubject();
 	public String selectTagAll();
+	public int updateTag();
+	public int insertTagNew(String tag);
 	
 }
