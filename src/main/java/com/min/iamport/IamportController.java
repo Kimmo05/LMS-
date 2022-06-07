@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ import com.siot.IamportRestClient.response.PaymentBalance;
 import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
-@RequestMapping(value = "/payment/**")
+@RequestMapping(value = "/user/payment/**")
 public class IamportController {
 	IamportClient client;
 	
@@ -71,16 +72,14 @@ public class IamportController {
 	
 	//결제 및 insert
 	@PostMapping("pay.do")
-	public void getPay(String merchant_uid, String imp_uid,String payRow,String payDiscount,int payUmilage,String payCounum) {
+	public void getPay(String merchant_uid, String imp_uid,String payRow,String payDiscount,int payUmilage,String payCounum,Authentication user) {
 		System.out.println("merchant_uid 는 ?? : " + merchant_uid);
 		System.out.println("imp_uid는 ?? : " + imp_uid); //주문번호
-		
 		try {
 			//payco와 kcp만 지원
 			//카카오페이의 경우 pay_response를 활용
 			//IamportResponse<PaymentBalance> payment_response = client.paymentBalanceByImpUid(test_Imp_uid);
 			IamportResponse<Payment> pay_response = client.paymentByImpUid(imp_uid);
-			
 			System.out.println(pay_response.getResponse().getMerchantUid()); //주문번호 o
 			System.out.println(pay_response.getResponse().getBuyerName()); //구매자이름 o
 			System.out.println(pay_response.getResponse().getName()); // 주문명 o
@@ -97,7 +96,7 @@ public class IamportController {
 			
 			Map<String, Object> map= new HashMap<String, Object>();
 			map.put("pay_num", pay_response.getResponse().getImpUid()); // 주문번호 ok
-			map.put("pay_tra_buyer","thdwndrl1234"); // 구매자아이디 : 세션값 받아오기
+			map.put("pay_tra_buyer",user.getPrincipal()); // 구매자아이디 : 세션값 받아오기 ok
 			map.put("pay_cla_num", "CLA003"); // 과정번호 : 결제 페이지에서 전송
 			map.put("pay_price", pay_response.getResponse().getAmount()); //가격 ok
 			map.put("pay_method", pay_response.getResponse().getPayMethod()); //결제수단 ok
@@ -124,7 +123,7 @@ public class IamportController {
 				map.put("pay_umilage", payUmilage);
 				Map<String,Object> mileMap = new HashMap<String, Object>();
 				mileMap.put("useMilage", payUmilage);
-				mileMap.put("tra_id", "thdwndrl1234");
+				mileMap.put("tra_id", user.getPrincipal());
 				dao.updateMileage(mileMap);
 			}
 			

@@ -28,11 +28,6 @@ public class TestController {
 		return "admin/admin_main";
 	}
 	
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-	public String home() {
-		return "user/payments";
-	}
-
 	
 	@RequestMapping(value = "/prefer.do",method = RequestMethod.GET)
 	public String prefer() {

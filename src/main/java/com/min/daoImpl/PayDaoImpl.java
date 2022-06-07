@@ -54,6 +54,12 @@ public class PayDaoImpl implements PayDao{
 	public int updateMileage(Map<String, Object> map) {
 		return sqlSession.update(NS+"updateMileage",map);
 	}
+	
+	//결제 상세조회
+	@Override
+	public PayVo getPayDetail(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"getPayDetail",map);
+	}
 
 	
 }

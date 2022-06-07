@@ -25,4 +25,7 @@ public interface PayDao {
 	
 	//마일리지사용 결제시 마일리지 차감
 	public int updateMileage(Map<String,Object> map);
+	
+	//결제 상세조회
+	public PayVo getPayDetail(Map<String,Object> map);
 }

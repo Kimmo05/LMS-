@@ -8,6 +8,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.min.vo.PayVo;
 
 
 @Controller
+@RequestMapping(value = "/user/*")
 public class payController{
 	
 	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
@@ -28,7 +30,7 @@ public class payController{
 	private PayDao dao;
 	
 	//결제페이지 이동
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/pay.do", method = RequestMethod.GET)
 	public String home(Model model) {
 		logger.info("----------- payments 이동 ---------");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -36,6 +38,7 @@ public class payController{
 		map.put("cou_tra_id", "thdwndrl1234");
 		List<CouponVo> lists = dao.couponSelect(map);
 		model.addAttribute("lists",lists);
+		
 		return "user/payments";
 	}
 	
@@ -47,6 +50,16 @@ public class payController{
 		model.addAttribute("paynum",paynum);
 		model.addAttribute("finalAmount",finalAmount);
 		return "user/paySuccess";
+	}
+	
+	//관리자 결제정보 상세조회
+	@RequestMapping(value = "/getPayDetail.do",method = RequestMethod.POST)
+	@ResponseBody
+	public PayVo getPayDetail(String paynum) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pay_num", paynum);
+		PayVo vo = dao.getPayDetail(map);
+		return vo;
 	}
 	
 	//관리자 결제정보 전체조회로 이동

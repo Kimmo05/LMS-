@@ -29,8 +29,10 @@
                   
                    <h1>테스트용 시작 메인 페이지</h1>
                 <a href="./adminMain.do">관리자 페이지로 이동하기</a><br>
-                <a href="./home.do">결제 페이지로 이동하기</a><br>
-                <a href="./prefer.do">사용자 선호조사 페이지</a>
+                <a href="./user/pay.do">결제 페이지로 이동하기</a><br>
+                <a href="./user/adminSelectPay.do">결제정보 전체조회</a><br>
+                <a href="./user/pay.do">결제 페이지로 이동하기</a><br>
+                <a href="./changeStatus.do">사용자 선호조사 페이지</a>
                 <hr>
                 이 선위로 아무거나 막 적어도 됩니다. 
                 </div>
