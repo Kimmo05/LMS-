@@ -1,6 +1,5 @@
 package com.min.vo;
 
-
 import java.io.Serializable;
 
 import lombok.Data;
@@ -14,9 +13,9 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class ClassPeopleVo implements Serializable{
-	private static final long serialVersionUID = 8897720271723684145L;
-	private int cpe_seq;
-	private String cpe_mem_id;
-	private String cpe_cla_num;
+public class SubjectCurVo implements Serializable{
+
+	private static final long serialVersionUID = -5102827289239015456L;
+	private String cur_time;
+	
 }
