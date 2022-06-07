@@ -10,6 +10,7 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,8 +65,12 @@ public class StatisticsController {
 		}
     }
 
-    @RequestMapping(value = "/tag.do",method = RequestMethod.GET)
-    public String tag(){
-        return "commons/tag";
+    //좋아요 클릭 시
+    @RequestMapping(value = "/clickLike.do",method = RequestMethod.POST)
+    @ResponseBody
+    public String clickLike(String claId, Authentication authentication){
+        String userid = (String) authentication.getPrincipal();
+        return "좋아요 클릭 됨";
     }
+
 }

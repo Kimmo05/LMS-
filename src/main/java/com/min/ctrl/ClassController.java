@@ -14,9 +14,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import com.min.service.ITagService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,9 @@ public class ClassController {
 
 	@Autowired
 	private IClassService service;
-	
+	@Autowired
+	private ITagService tagService;
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping(value = "/classListForm.do", method = RequestMethod.GET)
@@ -73,17 +77,28 @@ public class ClassController {
 	}
 	
 	@RequestMapping(value = "/classInsert.do", method = RequestMethod.POST)
-	public String classInsert(@RequestParam String title, @RequestParam String content, @RequestParam List<String> subList) {
+	public String classInsert(@RequestParam String title, @RequestParam String content, @RequestParam List<String> subList) throws ParseException {
+		JSONParser parser = new JSONParser();
 		logger.info("classInsert : 과정 생성");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cla_title", title);
 		map.put("cla_content", content);
 		int n = service.classFormInsert(map);
 		map.clear();
+		//TODO 과정 태그 넣기
 		for (String listed : subList) {
 			map.put("csu_sub_num", listed);
 			map.put("vot_sub_num", listed);
 			int m = service.classSubjectInsert(map);
+			map.clear();
+			String tag = tagService.selectTagJson(listed);
+			JSONObject object = (JSONObject) parser.parse(tag);
+			JSONArray array = (JSONArray) object.get("class");
+			array.add(listed);
+			object.put("class",array);
+			map.put("id",object);
+			map.put("name",listed);
+			tagService.updateTag(map);
 			map.clear();
 		}
 		service.classTimeUpdate();

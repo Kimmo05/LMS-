@@ -46,6 +46,7 @@
     <link id="color" rel="stylesheet" href="./assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 </head>
 <body>
   <!-- Loader starts-->
@@ -264,7 +265,7 @@
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
+                      <li><a href="./tag.do">태그</a></li>
                       <li><a href="./index.do">메뉴2</a></li>
                     </ul>
                   </li>
