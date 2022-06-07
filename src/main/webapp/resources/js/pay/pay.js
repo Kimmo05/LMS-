@@ -21,19 +21,62 @@
   		}
 		
 		//쿠폰사용 버튼
-		function useCoupon(){
+		function useCoupon(couCode,couPer){
+			$('#exampleModal').modal('hide');
+			//최종결제 금액 가져오기
+  			const getMoney = document.getElementById('money');
+			var moneyText = getMoney.innerText;
+			//숫자만 빼오기
+  			 var regex = /[^0-9]/g;
+  			 var changeMoney = moneyText.replace(regex, "");
+			//원금가져오기
+			const getClassPrice = document.getElementById('classPrice');
+			var classPrice = parseInt(getClassPrice.innerText);
+			console.log(classPrice);
+			//총 할인금액 가져오기
+			const getTotalDiscount = document.getElementById('totalDiscount');
+			var totalDiscount = parseInt(getTotalDiscount.innerText);
+			console.log(totalDiscount);
+			//쿠폰금액 가져오기
+			const getCoupon = document.getElementById('useCoupon');
+			var couponAmount = parseInt(getCoupon.innerText);
+			console.log(couponAmount);
+			//사용 마일리지
+			const getUsedMilage = document.getElementById('useMileage');
+			var useMileage = parseInt(getUsedMilage.innerText);
+			console.log(getUsedMilage);
+			//쿠폰사용 할인금액 계산
+			var changeUseCoupon = (classPrice*1/parseInt(couPer)).toFixed(0);
+			getCoupon.innerHTML
+				= '<p style="color:tomato;">'+changeUseCoupon+'</p>';
+			//쿠폰번호 임시로 찍기
+			const getTempCouNum = document.getElementById('couNum');
+			getTempCouNum.innerHTML=couCode;			
+			//총 할인금액 세팅	
+			var plusDiscount = parseInt(changeUseCoupon) + useMileage;
+			getTotalDiscount.innerHTML
+				='<p style="color:tomato;">'+plusDiscount+'</p>';
+			//마지막 결제금액 세팅
+			var totalCalc = classPrice- plusDiscount;
+			getMoney.innerHTML 
+  			    = '<h4><i class="fa fa-credit-card-alt"></i>&nbsp;&nbsp;Final Amount &nbsp;&nbsp;<small class="text-muted">최종 금액</small></h4><br><h1><i class="fa fa-krw"></i>&nbsp;'+totalCalc+'</h1>';
 			
 		}
 
   	  
   		//마일리지 사용하기 버튼
   		function useMilage(){
+			//원금가져오기
+			const getClassPrice = document.getElementById('classPrice');
+			var classPrice = parseInt(getClassPrice.innerText);
 			//총 금액 가져오기
   			const getMoney = document.getElementById('money');
 			var moneyText = getMoney.innerText;
+			//숫자만 빼오기
+  			 var regex = /[^0-9]/g;
+  			 var changeMoney = moneyText.replace(regex, "");
 			//총 할인금액 가져오기
 			const getTotalDiscount = document.getElementById('totalDiscount');
-			var totalDiscount = getTotalDiscount.innerText;
 			//쿠폰금액 가져오기
 			const getCoupon = document.getElementById('useCoupon');
 			var couponAmount = parseInt(getCoupon.innerText);
@@ -46,14 +89,11 @@
 //   				 alert("보유마일리지가 부족합니다!")
 //   			 }else{실행};
 
-			 //숫자만 빼오기
-  			 var regex = /[^0-9]/g;
-  			 var changeMoney = moneyText.replace(regex, "");
 			 
-  			 var totalCalc = changeMoney-getMile;
-			 var calcTotalDiscount = couponAmount+parseInt(getMile);
 			 
-		
+  			 //최종할인액
+			 var calcTotalDiscount = parseInt(couponAmount)+parseInt(getMile);
+			 var totalCalc = classPrice-calcTotalDiscount;
   			 alert("마일리지가 사용되었습니다!");
 			 getTotalDiscount.innerHTML
 				= '<p style="color:tomato;">'+calcTotalDiscount+'</p>';
@@ -71,12 +111,24 @@
 	  
 	 //값에 따른 결제창
 	 function request_pay2(pgText,finalAmount){
+		//총 할인금액 가져오기
+		const getTotalDiscount = document.getElementById('totalDiscount');
+		var totalDiscount = parseInt(getTotalDiscount.innerText);
+		//원금가져오기
+		const getClassPrice = document.getElementById('classPrice');
+		var classPrice = parseInt(getClassPrice.innerText);
+		//사용 마일리지
+		const getUsedMilage = document.getElementById('useMileage');
+		var useMileage = parseInt(getUsedMilage.innerText);
+		//사용 쿠폰번호
+		const getTempCouNum = document.getElementById('couNum');
+		var couNum = getTempCouNum.innerText;
 		console.log(pgText);
 		 IMP.request_pay({
 			    pg : pgText,  // KG이니시스 일반결제창 호출(상점아이디 MID-a 적용)
 			    amount : finalAmount,
-			    name : "api 페이코 주문 테스트",
-			    buyer_name : "송중기",
+			    name : "api 페이코 주문 테스트", //강의명으로 수정
+			    buyer_name : "송중기", //세션값으로 변경
 			    buyer_email : "buyer@iamport.kr"
 			  }, function(rsp) {
 			    if ( rsp.success ) {
@@ -93,13 +145,18 @@
 			    		dataType: 'json',
 			    		data: {
 				    		imp_uid : rsp.imp_uid,
-				    		merchant_uid : rsp.merchant_uid
+				    		merchant_uid : rsp.merchant_uid,
+							payRow : classPrice,
+							payDiscount : totalDiscount,
+							payUmilage : useMileage,
+							payCounum : couNum
 				    		//기타 필요한 데이터가 있으면 추가 전달
 			    		}
 			    	}).done(function(data){
 			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 						alert("정상");			    			
 			    	});
+					location.href="./paySuccess.do?paynum="+rsp.imp_uid+"&finalAmount="+rsp.paid_amount;
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;

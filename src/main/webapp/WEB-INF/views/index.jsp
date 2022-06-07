@@ -10,11 +10,11 @@
 </head>
 <body>
 
-<!-- Page Body Start-->
-<div class="page-wrapper compact-wrapper" id="pageWrapper">
-
-    <div class="page-body-wrapper horizontal-menu">
-        <%@ include file="./commons/sidebar.jsp" %>
+      <!-- Page Body Start-->
+       <div class="page-wrapper compact-wrapper" id="pageWrapper">
+	
+		<div class="page-body-wrapper horizontal-menu">
+		<%@ include file="./commons/sidebar.jsp"  %>
         <div class="page-body">
             <div class="container-fluid">
                 <div class="page-header">
