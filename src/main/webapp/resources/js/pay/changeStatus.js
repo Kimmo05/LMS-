@@ -19,7 +19,7 @@ function modalOpen(paynum){
 				console.log(data);
 				var noCoupon;
 				if(data.pay_ucounum == null){
-					 noCoupon = "사용안함";
+					 noCoupon = "사용안함.";
 				}else{
 					noCoupon =data.pay_ucounum;
 				}
