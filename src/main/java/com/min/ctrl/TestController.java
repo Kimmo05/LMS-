@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.min.vo.PayVo;
 
@@ -25,4 +26,14 @@ public class TestController {
 		return "admin/admin_main";
 	}
 	
+	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
+	public String home() {
+		
+		return "user/payments";
+	}
+	
+	@RequestMapping(value = "/prefer.do",method = RequestMethod.GET)
+	public String prefer() {
+		return "commons/prefercheck";
+	}
 }

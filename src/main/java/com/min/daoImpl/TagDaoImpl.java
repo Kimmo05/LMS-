@@ -20,4 +20,9 @@ public class TagDaoImpl implements ITagDao {
 	public List<TagVo> selectTagClassAndSubject() {
 		return session.selectList(NS+"selectTagClassAndSubject");
 	}
+
+	@Override
+	public String selectTagAll() {
+		return session.selectOne(NS+"selectTagAll");
+	}
 }
