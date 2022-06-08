@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.min.service.IClassService;
 import com.min.vo.ClassVo;
 import com.min.vo.SubjectVo;
+import com.min.vo.VoteVo;
 
 @Controller
 public class ClassController {
@@ -46,12 +47,12 @@ public class ClassController {
 		return "admin/admin_classList";
 	}
 	
-	@RequestMapping(value = "/classListed.do", method = RequestMethod.GET)
-	public String classListed(Model model) {
-		List<ClassVo> lists = service.classSelectAll();
-		model.addAttribute("lists", lists);
-		return "admin/admin_classList";
-	}
+//	@RequestMapping(value = "/classListed.do", method = RequestMethod.GET)
+//	public String classListed(Model model) {
+//		List<ClassVo> lists = service.classSelectAll();
+//		model.addAttribute("lists", lists);
+//		return "admin/admin_classList";
+//	}
 	
 	@RequestMapping(value = "/classSelectDetail.do", method = RequestMethod.GET)
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) {
@@ -81,6 +82,7 @@ public class ClassController {
 		map.clear();
 		for (String listed : subList) {
 			map.put("csu_sub_num", listed);
+			map.put("vot_sub_num", listed);
 			int m = service.classSubjectInsert(map);
 			map.clear();
 		}
@@ -210,6 +212,17 @@ public class ClassController {
 		System.out.println(month);
 		System.out.println(date);
 		return "redirect:/classListed.do";
+	}
+	
+	@RequestMapping(value = "/insApply.do", method = RequestMethod.POST)
+	public String insApply(@SessionAttribute("cla_num") String cla_num) {
+		VoteVo vo = new VoteVo();
+		vo.setVot_cla_num(cla_num);
+		//나중에 강사로 로그인한 아이디 넣기
+		vo.setVot_ins_id("thdwndrlrkdtk123");
+//		vo.setVot_sub_num(vot_sub_num);
+		service.insApply(vo);
+		return "redirect:/classSelectDetail.do";
 	}
 	
 }

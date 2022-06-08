@@ -24,9 +24,6 @@ function insertForm(val){
 // 	}
 }
 
-function deatailView(){
-	
-}
 
 </script>
 <body>
@@ -57,10 +54,10 @@ function deatailView(){
             <div class="card">
               <div class="card-header">
               <c:if test="${mes_cate eq 'Q' or mes_cate eq null}">
-                <h5>받은 쪽지함</h5>
+                <h5>보낸 쪽지함</h5>
               </c:if>
               <c:if test="${mes_cate eq 'R'}">
-                <h5>보낸 쪽지함</h5>
+                <h5>받은 쪽지함</h5>
               </c:if>
                 <select class="form-select digits" id="mes_cate " name="mes_cate" style="width: 100px; float: right;" onchange="changeCate(this.options[selectedIndex].value)">
                 	<option class="" id="ask" value="Q" <c:if test="${mes_cate == 'Q'}">selected="selected"</c:if>>보낸 쪽지</option>
@@ -77,8 +74,12 @@ function deatailView(){
                     <tr>
                       <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
 <!--                       <th scope="col">seq</th> -->
+					  <c:if test="${mes_cate eq 'Q' or mes_cate eq null}">
+                      <th scope="col">MY ID</th>
+					  </c:if>
+					  <c:if test="${mes_cate eq 'R'}">
                       <th scope="col">송신자</th>
-                      <th scope="col">수신자</th>
+					  </c:if>
                       <th scope="col">내용</th>
                       <th scope="col">카테고리</th>
                       <th scope="col">등록일</th>
@@ -89,9 +90,13 @@ function deatailView(){
 		              <tr>
 		              	 <td id="seq" hidden="hidden">${vo.mes_seq}</td>
 		                 <td><input type="checkbox" name="chkVal"></td>
+		                 <c:if test="${mes_cate eq 'Q' or mes_cate eq null}">
 		                 <td>${vo.mes_sender}</td>
-		                 <td><a href="./messageSelectDetail.do?mes_seq=${vo.mes_seq}" onclick="detailView()">${vo.mes_content}</a></td>
-		                 <td>${vo.mes_recipient}</td>
+		                 </c:if>
+		                 <c:if test="${mes_cate eq 'R'}">
+		                 <td>${vo.mes_sender}</td>
+		                 </c:if>
+		                 <td><a href="./messageSelectDetail.do?mes_seq=${vo.mes_seq}">${vo.mes_content}</a></td>
 		                 <td>${vo.mes_cate}</td>
 		                 <td>${vo.mes_regdate}</td>
 		              </tr>

@@ -6,12 +6,16 @@
 
 	<display-name>LMS_Project</display-name>
 	<welcome-file-list>
+	    <welcome-file>/main/main.do</welcome-file>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
 	<!-- Root Context -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/appServlet/root-context.xml</param-value>
+		<param-value>
+		/WEB-INF/spring/appServlet/root-context.xml
+		/WEB-INF/spring/appServlet/spring-security.xml
+		</param-value>
 	</context-param>
 
 	<listener>
@@ -64,8 +68,29 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>loggerFilter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	  <!-- security 부분 -->
+  	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<filter>
+		<filter-name>UsernamePasswordAuthenticationFilter</filter-name>
+		<filter-class>org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>UsernamePasswordAuthenticationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+	    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
 	<!-- Error Page -->
 	<error-page>
 		<error-code>404</error-code>
