@@ -27,13 +27,7 @@ public class TestController {
 	public String AdminMain() {
 		return "admin/admin_main";
 	}
-	
-	@RequestMapping(value = "/home.do", method = RequestMethod.GET)
-	public String home() {
-		return "user/payments";
-	}
 
-	
 	@RequestMapping(value = "/prefer.do",method = RequestMethod.GET)
 	public String prefer() {
 		return "commons/prefercheck";
