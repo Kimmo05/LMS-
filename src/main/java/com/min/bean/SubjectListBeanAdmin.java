@@ -2,19 +2,20 @@ package com.min.bean;
 
 import java.util.List;
 
+import com.min.vo.InfoUser;
 import com.min.vo.SubjectVo;
 
 public class SubjectListBeanAdmin {
 	
 	private List<SubjectVo> lists;
-//	private MemberVo mem;
+	private InfoUser mem;
 	
 	public void setLists(List<SubjectVo> lists) {
 		this.lists = lists;
 	}
-//	public void setMem(MemberVo mem) {
-//		this.mem = mem;
-//	}
+	public void setMem(InfoUser mem) {
+		this.mem = mem;
+	}
 
 	//전체 구성
 	public String getListForm() {
@@ -29,9 +30,7 @@ public class SubjectListBeanAdmin {
 	private String listRowForm(SubjectVo subVo) {
 		StringBuffer sb = new StringBuffer();                                                 
        sb.append("<tr>");
-//       if(mem.getAuth().equals("ROLE_ADMIN")) {
     	   sb.append("<td><input type='checkbox' name='chkVal'></td>");
-//       }
        sb.append("   <td>"+subVo.getSub_num()+"</td>");
        sb.append("   <td><a href='./adminSubjectDetail.do?sub_num="+subVo.getSub_num()+"'>"+subVo.getSub_title()+"</a></td>");
        sb.append("   <td>");

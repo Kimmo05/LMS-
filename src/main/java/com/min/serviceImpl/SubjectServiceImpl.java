@@ -22,20 +22,26 @@ public class SubjectServiceImpl implements SubjectService{
 	private SubjectDao sDao;
 
 	@Override
-	public int subInsertSubject1(Map<String, Object> map) {
+	public int subInsertSubject(Map<String, Object> map) {
 		logger.info("========== SubjectServiceImpl/subInsertSubject ==========");
 		int s = sDao.subInsertSubject(map);
 		int r = sDao.subInsertRegister(map);
-		return (s>0||r>0)?1:0;
+		int c = sDao.subInsertCurriculum(map);
+		return (s>0||r>0||c>0)?1:0;
+	}
+	@Override
+	public int subUpdateInstructor(Map<String, Object> map) {
+		logger.info("========== SubjectServiceImpl/subUpdateInstructor 과목 등록시 강사 업데이트 ==========");
+		return sDao.subUpdateInstructor(map);
 	}
 
-	@Override
-	public int subInsertSubject2(Map<String, Object> map) {
-		logger.info("========== SubjectServiceImpl/subInsertSubject ==========");
-		int c = sDao.subInsertCurriculum(map);
-		int i = sDao.subUpdateInstructor(map);
-		return (c>0||i>0)?1:0;
-	}
+//	@Override
+//	public int subInsertSubject2(Map<String, Object> map) {
+//		logger.info("========== SubjectServiceImpl/subInsertSubject ==========");
+//		int c = sDao.subInsertCurriculum(map);
+//		int i = sDao.subUpdateInstructor(map);
+//		return (c>0||i>0)?1:0;
+//	}
 
 	//2) 과목 조회
 	//0) 전체목록 갯수 조회
@@ -74,4 +80,6 @@ public class SubjectServiceImpl implements SubjectService{
 			logger.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 ==========");
 			return sDao.comSubjectDetail(sub_num);
 		}
+
+	
 }
