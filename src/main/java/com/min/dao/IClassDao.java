@@ -15,6 +15,8 @@ public interface IClassDao {
 	public List<ClassVo> classSelected();
 	// 과정 상세조회
 	public ClassVo classSelectDetail(String vo);
+	// 과정 상세조회 > 과목 리스트 조회
+	public List<SubjectVo> classSelectedSub(String cla_num);
 	// 과정 등록 폼 생성
 	public int classFormInsert(Map<String, Object> vo);
 	// 과정 과목리스트 생성

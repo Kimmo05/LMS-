@@ -55,13 +55,43 @@ function vote(){
               </div>
             </div>
           </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="blog-single">
+                 <c:forEach items="${lists}" var="vo" varStatus="vs">
+                  <i data-feather="list" style="float: left; padding-bottom: 8px;"></i><h6 style="border: 10px; border-radius: 5px;">&nbsp;과목 리스트 ${vs.count}</h6>
+                  <div class="blog-box blog-details">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="blog-details">
+                		 <h6 style="color: teal; font-weight: bold;">과목 제목</h6>
+                          <ul class="blog-social">
+                            <li>${vo.sub_title}</li>
+                          </ul>
+                          	<div class="single-blog-content-top">
+                          	<br>
+                         	<h6 style="color: teal; font-weight: bold;">과목 내용</h6>
+                            <p>${vo.sub_content}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                 </c:forEach>
+                </div>
+              </div>
+            </div>
+          </div>
           <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-light" onclick="javascript:history.back(-1)">뒤로가기</button>
-<!--           <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" onclick="modify()">글 수정하기</button> -->
 		  <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" onclick="vote()">투표하기</button>
           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classBoardSelectedAll.do">자료게시판</a>
           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classModifyForm.do?cla_num=${result.cla_num}">글 수정하기</a>
           <!-- Container-fluid Ends-->
         </div>
+        <br>
+        <br>
+        <br>
 </body>
 <%@include file="./admin_footer.jsp" %>
 </html>

@@ -25,7 +25,13 @@ SELECT CLA_NUM, CLA_TITLE , CLA_CONTENT , CLA_MAXPEO , CLA_PRICE , CLA_DAILYTIME
 	   CLA_STARTDATE , CLA_TOTALTIME ,  JSON_QUERY(CLA_LIKE ,'$' RETURNING VARCHAR2) AS CLA_LIKE, 
 	   TO_CHAR(CLA_REGDATE,'YYYY-MM-DD') AS CLA_REGDATE, CLA_STATUS 
 	FROM CLASS c 
-	WHERE CLA_NUM = CSU_CLA_NUM AND CLA_NUM = #{cla_num}
+	WHERE CLA_NUM = #{cla_num}
+</select>
+
+<select id="classSelectedSub" resultType="SubjectVo" parameterType="java.lang.String">
+SELECT SUB_TITLE ,SUB_CONTENT
+	FROM SUBJECT, CLASS_SUBJECT
+	WHERE SUB_NUM = CSU_SUB_NUM AND CSU_CLA_NUM = #{csu_cla_num}
 </select>
 
 <!-- 과정 과목 리스트 선택 -->

@@ -38,6 +38,11 @@ public class ClassServiceImpl implements IClassService {
 	}
 	
 	@Override
+	public List<SubjectVo> classSelectedSub(String cla_num) {
+		return dao.classSelectedSub(cla_num);
+	}
+	
+	@Override
 	public int classFormInsert(Map<String, Object> vo) {
 		return dao.classFormInsert(vo);
 	}

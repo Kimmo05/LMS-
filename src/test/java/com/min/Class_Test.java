@@ -52,7 +52,7 @@ public class Class_Test {
 	private IClassService service;
 
 
-	@Test
+//	@Test
 	public void classSelectAll() {
 		List<ClassVo> lists = dao.classSelectAll();
 		System.out.println(lists);
@@ -466,9 +466,18 @@ public class Class_Test {
 
 //	@Test
 	public void test3() {
-		String result = bDao.findFile(95);
+		String result = bDao.findFile(7);
 		System.out.println(result);
 	}
 
+	@Test
+	public void test5() {
+		List<SubjectVo> lists = service.classSelectedSub("CLA001");
+		System.out.println(lists);
+		
+	}
+	
+	
+	
 }
 

@@ -58,7 +58,9 @@ public class ClassController {
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) {
 		session.setAttribute("cla_num", cla_num);
 		ClassVo result = service.classSelectDetail(cla_num);
+		List<SubjectVo> lists = service.classSelectedSub(cla_num);
 		model.addAttribute("result", result);
+		model.addAttribute("lists", lists);
 		System.out.println(result);
 		return "admin/admin_classDetail";
 	}

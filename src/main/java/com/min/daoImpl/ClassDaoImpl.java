@@ -44,6 +44,11 @@ public class ClassDaoImpl implements IClassDao{
 	}
 
 	@Override
+	public List<SubjectVo> classSelectedSub(String cla_num) {
+		return sqlSession.selectList(NS+"classSelectedSub",cla_num);
+	}
+	
+	@Override
 	public int classFormInsert(Map<String, Object> vo) {
 		logger.info("ClassDaoImpl classFormInsert / 과정등록폼 생성 : {}",vo);
 		return sqlSession.insert(NS+"classFormInsert",vo);
