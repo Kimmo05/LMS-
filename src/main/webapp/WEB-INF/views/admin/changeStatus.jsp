@@ -103,8 +103,8 @@
 	                              <td>${vo.pay_date}</td>
 	                              <td>${vo.pay_candate}</td>
 	                              <td>
-	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-primary btn-xs" type="button">승인하기</button></c:if>
-	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-danger btn-xs" type="button">환불사유</button>&nbsp;<button class="btn btn-primary btn-xs" type="button">승인하기</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs" type="button">환불사유</button>&nbsp;<button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
 	                              </td>
                             	</tr>  	
                           	</c:forEach>
