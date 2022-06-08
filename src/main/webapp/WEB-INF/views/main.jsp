@@ -50,7 +50,7 @@
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-header pb-0">
-                    <h5>컨텐츠 부분</h5>
+                    <h5>메인 페이지</h5>
                     <sec:authorize access="isAuthenticated()">
 	<p>
 		

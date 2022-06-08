@@ -1,5 +1,10 @@
 package com.min.ctrl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -55,7 +60,7 @@ public class MainController {
 				Locale locale, Model model,Authentication user) {
 			System.out.println("로그인 선택창 이동");
 			System.out.println("로그인 선택창으로 이동 합시다");
-			
+
 			return "loginForm";
 		}
 

@@ -15,7 +15,7 @@
 .dbeaver-data-sources*.xml
 
 .dbeaver/
-.properties
+db.properties
 
 ### Eclipse ###
 .metadata

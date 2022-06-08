@@ -23,7 +23,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/user/*")
 public class PageController {
 	
 	@Autowired
@@ -35,14 +34,13 @@ public class PageController {
 		log.info("PageController rowVo : {}", session.getAttribute("rowVo"));
 		log.info("SubjectController subjectList 세션확인 : {}", user);
 		
-		MemberVo mvo = (MemberVo) user.getDetails();      
-	      JSONObject json = null;
-	      
-	      
+		
+		JSONObject json = null;
+		
 		//로그인한 회원이 관리자일경우
 		if(user.getAuthorities().toString().indexOf("ADMIN")!=-1) {
 			rowVo.setTotal(sService.subjectTotalAdmin());
-			json=jsonForm(sService.subSelectAllAdmin(rowVo),rowVo, mvo);// 현재 index 의 글 start, last, 요청row, 사용자 정보'
+			json=jsonForm(sService.subSelectAllAdmin(rowVo),rowVo, (Authentication) user.getDetails());
 		}
 //		else if(user.getAuthorities().equals("[ROLE_USER]")) {
 //			rowVo.setTotal(sService.subjectTotalUser());
@@ -59,7 +57,7 @@ public class PageController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private JSONObject jsonForm(List<SubjectVo> subjectListRow, RowNumVo rowVo,MemberVo mvo) {
+	private JSONObject jsonForm(List<SubjectVo> subjectListRow, RowNumVo rowVo, Authentication user) {
 		//반환되는 , 전송되는 객체
 		JSONObject json = new JSONObject(); 
 		//글들을 담는 객체

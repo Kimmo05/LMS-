@@ -121,4 +121,26 @@
 	<update id="updateMileage" parameterType="java.util.Map">
 	UPDATE TRAINEE SET TRA_MILAGE = TRA_MILAGE-#{useMilage} WHERE TRA_ID =#{tra_id}
 	</update>
+	
+	<!-- 결제 상세조회 -->
+	<select id="getPayDetail" parameterType="java.util.Map" resultType="PayVo">
+	SELECT PAY_NUM,
+		PAY_TRA_BUYER,
+		PAY_CLA_NUM, 
+		PAY_PRICE, 
+		PAY_METHOD, 
+		PAY_PG, 
+		PAY_STATUS, 
+		PAY_DATE, 
+		PAY_CONTENT, 
+		PAY_RAW, 
+		PAY_DISCOUNT, 
+		PAY_CANDATE,
+		PAY_CANCATE, 
+		PAY_CANCONTENT, 
+		PAY_UCOUNUM, 
+		PAY_UMILAGE
+		FROM PAY
+		WHERE PAY_NUM=#{pay_num}
+	</select>
 </mapper>
