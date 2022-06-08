@@ -1,42 +1,42 @@
-//package com.min;
-//
-//import static org.junit.Assert.*;
-//
-//import java.util.HashMap;
-//import java.util.Map;
-//
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.test.context.ContextConfiguration;
-//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-//
-//import com.min.dao.SubjectDao;
-//import com.min.vo.SubjectVo;
-//
-//import lombok.extern.slf4j.Slf4j;
-//
-//
-//
-//@Slf4j
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
-//public class Subject_test {
-//
-//	@Autowired
-//	private SubjectDao sDao;
-//
-//	private Logger logger = LoggerFactory.getLogger(Subject_test.class);
-//
-////	@Test
-//	public void test() {
-//		logger.info("Subject_test JUnit Test 실행");
-//	}
-//
+package com.min;
+
+import static org.junit.Assert.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.min.dao.SubjectDao;
+import com.min.vo.SubjectVo;
+
+import lombok.extern.slf4j.Slf4j;
+
+
+
+@Slf4j
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
+public class Subject_test {
+
+	@Autowired
+	private SubjectDao sDao;
+
+	private Logger logger = LoggerFactory.getLogger(Subject_test.class);
+
 //	@Test
 	public void test() {
+		logger.info("Subject_test JUnit Test 실행");
+	}
+
+//	@Test
+	public void test2() {
 		log.info("Subject_test JUnit Test 실행");
 	}
 
