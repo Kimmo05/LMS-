@@ -1,3 +1,4 @@
+
 package com.min.vo;
 
 import java.io.Serializable;
@@ -131,5 +132,4 @@ public class RowNumVo implements Serializable{
    }
 
 }
-
 

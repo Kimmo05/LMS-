@@ -54,7 +54,7 @@ public class MainController {
 				Locale locale, Model model,Authentication user) {
 			System.out.println("로그인 선택창 이동");
 			System.out.println("로그인 선택창으로 이동 합시다");
-			
+
 			return "loginForm";
 		}
 	

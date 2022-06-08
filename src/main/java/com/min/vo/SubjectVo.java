@@ -53,5 +53,14 @@ public class SubjectVo {
 	private String reg_auth;
 	private String reg_id;
 
+	/*
+	 * SUB_CODE TABLE Vo
+	 * cod_code 태그 카테고리 분류 코드
+	 * cod_name 태그 카테고리 이름
+	 * cod_tag 카테고리별 해시태그
+	 */
+	private String cod_code;
+	private String cod_name;
+	private String cod_tag;
 
 }

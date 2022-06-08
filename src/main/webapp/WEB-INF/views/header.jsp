@@ -59,10 +59,19 @@
       <!-- Page Header Start-->
       <div class="page-main-header">
         <div class="main-header-right row m-0">
-          <div class="main-header-left">
-            <div class="logo-wrapper"><a href="index.do"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
-            <div class="dark-logo-wrapper"><a href="index.do"><img class="img-fluid" src="./assets/images/logo/dark-logo.png" alt=""></a></div>
+        <div class="main-header-left">
+             <sec:authorize access="isAnonymous()">
+          
+            <div class="logo-wrapper"><a href="./"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
+            <div class="dark-logo-wrapper"><a href="./"><img class="img-fluid" src="./assets/images/logo/dark-logo.png" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
+          		</sec:authorize>
+          		<sec:authorize access="isAuthenticated()">
+          		<div class="logo-wrapper"><a href="./main.do"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
+            <div class="dark-logo-wrapper"><a href="./main.do"><img class="img-fluid" src="./assets/images/logo/dark-logo.png" alt=""></a></div>
+            <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
+          		</sec:authorize>
+          		
           </div>
           <div class="left-menu-header col">
             <ul>
@@ -220,7 +229,7 @@
                    <c:if test = "${auth eq '[ROLE_ADMIN]'}">
                     <li class="sidebar-main-title">
                     <div>
-                            <button class="btn btn-primary btn-lg" type="button"><a href="./main.do"><i data-feather="log-out"></i>메인 페이지</a></button> 
+                            <button class="btn btn-primary btn-lg" type="button"><a href="./adminPage.do"><i data-feather="log-out"></i>관리자 페이지</a></button> 
                     </div>
                   </li>
                  </c:if>
@@ -231,20 +240,20 @@
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>회원관리</span></a>
                     <ul class="nav-submenu menu-content">
-                       <li><a href="./adminTraList.do">일반회원 관리</a></li>
+                      <li><a href="./index.do">메뉴1</a></li>
                       <li><a href="./index.do">메뉴2</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./admin_subjectList.do">과목 조회</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./index.do">과목 전체 조회</a></li>
+                      <li><a href="./user_subjectInsertForm.do">과목 등록</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./classListForm.do">과정 리스트</a></li>
-                      <li><a href="./index.do">과정 자료 게시판</a></li>
+                      <li><a href="./index.do">메뉴2</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a>
