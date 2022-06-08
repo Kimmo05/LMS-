@@ -88,7 +88,7 @@
                               <th scope="col"><i class="fa fa-check-circle-o"></i>&nbsp;결제상태</th>
                               <th scope="col"><i class="fa fa-calendar"></i>&nbsp;결제일자</th>
                               <th scope="col"><i class="fa fa-calendar"></i>&nbsp;환불일자</th>
-                              <th scope="col"><i class="fa fa-check-square-o"></i>&nbsp;승인</th>
+                              <th scope="col"><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;환불사유/승인</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -103,8 +103,8 @@
 	                              <td>${vo.pay_date}</td>
 	                              <td>${vo.pay_candate}</td>
 	                              <td>
-	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-danger btn-xs" type="button">환불사유</button>&nbsp;<button class="btn btn-primary btn-xs" type="button">승인하기</button></c:if>
-	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs" type="button">환불사유</button>&nbsp;<button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy">환불사유</button>&nbsp;<button class="btn btn-primary btn-xs" type="button">승인하기</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy">환불사유</button>&nbsp;<button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
 	                              </td>
                             	</tr>  	
                           	</c:forEach>
@@ -121,6 +121,27 @@
                           <div class="modal-body">
                           	<br><br>
                           	<h1 class="display-1"><i class="fa fa-credit-card-alt"></i></h1><br>
+                          	<h6 id="modalTitle">ddd</h6>
+                          	<div id="modalText">dd</div>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 모달 -->
+                    <!-- 모달 -->
+                      <div class="modal fade" id="cancelWhy" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal modal-dialog-centered" role="document">
+                        <div class="modal-content text-center d-block">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Reason for refund&nbsp;&nbsp;<small class="text-muted">환불사유</small></h5>
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                          </div>
+                          <div class="modal-body">
+                          	<br><br>
+                          	<h1 class="display-1"><i class="fa fa-question-circle"></i></h1><br>
                           	<h6 id="modalTitle">ddd</h6>
                           	<div id="modalText">dd</div>
                           </div>
