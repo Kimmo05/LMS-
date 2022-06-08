@@ -4,7 +4,11 @@
 <html>
 <title>Insert title here</title>
 <%@ include file="./admin_header.jsp" %>
-
+<script type="text/javascript">
+function vote(){
+	location.href="./insApply.do";
+}
+</script>
 <body>
 	 <!-- Page Sidebar Ends-->
         <div class="page-body">
@@ -53,7 +57,8 @@
           </div>
           <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-light" onclick="javascript:history.back(-1)">뒤로가기</button>
 <!--           <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" onclick="modify()">글 수정하기</button> -->
-          <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classBoardSelectedAll.do">과정 자료게시판</a>
+		  <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" onclick="vote()">투표하기</button>
+          <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classBoardSelectedAll.do">자료게시판</a>
           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classModifyForm.do?cla_num=${result.cla_num}">글 수정하기</a>
           <!-- Container-fluid Ends-->
         </div>

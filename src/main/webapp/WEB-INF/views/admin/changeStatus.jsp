@@ -4,14 +4,14 @@
 <html>
 <head>
 <title>첫 페이지</title>
-<script type="text/javascript" src="./resources/js/pay/changeStatus.js"></script>
+<script type="text/javascript" src="../resources/js/pay/changeStatus.js"></script>
 <style type="text/css">
 	table{
 		text-align:center;
 	}
 </style>
 </head>
-<%@ include file="admin_header.jsp" %>
+<%@ include file="./admin_header.jsp" %>
 <body>
   
         <div class="page-body">
@@ -88,13 +88,13 @@
                               <th scope="col"><i class="fa fa-check-circle-o"></i>&nbsp;결제상태</th>
                               <th scope="col"><i class="fa fa-calendar"></i>&nbsp;결제일자</th>
                               <th scope="col"><i class="fa fa-calendar"></i>&nbsp;환불일자</th>
-                              <th scope="col"><i class="fa fa-check-square-o"></i>&nbsp;승인</th>
+                              <th scope="col"><i class="fa fa-check-square-o"></i>&nbsp;&nbsp;환불사유/승인</th>
                             </tr>
                           </thead>
                           <tbody>
                           	<c:forEach var="vo" items="${lists}">
 	                        	<tr>
-	                              <td><a href="#">${vo.pay_num}</a></td>
+	                              <td onclick="modalOpen('${vo.pay_num}')" ><a href="#" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">${vo.pay_num}</a></td>
 	                              <td>${vo.pay_tra_buyer}</td>
 	                              <td>
 	                              	<c:if test="${vo.pay_status eq '환불대기'}"><span class="badge rounded-pill badge-secondary">환불대기</span></c:if>
@@ -103,13 +103,55 @@
 	                              <td>${vo.pay_date}</td>
 	                              <td>${vo.pay_candate}</td>
 	                              <td>
-	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-primary btn-xs" type="button">승인하기</button></c:if>
-	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy">환불사유</button>&nbsp;<button class="btn btn-primary btn-xs" type="button">승인하기</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy">환불사유</button>&nbsp;<button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
 	                              </td>
                             	</tr>  	
                           	</c:forEach>
                           </tbody>
                         </table>
+                        <!-- 모달 -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal modal-dialog-centered" role="document">
+                        <div class="modal-content text-center d-block">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Payment Details&nbsp;&nbsp;<small class="text-muted">결제 상세정보</small></h5>
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                          </div>
+                          <div class="modal-body">
+                          	<br><br>
+                          	<h1 class="display-1"><i class="fa fa-credit-card-alt"></i></h1><br>
+                          	<h6 id="modalTitle">ddd</h6>
+                          	<div id="modalText">dd</div>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 모달 -->
+                    <!-- 모달 -->
+                      <div class="modal fade" id="cancelWhy" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal modal-dialog-centered" role="document">
+                        <div class="modal-content text-center d-block">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Reason for refund&nbsp;&nbsp;<small class="text-muted">환불사유</small></h5>
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                          </div>
+                          <div class="modal-body">
+                          	<br><br>
+                          	<h1 class="display-1"><i class="fa fa-question-circle"></i></h1><br>
+                          	<h6 id="modalTitle">ddd</h6>
+                          	<div id="modalText">dd</div>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 모달 -->
                       </div>
                     </div>
                 </div>
@@ -118,19 +160,6 @@
           </div>
           <!-- Container-fluid Ends-->
         </div>
-        <!-- footer start-->
-        <footer class="footer">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6 footer-copyright">
-                <p class="mb-0">Copyright 2021-22 © viho All rights reserved.</p>
-              </div>
-              <div class="col-md-6">
-                <p class="pull-right mb-0">Hand crafted & made with <i class="fa fa-heart font-secondary"></i></p>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
 

@@ -9,14 +9,14 @@
   <!-- iamport.payment.js -->
   <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
-  <script type="text/javascript" src="./resources/js/pay/pay.js"></script>
+  <script type="text/javascript" src="../resources/js/pay/pay.js"></script>
   <style type="text/css">
 	table{
 		text-align:center;
 	}
 </style>
 </head>
-<%@ include file="../admin/admin_header.jsp" %>
+<%@ include file="../header.jsp" %>
 <body>
   
         <div class="page-body">
@@ -130,9 +130,9 @@
 	 					<button class="btn btn-info btn-sm" type="button" onclick="useMilage()">사용하기</button><br><br>
 						<br>
 						<h5>Method of payment &nbsp;&nbsp;<small class="text-muted">결제방식 선택</small></h5><br>
-					 	<input type="radio" name="selectPay" value="payco">&nbsp;페이코&nbsp;&nbsp;<img src="./resources/images/pay/payco.png"/>&nbsp;&nbsp;&nbsp;&nbsp;
-					 	<input type="radio" name="selectPay" value="kakaopay">&nbsp;카카오페이&nbsp;&nbsp;<img src="./resources/images/pay/kakao.png"/>&nbsp;&nbsp;&nbsp;&nbsp;
-					 	<input type="radio" name="selectPay" value="toss">&nbsp;토스결제&nbsp;&nbsp;<img src="./resources/images/pay/toss.png"/>
+					 	<input type="radio" name="selectPay" value="payco" checked="checked">&nbsp;페이코&nbsp;&nbsp;<img src="../resources/images/pay/payco.png"/>&nbsp;&nbsp;&nbsp;&nbsp;
+					 	<input type="radio" name="selectPay" value="kakaopay">&nbsp;카카오페이&nbsp;&nbsp;<img src="../resources/images/pay/kakao.png"/>&nbsp;&nbsp;&nbsp;&nbsp;
+					 	<input type="radio" name="selectPay" value="toss">&nbsp;토스결제&nbsp;&nbsp;<img src="../resources/images/pay/toss.png"/>
 					 	<br>
 						<hr>
 						
@@ -156,25 +156,13 @@
           </div>
           <!-- Container-fluid Ends-->
         </div>
-        <!-- footer start-->
-        <footer class="footer">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6 footer-copyright">
-                <p class="mb-0">Copyright 2022-06 © viho All rights reserved.</p>
-              </div>
-              <div class="col-md-6">
-                <p class="pull-right mb-0">Hand crafted & made with <i class="fa fa-heart font-secondary"></i></p>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
 
 
 
-<%@include file="../admin/admin_footer.jsp" %>
+<%@include file="../footer.jsp" %>
 
 
   
