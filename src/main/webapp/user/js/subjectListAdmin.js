@@ -54,7 +54,7 @@ var pagingAjax= function (){
             varHtml += "   <li class='page-item'><a onclick='pageNext("+value.pageStartNum+","+value.total+","+value.pageListNum+","+value.pageList+")' class='page-link'  href='#'  aria-label='Next'><span>다음</span><span class='sr-only'>Next</span></a></li>";
             varHtml += "  <li class='page-item'><a onclick='pageLast("+value.pageStartNum+","+value.total+","+value.pageListNum+","+value.pageList+")' class='page-link'  href='#'   aria-label='Next'><span aria-hidden='true'>»</span><span class='sr-only'>Next</span></a></li>";
 
-			}		
+			}	
 			
                  if(key == "lists"){
                 	 $(".table").html(varHtml);
@@ -80,7 +80,7 @@ function pageIndex(idx){
 //글 갯수 변동
 function pageList(){
 	var index = document.getElementById("index");
-	var pageStratNum = document.getElementById("pageStartNum");
+	var pageStartNum = document.getElementById("pageStartNum");
 	var listNum = document.getElementById("listNum");
 	
 	index.value=0;
