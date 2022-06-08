@@ -21,7 +21,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.min.dao.IStatisticsDao;
 import com.min.dao.ITagDao;
-import com.min.vo.SubjectCodeVo;
 import com.min.vo.TagVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)

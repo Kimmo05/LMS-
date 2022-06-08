@@ -1,6 +1,5 @@
 package com.min.dao;
 
-import com.min.vo.SubjectCodeVo;
 
 import java.util.Map;
 

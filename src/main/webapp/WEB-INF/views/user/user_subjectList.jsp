@@ -7,7 +7,7 @@
 <title>관리자 전체목록 리스트 화면</title>
 </head>
 <script type="text/javascript" src="./js/subjectList.js"></script>
-<%@ include file="./admin_header.jsp" %>
+<%@ include file="../header.jsp" %>
 <body>
    <div class="page-body">
     
@@ -96,5 +96,5 @@
     </div>
 
 </body>
-<%@include file="./admin_footer.jsp" %>
+<%@include file="../footer.jsp" %>
 </html>
