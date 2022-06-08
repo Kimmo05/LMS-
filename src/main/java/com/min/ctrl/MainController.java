@@ -1,5 +1,4 @@
 package com.min.ctrl;
-
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Enumeration;
@@ -28,7 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-
 public class MainController {
 
 	@Autowired
@@ -55,10 +53,13 @@ public class MainController {
 		public String selectlogin(
 				Locale locale, Model model,Authentication user) {
 			System.out.println("로그인 선택창 이동");
-
-			 	
 			System.out.println("로그인 선택창으로 이동 합시다");
+
 			return "loginForm";
 		}
+	
+	
+	
+
 
 }

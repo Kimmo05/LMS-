@@ -220,7 +220,7 @@
                    <c:if test = "${auth eq '[ROLE_ADMIN]'}">
                     <li class="sidebar-main-title">
                     <div>
-                            <button class="btn btn-primary btn-lg" type="button"><a href="./adminPage.do"><i data-feather="log-out"></i>관리자 페이지</a></button> 
+                            <button class="btn btn-primary btn-lg" type="button"><a href="./main.do"><i data-feather="log-out"></i>메인 페이지</a></button> 
                     </div>
                   </li>
                  </c:if>
@@ -244,7 +244,7 @@
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./classListForm.do">과정 리스트</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./index.do">과정 자료 게시판</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a>

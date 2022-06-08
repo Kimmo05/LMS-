@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <%@ include file="./admin_header.jsp" %>
 <body>
 <!-- Page Sidebar Ends-->
@@ -44,8 +41,6 @@
                   </div>
                 </div>
               </div>
-              
-              
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-body">
