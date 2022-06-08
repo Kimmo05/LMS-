@@ -14,7 +14,6 @@
 	<typeAlias type="com.min.vo.SubjectVo" alias="SubjectVo"/>
 	<typeAlias type="com.min.vo.TagVo" alias="TagVo"/>
 	<typeAlias type="com.min.vo.PayVo" alias="PayVo"/>
-	<typeAlias type="com.min.vo.SubjectCodeVo" alias="SubjectCodeVo"/>
 	<typeAlias type="com.min.vo.MemberVo" alias="MemberVo"/>
 	<typeAlias type="java.util.Map" alias="map"/>
 	<typeAlias type="java.lang.Integer" alias="Integer"/>

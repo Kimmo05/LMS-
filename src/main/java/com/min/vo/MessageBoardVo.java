@@ -13,7 +13,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MessageBoardVo implements Serializable{
+public class MessageBoardVo implements Serializable {
 	private static final long serialVersionUID = 3283147620152681216L;
 	private int mes_seq;
 	private String mes_sender;

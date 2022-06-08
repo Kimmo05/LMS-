@@ -246,8 +246,8 @@
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./index.do">과목 전체 조회</a></li>
+                      <li><a href="./user_subjectInsertForm.do">과목 등록</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
