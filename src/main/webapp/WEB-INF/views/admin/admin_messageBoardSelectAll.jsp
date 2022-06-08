@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function changeCate(val){
-	location.href="./classBoardSelectedAll.do?mes_cate="+val;
+	location.href="./messendBoardSelectAll.do?mes_cate="+val;
 	console.log(val);
 	var selected = $("#mes_cate option:selected").val();
 	console.log(selected);
@@ -14,14 +14,18 @@ function changeCate(val){
 }
 
 function insertForm(val){
-	var selected = $("#cbo_cate option:selected").val();
+	var selected = $("#mes_cate option:selected").val();
 	console.log(selected);
 	
-	if(selected == '동영상' || selected == null){
-		location.href="./classVideoInsertForm.do";
-	}else{
-		location.href="./classDocumentInsertForm.do";
-	}
+// 	if(selected == '동영상' || selected == null){
+// 		location.href="./classVideoInsertForm.do";
+// 	}else{
+// 		location.href="./classDocumentInsertForm.do";
+// 	}
+}
+
+function deatailView(){
+	
 }
 
 </script>
@@ -52,10 +56,15 @@ function insertForm(val){
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h5>자료게시판</h5>
+              <c:if test="${mes_cate eq 'Q' or mes_cate eq null}">
+                <h5>받은 쪽지함</h5>
+              </c:if>
+              <c:if test="${mes_cate eq 'R'}">
+                <h5>보낸 쪽지함</h5>
+              </c:if>
                 <select class="form-select digits" id="mes_cate " name="mes_cate" style="width: 100px; float: right;" onchange="changeCate(this.options[selectedIndex].value)">
-                	<option id="ask" value="질문" <c:if test="${cbo_cate == 'Q'}">selected="selected"</c:if>>질문</option>
-                	<option id="req" value="문의" <c:if test="${cbo_cate == 'R'}">selected="selected"</c:if>>문의</option>
+                	<option class="" id="ask" value="Q" <c:if test="${mes_cate == 'Q'}">selected="selected"</c:if>>보낸 쪽지</option>
+                	<option class="" id="req" value="R" <c:if test="${mes_cate == 'R'}">selected="selected"</c:if>>받은 쪽지</option>
                 </select>
                 <input id="insertFrom" style="float: right; margin-right: 30px;" class="btn btn-primary" onclick="insertForm()" value="글 등록하기">
 <!--                  <div> -->
@@ -69,8 +78,8 @@ function insertForm(val){
                       <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
 <!--                       <th scope="col">seq</th> -->
                       <th scope="col">송신자</th>
-                      <th scope="col">내용</th>
                       <th scope="col">수신자</th>
+                      <th scope="col">내용</th>
                       <th scope="col">카테고리</th>
                       <th scope="col">등록일</th>
                     </tr>
@@ -78,11 +87,11 @@ function insertForm(val){
                   <tbody>
                   <c:forEach var="vo" items="${lists}"  varStatus="vs">
 		              <tr>
-<%-- 		              	 <td>${vo.cbo_seq}</td> --%>
+		              	 <td id="seq" hidden="hidden">${vo.mes_seq}</td>
 		                 <td><input type="checkbox" name="chkVal"></td>
 		                 <td>${vo.mes_sender}</td>
+		                 <td><a href="./messageSelectDetail.do?mes_seq=${vo.mes_seq}" onclick="detailView()">${vo.mes_content}</a></td>
 		                 <td>${vo.mes_recipient}</td>
-		                 <td><a href="./MessageSelectDetail.do?cbo_seq=${vo.MES_SEQ}">${vo.mes_content}</a></td>
 		                 <td>${vo.mes_cate}</td>
 		                 <td>${vo.mes_regdate}</td>
 		              </tr>

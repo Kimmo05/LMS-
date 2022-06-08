@@ -33,9 +33,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.min.dao.IClassBoardDao;
 import com.min.dao.IClassDao;
+import com.min.dao.IMessageBoardDao;
 import com.min.service.IClassService;
 import com.min.vo.ClassBoardVo;
 import com.min.vo.ClassVo;
+import com.min.vo.MessageBoardVo;
 import com.min.vo.SubjectVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -47,6 +49,9 @@ public class Class_Test {
 	
 	@Autowired
 	private IClassBoardDao bDao;
+	
+	@Autowired
+	private IMessageBoardDao mDao;
 	
 	@Autowired
 	private IClassService service;
@@ -470,5 +475,25 @@ public class Class_Test {
 		System.out.println(result);
 	}
 	
+	@Test
+	public void mesBoardQSelectAll() {
+			MessageBoardVo vo = new MessageBoardVo();
+			List<MessageBoardVo> lists = mDao.messendBoardSelectAll(vo);
+			vo.setMes_cate("Q");
+			if(vo.getMes_cate() == "Q") {
+				vo.setMes_sender("ghkdwoaks1234");
+				System.out.println(lists);
+			}else {
+				vo.setMes_recipient("ghkdwoaks1234");
+				System.out.println(lists);
+			}
+	}
+	
+//	@Test
+	public void mesBoardSelectDetail() {
+		int seq = 1;
+		MessageBoardVo one = mDao.mesBoardSelectDetail(seq);
+		System.out.println(one);
+	}
 }
 

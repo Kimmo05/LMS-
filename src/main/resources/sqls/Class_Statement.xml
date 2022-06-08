@@ -136,4 +136,27 @@ INSERT INTO CLASS_BOARD (CBO_SEQ, CBO_CLA_NUM, CBO_CATE,
 						 SYSDATE, (SELECT MAX(DOC_SEQ)FROM DOCUMENT))
 </insert>
 
+
+
+<!-- 쪽지 게시판 -->
+<!-- 쪽지 게시판 전체조회 -->
+<select id="messendBoardSelectAll" resultType="MessageBoardVo" parameterType="MessageBoardVo">
+SELECT MES_SEQ , MES_SENDER , MES_RECIPIENT , CASE WHEN LENGTH(MES_CONTENT) > 15 THEN SUBSTR(MES_CONTENT,0,15) || '...' ELSE MES_CONTENT END MES_CONTENT ,  MES_CATE , MES_REFFER , MES_REGDATE 
+	FROM MESSAGE_BOARD
+	<if test="mes_cate == 'Q'.toString() or  mes_cate =='null'">
+	WHERE MES_CATE = #{mes_cate} AND MES_SENDER = #{mes_sender}
+	</if>
+	<if test="mes_cate == 'R'.toString()">
+	WHERE MES_CATE = #{mes_cate} AND MES_RECIPIENT = #{mes_recipient}
+	</if>
+	ORDER BY MES_REFFER
+</select>
+
+<select id="mesBoardSelectDetail" resultType="MessageBoardVo" parameterType="java.lang.Integer">
+SELECT MES_SEQ , MES_SENDER , MES_RECIPIENT, MES_CONTENT , MES_REGDATE 
+	FROM MESSAGE_BOARD mb 
+	WHERE MES_SEQ = #{mes_seq}
+</select>
+
+
 </mapper>

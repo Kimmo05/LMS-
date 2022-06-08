@@ -54,7 +54,12 @@ function insertForm(val){
           <div class="col-sm-12">
             <div class="card">
               <div class="card-header">
-                <h5>자료게시판</h5>
+                <c:if test="${cbo_cate eq '동영상' or cbo_cate eq null}">
+                	<h5>동영상 자료 게시판</h5>
+              	</c:if>
+              	<c:if test="${cbo_cate eq '자료'}">
+               	 	<h5>파일 자료 게시판</h5>
+              	</c:if>
                 <select class="form-select digits" id="cbo_cate" name="cbo_cate" style="width: 100px; float: right;" onchange="changeCate(this.options[selectedIndex].value)">
                 	<option id="video" value="동영상" <c:if test="${cbo_cate == '동영상'}">selected="selected"</c:if>>동영상</option>
                 	<option id="doc" value="자료" <c:if test="${cbo_cate == '자료'}">selected="selected"</c:if>>자료</option>
