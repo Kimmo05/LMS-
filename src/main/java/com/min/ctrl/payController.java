@@ -110,4 +110,12 @@ public class payController{
 		return "admin/changeStatus";
 	}
 	
+	//관리자 환불요청 승인
+	@RequestMapping(value = "/statusUpdate.do" , method = RequestMethod.GET)
+	public String statusUpdate(String paynum) {
+		System.out.println(paynum+"@!@!@!@!@!");
+		//@@@내일 할 부분
+		return "redirect:/user/changeStatus.do";
+	}
+	
 }
