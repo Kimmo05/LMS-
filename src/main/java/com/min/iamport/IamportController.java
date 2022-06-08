@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.min.dao.PayDao;
+import com.min.service.IPayService;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.CancelData;
@@ -37,7 +38,7 @@ public class IamportController {
 	IamportClient client;
 	
 	@Autowired
-	private PayDao dao;
+	private IPayService service;
 	
 	public IamportController() {
 		this.client = this.getTestClient();
@@ -115,7 +116,7 @@ public class IamportController {
 				map.put("pay_ucounum", payCounum);
 				Map<String, Object> couponMap = new HashMap<String, Object>();
 				couponMap.put("cou_code", payCounum);
-				dao.updateCoupon(couponMap);
+				service.updateCoupon(couponMap);
 			}
 			if(payUmilage == 0) {
 				map.put("pay_umilage", "");
@@ -124,13 +125,13 @@ public class IamportController {
 				Map<String,Object> mileMap = new HashMap<String, Object>();
 				mileMap.put("useMilage", payUmilage);
 				mileMap.put("tra_id", user.getPrincipal());
-				dao.updateMileage(mileMap);
+				service.updateMileage(mileMap);
 			}
 			
 			
 			
 			//insert 가자
-			int n = dao.payInsert(map);
+			int n = service.payInsert(map);
 			System.out.println(n + "@@@!!@@@@@@@@");
 			
 		} catch (IamportResponseException e) {
