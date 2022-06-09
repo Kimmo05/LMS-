@@ -50,7 +50,7 @@ public class UserAuthService  implements AuthenticationProvider{
 				
 		
 //		// 로그인한 사용자의 부가정보를 담아준다.
-		InfoUser user_info = new InfoUser();
+		MemberVo user_info = new MemberVo();
 		user_info.setId(dto.getId());
 		user_info.setAuth(dto.getAuth());
 		user_info.setName(dto.getName());

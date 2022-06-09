@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,7 +7,8 @@
 <meta charset="UTF-8">
 <title>관리자 전체목록 리스트 화면</title>
 </head>
-<script type="text/javascript" src="./js/subjectList.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="./js/subjectListAdmin.js"></script>
 <%@ include file="./admin_header.jsp" %>
 <body>
    <div class="page-body">
@@ -94,7 +96,6 @@
        </div>
  </form>
     </div>
-
 </body>
 <%@include file="./admin_footer.jsp" %>
 </html>

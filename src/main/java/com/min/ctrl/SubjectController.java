@@ -40,7 +40,7 @@ public class SubjectController {
 
 		return "user/user_subjectInsertForm";
 	}
-	
+	//1-2)과목 등록하기
 	@RequestMapping(value = "/user/subInsertSubject.do", method = RequestMethod.POST)
 	public String subInsertSubject(@RequestParam Map<String, Object> map, @RequestParam SubjectVo sVo, Authentication user,
 								HttpServletResponse response,HttpSession session, Model model) {
@@ -103,10 +103,10 @@ public class SubjectController {
 //		mav.setViewName("subjectList");
 //		return mav;
 //	}
-	//spa
+	//2-1) 관리자 과목 전체조회 페이지로 이동 spa방식 페이징까지
 	@SuppressWarnings("unlikely-arg-type")
 	@RequestMapping(value = "/user/admin_subjectList.do", method = RequestMethod.GET)
-	public String subjectList(HttpSession session, Model model,Authentication user) {
+	public String subjectListAdmin(HttpSession session, Model model,Authentication user) {
 		MemberVo mVo = (MemberVo) session.getAttribute("mem");
 		log.info("SubjectController subjectList");
 		log.info("SubjectController subjectList 세션확인 : {}", user);
@@ -130,11 +130,6 @@ public class SubjectController {
 			rowVo.setTotal(sService.subjectTotalAdmin());
 			lists=sService.subSelectAllAdmin(rowVo);
 		}
-//		else if(user.getAuthorities().toString().indexOf("USER")!=-1){
-//			rowVo.setTotal(sService.subjectTotalUser());
-//			lists=sService.subSelectAllUser(rowVo);
-//		}
-//	
 			System.out.println(lists);
 		model.addAttribute("lists",lists);
 		model.addAttribute("row",rowVo);
@@ -164,6 +159,39 @@ public class SubjectController {
 //		model.addAttribute("list",list);
 //		return "commons/comSubList";
 //	}
+	//2-3) 관리자 과목 전체조회 페이지로 이동 spa방식 페이징까지
+	@SuppressWarnings("unlikely-arg-type")
+	@RequestMapping(value = "/user/user_subjectList.do", method = RequestMethod.GET)
+	public String subjectListUser(HttpSession session, Model model,Authentication user) {
+		MemberVo mVo = (MemberVo) session.getAttribute("mem");
+		log.info("SubjectController subjectList");
+		log.info("SubjectController subjectList 세션확인 : {}", user);
+		MemberVo mvo =new MemberVo();
+       InfoUser infouser = (InfoUser) user.getDetails();
+		mvo.setAuth(infouser.getAuth());
+		
+		List<SubjectVo> lists = null;
+		RowNumVo rowVo = null;
+		
+		if(session.getAttribute("row")==null) {
+			rowVo = new  RowNumVo();
+		}else {
+			rowVo=(RowNumVo) session.getAttribute("row");
+		}
+		System.out.println(rowVo);
+//		user.getPrincipal();//아이디
+		if(user.getAuthorities().toString().indexOf("USER")!=-1) {
+			System.out.println(user.getAuthorities());
+			rowVo.setTotal(sService.subjectTotalAdmin());
+			lists=sService.subSelectAllAdmin(rowVo);
+		}
+		
+			System.out.println(lists);
+		model.addAttribute("lists",lists);
+		model.addAttribute("row",rowVo);
+		
+		return "user/user_subjectList";
+	}
 	//2-4) 일반회원 과목 상세조회
 	@RequestMapping(value = "/comSubjectDetail.do", method = RequestMethod.GET)
 	public String comSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {
@@ -181,4 +209,3 @@ public class SubjectController {
 	
 
 }
-

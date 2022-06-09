@@ -80,7 +80,7 @@ function pageIndex(idx){
 //글 갯수 변동
 function pageList(){
 	var index = document.getElementById("index");
-	var pageStratNum = document.getElementById("pageStartNum");
+	var pageStartNum = document.getElementById("pageStartNum");
 	var listNum = document.getElementById("listNum");
 	
 	index.value=0;
