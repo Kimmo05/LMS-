@@ -25,12 +25,13 @@ public interface SubjectDao {
 		public int subjectTotalUser();
 		//2-1) 관리자의 과목 전체목록 조회
 		public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo);
+		public List<SubjectVo> subSelectStatusAdmin(RowNumVo rVo);
 		//2-4) 관리자의 과목 상세 조회
 		public SubjectVo adminSubjectDetail(String sub_num);
 		//2-3) 일반회원의 과목 전체목록 조회
 		public List<SubjectVo> subSelectAllUser(RowNumVo rVo);
 		//2-4) 일반회원의 과목 상세 조회
-		public SubjectVo comSubjectDetail(String sub_num);
+		public SubjectVo userSubjectDetail(String subnum);
 		
 		
 		//3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경

@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.min.service.SubjectService;
 import com.min.vo.InfoUser;
 import com.min.vo.MemberVo;
+import com.min.vo.PayVo;
 import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
 
@@ -45,7 +47,7 @@ public class SubjectUserController {
 
 	//1-2)과목 등록하기
 	@RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"}, method = RequestMethod.POST)
-	public String insertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
+	public String userInsertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
 		MemberVo mvo = (MemberVo) user.getDetails();
 		System.out.println(mvo);
 		map.put("sub_reg_id", mvo.getId());
@@ -66,7 +68,7 @@ public class SubjectUserController {
 	//2) 과목 조회
 	//2-3) 일반회원 과목 전체조회 페이지로 이동
 	@RequestMapping(value = {"/user/user_subjectList.do","/ins/user_subjectList.do"}, method = RequestMethod.GET)
-	public String usersubject(RowNumVo rVo, Model model) {
+	public String userSelectSubject(RowNumVo rVo, Model model) {
 		log.info("********* Welcome SubjectController! usersubject 로 이동합니다. subjectInsertForm *********");
 
 		List<SubjectVo> list = sService.subSelectAllUser(rVo);
@@ -116,20 +118,19 @@ public class SubjectUserController {
 //		mav.setViewName("user_subjectList");
 //		return mav;
 //	}
+	
 	//2-4) 일반회원 과목 상세조회
-	@RequestMapping(value = "/comSubjectDetail.do", method = RequestMethod.GET)
-	public String comSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {
+	@RequestMapping(value = {"/user/user_subjectDetail.do","/ins/user_subjectDetail.do"}, method = RequestMethod.GET)
+	@ResponseBody
+	public SubjectVo userSubjectDetail(String subnum) {
 		log.info("********* Welcome SubjectController! comSubjectDetail 상세조회 subSelectDetail *********");
-		session.setAttribute("sub_num", sub_num);
-		SubjectVo result = sService.comSubjectDetail(sub_num);
-		model.addAttribute("result", result);
-		System.out.println(result);
-		return "commons/comSubjectDetail";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("subnum", subnum);
+		SubjectVo sVo = sService.userSubjectDetail(subnum);
+		return sVo;
 	}
 
-
-
-
+	
 	
 
 }

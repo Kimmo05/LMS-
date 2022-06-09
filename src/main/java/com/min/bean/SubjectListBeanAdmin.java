@@ -33,7 +33,7 @@ public class SubjectListBeanAdmin {
 		StringBuffer sb = new StringBuffer();
 		sb.append("<tr>");
 		sb.append("<td><input type='checkbox' name='chkVal'></td>");
-		sb.append("   <td>"+subVo.getSub_num()+"</td>");
+		sb.append("   <td onclick='modalOpen("+subVo.getSub_num()+")'><a href='#' data-bs-toggle='modal' data-original-title='test' data-bs-target='#exampleModal'>"+subVo.getSub_num()+"</a></td>");
 		sb.append("   <td><a href='javascript:subjectDetail()'>"+subVo.getSub_title()+"</a></td>");
 		sb.append("   <td>");
 		if(subVo.getCod_name().equals("JAVA")) {
