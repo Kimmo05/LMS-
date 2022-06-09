@@ -1,11 +1,3 @@
-//드롭다운 바뀔때마다 동작
-function changeStatus(){
-   	var getText = document.getElementById("list").value;
-    console.log("text : ", getText);
-	location.href="./changeStatusSelect.do?getText="+getText;		
-}
-
-//모달 결제 상세
 //상세정보 모달 값 받아오기
 function modalOpen(paynum){
 	console.log("모달오픈!모달오픈!" + paynum);
@@ -19,7 +11,7 @@ function modalOpen(paynum){
 				console.log(data);
 				var noCoupon;
 				if(data.pay_ucounum == null){
-					 noCoupon = "사용안함.";
+					 noCoupon = "사용안함";
 				}else{
 					noCoupon =data.pay_ucounum;
 				}
@@ -44,41 +36,43 @@ function modalOpen(paynum){
 		 })
 }
 
-//환불정보 받아오기
+//환불 버튼 클릭시
 function cancelWhy(paynum,payStatus){
-	console.log("환불정보 모달창 오픈!");
-	console.log(paynum);
-	if(payStatus == '환불승인'){
-		const getButton = document.getElementById('changeButton');
-		getButton.innerHTML='<button class="btn btn-danger disabled" type="button" onclick="statusUpdate(0)">승인됨</button>'
-	}
-	$.ajax({
-		url : "./getPayDetail.do",
-		method : "post",
-		data : {
-			paynum : paynum
-		},success:function(result){
-			console.log(result);
-			const getcanCate = document.getElementById('canCate');
-			getcanCate.value=result.pay_cancate;
-			const getcanReason = document.getElementById('canReason');
-			getcanReason.value=result.pay_cancontent;
-			const getpayNumber = document.getElementById('payNumber');
-			getpayNumber.innerHTML=paynum;
-		}
-	})
+	const payNumber= document.getElementById('payNumber');
+	payNumber.innerHTML=paynum;
 }
 
-//상태 변경
-function statusUpdate(paynum){
-	console.log("상태 변경 후 redirect");
-	if(paynum == 0){
-		const getcanCate = document.getElementById('payNumber');
-		var getPayNumber = getcanCate.innerText;
-		location.href="./statusUpdate.do?paynum="+getPayNumber;
+//드롭다운 클릭 시에
+function drop(why){
+	const changeCate = document.getElementById('changeCate');
+	changeCate.innerText=why;
+}
+
+//환불신청 버튼 클릭시에
+function cancelUpdate(){
+	
+	const getCate = document.getElementById('changeCate');
+	const payNumber= document.getElementById('payNumber');
+	const getContent = document.getElementById('canReason');
+	var canReason = getContent.value;
+	var getPayNumber = payNumber.innerText;
+	if(getCate.innerText == "카테고리를 선택해주세요"){
+		alert("카테고리를 선택해주세요");
 	}else{
-		location.href="./statusUpdate.do?paynum="+paynum;
+		$('#cancelWhy').modal('hide');
+		$.ajax({
+		url:"./cancelUpdate.do",
+		method : "post",
+		data : {
+			pay_num : getPayNumber,
+			pay_cancate : getCate.innerText,
+			pay_status : "환불대기",
+			pay_cancontent : canReason
+		},success:function(){
+		}
+		})
+		alert("환불신청이 완료되었습니다.");
+		location.href = "./user_Mypay.do";
 	}
 	
-	alert("상태변경 완료되었습니다!");
 }

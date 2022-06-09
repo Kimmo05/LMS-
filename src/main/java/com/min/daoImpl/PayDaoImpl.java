@@ -67,5 +67,17 @@ public class PayDaoImpl implements PayDao{
 		return sqlSession.update(NS+"statusUpdate",map);
 	}
 
+	//마이페이지 내 결제조회
+	@Override
+	public List<PayVo> selectMyPay(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"selectMyPay",map);
+	}
+
+	//마이페이지 내의 환불상태 업데이트
+	@Override
+	public int cancelUpdate(Map<String, Object> map) {
+		return sqlSession.update(NS+"cancelUpdate",map);
+	}
+
 	
 }

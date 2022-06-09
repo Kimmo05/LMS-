@@ -31,4 +31,10 @@ public interface PayDao {
 	
 	//환불 상태 업데이트
 	public int statusUpdate(Map<String, Object> map);
+	
+	//마이페이지 내 결제조회
+	public List<PayVo> selectMyPay(Map<String,Object> map);
+	
+	//마이페이지 결제내역 내의 환불신청
+	public int cancelUpdate(Map<String, Object> map);
 }

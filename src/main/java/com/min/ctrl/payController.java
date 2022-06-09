@@ -114,9 +114,34 @@ public class payController{
 	@RequestMapping(value = "/statusUpdate.do" , method = RequestMethod.GET)
 	public String statusUpdate(String paynum) {
 		System.out.println(paynum+"@!@!@!@!@!");
-		//@@@내일 할 부분
-		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pay_num", paynum);
+		int n = service.statusUpdate(map);
+		System.out.println(n + "성공입니다~");
 		return "redirect:/user/changeStatus.do";
+	}
+	
+	//회원 결제조회 페이지
+	@RequestMapping(value = "/user_Mypay.do" ,method = RequestMethod.GET)
+	public String userMypay(Authentication user,Model model) {
+		logger.info("-------------user_Mypay 이동 -------------");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pay_tra_buyer", user.getPrincipal());
+		List<PayVo> list = service.selectMyPay(map);
+		model.addAttribute("lists",list);
+		return "user/user_Mypay";
+	}
+	
+	//마이페이지 환불신청
+	@RequestMapping(value = "/cancelUpdate.do", method = RequestMethod.POST)
+	public void cancelUpdate(String pay_num,String pay_cancate,String pay_status,String pay_cancontent) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pay_cancate", pay_cancate);
+		map.put("pay_status", pay_status);
+		map.put("pay_cancontent", pay_cancontent);
+		map.put("pay_num", pay_num);
+		int n = service.cancelUpdate(map);
+		System.out.println(n);
 	}
 	
 }

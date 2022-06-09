@@ -52,4 +52,19 @@ public class PayServiceImpl implements IPayService{
 		return dao.getPayDetail(map);
 	}
 
+	@Override
+	public int statusUpdate(Map<String, Object> map) {
+		return dao.statusUpdate(map);
+	}
+
+	@Override
+	public List<PayVo> selectMyPay(Map<String, Object> map) {
+		return dao.selectMyPay(map);
+	}
+
+	@Override
+	public int cancelUpdate(Map<String, Object> map) {
+		return dao.cancelUpdate(map);
+	}
+
 }

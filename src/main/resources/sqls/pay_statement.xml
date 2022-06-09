@@ -109,7 +109,7 @@
 	'그냥주는쿠폰',
 	10,
 	'Y',
-	SYSDATE);
+	SYSDATE)
 	</insert>
 	
 	<!-- 쿠폰사용 결제시 보우큐폰 상태 수정 -->
@@ -144,8 +144,36 @@
 		WHERE PAY_NUM=#{pay_num}
 	</select>
 	
-	<!-- 환불 상태 변경 -->
-<!-- 	<update id="statusUpdate" parameterType="java.util.Map"> -->
-<!-- 		UPDATE -->
-<!-- 	</update> -->
+	<!-- 환불승인 -->
+	<update id="statusUpdate" parameterType="java.util.Map">
+		UPDATE PAY SET PAY_STATUS = '환불승인',PAY_CANDATE=SYSDATE WHERE PAY_NUM ='${pay_num}' 
+	</update>
+	
+	<!-- 마이페이지 내 결제조회 -->
+	<select id="selectMyPay" resultType="PayVo">
+		SELECT PAY_NUM,
+		PAY_TRA_BUYER,
+		PAY_CLA_NUM, 
+		PAY_PRICE, 
+		PAY_METHOD, 
+		PAY_PG, 
+		PAY_STATUS, 
+		PAY_DATE, 
+		PAY_CONTENT, 
+		PAY_RAW, 
+		PAY_DISCOUNT, 
+		PAY_CANDATE,
+		PAY_CANCATE, 
+		PAY_CANCONTENT, 
+		PAY_UCOUNUM, 
+		PAY_UMILAGE
+		FROM PAY
+		WHERE PAY_TRA_BUYER ='${pay_tra_buyer}'
+		ORDER BY PAY_DATE DESC
+	</select>
+	
+	<!-- 마이페이지 내의 환불신청 -->
+	<update id="cancelUpdate" parameterType="java.util.Map">
+		UPDATE PAY SET PAY_CANCATE='${pay_cancate}',PAY_STATUS='${pay_status}',PAY_CANCONTENT ='${pay_cancontent}' WHERE PAY_NUM = '${pay_num}'
+	</update>
 </mapper>
