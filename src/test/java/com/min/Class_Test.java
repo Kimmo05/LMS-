@@ -1,6 +1,8 @@
 package com.min;
 
 
+import static org.hamcrest.CoreMatchers.endsWith;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -31,12 +33,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.google.gson.JsonObject;
 import com.min.dao.IClassBoardDao;
 import com.min.dao.IClassDao;
 import com.min.service.IClassService;
 import com.min.vo.ClassBoardVo;
 import com.min.vo.ClassVo;
+import com.min.vo.InstructorVo;
 import com.min.vo.SubjectVo;
+import com.min.vo.VoteVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
@@ -470,13 +475,40 @@ public class Class_Test {
 		System.out.println(result);
 	}
 
-	@Test
+//	@Test
 	public void test5() {
 		List<SubjectVo> lists = service.classSelectedSub("CLA001");
 		System.out.println(lists);
 		
 	}
 	
+	//투표하기
+//	@Test
+	public void jsonTest() {
+		int cnt=0;
+		VoteVo vo = new VoteVo();
+		vo.setVot_cla_num("CLA027");
+		vo.setVot_sub_num("20220523SUB101");
+		JSONArray json = new JSONArray();
+		json.add("thdwndrl1234");
+		json.add("ghkdwoaks1234");
+		json.add("mkirkam5g337");
+		vo.setVot_voter(json.toString());
+		for (Object object : json) {
+			cnt++;
+		}
+		System.out.println(cnt);
+		dao.updateVote(vo);
+	}
+	
+	@Test
+	public void classInsInfo() {
+		List<InstructorVo> vo = service.classInsInfo("CLA027");
+		System.out.println(vo);
+//		System.out.println((vo.toString().substring(1,vo.toString().length()-1).replace("[", "(")).replace("]", ")"));
+//		char[] result = (vo.toString().substring(1,vo.toString().length()-1).replace("[", "(")).replace("]", ")").toCharArray();
+//		System.out.println(result);
+	}
 	
 	
 }

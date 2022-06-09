@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.min.dao.IClassDao;
 import com.min.vo.ClassSubjectVo;
 import com.min.vo.ClassVo;
+import com.min.vo.InstructorVo;
 import com.min.vo.SubjectVo;
 import com.min.vo.VoteVo;
 
@@ -61,12 +62,6 @@ public class ClassDaoImpl implements IClassDao{
 	}
 	
 	@Override
-	public int voteBoxInsert(Map<String, Object> vo) {
-		logger.info("ClassDaoImpl voteBoxInsert / 과정 투표박스 생성 : {}", vo);
-		return sqlSession.insert(NS+"voteBoxInsert",vo);
-	}
-	
-	@Override
 	public int classUpdate(Map<String, Object> vo) {
 		logger.info("ClassDaoImpl classUpdate / 과정 담당강사 과정 수정 : {}", vo);
 		return sqlSession.update(NS+"classUpdate", vo);
@@ -83,14 +78,25 @@ public class ClassDaoImpl implements IClassDao{
 		logger.info("ClassDaoImpl classTimeSearch / 과정 과목 총 수업시간 계산을 위한 계산");
 		return sqlSession.selectOne(NS+"classTimeSearch",cla_num);
 	}
-	
+
 	@Override
-	public int insApply(VoteVo vo) {
-		logger.info("ClassDaoImpl insApply / 과정 과목 당 강사 투표 : {}",vo);
-		return sqlSession.insert(NS+"insApply",vo);
+	public int voteBoxInsert(Map<String, Object> map) {
+		logger.info("ClassDaoImpl voteBoxInsert / 과정 투표박스 생성 : {}", map);
+		return sqlSession.insert(NS+"voteBoxInsert", map);
 	}
 	
-	// 임시
+	@Override
+	public int updateVote(VoteVo vo) {
+		logger.info("ClassDaoImpl updateVote / 과정 과목 당 강사 투표 : {}",vo);
+		return sqlSession.update(NS+"updateVote",vo);
+	}
+	
+	@Override
+	public List<InstructorVo> classInsInfo(String id) {
+		return sqlSession.selectList(NS+"classInsInfo",id);
+	}
+	
+	
 	@Override
 	public List<SubjectVo> subjectSelected() {
 		logger.info("ClassDaoImpl subjectSelected / 과목 선택 리스트");
