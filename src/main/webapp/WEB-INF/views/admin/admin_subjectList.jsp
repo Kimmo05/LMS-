@@ -131,27 +131,6 @@
                   </div>
                 </div>
               </div>
-<!--                                     모달
-                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
-                      <div class="modal-dialog modal modal-dialog-centered" role="document">
-                        <div class="modal-content text-center d-block">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Payment Details&nbsp;&nbsp;<small class="text-muted">결제 상세정보</small></h5>
-                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
-                          </div>
-                          <div class="modal-body">
-                          	<br><br>
-                          	<h1 class="display-1"><i class="fa fa-credit-card-alt"></i></h1><br>
-                          	<h6 id="modalTitle">ddd</h6>
-                          	<div id="modalText">dd</div>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    모달 -->
     </div>
 </body>
 <%@include file="./admin_footer.jsp" %>

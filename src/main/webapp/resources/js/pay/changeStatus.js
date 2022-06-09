@@ -43,3 +43,38 @@ function modalOpen(paynum){
 			 }
 		 })
 }
+
+//환불정보 받아오기
+function cancelWhy(paynum){
+	console.log("환불정보 모달창 오픈!");
+	console.log(paynum);
+	$.ajax({
+		url : "./getPayDetail.do",
+		method : "post",
+		data : {
+			paynum : paynum
+		},success:function(result){
+			console.log(result);
+			const getcanCate = document.getElementById('canCate');
+			getcanCate.value=result.pay_cancate;
+			const getcanReason = document.getElementById('canReason');
+			getcanReason.value=result.pay_cancontent;
+			const getpayNumber = document.getElementById('payNumber');
+			getpayNumber.innerHTML=paynum;
+		}
+	})
+}
+
+//상태 변경
+function statusUpdate(paynum){
+	console.log("상태 변경 후 redirect");
+	if(paynum == 0){
+		const getcanCate = document.getElementById('payNumber');
+		var getPayNumber = getcanCate.innerText;
+		location.href="./statusUpdate.do?paynum="+getPayNumber;
+	}else{
+		location.href="./statusUpdate.do?paynum="+paynum;
+	}
+	
+	alert("상태변경 완료되었습니다!");
+}
