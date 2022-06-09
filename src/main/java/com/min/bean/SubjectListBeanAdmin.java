@@ -31,12 +31,9 @@ public class SubjectListBeanAdmin {
 	//화면 구성
 	private String listRowForm(SubjectVo subVo) {
 		StringBuffer sb = new StringBuffer();
-		int n= mem.getAuth().equals("ROLE_ADMIN")?9:5;
 		sb.append("<tr>");
-		if(mem.getAuth().equals("ROLE_ADMIN")) {
 		sb.append("<td><input type='checkbox' name='chkVal'></td>");
 		sb.append("   <td>"+subVo.getSub_num()+"</td>");
-		}
 		sb.append("   <td><a href='javascript:subjectDetail()'>"+subVo.getSub_title()+"</a></td>");
 		sb.append("   <td>");
 		if(subVo.getCod_name().equals("JAVA")) {
@@ -91,7 +88,6 @@ public class SubjectListBeanAdmin {
 		if(subVo.getSub_ins()==null) {
 			sb.append("   <td>담당 강사 미정</td>                                                                             ");
 		}
-		if(mem.getAuth().equals("ROLE_ADMIN")) {
 		if(subVo.getSub_status().equals("A")) {
 			sb.append("   		<td><span class='badge rounded-pill' style='background-color: 	#1E90FF'>승인</span></td>    ");
 		}else if (subVo.getSub_status().equals("W")) {
@@ -102,12 +98,7 @@ public class SubjectListBeanAdmin {
 			sb.append("   		<td><span class='badge rounded-pill badge-danger'>삭제</span></td>                           ");
 		}
 		sb.append("   	 <td><a><button type='button' class='btn btn-pill btn-outline-danger-2x btn-xs'>삭제</button></a></td>");
-		}
-		if(mem.getAuth().equals("ROLE_USER")) {
-			sb.append("<td>"+subVo.getSub_regdate()+"</td>");
-		}
 		sb.append("</tr>                                                                                                       ");
-
 		return sb.toString();
 	}
 

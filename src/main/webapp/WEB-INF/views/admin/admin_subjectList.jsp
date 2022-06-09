@@ -24,26 +24,24 @@
                     <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">관리자</li>
                     <li class="breadcrumb-item">과목 승인</li>
-                    <li class="breadcrumb-item active">과목 전체 목록 조회</li>
+                    <li class="breadcrumb-item active">과목 등록 목록 조회</li>
                   </ol>
                 </div>
 		
               </div>
             </div>
             <div class="row"> 
-                <div class="col-sm-6">
-           <div id="select">
-			<span>
-				<select class="btn btn-primary" id="listCount" name="listCount"
-				onchange="listCnt()">
-					<option>선택</option>
-					<option value="5">5</option>
-					<option value="10">10</option>
-					<option value="15">15</option>
-				</select>
-			</span>
-		</div>
-		</div>
+               <div class="col-sm-6">
+           			<div id="select">
+						<select class="btn btn-primary" id="listCount" name="listCount"
+						onchange="listCnt()">
+							<option>승인상태</option>
+							<option value="W">대기</option>
+							<option value="A">승인</option>
+							<option value="R">반려</option>
+						</select>
+					</div>
+				</div>
 		</div>
 		
             <div class="row">
@@ -73,9 +71,9 @@
     				</tbody>
                     </table>
                     
-                    <input type="text" name="index" id="index" value="${row.index}">
-					<input type="text" name="pageStartNum" id="pageStartNum" value="${row.pageStartNum}">
-					<input type="text" name="pageListNum" id="pageListNum" value="${row.pageListNum}">
+                    <input type="hidden" name="index" id="index" value="${row.index}">
+					<input type="hidden" name="pageStartNum" id="pageStartNum" value="${row.pageStartNum}">
+					<input type="hidden" name="pageListNum" id="pageListNum" value="${row.pageListNum}">
 		
                     </div>
                   </div>

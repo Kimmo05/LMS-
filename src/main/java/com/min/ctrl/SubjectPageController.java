@@ -23,19 +23,20 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
+@RequestMapping(value = "/user/*")
 public class SubjectPageController {
 	
 	@Autowired
 	private SubjectService sService;
 
-	@RequestMapping(value = "/user/page.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8;")
+	@RequestMapping(value = "/page.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8;")
 	public String paging(HttpSession session, RowNumVo rowVo,Authentication user) {
 		log.info("PageController row : {}", session.getAttribute("row"));
 		log.info("PageController rowVo : {}", session.getAttribute("rowVo"));
 		log.info("SubjectController subjectList 세션확인 : {}", user);
 		
 		MemberVo mvo = (MemberVo) user.getDetails();
-		System.out.println("pageControllerAdmin"+mvo);
+		System.out.println("**********************************************pageController"+mvo);
 		JSONObject json = null;
 		
 		//로그인한 회원이 관리자일경우
@@ -45,11 +46,11 @@ public class SubjectPageController {
 			rowVo.setTotal(sService.subjectTotalAdmin());
 			json=jsonForm(sService.subSelectAllAdmin(rowVo),rowVo, mvo);
 		}
-		else if(user.getAuthorities().toString().indexOf("USER")!=-1) {
-			System.out.println("일반회원인지 확인용 " +user.getAuthorities());
-			rowVo.setTotal(sService.subjectTotalUser());
-			json=jsonForm(sService.subSelectAllUser(rowVo),rowVo, mvo);
-		}
+//		else if(user.getAuthorities().toString().indexOf("USER")!=-1) {
+//			System.out.println("**********************************************일반회원인지 확인용 " +user.getAuthorities());
+//			rowVo.setTotal(sService.subjectTotalUser());
+//			json=jsonForm(sService.subSelectAllUser(rowVo),rowVo, mvo);
+//		}
 		
 		session.removeAttribute("row");
 		session.setAttribute("row", rowVo);

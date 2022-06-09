@@ -28,7 +28,6 @@ import com.min.vo.SubjectVo;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
-@RequestMapping(value = "/user/*")
 public class SubjectUserController {
 	
 
@@ -36,7 +35,7 @@ public class SubjectUserController {
 	private SubjectService sService;
 	
 	//1) 과목 등록양식 페이지로 이동
-	@RequestMapping(value = "/user_subjectInsertForm.do", method = RequestMethod.GET)
+	@RequestMapping(value = {"/user/user_subjectInsertForm.do","/ins/user_subjectInsertForm.do"}, method = RequestMethod.GET)
 	public String subInsertForm(Authentication user, Model model) {
 		log.info("********* Welcome SubjectController! subInsertForm 과목 등록양식 페이지로 이동합니다. subjectInsertForm *********");
 
@@ -45,35 +44,7 @@ public class SubjectUserController {
 	
 
 	//1-2)과목 등록하기
-//	@RequestMapping(value = "/user/subInsertSubject.do", method = RequestMethod.POST)
-//	public String subInsertSubject(@RequestParam Map<String, Object> map, @RequestParam SubjectVo sVo, Authentication user,
-//								HttpServletResponse response,HttpSession session, Model model) {
-//		MemberVo mvo =new MemberVo();
-//	       InfoUser infouser = (InfoUser) user.getDetails();
-//			mvo.setAuth(infouser.getAuth());
-//			
-//			sService.InsertSubject(sVo);
-//			sVo.setReg_id(infouser.getId());
-//			
-//		return "redirect:user/user_subjectList.do";
-//	}
-//	@RequestMapping(value = "/subInsertSubject.do", method = RequestMethod.POST)
-//	public String subInsertSubject(@RequestParam Map<String, Object> map) {
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("sub_title", sub_title);
-//		map.put("sub_content", sub_content);
-//		map.put("cur_version", cur_version);
-//		map.put("cur_time", cur_time);
-//		map.put("cur_level", cur_level);
-//		map.put("cur_detail", cur_detail);
-//		map.put("cur_subcontent", cur_subcontent);
-//		
-//		int n = sService.subInsertSubject1(map);
-//		int m = sService.subInsertSubject2(map);
-//		System.out.println(n,m);
-//		return "redirect:/commons/comSubList.do";
-//	}
-	@RequestMapping(value = "/subjectInsert.do", method = RequestMethod.POST)
+	@RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"}, method = RequestMethod.POST)
 	public String insertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
 		MemberVo mvo = (MemberVo) user.getDetails();
 		System.out.println(mvo);
@@ -94,48 +65,47 @@ public class SubjectUserController {
 	
 	//2) 과목 조회
 	//2-3) 일반회원 과목 전체조회 페이지로 이동
-//	@RequestMapping(value = "/user/usersubject.do", method = RequestMethod.GET)
-//	public String usersubject(RowNumVo rVo, Model model) {
-//		log.info("********* Welcome SubjectController! usersubject 로 이동합니다. subjectInsertForm *********");
-//
-//		List<SubjectVo> list = sService.subSelectAllUser(rVo);
-//		model.addAttribute("list",list);
-//		return "user/usersubject";
-//	}
+	@RequestMapping(value = {"/user/user_subjectList.do","/ins/user_subjectList.do"}, method = RequestMethod.GET)
+	public String usersubject(RowNumVo rVo, Model model) {
+		log.info("********* Welcome SubjectController! usersubject 로 이동합니다. subjectInsertForm *********");
+
+		List<SubjectVo> list = sService.subSelectAllUser(rVo);
+		model.addAttribute("list",list);
+		return "user/user_subjectList";
+	}
 	
 
 	//2-3) 일반회원 과목 전체조회 페이지로 이동 spa방식 페이징까지
-	@SuppressWarnings("unlikely-arg-type")
-	@RequestMapping(value = "/usersubject.do", method = RequestMethod.GET)
-	public String subjectListUser(HttpSession session, Model model,Authentication user) {
-		MemberVo mVo = (MemberVo) session.getAttribute("mem");
-		log.info("SubjectController subjectList");
-		log.info("SubjectController subjectList 세션확인 : {}", user);
-		MemberVo mvo = (MemberVo) user.getDetails();
-		
-		List<SubjectVo> lists = null;
-		RowNumVo rowVo = null;
-		
-		if(session.getAttribute("row")==null) {
-			rowVo = new  RowNumVo();
-		}else {
-			rowVo=(RowNumVo) session.getAttribute("row");
-		}
-		System.out.println(rowVo);
-//		user.getPrincipal();//아이디
-		if(user.getAuthorities().toString().indexOf("USER")!=-1) {
-			System.out.println(user.getAuthorities());
-			rowVo.setTotal(sService.subjectTotalUser());
-			lists=sService.subSelectAllUser(rowVo);
-		}
-		
-			System.out.println(lists);
-		model.addAttribute("lists",lists);
-		model.addAttribute("row",rowVo);
-		
-		return "user/usersubject";
-	}
-//	@RequestMapping(value = "/user/subjectList.do", method = {RequestMethod.GET, RequestMethod.POST})
+//	@RequestMapping(value = "/user/user_subjectList.do", method = RequestMethod.GET)
+//	public String subjectListUser(HttpSession session, Model model,Authentication user) {
+//		MemberVo mVo = (MemberVo) session.getAttribute("mem");
+//		log.info("SubjectController subjectList");
+//		log.info("SubjectController subjectList 세션확인 : {}", user);
+//		MemberVo mvo = (MemberVo) user.getDetails();
+//		
+//		List<SubjectVo> lists = null;
+//		RowNumVo rowVo = null;
+//		
+//		if(session.getAttribute("row")==null) {
+//			rowVo = new  RowNumVo();
+//		}else {
+//			rowVo=(RowNumVo) session.getAttribute("row");
+//		}
+//		System.out.println(rowVo);
+////		user.getPrincipal();//아이디
+//		if(user.getAuthorities().toString().indexOf("USER")!=-1) {
+//			System.out.println(user.getAuthorities());
+//			rowVo.setTotal(sService.subjectTotalUser());
+//			lists=sService.subSelectAllUser(rowVo);
+//		}
+//		
+//			System.out.println(lists);
+//		model.addAttribute("lists",lists);
+//		model.addAttribute("row",rowVo);
+//		
+//		return "user/user_subjectList";
+//	}
+//	@RequestMapping(value = "/user/user_subjectList.do", method = {RequestMethod.GET, RequestMethod.POST})
 //	public ModelAndView selectSubjectUser(RowNumVo rVo) {
 //		ModelAndView mav = new ModelAndView();
 //		log.info("********* Welcome SubjectController ! selectSubjectUser 일반회원 페이징처리 과목전체조회페이지로 이동합니다. selectSubjectUser *********");
@@ -143,7 +113,7 @@ public class SubjectUserController {
 //		List<SubjectVo> subLists = sService.subSelectAllUser(rVo);
 //		mav.addObject("subLists", subLists);
 //		mav.addObject("paging", rVo);
-//		mav.setViewName("userSubjectList");
+//		mav.setViewName("user_subjectList");
 //		return mav;
 //	}
 	//2-4) 일반회원 과목 상세조회

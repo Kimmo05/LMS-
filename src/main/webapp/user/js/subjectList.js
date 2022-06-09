@@ -3,19 +3,6 @@ function subjectDetail(){
 	$("#exampleModalmdo").modal({backdrop: 'static', keyboard: false});
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   	$(document).ready(function(){
 		var pageListNum = $("#pageListNum").val();
 		$("#list option").each(function(){
@@ -46,31 +33,22 @@ var pagingAjax= function (){
 				if(key=="lists"){
 				varHtml += "	 <thead class='bg-primary'>";
 	            varHtml += "     <tr>";
-				if(n==9){
 		        varHtml += "       <th><input type='checkbox' name='chkAll' onclick='checkAlls(this.checked)''></td>";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>과목번호</h6></th>";
-				}
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>과목명</h6></th>  ";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>카테고리</h6></th>";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>등록자</h6></th>  ";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>담당강사</h6></th>";
-				if(n==9){
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>승인상태</h6></th>";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>관리</h6></th>";
-	            }
-				if(n==5){
-				varHtml += "       <th scope='col'><h6 class='f-w-700'>등록일</h6><th>";
-	}
 				varHtml += "     </tr>";
 	            varHtml += "   </thead>";
 				varHtml += "	<tbody>";
 					
 					$.each(value, function(k,v){
 					varHtml += "  <tr>";
-	                if(n==9){
 					varHtml += "     <td><input type='checkbox' name='chkVal'></td>";
 	                varHtml += " <td>"+v.sub_num+"</td>";
-					}
 	                varHtml += " <td><a href='./adminSubjectDetail.do?sub_num="+v.sub_num+"'>"+v.sub_title+"</a></td>";
 	                varHtml += " <td>";
 	                if(v.cod_name === "JAVA"){
@@ -123,7 +101,6 @@ var pagingAjax= function (){
 	                }else if(m==31){
 	                varHtml += "  <td>담당 강사 미정</td>                                                                               ";
 	                }
-					if(n==9){
 			              if(v.sub_status === "A"){
 			              varHtml += "    		<td><span class='badge rounded-pill' style='background-color: 	#1E90FF'>승인</span></td>       ";            	  
 			              }else if(v.sub_status === "W"){
@@ -135,9 +112,6 @@ var pagingAjax= function (){
 			              }
 			                 varHtml += "     	 <td><a><button type='button' class='btn btn-pill btn-outline-danger-2x btn-xs'>삭제</button></a></td>";
 			                 varHtml += "  </tr>                                                                                                      ";	
-					}else{
-						varHtml += "  <td>"+v.sub_regdate+"</td>                                                                                ";
-					}
 					
 				});
 				varHtml += "</tbody>";

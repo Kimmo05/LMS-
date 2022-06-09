@@ -2,7 +2,6 @@
 //
 //import java.util.List;
 //
-//import com.min.vo.InfoUser;
 //import com.min.vo.MemberVo;
 //import com.min.vo.SubjectVo;
 //
@@ -30,7 +29,6 @@
 //	//화면 구성
 //	private String listRowForm(SubjectVo subVo) {
 //		StringBuffer sb = new StringBuffer();  
-//		
 //		sb.append(" <div class='card'>                                                                                           ");
 //		sb.append("   <div class='job-search'>                                                                                   ");
 //		sb.append("     <div class='card-body'>                                                                                  ");
