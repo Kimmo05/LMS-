@@ -79,5 +79,17 @@ public class PayDaoImpl implements PayDao{
 		return sqlSession.update(NS+"cancelUpdate",map);
 	}
 
+	//환불승인시에 쿠폰반환
+	@Override
+	public int returnCoupon(Map<String, Object> map) {
+		return sqlSession.update(NS+"returnCoupon",map);
+	}
+
+	//환불승인시에 마일리지 반환
+	@Override
+	public int returnMileage(Map<String, Object> map) {
+		return sqlSession.update(NS+"returnMileage",map);
+	}
+
 	
 }

@@ -52,9 +52,13 @@ public class PayServiceImpl implements IPayService{
 		return dao.getPayDetail(map);
 	}
 
+	//환불시 상태 변경 , 마일리지 반환, 쿠폰 반환
 	@Override
 	public int statusUpdate(Map<String, Object> map) {
-		return dao.statusUpdate(map);
+		int n1 = dao.statusUpdate(map);
+		int n2 = dao.returnCoupon(map);
+		int n3 = dao.returnMileage(map);
+		return n1 + n2 + n3;
 	}
 
 	@Override

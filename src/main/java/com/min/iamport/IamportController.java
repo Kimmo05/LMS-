@@ -118,17 +118,11 @@ public class IamportController {
 				couponMap.put("cou_code", payCounum);
 				service.updateCoupon(couponMap);
 			}
-			if(payUmilage == 0) {
-				map.put("pay_umilage", "");
-			}else {
-				map.put("pay_umilage", payUmilage);
-				Map<String,Object> mileMap = new HashMap<String, Object>();
-				mileMap.put("useMilage", payUmilage);
-				mileMap.put("tra_id", user.getPrincipal());
-				service.updateMileage(mileMap);
-			}
-			
-			
+			map.put("pay_umilage", payUmilage);
+			Map<String,Object> mileMap = new HashMap<String, Object>();
+			mileMap.put("useMilage", payUmilage);
+			mileMap.put("tra_id", user.getPrincipal());
+			service.updateMileage(mileMap);
 			
 			//insert 가자
 			int n = service.payInsert(map);
@@ -152,9 +146,8 @@ public class IamportController {
 	
 	//환불 승인.
 	@RequestMapping(value = "cancel.do", method = RequestMethod.POST)
-	public void testCancelPaymentAlreadyCancelledImpUid() {
-        String test_already_cancelled_imp_uid = "imp_317120240807";
-        CancelData cancel_data = new CancelData(test_already_cancelled_imp_uid, true); //imp_uid를 통한 전액취소
+	public void testCancelPaymentAlreadyCancelledImpUid(String paynum) {
+        CancelData cancel_data = new CancelData(paynum, true); //imp_uid를 통한 전액취소
         System.out.println("환불 ok~");
         try {
             IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);

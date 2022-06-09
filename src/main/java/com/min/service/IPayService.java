@@ -29,7 +29,7 @@ public interface IPayService {
 	//결제 상세조회
 	public PayVo getPayDetail(Map<String,Object> map);
 	
-	//환불상태 변경
+	//환불시 상태 변경 , 마일리지 반환, 쿠폰 반환
 	public int statusUpdate(Map<String, Object> map);
 	
 	//마이페이지 내 결제조회

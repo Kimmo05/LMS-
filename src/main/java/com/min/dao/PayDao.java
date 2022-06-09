@@ -37,4 +37,10 @@ public interface PayDao {
 	
 	//마이페이지 결제내역 내의 환불신청
 	public int cancelUpdate(Map<String, Object> map);
+	
+	//환불승인시 쿠폰 반환
+	public int returnCoupon(Map<String,Object> map);
+	
+	//환불승인시 마일리지 반환
+	public int returnMileage(Map<String,Object> map);
 }

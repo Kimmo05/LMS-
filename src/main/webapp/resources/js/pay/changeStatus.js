@@ -69,6 +69,20 @@ function cancelWhy(paynum,payStatus){
 	})
 }
 
+//아임포트 환불
+function importCancel(payNum){
+		 $.ajax({
+			 type:"post",
+			 url:"./payment/cancel.do",
+			 data : {
+				paynum : payNum
+			},
+			 success:function(result){
+				console.log(result);
+			 }
+		 })
+}
+
 //상태 변경
 function statusUpdate(paynum){
 	console.log("상태 변경 후 redirect");
@@ -76,9 +90,11 @@ function statusUpdate(paynum){
 		const getcanCate = document.getElementById('payNumber');
 		var getPayNumber = getcanCate.innerText;
 		location.href="./statusUpdate.do?paynum="+getPayNumber;
+		importCancel(paynum);
 	}else{
 		location.href="./statusUpdate.do?paynum="+paynum;
+		importCancel(paynum);
 	}
 	
-	alert("상태변경 완료되었습니다!");
+	alert("환불 완료되었습니다!");
 }

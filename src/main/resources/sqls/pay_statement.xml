@@ -176,4 +176,24 @@
 	<update id="cancelUpdate" parameterType="java.util.Map">
 		UPDATE PAY SET PAY_CANCATE='${pay_cancate}',PAY_STATUS='${pay_status}',PAY_CANCONTENT ='${pay_cancontent}' WHERE PAY_NUM = '${pay_num}'
 	</update>
+	
+	<!-- 환불 승인시에 쿠폰 반환 -->
+	<update id="returnCoupon"  parameterType="java.util.Map">
+		UPDATE COUPON 
+		SET COU_DELFLAG ='Y' 
+		WHERE COU_CODE = (SELECT PAY_UCOUNUM 
+			FROM PAY 
+			WHERE PAY_NUM='${pay_num}')
+	</update>
+	
+	<!-- 환불 승인시에 마일리지 반환 -->
+	<update id="returnMileage"  parameterType="java.util.Map">
+		UPDATE TRAINEE 
+		SET TRA_MILAGE = TRA_MILAGE + (SELECT PAY_UMILAGE 
+				FROM PAY 
+				WHERE PAY_NUM='${pay_num}') 
+			WHERE TRA_ID =(SELECT PAY_TRA_BUYER 
+				FROM PAY 
+				WHERE PAY_NUM ='${pay_num}')
+	</update>
 </mapper>
