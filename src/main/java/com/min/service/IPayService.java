@@ -1,4 +1,4 @@
-package com.min.dao;
+package com.min.service;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import com.min.vo.CouponVo;
 import com.min.vo.PayVo;
 
-public interface PayDao {
+public interface IPayService {
 	
 	//관리자 전체조회
 	public List<PayVo> paySelectAll();
@@ -28,4 +28,5 @@ public interface PayDao {
 	
 	//결제 상세조회
 	public PayVo getPayDetail(Map<String,Object> map);
+		
 }

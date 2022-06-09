@@ -57,9 +57,5 @@ public class MainController {
 
 			return "loginForm";
 		}
-	
-	
-	
-
 
 }

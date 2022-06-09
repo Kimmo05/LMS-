@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,8 +33,7 @@
                   <h3>과목 전체 조회</h3>
                     <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-ui-home"></i></a></li>
-                    <li class="breadcrumb-item">관리자</li>
-                    <li class="breadcrumb-item">과목 승인</li>
+                    <li class="breadcrumb-item">일반회원</li>
                     <li class="breadcrumb-item active">과목 전체 목록 조회</li>
                   </ol>
                 </div>
@@ -49,20 +49,19 @@
   				<div class="card-block row">
                   <div class="table-responsive table-border-radius">
                     <table class="table table-hover table-xs table-border-vertical">
-                      <thead class="bg-primary">
-                        <tr>
-		                     	<td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
-                          <th scope="col"><h6 class="f-w-700">과목번호</h6></th>
-                          <th scope="col"><h6 class="f-w-700">과목명</h6></th>
-                          <th scope="col"><h6 class="f-w-700">카테고리</h6></th>
-                          <th scope="col"><h6 class="f-w-700">등록자</h6></th>
-                          <th scope="col"><h6 class="f-w-700">담당강사</h6></th>
-                          	<th scope="col"><h6 class="f-w-700">승인상태</h6></th>
-                          	<th scope="col"><h6 class="f-w-700">관리</h6></th>
-                        </tr>
-                      </thead>
+             <div class="col-sm-6">
+                  <!-- Bookmark Start-->
+                  <div class="bookmark">
+                    <ul>
+                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="hash"></i></a></li>
+                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="alert-circle"></i></a></li>
+
+                    </ul>
+                  </div>
+                  <!-- Bookmark Ends-->
+                </div>
     				<tbody>
-    					<jsp:useBean id="subjectList" class="com.min.bean.SubjectListBeanAdmin" scope="page"/>
+    					<jsp:useBean id="subjectList" class="com.min.bean.SubjectListBeanUser" scope="page"/>
     					<jsp:setProperty property="lists" name="subjectList" value="${lists}"/>
     					<jsp:setProperty property="mem" name="subjectList" value="${mem}"/>
     					<jsp:getProperty property="listForm" name="subjectList"/>
@@ -96,5 +95,5 @@
     </div>
 
 </body>
-<%-- <%@include file="../footer.jsp" %> --%>
+<%@include file="../footer.jsp" %>
 </html>

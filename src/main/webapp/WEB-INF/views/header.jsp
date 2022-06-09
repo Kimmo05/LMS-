@@ -246,7 +246,7 @@
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">과목 전체 조회</a></li>
+                      <li><a href="./user_subjectList.do">(일반회원)과목 전체 조회</a></li>
                       <li><a href="./user_subjectInsertForm.do">과목 등록</a></li>
                     </ul>
                   </li>
@@ -258,8 +258,8 @@
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./pay.do">결제하기</a></li>
+                      <li><a href="./pay.do">결제조회</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>

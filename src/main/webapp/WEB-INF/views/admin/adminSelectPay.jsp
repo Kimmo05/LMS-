@@ -4,14 +4,14 @@
 <html>
 <head>
 <title>결제 관리</title>
- <script type="text/javascript" src="./resources/js/pay/adminSelectPay.js"></script>
+ <script type="text/javascript" src="../resources/js/pay/adminSelectPay.js"></script>
 <style type="text/css">
 	table{
 		text-align:center;
 	}
 </style>
 </head>
-<%@ include file="admin_header.jsp" %>
+<%@ include file="./admin_header.jsp" %>
 <body>
   
         <div class="page-body">
@@ -19,10 +19,11 @@
             <div class="page-header">
               <div class="row">
                 <div class="col-sm-6">
-                  <h3>결제관리</h3>
+                  <h3>회원결제 전체조회</h3>
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.do">Home</a></li>
                     <li class="breadcrumb-item">결제관리</li>
+                    <li class="breadcrumb-item">회원 결제정보 전체조회</li>
                   </ol>
                 </div>
                 <div class="col-sm-6">
@@ -102,7 +103,7 @@
                           <tbody>
                           	<c:forEach var="vo" items="${lists}">
 	                        	<tr>
-	                              <td><a href="#">${vo.pay_num}</a></td>
+	                              <td onclick="modalOpen('${vo.pay_num}')" ><a href="#" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">${vo.pay_num}</a></td>
 	                              <td>${vo.pay_tra_buyer}</td>
 	                              <td>
 	                              	<c:if test="${vo.pay_status eq '결제'}"><span class="badge rounded-pill badge-primary">결제</span></c:if>
@@ -114,6 +115,27 @@
                           	</c:forEach>
                           </tbody>
                         </table>
+                        <!-- 모달 -->
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal modal-dialog-centered" role="document">
+                        <div class="modal-content text-center d-block">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Payment Details&nbsp;&nbsp;<small class="text-muted">결제 상세정보</small></h5>
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                          </div>
+                          <div class="modal-body">
+                          	<br><br>
+                          	<h1 class="display-1"><i class="fa fa-credit-card-alt"></i></h1><br>
+                          	<h6 id="modalTitle">ddd</h6>
+                          	<div id="modalText">dd</div>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- 모달 -->
                       </div>
                     </div>
                   </div>
@@ -123,19 +145,6 @@
           </div>
           <!-- Container-fluid Ends-->
         </div>
-        <!-- footer start-->
-        <footer class="footer">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6 footer-copyright">
-                <p class="mb-0">Copyright 2021-22 © viho All rights reserved.</p>
-              </div>
-              <div class="col-md-6">
-                <p class="pull-right mb-0">Hand crafted & made with <i class="fa fa-heart font-secondary"></i></p>
-              </div>
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
 
