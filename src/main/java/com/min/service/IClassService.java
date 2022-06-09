@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.min.vo.ClassSubjectVo;
 import com.min.vo.ClassVo;
+import com.min.vo.InstructorVo;
 import com.min.vo.SubjectVo;
 import com.min.vo.VoteVo;
 
@@ -15,6 +16,8 @@ public interface IClassService {
 	public List<ClassVo> classSelected();
 	// 과정 상세조회
 	public ClassVo classSelectDetail(String vo);
+	// 과정 상세조회 > 과목 리스트 조회
+	public List<SubjectVo> classSelectedSub(String cla_num);
 	// 과정 등록 폼 생성
 	public int classFormInsert(Map<String, Object> vo);
 	// 과정 과목리스트 생성
@@ -25,8 +28,13 @@ public interface IClassService {
 	public int classTimeUpdate();
 	// 과정 종료일 계산 필요 수
 	public int classTimeSearch(String cla_num);
-	// 과정 강사 지원
-	public int insApply(VoteVo vo);
+	// 과정 과목 투표박스 생성
+	public int voteBoxInsert(Map<String, Object> map);
+	// 투표
+	public int updateVote(VoteVo vo);
+	// 과정 강사 정보 출력
+	public List<InstructorVo> classInsInfo (String id);
+	
 	// 과목 리스트 뽑기(임시)
 	public List<SubjectVo> subjectSelected();
 }

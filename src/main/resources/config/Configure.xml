@@ -18,6 +18,11 @@
 	<typeAlias type="java.util.Map" alias="map"/>
 	<typeAlias type="java.lang.Integer" alias="Integer"/>
 	<typeAlias type="com.min.vo.RowNumVo" alias="RowNumVo"/>
+	
+	
+	<typeAlias type="com.min.vo.InstructorVo" alias="InstructorVo"/>
+	
+	
 </typeAliases>
 
 <mappers>

@@ -2,6 +2,7 @@ package com.min.vo;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class ClassVo implements Serializable{
 	private static final long serialVersionUID = -8295356121986686775L;
 	private String cla_num;
