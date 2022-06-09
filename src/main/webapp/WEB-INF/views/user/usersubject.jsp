@@ -8,7 +8,7 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="./js/subjectList.js"></script>
-<%@ include file="./admin_header.jsp" %>
+<%@ include file="../header.jsp" %>
 <body>
    <div class="page-body">
     
@@ -56,13 +56,11 @@
                       <thead class="bg-primary">
                         <tr>
 		                     	<td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
-                          <th scope="col"><h6 class="f-w-700">과목번호</h6></th>
                           <th scope="col"><h6 class="f-w-700">과목명</h6></th>
                           <th scope="col"><h6 class="f-w-700">카테고리</h6></th>
                           <th scope="col"><h6 class="f-w-700">등록자</h6></th>
                           <th scope="col"><h6 class="f-w-700">담당강사</h6></th>
-                          	<th scope="col"><h6 class="f-w-700">승인상태</h6></th>
-                          	<th scope="col"><h6 class="f-w-700">관리</h6></th>
+                          <th scope="col"><h6 class="f-w-700">등록일</h6></th>
                         </tr>
                       </thead>
     				<tbody>
@@ -97,41 +95,7 @@
           </div>
        </div>
  </form>
- 
- <div class="col-sm-12">
-                <div class="card">
-                
-                  <div class="card-body btn-showcase">
-                    <div class="modal fade" id="exampleModalmdo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">New message</h5>
-                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <form>
-                              <div class="mb-3">
-                                <label class="col-form-label" for="recipient-name">Recipient:</label>
-                                <input class="form-control" id="recipient-name" type="text" value="@Mat">
-                              </div>
-                              <div class="mb-3">
-                                <label class="col-form-label" for="message-text">Message:</label>
-                                <textarea class="form-control"></textarea>
-                              </div>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-primary" type="button">Send message</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
     </div>
 </body>
-<%@include file="./admin_footer.jsp" %>
+<%@include file="../footer.jsp" %>
 </html>
