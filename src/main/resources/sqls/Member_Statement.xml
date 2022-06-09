@@ -78,7 +78,7 @@ AND TRA_EMAIL =#{email};
 
 
 <!-- 회원 탈퇴 신청 (W = 탈퇴 승인 대기) -->
-<update id="delTra" parameterMap="map">
+<update id="delTra" parameterType="map">
 UPDATE TRAINEE SET TRA_DELFLAG ='W'
 WHERE TRA_ID =#{id}
 </update>

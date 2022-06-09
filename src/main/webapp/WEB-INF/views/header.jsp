@@ -215,7 +215,10 @@
               <li><span><span class="counter"></span>k</span>
                 <p>정보3 </p>
               </li>
-            </ul>
+            </ul><br>
+            <div>
+            <a href="./myProfile.do" type="button" class="btn btn-outline-light txt-dark">마이 페이지</a> 
+            </div>
           </div>
          </sec:authorize>
           <nav>
