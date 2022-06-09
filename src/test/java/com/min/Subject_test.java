@@ -50,20 +50,20 @@ public class Subject_test {
 		map.put("sub_cod_code", "SUB101");
 		map.put("sub_reg_id", "ssoff23247");
 
-		int result = sDao.subInsertSubject(map);
-		log.info("---------- JUnit Test/Subject_test/subInsertSubject ----------");
-		log.info("---------- subInsertSubject 입력된 과목 수 : "+result+" ----------");
-		System.out.println(result);
-
-		log.info("subInsertRegister JUnit Test 실행");
-		Map<String, Object> map2 = new HashMap<String, Object>();
-		map2.put("reg_auth", "ROLE_INSTRUCTOR");
-		map2.put("reg_id", "ssoff23247");
-
-		int result2 = sDao.subInsertRegister(map2);
-		log.info("---------- JUnit Test/Subject_test/subInsertRegister ----------");
-		log.info("---------- subInsertRegister 입력된 등록자 수 : "+result2+" ----------");
-		System.out.println(result2);
+//		int result = sDao.subInsertSubject(map);
+//		log.info("---------- JUnit Test/Subject_test/subInsertSubject ----------");
+//		log.info("---------- subInsertSubject 입력된 과목 수 : "+result+" ----------");
+//		System.out.println(result);
+//
+//		log.info("subInsertRegister JUnit Test 실행");
+//		Map<String, Object> map2 = new HashMap<String, Object>();
+//		map2.put("reg_auth", "ROLE_INSTRUCTOR");
+//		map2.put("reg_id", "ssoff23247");
+//
+//		int result2 = sDao.subInsertRegister(map2);
+//		log.info("---------- JUnit Test/Subject_test/subInsertRegister ----------");
+//		log.info("---------- subInsertRegister 입력된 등록자 수 : "+result2+" ----------");
+//		System.out.println(result2);
 
 		log.info("subInsertCurriculum JUnit Test 실행");
 		Map<String, Object> map3 = new HashMap<String, Object>();
@@ -74,20 +74,20 @@ public class Subject_test {
 		map3.put("cur_level", "cur_level");
 		map3.put("cur_file", "cur_file");
 
-		int result3 = sDao.subInsertCurriculum(map3);
-		log.info("---------- JUnit Test/Subject_test/subInsertCurriculum ----------");
-		log.info("---------- subInsertCurriculum 입력된 커리큘럼 수 : "+result3+" ----------");
-		System.out.println(result3);
-
-		log.info("subInsertCurriculum JUnit Test 실행");
-		Map<String, Object> map4 = new HashMap<String, Object>();
-		map4.put("reg_auth", "ROLE_INSTRUCTOR");
-		map4.put("sub_reg_id", "ssoff23247");
-
-		int result4 = sDao.subUpdateInstructor(map4);
-		log.info("---------- JUnit Test/Subject_test/subUpdateInstructor ----------");
-		log.info("---------- subUpdateInstructor 입력된 담당강사 수 : "+result4+" ----------");
-		System.out.println(result4);
+//		int result3 = sDao.subInsertCurriculum(map3);
+//		log.info("---------- JUnit Test/Subject_test/subInsertCurriculum ----------");
+//		log.info("---------- subInsertCurriculum 입력된 커리큘럼 수 : "+result3+" ----------");
+//		System.out.println(result3);
+//
+//		log.info("subInsertCurriculum JUnit Test 실행");
+//		Map<String, Object> map4 = new HashMap<String, Object>();
+//		map4.put("reg_auth", "ROLE_INSTRUCTOR");
+//		map4.put("sub_reg_id", "ssoff23247");
+//
+//		int result4 = sDao.subUpdateInstructor(map4);
+//		log.info("---------- JUnit Test/Subject_test/subUpdateInstructor ----------");
+//		log.info("---------- subUpdateInstructor 입력된 담당강사 수 : "+result4+" ----------");
+//		System.out.println(result4);
 	}
 
 //	@Test
@@ -147,10 +147,10 @@ public class Subject_test {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sub_num", "20220602SUB174");
 
-		int result = sDao.subUpdateStatusA(map);
+//		int result = sDao.subUpdateStatusA(map);
 		log.info("---------- JUnit Test/Subject_test/subUpdateStatusATest ----------");
-		log.info("---------- subUpdateStatusATest 과목상태 변경된 과목의 수 : "+result+" ----------");
-		System.out.println(result);
+//		log.info("---------- subUpdateStatusATest 과목상태 변경된 과목의 수 : "+result+" ----------");
+//		System.out.println(result);
 	}
 	//2-1) 관리자의 과목 전체 목록 조회
 //	@Test
@@ -184,12 +184,12 @@ public class Subject_test {
 //	}
 	//2-4) 일반회원의 과목 상세 조회
 //	@Test
-	public void comSubjectDetailTest() {
-		log.info("comSubjectDetail JUnit Test 실행");
-		String sub_num = "20220602SUB174";
-		SubjectVo sVo =  sDao.comSubjectDetail(sub_num);
-		System.out.println(sVo);
-	}
+//	public void comSubjectDetailTest() {
+//		log.info("comSubjectDetail JUnit Test 실행");
+//		String sub_num = "20220602SUB174";
+//		SubjectVo sVo =  sDao.comSubjectDetail(sub_num);
+//		System.out.println(sVo);
+//	}
 	
 
 }

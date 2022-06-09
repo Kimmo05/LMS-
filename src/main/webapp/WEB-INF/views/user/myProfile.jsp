@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>일반회원 과목 등록 양식 페이지</title>
+<title>마이페이지</title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>

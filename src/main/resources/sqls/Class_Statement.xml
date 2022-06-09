@@ -25,14 +25,28 @@ SELECT CLA_NUM, CLA_TITLE , CLA_CONTENT , CLA_MAXPEO , CLA_PRICE , CLA_DAILYTIME
 	   CLA_STARTDATE , CLA_TOTALTIME ,  JSON_QUERY(CLA_LIKE ,'$' RETURNING VARCHAR2) AS CLA_LIKE, 
 	   TO_CHAR(CLA_REGDATE,'YYYY-MM-DD') AS CLA_REGDATE, CLA_STATUS 
 	FROM CLASS c 
-	WHERE CLA_NUM = CSU_CLA_NUM AND CLA_NUM = #{cla_num}
+	WHERE CLA_NUM = #{cla_num}
 </select>
 
-<!-- 과정 과목 리스트 선택 -->
-<select id="classSelectedIns" resultType="java.util.List" parameterType="java.lang.String">
-SELECT SUB_NUM ,SUB_INS ,CSU_CLA_NUM
-	FROM SUBJECT ,CLASS_SUBJECT
+<!-- 과정 상세 조회 > 과정의 과목리스트 조회 -->
+<select id="classSelectedSub" resultType="SubjectVo" parameterType="java.lang.String">
+SELECT SUB_NUM, SUB_TITLE ,SUB_CONTENT
+	FROM SUBJECT, CLASS_SUBJECT
 	WHERE SUB_NUM = CSU_SUB_NUM AND CSU_CLA_NUM = #{csu_cla_num}
+</select>
+
+<!-- <resultMap type="InstructorVo" id="InstructorVo"> -->
+<!-- 	<result column="INS_ID" property="ins_id" javaType="java.lang.String"/> -->
+<!-- 	<result column="INS_NAME" property="ins_name" javaType="java.lang.String"/> -->
+<!-- 	<result column="INS_EMAIL" property="ins_email" javaType="java.lang.String"/> -->
+<!-- 	<result column="INS_CARRER" property="ins_carrer" javaType="java.lang.String"/> -->
+<!-- </resultMap> -->
+
+<!-- 과정 상세 조회 > 과정 강사 조회 -->
+<select id="classInsInfo" resultType="InstructorVo" parameterType="java.lang.String">
+SELECT INS_ID, INS_NAME , INS_EMAIL ,INS_CARRER
+	FROM VOTE v , INSTRUCTOR i 
+	WHERE INS_ID = VOT_INS_ID AND VOT_CLA_NUM = #{vot_cla_num}
 </select>
 
 <!-- 과정 입력 폼 생성 -->
@@ -51,11 +65,7 @@ INSERT INTO CLASS_SUBJECT (CSU_SEQ, CSU_SUB_NUM, CSU_CLA_NUM)
 	 			   VALUES (CLASS_SUBJECT_SEQ.NEXTVAL, #{csu_sub_num}, (SELECT MAX(CLA_NUM)FROM CLASS c))
 </insert>
 
-<!-- 과정 투표박스 생성 -->
-<insert id="voteBoxInsert" parameterType="java.util.Map">
-INSERT INTO VOTE (VOT_CLA_NUM, VOT_SUB_NUM)
-		VALUES((SELECT MAX(CLA_NUM)FROM CLASS c), #{vot_sub_num})
-</insert>
+
 <select id="classTimeSearch" resultType="java.lang.Integer" parameterType="java.lang.String">
 SELECT CEIL (CLA_TOTALTIME/CLA_DAILYTIME)
 	FROM CLASS c 
@@ -77,13 +87,7 @@ UPDATE CLASS SET CLA_TITLE = #{cla_title},
 			 WHERE CLA_NUM = #{cla_num}
 </update>
 
-
-<!-- 임시 과목 선택 리스트 -->
-<select id="subjectSelected" resultType="SubjectVo">
-SELECT SUB_NUM, SUB_TITLE  
-	FROM SUBJECT
-</select>
-
+<!-- 과정의 과목리스트의 총 시간 계산 -->
 <update id="classTimeUpdate">
 UPDATE CLASS SET CLA_TOTALTIME = (SELECT SUM(CUR_TIME)
 	FROM SUB_CURRICULUM, CLASS_SUBJECT 
@@ -91,13 +95,27 @@ UPDATE CLASS SET CLA_TOTALTIME = (SELECT SUM(CUR_TIME)
 			WHERE CLA_NUM = (SELECT MAX(CLA_NUM)FROM CLASS)
 </update>
 
+<!-- 임시 과목 선택 리스트 -->
+<select id="subjectSelected" resultType="SubjectVo">
+SELECT SUB_NUM, SUB_TITLE  
+	FROM SUBJECT
+</select>
+
+
+
 <!-- ■■■ 투표 ■■■ -->
-<!-- 등록된 과정에 학생이 투표 -->
-<update id="insApply" parameterType="VoteVo">
+<!-- 과정 투표박스 생성 (과정에 강사가 지원) -->
+<insert id="voteBoxInsert" parameterType="java.util.Map">
+INSERT INTO VOTE (VOT_CLA_NUM, VOT_SUB_NUM, VOT_INS_ID)
+	VALUES(#{vot_cla_num}, #{vot_sub_num}, #{vot_ins_id})
+</insert>
+
+<!-- 학생이 강사를 투표 -->
+<select id="updateVote" parameterType="VoteVo">
 UPDATE VOTE 
-	SET VOT_INS_ID = #{vot_ins_id}
-	WHERE VOT_CLA_NUM =#{vot_cla_num} AND VOT_SUB_NUM = #{vot_sub_num}
-</update>
+	SET VOT_VOTER = JSON_ARRAY(#{vot_voter})
+	WHERE VOT_CLA_NUM=#{vot_cla_num} AND VOT_SUB_NUM = #{vot_sub_num}
+</select>
 
 <!-- ■■■ 과정 자료 게시판 Statement ■■■ -->
 <!-- 과정 자료 게시판 전체 조회(카테고리별, 해당 과정 번호별) -->
@@ -132,7 +150,7 @@ INSERT INTO CLASS_BOARD (CBO_SEQ, CBO_CLA_NUM, CBO_CATE,
 						 #{cbo_ins_id}, #{cbo_title}, #{cbo_content},
 						 TO_CHAR(SYSDATE,'YYYY-MM-dd'), #{cbo_youtubeadd})
 </insert>
-
+<!-- 파일 자료 등록 1 -->
 <insert id="classDocInsert" parameterType="java.util.Map">
 INSERT INTO DOCUMENT (DOC_SEQ, DOC_FILE, DOC_ORIGINNAME, 
 					  DOC_SAVENAME, DOC_PATH, DOC_EXTENTION)
@@ -140,6 +158,7 @@ INSERT INTO DOCUMENT (DOC_SEQ, DOC_FILE, DOC_ORIGINNAME,
 			  		  #{doc_savename} ,#{doc_path}, #{doc_extention})
 </insert>
 
+<!-- 파일 자료 등록 2 -->
 <insert id="classBoardDocInsert" parameterType="java.util.Map">
 INSERT INTO CLASS_BOARD (CBO_SEQ, CBO_CLA_NUM, CBO_CATE,
 						 CBO_INS_ID, CBO_TITLE, CBO_CONTENT, 
@@ -151,8 +170,8 @@ INSERT INTO CLASS_BOARD (CBO_SEQ, CBO_CLA_NUM, CBO_CATE,
 
 
 
-<!-- 쪽지 게시판 -->
-<!-- 쪽지 게시판 전체조회 -->
+<!-- ■■■ 쪽지 게시판 ■■■ -->
+<!-- 쪽지 게시판 전체조회(보낸 메시지/받은 메시지 구분) -->
 <select id="messendBoardSelectAll" resultType="MessageBoardVo" parameterType="MessageBoardVo">
 SELECT MES_SEQ , MES_SENDER , MES_RECIPIENT , CASE WHEN LENGTH(MES_CONTENT) > 15 THEN SUBSTR(MES_CONTENT,0,15) || '...' ELSE MES_CONTENT END MES_CONTENT ,  MES_CATE , MES_REFFER , MES_REGDATE 
 	FROM MESSAGE_BOARD
@@ -165,6 +184,7 @@ SELECT MES_SEQ , MES_SENDER , MES_RECIPIENT , CASE WHEN LENGTH(MES_CONTENT) > 15
 	ORDER BY MES_REFFER
 </select>
 
+<!-- 쪽지 게시판 상세조회 -->
 <select id="mesBoardSelectDetail" resultType="MessageBoardVo" parameterType="java.lang.Integer">
 SELECT MES_SEQ , MES_SENDER , MES_RECIPIENT, MES_CONTENT , MES_REGDATE 
 	FROM MESSAGE_BOARD mb 

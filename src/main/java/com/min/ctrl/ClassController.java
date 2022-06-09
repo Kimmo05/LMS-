@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.min.service.IClassService;
 import com.min.vo.ClassVo;
+import com.min.vo.InstructorVo;
 import com.min.vo.SubjectVo;
 import com.min.vo.VoteVo;
 
@@ -58,8 +59,17 @@ public class ClassController {
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) {
 		session.setAttribute("cla_num", cla_num);
 		ClassVo result = service.classSelectDetail(cla_num);
+		List<SubjectVo> lists = service.classSelectedSub(cla_num);
+		
 		model.addAttribute("result", result);
+		model.addAttribute("lists", lists);
 		System.out.println(result);
+		
+		List<InstructorVo> insList = service.classInsInfo(cla_num);
+		model.addAttribute("insList", insList);
+		System.out.println(insList);
+		
+		
 		return "admin/admin_classDetail";
 	}
 	
@@ -87,7 +97,6 @@ public class ClassController {
 			map.clear();
 		}
 		service.classTimeUpdate();
-		
 		return "redirect:/classListed.do";
 	}
 	
@@ -214,15 +223,31 @@ public class ClassController {
 		return "redirect:/classListed.do";
 	}
 	
-	@RequestMapping(value = "/insApply.do", method = RequestMethod.POST)
-	public String insApply(@SessionAttribute("cla_num") String cla_num) {
-		VoteVo vo = new VoteVo();
-		vo.setVot_cla_num(cla_num);
-		//나중에 강사로 로그인한 아이디 넣기
-		vo.setVot_ins_id("thdwndrlrkdtk123");
-//		vo.setVot_sub_num(vot_sub_num);
-		service.insApply(vo);
+	@RequestMapping(value = "/voteBoxInsert.do", method = RequestMethod.POST)
+	public String voteBoxInsert(@RequestParam String sub_num, @SessionAttribute("cla_num") String cla_num) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("vot_sub_num", sub_num);
+		map.put("vot_cla_num", cla_num);
+		map.put("vot_ins_id", "thdwndrlrkdtk123");
+		service.voteBoxInsert(map);
 		return "redirect:/classSelectDetail.do";
 	}
 	
+	@RequestMapping(value = "/updateVote.do", method = RequestMethod.POST)
+	public String updateVote(@SessionAttribute("cla_num") String cla_num, @RequestParam String sub_num , Model model) {
+		int cnt=0;
+		VoteVo vo = new VoteVo();
+		vo.setVot_cla_num(cla_num);
+		vo.setVot_sub_num(sub_num);
+		JSONArray json = new JSONArray();
+		json.add("thdwndrl1234");
+		vo.setVot_voter(json.toString());
+		for (Object object : json) {
+			cnt++;
+		}
+		System.out.println(cnt);
+		model.addAttribute("cnt", cnt);
+		service.updateVote(vo);
+		return "redirect:/classSelectDetail.do";
+	}
 }

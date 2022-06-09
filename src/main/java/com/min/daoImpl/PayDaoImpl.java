@@ -61,5 +61,11 @@ public class PayDaoImpl implements PayDao{
 		return sqlSession.selectOne(NS+"getPayDetail",map);
 	}
 
+	//환불 상태 변경
+	@Override
+	public int statusUpdate(Map<String, Object> map) {
+		return sqlSession.update(NS+"statusUpdate",map);
+	}
+
 	
 }
