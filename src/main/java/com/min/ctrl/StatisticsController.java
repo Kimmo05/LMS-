@@ -1,8 +1,10 @@
 package com.min.ctrl;
 
+import java.lang.reflect.Member;
 import java.util.*;
 
 import com.min.service.IStatisticsService;
+import com.min.vo.MemberVo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -68,8 +70,14 @@ public class StatisticsController {
     //좋아요 클릭 시
     @RequestMapping(value = "/clickLike.do",method = RequestMethod.POST)
     @ResponseBody
-    public String clickLike(String claId, Authentication authentication){
+    public String clickLike(String claId, Authentication authentication) throws ParseException {
         String userid = (String) authentication.getPrincipal();
+        MemberVo vo = (MemberVo) authentication.getDetails();
+        String myLikelist = vo.getLike();
+        JSONParser parser = new JSONParser();
+        JSONArray myArr = (JSONArray) parser.parse(myLikelist);
+
+        logger.info(userid);
         return "좋아요 클릭 됨";
     }
 

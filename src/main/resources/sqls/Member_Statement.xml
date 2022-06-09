@@ -39,8 +39,8 @@ SELECT  TRA_ID ,
 		TRA_BIRTH ,
 		TRA_PROFILE ,
 		TRA_AUTH ,
-		TRA_LIKE ,
-		TRA_PREFER,
+		JSON_QUERY(TRA_LIKE,'$' RETURNING VARCHAR2) ,
+		JSON_QUERY(TRA_PREFER,'$' RETURNING VARCHAR2),
 		TRA_REGDATE ,
 		TRA_DELFLAG 
 	FROM TRAINEE 
@@ -59,12 +59,13 @@ TRA_BIRTH,
 TRA_PROFILE,
 TRA_AUTH,
 TRA_REGDATE, 
-TRA_DELFLAG)
+TRA_DELFLAG,
+ TRA_PREFER)
 VALUES(#{id},#{pw}, #{name}, 
 #{email}, #{phone}, 
 #{birth}, #{profile}, 'ROLE_USER', 
 SYSDATE,
-'N')
+'N','{"subject":[],"more_time":null,"less_time":null,"date":null,"recommand":[]}')
 </insert>
 <!-- 관리자 일반회원 페이징 -->
 <select id="adminUserListRow"  resultMap="TraResult" parameterType="RowNumVo" resultType="MemberVo">
