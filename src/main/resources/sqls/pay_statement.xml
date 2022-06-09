@@ -143,4 +143,9 @@
 		FROM PAY
 		WHERE PAY_NUM=#{pay_num}
 	</select>
+	
+	<!-- 환불 상태 변경 -->
+<!-- 	<update id="statusUpdate" parameterType="java.util.Map"> -->
+<!-- 		UPDATE -->
+<!-- 	</update> -->
 </mapper>
