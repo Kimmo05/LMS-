@@ -21,6 +21,8 @@ public class MemberVo {
 	private String phone;
 	private String auth;
 	private String profile;
+	private String like;
+	private String prefer;
 	private String milage;
 	private String bank;
 	private String banknum;

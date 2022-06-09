@@ -22,7 +22,7 @@ public class MemberServiceImpl implements IMemberService{
 
 	@Override
 	public MemberVo loginTra(Map<String, Object> map) {
-		log.info("MemberVo loginTra");
+		log.info("MemberVo loginTra 서비스 실행");
 		return dao.loginTra(map);
 	}
 

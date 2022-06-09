@@ -11,6 +11,8 @@
 	<result column="Tra_phone" property="phone" />		
 	<result column="Tra_auth" property="auth" />		
 	<result column="Tra_profile" property="profile" />		
+	<result column="Tra_like" property="like" />		
+	<result column="Tra_prefer" property="prefer" />		
 	<result column="Tra_delflag" property="delflag" />		
 	<result column="Tra_regdate" property="regdate" />				
 </resultMap>
@@ -51,7 +53,7 @@ SELECT  TRA_ID ,
 		AND TRA_DELFLAG ='N'
 </select>
 <!-- 일반회원 회원가입 -->
-<insert id="traSignUp"  parameterType="map" >
+<insert id="traSignUp"  parameterType="map">
 INSERT INTO TRAINEE
 (TRA_ID,
 TRA_PW,
@@ -69,16 +71,17 @@ VALUES(#{id},#{pw}, #{name},
 SYSDATE,
 'N')
 </insert>
+
 <select id="findTraId">
 SELECT TRA_ID  FROM 
 TRAINEE 
 WHERE TRA_NAME  =#{name} 
-AND TRA_EMAIL =#{email};
+AND TRA_EMAIL =#{email}
 </select>
 
 
 <!-- 회원 탈퇴 신청 (W = 탈퇴 승인 대기) -->
-<update id="delTra" parameterMap="map">
+<update id="delTra" parameterType="map">
 UPDATE TRAINEE SET TRA_DELFLAG ='W'
 WHERE TRA_ID =#{id}
 </update>
