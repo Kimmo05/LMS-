@@ -37,7 +37,7 @@
 
               <div class="col-sm-12">
            <div class="card">
-                  	<form class="form theme-form" action="/subInsertSubject.do" method="post">
+                  	<form class="form theme-form" action="./subjectInsert.do" method="post">
                   <div class="card-body">
                       <div class="row">
                         <div class="col">
@@ -72,6 +72,10 @@
                           <div class="mb-3">
                             <label>과목 버전</label>
                             <input class="form-control" type="text" name="cur_version" placeholder="Enter Subject Version">
+                          </div>
+                          <div class="mb-3">
+                            <label>과목 카테고리</label>
+                            <input class="form-control" type="text" name="sub_cod_code" placeholder="Enter Subject Version">
                           </div>
                         </div>
                         <div class="col-sm-4">
@@ -126,7 +130,15 @@
                           </div>
                         </div>
                       </div>
-                      
+                       <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label>커리큘럼 임시파일</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea4" name="cur_file" rows="3"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                  
                        <div class="row">
                         <div class="col">
                           <div class="mb-3">
@@ -168,6 +180,6 @@
               </div>
               </div>
               </div>
-<%-- <%@ include file="../footer.jsp" %> --%>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>
