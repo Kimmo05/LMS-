@@ -28,4 +28,7 @@ public interface PayDao {
 	
 	//결제 상세조회
 	public PayVo getPayDetail(Map<String,Object> map);
+	
+	//환불 상태 업데이트
+	public int statusUpdate(Map<String, Object> map);
 }

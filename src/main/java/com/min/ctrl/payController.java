@@ -115,6 +115,7 @@ public class payController{
 	public String statusUpdate(String paynum) {
 		System.out.println(paynum+"@!@!@!@!@!");
 		//@@@내일 할 부분
+		
 		return "redirect:/user/changeStatus.do";
 	}
 	
