@@ -17,8 +17,6 @@ public interface SubjectDao {
 		public int subInsertCurriculum(Map<String, Object> map);
 		//1-4) 과목 등록시 등록자 회원/강사 구분 후 강사일시 담당강사 등록, 일반회원일시 담당강사 null
 		public int subUpdateInstructor(Map<String, Object> map);
-		//1-5) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
-		public int subUpdateStatusA(Map<String, Object> map);
 		
 		
 		//2) 과목 조회
@@ -33,4 +31,8 @@ public interface SubjectDao {
 		public List<SubjectVo> subSelectAllUser(RowNumVo rVo);
 		//2-4) 일반회원의 과목 상세 조회
 		public SubjectVo comSubjectDetail(String sub_num);
+		
+		
+		//3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
+		public boolean subUpdateStatusA(Map<String, Object> map);
 }
