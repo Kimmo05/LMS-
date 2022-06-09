@@ -28,7 +28,6 @@ import com.min.vo.SubjectVo;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
-@RequestMapping(value = "/user/*")
 public class SubjectUserController {
 	
 
@@ -36,7 +35,7 @@ public class SubjectUserController {
 	private SubjectService sService;
 	
 	//1) 과목 등록양식 페이지로 이동
-	@RequestMapping(value = "/user_subjectInsertForm.do", method = RequestMethod.GET)
+	@RequestMapping(value = {"/user/user_subjectInsertForm.do","/ins/user_subjectInsertForm.do"}, method = RequestMethod.GET)
 	public String subInsertForm(Authentication user, Model model) {
 		log.info("********* Welcome SubjectController! subInsertForm 과목 등록양식 페이지로 이동합니다. subjectInsertForm *********");
 
@@ -45,7 +44,7 @@ public class SubjectUserController {
 	
 
 	//1-2)과목 등록하기
-	@RequestMapping(value = "/subjectInsert.do", method = RequestMethod.POST)
+	@RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"}, method = RequestMethod.POST)
 	public String insertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
 		MemberVo mvo = (MemberVo) user.getDetails();
 		System.out.println(mvo);
@@ -66,7 +65,7 @@ public class SubjectUserController {
 	
 	//2) 과목 조회
 	//2-3) 일반회원 과목 전체조회 페이지로 이동
-	@RequestMapping(value = "/user_subjectList.do", method = RequestMethod.GET)
+	@RequestMapping(value = {"/user/user_subjectList.do","/ins/user_subjectList.do"}, method = RequestMethod.GET)
 	public String usersubject(RowNumVo rVo, Model model) {
 		log.info("********* Welcome SubjectController! usersubject 로 이동합니다. subjectInsertForm *********");
 
