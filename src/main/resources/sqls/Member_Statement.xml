@@ -33,6 +33,7 @@
 <!-- 일반회원 로그인 -->
 <select id="loginTra" resultMap="TraResult" parameterType="map" resultType="MemberVo">
 SELECT  TRA_ID ,
+		TRA_PW , 
 		TRA_NAME ,
 		TRA_EMAIL ,
 		TRA_PHONE ,
@@ -98,6 +99,7 @@ SELECT  RN, TRA_ID ,
 <select id="loginIns" resultMap="InsResult" parameterType="map" resultType="MemberVo">
 SELECT INS_ID,  
 INS_NAME, 
+INS_PW,
 INS_EMAIL, 
 INS_PHONE, 
 INS_BIRTH, 

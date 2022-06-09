@@ -16,11 +16,25 @@
 <!-- Security컨트롤러 -->
 <bean id="securityController" class="com.min.security.SecurityController"/>
 	
+	
+<security:authentication-manager>
+	<security:authentication-provider user-service-ref="securityController" >
+<!-- 		<security:password-encoder ref="passwordEncoder" /> -->
+	</security:authentication-provider>	
+</security:authentication-manager>	
+	
+	
 <!-- /////////////////////////////////  main  ////////////////////////////////////// -->
-<security:http auto-config="true" pattern="/main/**" use-expressions="true" >
+<security:http auto-config="true" pattern="/*" use-expressions="true" >
 		<security:intercept-url pattern="/assets/**" access="permitAll" />
-		<security:intercept-url pattern="/main/main.do" access="permitAll" />
-				<security:intercept-url pattern="/main/**" access="permitAll"/>
+		<security:intercept-url pattern="/main.do" access="permitAll" />
+<!-- 				<security:intercept-url pattern="/user/**" access="permitAll"/> -->
+		
+		<security:logout invalidate-session="true" 
+		logout-url="/logout.do" 
+		logout-success-url="/loginPage.do?logout" delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
+	
+	
 		</security:http>
 
 
@@ -33,13 +47,20 @@
 <!-- /////////////////////////////////  user  ////////////////////////////////////// -->
 <security:http auto-config="true" pattern="/user/**" use-expressions="true" authentication-manager-ref="userAuthManager">
 		<security:intercept-url pattern="/assets/**" access="permitAll" />
+		<security:intercept-url pattern="/js/**" access="permitAll" />
+		<security:intercept-url pattern="/css/**" access="permitAll" />
+		<security:intercept-url pattern="/images/**" access="permitAll" />
 		<!-- 정적 리소스는 모두 접근 허용 -->
 <!-- 		<security:intercept-url pattern="/assets/**/**" access="permitAll" /> -->
 	<security:intercept-url pattern="/**" access="permitAll" /> 
+		<!-- 전체허용.? -->
+		<security:intercept-url pattern="/user/*.do" access="permitAll"/>
+	
 		<security:access-denied-handler error-page="/user/AuthError.do"/>
 		<security:intercept-url pattern="/user/TraloginPage.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/loginPage.do" access="permitAll"/>
-		<security:intercept-url pattern="/user/main.do" access="permitAll"/>
+		<security:intercept-url pattern="/user/page.do" access="hasRole('ADMIN')"/>
+		
 		<security:intercept-url pattern="/user/adminTraList.do" access="hasRole('ADMIN')"/>
 		<security:intercept-url pattern="/user/**" access="hasRole('USER')"/>
 		<security:intercept-url pattern="/user/**" access="hasRole('ADMIN')"/>
@@ -57,13 +78,15 @@
 		-->
 		<security:form-login 
 		login-processing-url="/user/logingo.do" 
-		login-page="/user/TraloginPage.do" 
+		login-page="/user/loginPage.do" 
 		default-target-url="/user/result.do"
 		username-parameter="id"
 		password-parameter="pw"
-		authentication-failure-url="/user/TraloginPage.do?error"
-		always-use-default-target="true"/>
+		always-use-default-target="true"
+		authentication-failure-handler-ref="UserLoginFailHandler"
+		/>
 		
+		<!--authentication-failure-url="/user/TraloginPage.do?error"-->
 		<!-- 
 		  1세션을 삭제할 것인지
 		  2로그아웃 요청 이름
@@ -136,7 +159,7 @@
 		default-target-url="/ins/result.do"
 		username-parameter="id"
 		password-parameter="pw"
-		authentication-failure-url="/ins/loginPage.do?error"
+		authentication-failure-handler-ref="InsLoginFailHandler"
 		always-use-default-target="true"/>
 		
 		<!-- 
@@ -181,11 +204,22 @@
 
 <!-- 암호화 -->
 <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> 
-
-<security:authentication-manager>
-	<security:authentication-provider user-service-ref="securityController" >
-<!-- 		<security:password-encoder ref="passwordEncoder" /> -->
-	</security:authentication-provider>	
-</security:authentication-manager>	
+<!-- 로그인 실패 시 핸들러 -->
+<bean id="UserLoginFailHandler" class="com.min.security.UserLoginFailHandler">
+	<property name="id" value="id" />
+	<property name="pw" value="pw" />
+	<property name="loginredirectname" value="loginRedirect" />
+	<property name="exceptionmsgname" value="securityexceptionmsg" />
+	<property name="defaultFailureUrl" value="/user/loginPage.do?fail=true" />
+	</bean>
+	
+<bean id="InsLoginFailHandler" class="com.min.security.InsLoginFailHandler">
+	<property name="id" value="id" />
+	<property name="pw" value="pw" />
+	<property name="loginredirectname" value="loginRedirect" />
+	<property name="exceptionmsgname" value="securityexceptionmsg" />
+	<property name="defaultFailureUrl" value="/ins/loginPage.do?fail=true" />
+	</bean>
+	
 
 </beans>
