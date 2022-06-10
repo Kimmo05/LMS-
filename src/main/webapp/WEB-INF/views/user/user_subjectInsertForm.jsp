@@ -146,15 +146,8 @@
 											</div>
 										</div>
 									</div>
-									<div class="row">
-										<div class="col">
-											<div class="mb-3">
-												<label>커리큘럼 임시파일</label>
-												<textarea class="form-control"
-													id="exampleFormControlTextarea4" name="cur_file" rows="3"></textarea>
-											</div>
-										</div>
-									</div>
+									
+
 								</div>
 
 
@@ -180,6 +173,25 @@
 									</div>
 								</div>
 							</form>
+							
+								<!-- 파일업로드 연습용 -->
+								<form action="./uploadFormAction.do" method="post" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col">
+											<div class="mb-3">
+												   <div class="panel-body">
+												   
+												        <div class="form-group uploadDiv">
+												            <input type="file" name='uploadFile'>
+												        </div>
+												        <button>파일업로드 도전!</button>
+												  </div>
+											</div>
+										</div>
+									</div>
+								</form>
+							<!-- 파일업로드 끝 -->
+							
 						</div>
 					</div>
 				</div>

@@ -3,6 +3,7 @@ package com.min.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.min.vo.MemberVo;
 import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
 
@@ -26,13 +27,15 @@ public interface SubjectDao {
 		//2-1) 관리자의 과목 전체목록 조회
 		public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo);
 		public List<SubjectVo> subSelectStatusAdmin(RowNumVo rVo);
-		//2-4) 관리자의 과목 상세 조회
+		//2-2) 관리자의 과목 상세 조회
 		public SubjectVo adminSubjectDetail(String sub_num);
-		//2-3) 일반회원의 과목 전체목록 조회
+		//2-3) 비회원/일반회원/강사의 과목 전체목록 조회
 		public List<SubjectVo> subSelectAllUser(RowNumVo rVo);
 		//2-4) 일반회원의 과목 상세 조회
 		public SubjectVo userSubjectDetail(String subnum);
 		
+		
+		public List<SubjectVo> subSelectMySubject(SubjectVo sVo);
 		
 		//3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
 		public boolean subUpdateStatusA(Map<String, Object> map);

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.min.dao.SubjectDao;
 import com.min.service.SubjectService;
+import com.min.vo.MemberVo;
 import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
 
@@ -73,7 +74,7 @@ public class SubjectServiceImpl implements SubjectService{
 			log.info("========== SubjectServiceImpl/adminSubjectDetail 관리자의 과목 상세 조회 : "+sub_num+ " ==========");
 			return sDao.adminSubjectDetail(sub_num);
 		}
-		//2-3) 일반회원의 과목 전체목록 조회
+		//2-3) 비회원/일반회원/강사의 과목 전체목록 조회
 		@Override
 		public List<SubjectVo> subSelectAllUser(RowNumVo rVo) {
 			log.info("========== SubjectServiceImpl/subSelectAllUser 일반회원의 과목 전체목록 조회 ==========");
@@ -85,6 +86,13 @@ public class SubjectServiceImpl implements SubjectService{
 			log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 ==========");
 			log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 : "+subnum+ "==========");
 			return sDao.userSubjectDetail(subnum);
+		}
+		//2-5) 일반회원/강사의 마이페이지에서의 등록 과목 목록 조회
+		@Override
+		public List<SubjectVo> subSelectMySubject(SubjectVo sVo) {
+			log.info("========== SubjectServiceImpl/subSelectMySubject  마이페이지에서의 등록 과목 목록 조회 ==========");
+			log.info("========== SubjectServiceImpl/subSelectMySubject  마이페이지에서의 등록 과목 목록 조회 : "+sVo+ "==========");
+			return sDao.subSelectMySubject(sVo);
 		}
 		
 		//3) 관리자의 과목 상태변경
