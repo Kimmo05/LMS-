@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.min.dao.PayDao;
 import com.min.service.IPayService;
 import com.min.vo.CouponVo;
+import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
 @Service
@@ -69,6 +70,21 @@ public class PayServiceImpl implements IPayService{
 	@Override
 	public int cancelUpdate(Map<String, Object> map) {
 		return dao.cancelUpdate(map);
+	}
+
+	@Override
+	public int myMilage(Map<String, Object> map) {
+		return dao.myMilage(map);
+	}
+
+	@Override
+	public List<CouponVo> myCoupon(Map<String, Object> map) {
+		return dao.myCoupon(map);
+	}
+
+	@Override
+	public int countCoupon(Map<String, Object> map) {
+		return dao.countCoupon(map);
 	}
 
 }

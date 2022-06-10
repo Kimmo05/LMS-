@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.min.dao.PayDao;
 import com.min.service.IPayService;
 import com.min.vo.CouponVo;
+import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
 
@@ -142,6 +143,27 @@ public class payController{
 		map.put("pay_num", pay_num);
 		int n = service.cancelUpdate(map);
 		System.out.println(n);
+	}
+	
+	//내 마일리지,쿠폰 조회페이지 이동
+	@RequestMapping(value = "/user_MyDiscount.do",method = RequestMethod.GET)
+	public String user_MyDiscount(Model model,Authentication user) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tra_id", user.getPrincipal());
+		map.put("cou_tra_id", user.getPrincipal());
+		map.put("cou_delflag", "Y");
+		
+		List<CouponVo> coulists = service.myCoupon(map);
+		int mile = service.myMilage(map);
+		System.out.println(mile);
+		int count = service.countCoupon(map);
+		
+		
+		model.addAttribute("coulists",coulists);
+		model.addAttribute("mile",mile);
+		model.addAttribute("count",count);
+		
+		return "user/user_MyDiscount";
 	}
 	
 }

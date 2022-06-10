@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.min.vo.CouponVo;
+import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
 public interface IPayService {
@@ -37,4 +38,13 @@ public interface IPayService {
 	
 	//마이페이지 결제내역 내의 환불신청
 	public int cancelUpdate(Map<String, Object> map);
+	
+	//내 마일리지 조회
+	public int myMilage(Map<String, Object> map);
+		
+	//내 쿠폰 조회
+	public List<CouponVo> myCoupon(Map<String, Object> map);
+	
+	//내 보유쿠폰 장수 조회
+	public int countCoupon(Map<String, Object> map);
 }

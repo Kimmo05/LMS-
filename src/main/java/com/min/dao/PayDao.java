@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.min.vo.CouponVo;
+import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
 public interface PayDao {
@@ -43,4 +44,14 @@ public interface PayDao {
 	
 	//환불승인시 마일리지 반환
 	public int returnMileage(Map<String,Object> map);
+	
+	//내 마일리지 조회
+	public int myMilage(Map<String, Object> map);
+	
+	//내 쿠폰 조회
+	public List<CouponVo> myCoupon(Map<String, Object> map);
+	
+	//내 보유쿠폰 장수 조회
+	public int countCoupon(Map<String, Object> map);
+	
 }

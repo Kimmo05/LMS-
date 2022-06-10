@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.min.dao.PayDao;
 import com.min.vo.CouponVo;
+import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
 @Repository
@@ -89,6 +90,24 @@ public class PayDaoImpl implements PayDao{
 	@Override
 	public int returnMileage(Map<String, Object> map) {
 		return sqlSession.update(NS+"returnMileage",map);
+	}
+
+	//내 마일리지 조회
+	@Override
+	public int myMilage(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"myMilage",map);
+	}
+
+	//내 보유쿠폰 조회
+	@Override
+	public List<CouponVo> myCoupon(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"myCoupon",map);
+	}
+
+	//내 보유쿠폰장수 조회
+	@Override
+	public int countCoupon(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"countCoupon",map);
 	}
 
 	

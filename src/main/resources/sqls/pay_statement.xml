@@ -196,4 +196,34 @@
 				FROM PAY 
 				WHERE PAY_NUM ='${pay_num}')
 	</update>
+	
+	<!-- 내 마일리지 조회 -->
+	<select id="myMilage" resultType="int" parameterType="java.util.Map">
+		SELECT 
+	 	TRA_MILAGE
+		FROM TRAINEE
+		WHERE TRA_ID ='${tra_id}'
+	</select>
+	
+	<!-- 내 보유쿠폰 조회 -->
+	<select id="myCoupon" resultType="CouponVo" parameterType="java.util.Map">
+		SELECT COU_CODE,
+		COU_TRA_ID,
+		COU_NAME,
+		COU_PER,
+		COU_DELFLAG,
+		COU_DATE
+		FROM COUPON
+		WHERE COU_TRA_ID ='${cou_tra_id}' 
+		AND COU_DELFLAG ='${cou_delflag}'
+	</select>
+	
+	<!-- 내 보유쿠폰장수 조회 -->
+	<select id="countCoupon" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*)
+		FROM COUPON
+		WHERE COU_TRA_ID ='${cou_tra_id}' 
+		AND COU_DELFLAG ='${cou_delflag}'
+	</select>
+	
 </mapper>
