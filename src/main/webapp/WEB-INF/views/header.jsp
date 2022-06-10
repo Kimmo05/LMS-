@@ -261,7 +261,8 @@
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./pay.do">결제하기</a></li>
-                      <li><a href="./pay.do">결제조회</a></li>
+                      <li><a href="./user_Mypay.do">결제조회</a></li>
+                      <li><a href="./user_MyDiscount.do">내 마일리지,쿠폰</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>

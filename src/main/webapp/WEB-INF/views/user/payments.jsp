@@ -144,10 +144,9 @@
 						<div class="figure text-end d-block">
 							<button class="btn btn-danger btn-lg" type="button" onclick="checkPay()">&nbsp;&nbsp;&nbsp;&nbsp;결제하기&nbsp;&nbsp;&nbsp;&nbsp;</button>
 							<button class="btn btn-light btn-lg" type="button" onclick="">&nbsp;&nbsp;&nbsp;&nbsp;뒤로가기&nbsp;&nbsp;&nbsp;&nbsp;</button>
-							<h1><a href="javascript:doCheck()">정보확인</a></h1>
-							<a href="javascript:doF()">결제 취소</a>
 						</div>
-						<div id="couNum">0</div>
+						<br><br>
+						<div id="couNum" style="display: none;">0</div>
 					</div>
                   </div>
                 </div>
