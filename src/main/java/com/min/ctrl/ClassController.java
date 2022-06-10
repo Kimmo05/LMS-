@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 
 import javax.servlet.http.HttpSession;
 
@@ -36,6 +37,7 @@ import com.min.vo.SubjectVo;
 import com.min.vo.VoteVo;
 
 @Controller
+@RequestMapping(value = "/user/*")
 public class ClassController {
 
 	@Autowired
@@ -60,9 +62,13 @@ public class ClassController {
 //	}
 	
 	@RequestMapping(value = "/classSelectDetail.do", method = RequestMethod.GET)
-	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) {
+	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) throws ParseException {
+		JSONParser parser = new JSONParser();
 		session.setAttribute("cla_num", cla_num);
 		ClassVo result = service.classSelectDetail(cla_num);
+		String like = result.getCla_like();
+		JSONArray likeArr = (JSONArray) parser.parse(like);
+		result.setCla_like(String.valueOf(likeArr.size()));
 		List<SubjectVo> lists = service.classSelectedSub(cla_num);
 		
 		model.addAttribute("result", result);
@@ -94,6 +100,8 @@ public class ClassController {
 		map.put("cla_title", title);
 		map.put("cla_content", content);
 		int n = service.classFormInsert(map);
+		ClassVo classVo = service.classSelectLastInsert();
+		String classNum = classVo.getCla_num();
 		map.clear();
 		//TODO 과정 태그 넣기
 		for (String listed : subList) {
@@ -101,14 +109,18 @@ public class ClassController {
 			map.put("vot_sub_num", listed);
 			int m = service.classSubjectInsert(map);
 			map.clear();
-			String tag = tagService.selectTagJson(listed);
-			JSONObject object = (JSONObject) parser.parse(tag);
-			JSONArray array = (JSONArray) object.get("class");
-			array.add(listed);
-			object.put("class",array);
-			map.put("id",object);
-			map.put("name",listed);
-			tagService.updateTag(map);
+			String tag = tagService.selectSubjectTag(listed);
+			Matcher matcher = TagController.TAG_REGEX.matcher(tag);
+			while (matcher.find()){
+				String temp = matcher.group().replace(" ", "_").replace("#", "").toString().toLowerCase();
+				JSONObject object = (JSONObject) parser.parse(tagService.selectTagJson(temp));
+				JSONArray array = (JSONArray) object.get("class");
+				array.add(classNum);
+				object.replace("class",array);
+				map.put("id",object.toJSONString());
+				map.put("name",temp);
+				tagService.updateTag(map);
+			}
 			map.clear();
 		}
 		service.classTimeUpdate();

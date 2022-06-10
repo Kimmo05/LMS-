@@ -1,6 +1,8 @@
 $( function() {
     var input = document.getElementById("searchBox");
+
     var searchSource ;
+
     //자동완성 값을 가져오는 ajax 통신
     $.ajax({
         type : 'GET',
@@ -21,26 +23,48 @@ $( function() {
     $( "#searchBox" ).autocomplete({
         source: searchSource,
         select : function(event, ui) { // item 선택 시 이벤트
+            var category = $("#category option:selected").val();
             console.log(ui.item.label+"선택됨");
+            console.log(category);
             let tag = ui.item.label;
             //아이템 선택 시 밑에 결과를 띄워주는 ajax
             $.ajax({
                 type:'POST',
                 url: './searchTag.do',
-                data:{"tag":tag},
+                data:{"tag":tag,"category":category},
                 async:true,
-                dataType:'text',
+                dataType:'json',
                 success:function (result) {
-                    console.log("통신 성공");
+
+                    console.log(result);
+                    console.log(category);
                     $("#searchResult").empty();
-                    // for(let i = 0;i<result.subject.size;i++)
-                    // $("#searchResult").append( "<tr>" +
-                    //     "                        <td>${vo.cbo_ins_id}</td>" +
-                    //     "                        <td><a href=\"./classBoardSelectDetail.do?cbo_seq=${vo.cbo_seq}\">${vo.cbo_title}</a>" +
-                    //     "                        </td>" +
-                    //     "                        <td>${vo.cbo_cate}</td>" +
-                    //     "                        <td>${vo.cbo_regdate}</td>" +
-                    //     "                    </tr>");
+                    if(category=='과정'){
+                        $("#tab2").html('가격');
+                        for(let i = 0;i<result.length;i++){
+                            $("#searchResult").append("" +
+                                "  <tr>" +
+                                "                            <td><a href='./classSelectDetail.do?cla_num="+result[i].num+"'>"+result[i].title+"</a></td>" +
+                                "                            <td>"+result[i].price+"</td>" +
+                                "                            <td>"+result[i].content+"</td>" +
+                                "                            <td>"+result[i].regdate.substring(0,10)+"</td>" +
+                                "                        </tr>");
+                        }
+                    }else{
+                        $("#tab2").html('강사명');
+                        for(let i = 0;i<result.length;i++){
+                            $("#searchResult").append("" +
+                                "  <tr>" +
+                                "                            <td><a href='./classSelectDetail.do?cla_num="+result[i].num+"'>"+result[i].title+"</a></td>" +
+                                "                            <td>"+result[i].ins+"</td>" +
+                                "                            <td>"+result[i].content+"</td>" +
+                                "                            <td>"+result[i].regdate.substring(0,10)+"</td>" +
+                                "                        </tr>");
+                        }
+                    }
+
+
+
                 },
                 error: function () {
                     console.log("통신 실패");

@@ -66,6 +66,12 @@ public class ITagServiceImpl implements ITagService {
     }
     @Override
     public int updateTag(Map<String, Object> map) {
+
         return dao.updateTag(map);
+    }
+
+    @Override
+    public String selectSubjectTag(String id) {
+        return dao.selectSubjectTag(id);
     }
 }

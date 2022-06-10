@@ -1,5 +1,7 @@
 package com.min.daoImpl;
 
+import com.min.vo.ClassVo;
+import com.min.vo.SubjectVo;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,5 +56,15 @@ public class StatisticsDaoImpl implements IStatisticsDao {
     @Override
     public String selectClassLike(String num) {
         return session.selectOne(NS+"selectClassLike",num);
+    }
+
+    @Override
+    public List<ClassVo> selectClassList(List<String> id) {
+        return session.selectList(NS+"selectClassList",id);
+    }
+
+    @Override
+    public List<SubjectVo> selectSubjectList(List<String> id) {
+        return session.selectList(NS+"selectSubjectList",id);
     }
 }

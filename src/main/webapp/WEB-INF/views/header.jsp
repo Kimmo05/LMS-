@@ -267,7 +267,7 @@
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./tag.do">태그</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./myLikelist.do">내 좋아요 목록</a></li>
                     </ul>
                   </li>
                  

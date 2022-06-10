@@ -1,5 +1,7 @@
 package com.min.service;
 
+import com.min.vo.ClassVo;
+import com.min.vo.SubjectVo;
 import org.json.simple.parser.ParseException;
 
 import java.util.List;
@@ -14,5 +16,9 @@ public interface IStatisticsService {
 
    //좋아요 클릭 시 업데이트
     public int updateLike(String id , String num) throws ParseException;
+
+    public List<ClassVo> selectClassList(List<String> id);
+
+    public List<SubjectVo> selectSubjectList(List<String> id);
 
 }

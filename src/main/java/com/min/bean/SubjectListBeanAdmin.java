@@ -2,7 +2,6 @@ package com.min.bean;
 
 import java.util.List;
 
-import com.min.vo.InfoUser;
 import com.min.vo.MemberVo;
 import com.min.vo.SubjectVo;
 

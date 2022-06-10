@@ -34,15 +34,19 @@
             <div class="row">
                 <h5>Content</h5>
                 <h1>태그 검색 페이지</h1>
-                <input id="searchBox">
+                <select style="width: 150px;"  id="category">
+                    <option  value="과정" >과정</option>
+                    <option  value="과목" >과목</option>
+                </select>
+                <input id="searchBox" style="width: 300px;">
                 <hr>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th scope="col">과정 강사</th>
-                        <th scope="col">글 제목</th>
-                        <th scope="col">카테고리</th>
-                        <th scope="col">등록일</th>
+                        <th scope="col" >이름</th>
+                        <th scope="col" id="tab2" style="width: 80px;">가격</th>
+                        <th scope="col">과정내용</th>
+                        <th scope="col" style="width: 200px;">등록일</th>
                     </tr>
                     </thead>
                     <tbody id="searchResult">
@@ -67,6 +71,9 @@
 </div>
 
 <%@include file="./footer.jsp" %>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="../resources/js/statistics/tagSearch.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,9 @@
 package com.min.dao;
 
 
+import com.min.vo.ClassVo;
+import com.min.vo.SubjectVo;
+
 import java.util.List;
 import java.util.Map;
 
@@ -28,4 +31,9 @@ public interface IStatisticsDao {
 
     //과정 좋아요 목록
     public String selectClassLike(String num);
+
+    //내가 좋아요 누른 과정 목록
+    public List<ClassVo> selectClassList(List<String> id);
+
+    public List<SubjectVo> selectSubjectList(List<String> id);
 }
