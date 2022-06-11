@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,15 +41,14 @@ public class StatisticsController {
 
     //선호 조사 페이지
     @RequestMapping(value = "/prefer.do", method = {RequestMethod.GET, RequestMethod.POST})
-    public String prefer(HttpServletRequest request, String time, String date, String[] subjects, HttpSession session) {
+    public String prefer(HttpServletRequest request, String time, String date, String[] subjects, Authentication authentication) {
 
         if (request.getMethod().equals("GET")) {
             logger.info("STAT_001_HJM StatisticsController prefer GET");
-            return "commons/prefercheck";
+            return "prefercheck";
         } else {
             logger.info("STAT_001_HJM StatisticsController prefer POST {} {} {}", time, date, Arrays.toString(subjects));
-            //TODO 회원 정보 가져오기
-            String id = (String) session.getAttribute("userId");
+            String id = (String) authentication.getPrincipal();
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("id", id);
             JSONObject obj = new JSONObject();
@@ -104,6 +104,20 @@ public class StatisticsController {
         List<ClassVo> lists = service.selectClassList(ids);
         model.addAttribute("lists", lists);
         return "user/myLikelist";
+    }
+
+    @RequestMapping(value = "/classCheckList.do", method = {RequestMethod.GET,RequestMethod.POST})
+    public String classCheckList(@RequestParam Map<String,String> result, HttpServletRequest request){
+        if(request.getMethod().equals("GET")){
+            logger.info("StatisticsController classCheckList GET");
+            return "/user/classCheckList";
+        }else{
+            logger.info("StatisticsController classCheckList POST {}", result);
+            JSONParser parser = new JSONParser();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.putAll(result);
+            return "redirect:/main.do";
+        }
     }
 
 }

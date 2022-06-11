@@ -269,6 +269,8 @@
                     <ul class="nav-submenu menu-content">
                       <li><a href="./tag.do">태그</a></li>
                       <li><a href="./myLikelist.do">내 좋아요 목록</a></li>
+                      <li><a href="./prefer.do">선호조사</a></li>
+                      <li><a href="./classCheckList.do">과정 평가</a></li>
                     </ul>
                   </li>
                  

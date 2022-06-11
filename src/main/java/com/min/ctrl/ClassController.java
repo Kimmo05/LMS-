@@ -103,7 +103,6 @@ public class ClassController {
 		ClassVo classVo = service.classSelectLastInsert();
 		String classNum = classVo.getCla_num();
 		map.clear();
-		//TODO 과정 태그 넣기
 		for (String listed : subList) {
 			map.put("csu_sub_num", listed);
 			map.put("vot_sub_num", listed);
