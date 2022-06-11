@@ -83,6 +83,8 @@ public class UserAuthService  implements AuthenticationProvider{
 		user_info.setProfile(dto.getProfile());
 		user_info.setRegdate(dto.getRegdate());
 		user_info.setDelflag(dto.getDelflag());
+		user_info.setLike(dto.getLike());
+		user_info.setPrefer(dto.getPrefer());
 		
         // 반환할 값을 만든다.
         UsernamePasswordAuthenticationToken result 

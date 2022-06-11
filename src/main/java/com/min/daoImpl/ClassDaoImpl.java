@@ -102,5 +102,9 @@ public class ClassDaoImpl implements IClassDao{
 		logger.info("ClassDaoImpl subjectSelected / 과목 선택 리스트");
 		return sqlSession.selectList(NS+"subjectSelected");
 	}
-	
+
+	@Override
+	public ClassVo classSelectLastInsert() {
+		return sqlSession.selectOne(NS+"classSelectLastInsert");
+	}
 }

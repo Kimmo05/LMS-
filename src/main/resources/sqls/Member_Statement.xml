@@ -10,7 +10,9 @@
 	<result column="Tra_birth" property="birth" />		
 	<result column="Tra_phone" property="phone" />		
 	<result column="Tra_auth" property="auth" />		
-	<result column="Tra_profile" property="profile" />		
+	<result column="Tra_like" property="like" />
+	<result column="Tra_prefer" property="prefer" />
+	<result column="Tra_profile" property="profile" />
 	<result column="Tra_delflag" property="delflag" />		
 	<result column="Tra_regdate" property="regdate" />				
 </resultMap>
@@ -42,8 +44,8 @@ SELECT  TRA_ID ,
 		TRA_BIRTH ,
 		TRA_PROFILE ,
 		TRA_AUTH ,
-		TRA_LIKE ,
-		TRA_PREFER,
+		JSON_QUERY(TRA_LIKE,'$' RETURNING VARCHAR2) AS TRA_LIKE,
+		JSON_QUERY(TRA_PREFER,'$' RETURNING VARCHAR2) AS TRA_PREFER,
 		TRA_REGDATE ,
 		TRA_DELFLAG 
 	FROM TRAINEE 
@@ -62,12 +64,13 @@ TRA_BIRTH,
 TRA_PROFILE,
 TRA_AUTH,
 TRA_REGDATE, 
-TRA_DELFLAG)
+TRA_DELFLAG,
+ TRA_PREFER)
 VALUES(#{id},#{pw}, #{name}, 
 #{email}, #{phone}, 
 #{birth}, #{profile}, 'ROLE_USER', 
 SYSDATE,
-'N')
+'N','{"subject":[],"more_time":null,"less_time":null,"date":null,"recommand":[]}')
 </insert>
 <select id="findTraId">
 SELECT TRA_ID  FROM 

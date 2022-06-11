@@ -109,7 +109,7 @@
 	'그냥주는쿠폰',
 	10,
 	'Y',
-	SYSDATE);
+	SYSDATE)
 	</insert>
 	
 	<!-- 쿠폰사용 결제시 보우큐폰 상태 수정 -->
@@ -144,8 +144,86 @@
 		WHERE PAY_NUM=#{pay_num}
 	</select>
 	
-	<!-- 환불 상태 변경 -->
-<!-- 	<update id="statusUpdate" parameterType="java.util.Map"> -->
-<!-- 		UPDATE -->
-<!-- 	</update> -->
+	<!-- 환불승인 -->
+	<update id="statusUpdate" parameterType="java.util.Map">
+		UPDATE PAY SET PAY_STATUS = '환불승인',PAY_CANDATE=SYSDATE WHERE PAY_NUM ='${pay_num}' 
+	</update>
+	
+	<!-- 마이페이지 내 결제조회 -->
+	<select id="selectMyPay" resultType="PayVo">
+		SELECT PAY_NUM,
+		PAY_TRA_BUYER,
+		PAY_CLA_NUM, 
+		PAY_PRICE, 
+		PAY_METHOD, 
+		PAY_PG, 
+		PAY_STATUS, 
+		PAY_DATE, 
+		PAY_CONTENT, 
+		PAY_RAW, 
+		PAY_DISCOUNT, 
+		PAY_CANDATE,
+		PAY_CANCATE, 
+		PAY_CANCONTENT, 
+		PAY_UCOUNUM, 
+		PAY_UMILAGE
+		FROM PAY
+		WHERE PAY_TRA_BUYER ='${pay_tra_buyer}'
+		ORDER BY PAY_DATE DESC
+	</select>
+	
+	<!-- 마이페이지 내의 환불신청 -->
+	<update id="cancelUpdate" parameterType="java.util.Map">
+		UPDATE PAY SET PAY_CANCATE='${pay_cancate}',PAY_STATUS='${pay_status}',PAY_CANCONTENT ='${pay_cancontent}' WHERE PAY_NUM = '${pay_num}'
+	</update>
+	
+	<!-- 환불 승인시에 쿠폰 반환 -->
+	<update id="returnCoupon"  parameterType="java.util.Map">
+		UPDATE COUPON 
+		SET COU_DELFLAG ='Y' 
+		WHERE COU_CODE = (SELECT PAY_UCOUNUM 
+			FROM PAY 
+			WHERE PAY_NUM='${pay_num}')
+	</update>
+	
+	<!-- 환불 승인시에 마일리지 반환 -->
+	<update id="returnMileage"  parameterType="java.util.Map">
+		UPDATE TRAINEE 
+		SET TRA_MILAGE = TRA_MILAGE + (SELECT PAY_UMILAGE 
+				FROM PAY 
+				WHERE PAY_NUM='${pay_num}') 
+			WHERE TRA_ID =(SELECT PAY_TRA_BUYER 
+				FROM PAY 
+				WHERE PAY_NUM ='${pay_num}')
+	</update>
+	
+	<!-- 내 마일리지 조회 -->
+	<select id="myMilage" resultType="int" parameterType="java.util.Map">
+		SELECT 
+	 	TRA_MILAGE
+		FROM TRAINEE
+		WHERE TRA_ID ='${tra_id}'
+	</select>
+	
+	<!-- 내 보유쿠폰 조회 -->
+	<select id="myCoupon" resultType="CouponVo" parameterType="java.util.Map">
+		SELECT COU_CODE,
+		COU_TRA_ID,
+		COU_NAME,
+		COU_PER,
+		COU_DELFLAG,
+		COU_DATE
+		FROM COUPON
+		WHERE COU_TRA_ID ='${cou_tra_id}' 
+		AND COU_DELFLAG ='${cou_delflag}'
+	</select>
+	
+	<!-- 내 보유쿠폰장수 조회 -->
+	<select id="countCoupon" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*)
+		FROM COUPON
+		WHERE COU_TRA_ID ='${cou_tra_id}' 
+		AND COU_DELFLAG ='${cou_delflag}'
+	</select>
+	
 </mapper>
