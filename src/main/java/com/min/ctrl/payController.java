@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -149,6 +150,7 @@ public class payController{
 	@RequestMapping(value = "/user_MyDiscount.do",method = RequestMethod.GET)
 	public String user_MyDiscount(Model model,Authentication user) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		System.out.println(user.getPrincipal()+"@@@");
 		map.put("tra_id", user.getPrincipal());
 		map.put("cou_tra_id", user.getPrincipal());
 		map.put("cou_delflag", "Y");
