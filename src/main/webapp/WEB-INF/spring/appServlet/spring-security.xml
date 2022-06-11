@@ -28,6 +28,7 @@
 <security:http auto-config="true" pattern="/*" use-expressions="true" >
 		<security:intercept-url pattern="/assets/**" access="permitAll" />
 		<security:intercept-url pattern="/main.do" access="permitAll" />
+		<security:intercept-url pattern="/user_subjectList.do" access="permitAll" />
 <!-- 				<security:intercept-url pattern="/user/**" access="permitAll"/> -->
 		
 		<security:logout invalidate-session="true" 
@@ -57,8 +58,10 @@
 		<security:intercept-url pattern="/user/*.do" access="permitAll"/>
 	
 		<security:access-denied-handler error-page="/user/AuthError.do"/>
-		<security:intercept-url pattern="/user/TraloginPage.do" access="permitAll"/>
+		
+		<security:intercept-url pattern="/user/myProfile.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/loginPage.do" access="permitAll"/>
+		<security:intercept-url pattern="/user/uploadAjaxAction.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/page.do" access="hasRole('ADMIN')"/>
 		
 		<security:intercept-url pattern="/user/adminTraList.do" access="hasRole('ADMIN')"/>

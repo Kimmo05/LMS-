@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
+    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>일반회원 과목 등록 양식 페이지</title>
+<title>마이페이지</title>
 </head>
 <%@ include file="../header.jsp" %>
 <body>
@@ -13,11 +18,11 @@
             <div class="page-header">
               <div class="row">
                 <div class="col-sm-6">
-                  <h3>User Profile</h3>
+                  <h3>Dash Board</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Users</li>
-                    <li class="breadcrumb-item active">User Profile</li>
+                    <li class="breadcrumb-item"><a href="./main.do">메인</a></li>
+                    <li class="breadcrumb-item">회원</li>
+                    <li class="breadcrumb-item active">대시보드</li>
                   </ol>
                 </div>
                 <div class="col-sm-6">
@@ -50,33 +55,35 @@
                 <div class="col-sm-12">
                   <div class="card profile-header"><img class="img-fluid bg-img-cover" src="../assets/images/user-profile/bg-profile.jpg" alt="">
                     <div class="profile-img-wrrap"><img class="img-fluid bg-img-cover" src="../assets/images/user-profile/bg-profile.jpg" alt=""></div>
+                    <!-- 배경안에 박스 -->
                     <div class="userpro-box">
                       <div class="img-wrraper">                              
-                        <div class="avatar"><img class="img-fluid" alt="" src="../assets/images/user/7.jpg"></div><a class="icon-wrapper" href="edit-profile.html"><i class="icofont icofont-pencil-alt-5"></i></a>
+                        <div class="avatar"><img class="img-fluid" alt="" src="../assets/images/user/7.jpg"></div><a class="icon-wrapper" href="./editProfile.do"><i class="icofont icofont-pencil-alt-5"></i></a>
                       </div>
                       <div class="user-designation">
                         <div class="title"><a target="_blank" href=""> 
-                            <h4>Emay Walter</h4>
-                            <h6>designer</h6></a></div>
+                        <sec:authentication property="Details" var="info" /><br>
+                            <h4>${info.name}<br></h4>
+                            <h6>${info.email}</h6></a></div>
                         <div class="social-media">
                           <ul class="user-list-social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                            <li><a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://accounts.google.com/signin"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.instagram.com"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://github.com/"><i class="fa fa-git"></i></a></li>
                           </ul>
                         </div>
                         <div class="follow">
                           <ul class="follow-list">
                             <li>
-                              <div class="follow-num counter">325</div><span>Follower</span>
+                              <div class="follow-num counter">325</div><span>등록한 과목</span>
                             </li>
                             <li>
-                              <div class="follow-num counter">450</div><span>Following</span>
+                              <div class="follow-num counter">450</div><span>등록한 과정</span>
                             </li>
                             <li>
-                              <div class="follow-num counter">500</div><span>Likes</span>
+                              <div class="follow-num counter">500</div><span>좋아요</span>
                             </li>
                           </ul>
                         </div>
@@ -101,36 +108,34 @@
                                 <li>
                                   <div class="icon"><i data-feather="briefcase"></i></div>
                                   <div>
-                                    <h5>UX desginer at Pixelstrap</h5>
-                                    <p>banglore - 2021</p>
+                                    <h5>생년월일</h5>
+                                    <p>${info.birth}</p>
                                   </div>
                                 </li>
                                 <li>
                                   <div class="icon"><i data-feather="book"></i></div>
                                   <div>
-                                    <h5>studied computer science</h5>
-                                    <p>at london univercity - 2015</p>
+                                    <h5>전화번호</h5>
+                                    <p>${info.phone}</p>
                                   </div>
                                 </li>
                                 <li>
                                   <div class="icon"><i data-feather="heart"></i></div>
                                   <div>
-                                    <h5>relationship status</h5>
-                                    <p>single</p>
+                                    <h5>가입일</h5>
+                                    <p>${info.regdate }</p>
                                   </div>
                                 </li>
                                 <li>
                                   <div class="icon"><i data-feather="map-pin"></i></div>
                                   <div>
-                                    <h5>lived in london</h5>
-                                    <p>last 5 year</p>
-                                  </div>
-                                </li>
-                                <li>
-                                  <div class="icon"><i data-feather="droplet"></i></div>
-                                  <div>
-                                    <h5>blood group</h5>
-                                    <p>O+ positive</p>
+                                    <h5>회원 등급
+                                    </h5>
+                                    <p>
+                                     <c:if test = "${info.auth eq 'ROLE_USER'}">일반 회원</c:if>
+                                      <c:if test = "${info.auth eq 'ROLE_ADMIN'}">관리자</c:if>
+                                      <c:if test = "${info.auth eq 'ROLE_INSTRUCTOR'}">강사</c:if>
+                                   </p>
                                   </div>
                                 </li>
                               </ul>
@@ -147,15 +152,15 @@
                         <div class="card">
                           <div class="card-header">
                             <h5 class="p-0">
-                              <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon8" aria-expanded="true" aria-controls="collapseicon8">Followers</button>
+                              <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon8" aria-expanded="true" aria-controls="collapseicon8">과목</button>
                             </h5>
                           </div>
                           <div class="collapse show" id="collapseicon8" aria-labelledby="collapseicon8" data-parent="#accordion">
                             <div class="card-body social-list filter-cards-view">
-                              <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/2.png">
-                                <div class="media-body"><span class="d-block">Bucky Barnes</span><a href="javascript:void(0)">Add Friend</a></div>
+                              <div class="media"><!-- <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/2.png"> -->
+                                <div class="media-body"><span class="d-block">1</span><a href="./user_mySubjectList.do">등록한 과목 보러가기</a></div>
                               </div>
-                              <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.png">
+                              <!-- <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.png">
                                 <div class="media-body"><span class="d-block">Sarah Loren</span><a href="javascript:void(0)">Add Friend</a></div>
                               </div>
                               <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.jpg">
@@ -166,7 +171,7 @@
                               </div>
                               <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/11.png">
                                 <div class="media-body"><span class="d-block">Andew Jon</span><a href="javascript:void(0)">Add Friend</a></div>
-                              </div>
+                              </div> -->
                             </div>
                           </div>
                         </div>
@@ -314,55 +319,7 @@
                       </div>
                     </div>
                     <!-- profile post end-->
-                    <!-- profile post start-->
-                    <div class="col-sm-12">
-                      <div class="card">
-                        <div class="profile-post">
-                          <div class="post-header">
-                            <div class="media"><img class="img-thumbnail rounded-circle me-3" src="../assets/images/user/7.jpg" alt="Generic placeholder image">
-                              <div class="media-body align-self-center"><a href="social-app.html">
-                                  <h5 class="user-name">Emay Walter</h5></a>
-                                <h6>5 Hours ago</h6>
-                              </div>
-                            </div>
-                            <div class="post-setting"><i class="fa fa-ellipsis-h"></i></div>
-                          </div>
-                          <div class="post-body">
-                            <div class="img-container">
-                              <div class="row mt-4 pictures my-gallery" id="aniimated-thumbnials-2" itemscope="">
-                                <figure class="col-sm-6" itemprop="associatedMedia" itemscope=""><a href="../assets/images/user-profile/post2.jpg" itemprop="contentUrl" data-size="1600x950"><img class="img-fluid rounded" src="../assets/images/user-profile/post2.jpg" itemprop="thumbnail" alt="gallery"></a>
-                                  <figcaption itemprop="caption description">Image caption  1</figcaption>
-                                </figure>
-                                <figure class="col-sm-6" itemprop="associatedMedia" itemscope=""><a href="../assets/images/user-profile/post3.jpg" itemprop="contentUrl" data-size="1600x950"><img class="img-fluid rounded" src="../assets/images/user-profile/post3.jpg" itemprop="thumbnail" alt="gallery"></a>
-                                  <figcaption itemprop="caption description">Image caption  2</figcaption>
-                                </figure>
-                              </div>
-                            </div>
-                            <div class="post-react">
-                              <ul>
-                                <li><img class="rounded-circle" src="../assets/images/user/3.jpg" alt=""></li>
-                                <li><img class="rounded-circle" src="../assets/images/user/5.jpg" alt=""></li>
-                                <li><img class="rounded-circle" src="../assets/images/user/1.jpg" alt=""></li>
-                              </ul>
-                              <h6>+25 people react this post</h6>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.                                     </p>
-                            <ul class="post-comment">
-                              <li>
-                                <label><a href="#"><i data-feather="heart"></i>&nbsp;&nbsp;Like<span class="counter">520</span></a></label>
-                              </li>
-                              <li>
-                                <label><a href="#"><i data-feather="message-square"></i>&nbsp;&nbsp;Comment<span class="counter">85</span></a></label>
-                              </li>
-                              <li>
-                                <label><a href="#"><i data-feather="share"></i>&nbsp;&nbsp;share<span class="counter">30</span></a></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- profile post end   -->
+                   
                     <!-- profile post start-->
                     <div class="col-sm-12">
                       <div class="card">
@@ -411,46 +368,13 @@
                     <!-- profile post end                           -->
                   </div>
                 </div>
-                <!-- user profile fifth-style end-->
-                <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="pswp__bg"></div>
-                  <div class="pswp__scroll-wrap">
-                    <div class="pswp__container">
-                      <div class="pswp__item"></div>
-                      <div class="pswp__item"></div>
-                      <div class="pswp__item"></div>
-                    </div>
-                    <div class="pswp__ui pswp__ui--hidden">
-                      <div class="pswp__top-bar">
-                        <div class="pswp__counter"></div>
-                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                        <button class="pswp__button pswp__button--share" title="Share"></button>
-                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                        <div class="pswp__preloader">
-                          <div class="pswp__preloader__icn">
-                            <div class="pswp__preloader__cut">
-                              <div class="pswp__preloader__donut"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                        <div class="pswp__share-tooltip"></div>
-                      </div>
-                      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-                      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-                      <div class="pswp__caption">
-                        <div class="pswp__caption__center"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
           <!-- Container-fluid Ends-->
         </div>
+        
  <%@ include file="../footer.jsp" %> 
 </body>
 </html>

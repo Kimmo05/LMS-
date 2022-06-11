@@ -71,6 +71,7 @@ public class InsAuthService  implements AuthenticationProvider{
 		user_info.setBirth(dto.getBirth());
 		user_info.setPhone(dto.getPhone());
 		user_info.setMilage(dto.getMilage());
+		user_info.setProfile(dto.getProfile());
 		user_info.setBank(dto.getBank());
 		user_info.setBanknum(dto.getBanknum());
 		user_info.setRegdate(dto.getRegdate());

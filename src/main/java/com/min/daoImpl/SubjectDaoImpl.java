@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.min.dao.SubjectDao;
+import com.min.vo.MemberVo;
 import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
 
@@ -75,6 +76,13 @@ public class SubjectDaoImpl implements SubjectDao{
 		log.info("========== subSelectAllAdmin : "+rVo+" ==========");
 		return sqlSession.selectList(NS+"subSelectAllAdmin", rVo);
 	}
+	//2-1) 관리자의 과목 전체 목록 조회 상태별
+	@Override
+	public List<SubjectVo> subSelectStatusAdmin(RowNumVo rVo) {
+		log.info("========== SubjectDaoImpl/subSelectStatusAdmin ==========");
+		log.info("========== subSelectStatusAdmin : "+rVo+" ==========");
+		return sqlSession.selectList(NS+"subSelectStatusAdmin");
+	}
 	//2-2) 관리자의 과목 상세 조회
 	@Override
 	public SubjectVo adminSubjectDetail(String sub_num) {
@@ -82,7 +90,7 @@ public class SubjectDaoImpl implements SubjectDao{
 		log.info("========== adminSubjectDetail : "+sub_num+" ==========");
 		return sqlSession.selectOne(NS+"adminSubjectDetail", sub_num);
 	}
-	//2-3) 일반회원의 과목 전체 목록 조회
+	//2-3) 비회원/일반회원/강사의 과목 전체 목록 조회
 	@Override
 	public List<SubjectVo> subSelectAllUser(RowNumVo rVo) {
 		log.info("========== SubjectDaoImpl/subSelectAllUser ==========");
@@ -91,11 +99,19 @@ public class SubjectDaoImpl implements SubjectDao{
 	}
 	//2-4) 일반회원의 과목 상세 조회
 	@Override
-	public SubjectVo comSubjectDetail(String sub_num) {
-		log.info("========== SubjectDaoImpl/comSubjectDetail ==========");
-		log.info("========== comSubjectDetail : "+sub_num+" ==========");
-		return sqlSession.selectOne(NS+"comSubjectDetail", sub_num);
+	public SubjectVo userSubjectDetail(String subnum) {
+		log.info("========== SubjectDaoImpl/userSubjectDetail ==========");
+		log.info("========== userSubjectDetail : "+subnum+" ==========");
+		return sqlSession.selectOne(NS+"userSubjectDetail", subnum);
 	}
+	//2-5) 일반회원/강사의 마이페이지에서의 등록과목 목록 조회	
+	@Override
+	public List<SubjectVo> subSelectMySubject(SubjectVo sVo) {
+		log.info("========== SubjectDaoImpl/subSelectMySubject ==========");
+		log.info("========== userSubjectDetail : "+sVo+" ==========");
+		return sqlSession.selectList(NS+"subSelectMySubject",sVo);
+	}
+	
 
 	//3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
 		@Override
@@ -104,7 +120,6 @@ public class SubjectDaoImpl implements SubjectDao{
 			log.info("========== subUpdateStatusA : "+map+" ==========");
 			return sqlSession.update(NS+"subUpdateStatusA",map)>0?true:false;
 		}
-		
 
 
 	}
