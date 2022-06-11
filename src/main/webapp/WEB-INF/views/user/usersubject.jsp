@@ -8,7 +8,7 @@
 </head>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="./js/subjectList.js"></script>
-<%@ include file="./admin_header.jsp" %>
+<%@ include file="../header.jsp" %>
 <body>
    <div class="page-body">
     
@@ -24,24 +24,26 @@
                     <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">관리자</li>
                     <li class="breadcrumb-item">과목 승인</li>
-                    <li class="breadcrumb-item active">과목 등록 목록 조회</li>
+                    <li class="breadcrumb-item active">과목 전체 목록 조회</li>
                   </ol>
                 </div>
 		
               </div>
             </div>
             <div class="row"> 
-               <div class="col-sm-6">
-           			<div id="select">
-						<select class="btn btn-primary" id="listCount" name="listCount"
-						onchange="listCnt()">
-							<option>승인상태</option>
-							<option value="W">대기</option>
-							<option value="A">승인</option>
-							<option value="R">반려</option>
-						</select>
-					</div>
-				</div>
+                <div class="col-sm-6">
+           <div id="select">
+			<span>
+				<select class="btn btn-primary" id="listCount" name="listCount"
+				onchange="listCnt()">
+					<option>선택</option>
+					<option value="5">5</option>
+					<option value="10">10</option>
+					<option value="15">15</option>
+				</select>
+			</span>
+		</div>
+		</div>
 		</div>
 		
             <div class="row">
@@ -54,13 +56,11 @@
                       <thead class="bg-primary">
                         <tr>
 		                     	<td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
-                          <th scope="col"><h6 class="f-w-700">과목번호</h6></th>
                           <th scope="col"><h6 class="f-w-700">과목명</h6></th>
                           <th scope="col"><h6 class="f-w-700">카테고리</h6></th>
                           <th scope="col"><h6 class="f-w-700">등록자</h6></th>
                           <th scope="col"><h6 class="f-w-700">담당강사</h6></th>
-                          	<th scope="col"><h6 class="f-w-700">승인상태</h6></th>
-                          	<th scope="col"><h6 class="f-w-700">관리</h6></th>
+                          <th scope="col"><h6 class="f-w-700">등록일</h6></th>
                         </tr>
                       </thead>
     				<tbody>
@@ -71,9 +71,9 @@
     				</tbody>
                     </table>
                     
-                    <input type="hidden" name="index" id="index" value="${row.index}">
-					<input type="hidden" name="pageStartNum" id="pageStartNum" value="${row.pageStartNum}">
-					<input type="hidden" name="pageListNum" id="pageListNum" value="${row.pageListNum}">
+                    <input type="text" name="index" id="index" value="${row.index}">
+					<input type="text" name="pageStartNum" id="pageStartNum" value="${row.pageStartNum}">
+					<input type="text" name="pageListNum" id="pageListNum" value="${row.pageListNum}">
 		
                     </div>
                   </div>
@@ -95,41 +95,7 @@
           </div>
        </div>
  </form>
- 
- <div class="col-sm-12">
-                <div class="card">
-                
-                  <div class="card-body btn-showcase">
-                    <div class="modal fade" id="exampleModalmdo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">New message</h5>
-                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                            <form>
-                              <div class="mb-3">
-                                <label class="col-form-label" for="recipient-name">Recipient:</label>
-                                <input class="form-control" id="recipient-name" type="text" value="@Mat">
-                              </div>
-                              <div class="mb-3">
-                                <label class="col-form-label" for="message-text">Message:</label>
-                                <textarea class="form-control"></textarea>
-                              </div>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                            <button class="btn btn-primary" type="button">Send message</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
     </div>
 </body>
-<%@include file="./admin_footer.jsp" %>
+<%@include file="../footer.jsp" %>
 </html>

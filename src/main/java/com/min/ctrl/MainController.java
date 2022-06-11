@@ -33,7 +33,7 @@ public class MainController {
 	IMemberService service;
 	
 	//첫 메인페이지
-	@RequestMapping(value = "/main/main.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		log.info("로그인전 메인 {}.", locale);
 		
@@ -56,6 +56,15 @@ public class MainController {
 			System.out.println("로그인 선택창으로 이동 합시다");
 
 			return "loginForm";
+		}
+		
+	// 마이페이지
+		@RequestMapping(value = "{/user/myProfile.do, /ins/myProfile.do}", method = {RequestMethod.GET})
+		public String myProfile(
+				Locale locale, Model model,Authentication user) {
+			log.info("myProfile 마이페이지 이동 ");
+			
+			return "user/myProfile";
 		}
 
 }

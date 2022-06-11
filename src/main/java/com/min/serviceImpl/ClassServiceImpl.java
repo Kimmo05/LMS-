@@ -87,8 +87,10 @@ public class ClassServiceImpl implements IClassService {
 	public List<SubjectVo> subjectSelected() {
 		return dao.subjectSelected();
 	}
-	
-	
-	
-	
+
+
+	@Override
+	public ClassVo classSelectLastInsert() {
+		return dao.classSelectLastInsert();
+	}
 }

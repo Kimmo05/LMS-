@@ -34,7 +34,8 @@ public interface IClassDao {
 	public int updateVote(VoteVo vo);
 	// 과정 강사 정보 출력
 	public List<InstructorVo> classInsInfo (String id);
-	
+//최근에 등록된 과정 출력
+	public ClassVo classSelectLastInsert();
 	
 	// 과목 리스트 뽑기(임시)
 	public List<SubjectVo> subjectSelected();

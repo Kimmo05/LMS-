@@ -1,42 +1,36 @@
-//package com.min;
-//
-//import static org.junit.Assert.*;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
-//
-//import com.min.service.ITagService;
-//import org.json.simple.JSONArray;
-//import org.json.simple.parser.JSONParser;
-//import org.json.simple.parser.ParseException;
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.test.context.ContextConfiguration;
-//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-//
-//import com.min.dao.IStatisticsDao;
-//import com.min.dao.ITagDao;
-//import com.min.vo.SubjectCodeVo;
-//import com.min.vo.TagVo;
-//
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
-//public class Statistics_Test {
-//
-//    private Logger logger = LoggerFactory.getLogger(Statistics_Test.class);
-//    @Autowired
-//    private ITagDao tDao;
-//    @Autowired
-//    private IStatisticsDao sDao;
-//    @Autowired
-//    private ITagService tagService;
-//
-//
+package com.min;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.min.service.IStatisticsService;
+import com.min.service.ITagService;
+import com.min.vo.ClassVo;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.min.dao.IStatisticsDao;
+import com.min.dao.ITagDao;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@EnableWebSecurity
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
+public class Statistics_Test {
+
+    @Autowired
+    private ITagDao tDao;
+    @Autowired
+    private IStatisticsDao sDao;
+    @Autowired
+    private ITagService tagService;
+    @Autowired
+    private IStatisticsService statisticsService;
+
+
 //    @Test
 //    public void selectTagTest() throws ParseException {
 //        //새로운 태그 추가하는 곳
@@ -72,4 +66,22 @@
 //        System.out.println(result);
 //        logger.info(addTags.toString());
 //    }
-//}
+
+//    @Test
+//    public void likeTest() throws ParseException {
+//        int result = statisticsService.updateLike("ghkdwoaks1234","CLA001");
+//        System.out.println(result);
+//    }
+    @Test
+    public  void likeListTest(){
+        List<String> lists = new ArrayList<String>();
+        lists.add("CLA001");
+        lists.add("CLA002");
+        lists.add("CLA004");
+        lists.add("CLA007");
+        lists.add("CLA008");
+        List<ClassVo> voList = sDao.selectClassList(lists);
+        System.out.println(voList.toString());
+
+    }
+}

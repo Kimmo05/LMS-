@@ -6,7 +6,7 @@
 
 	<display-name>LMS_Project</display-name>
 	<welcome-file-list>
-	    <welcome-file>/main/main.do</welcome-file>
+	    <welcome-file>/main.do</welcome-file>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
 	<!-- Root Context -->
