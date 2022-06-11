@@ -99,12 +99,15 @@
 			var str = "";
 			$(uploadResultArr).each(function(i,obj){
 				if(!obj.image){
+					console.log("파일 이미지 아니다.");
 					str+="<li><i class='icon-save'>"+obj.original_file_name+"</i></li>";
 				}else{
+					console.log("파일 이미지다.");
 					//str += "<li>"+obj.original_file_name+"</li>";
 					var fileCallPath = encodeURIComponent(obj.uploadPath+"/s_"+obj.uuid+"_"+obj.original_file_name);
-					str += "<li><img src='/display?fileName="+fileCallPath+"'></li>";
+					str += "<li><img src='/user/display.do?fileName="+fileCallPath+"'></li>";
 				}
+				
 			});
 			uploadResult.append(str);
 		}
@@ -132,6 +135,7 @@
 					type:'POST',
 					dataTye:'json',
 				success:function(result){
+					console.log("성공", result);
 					alert("Upload성공");
 					showuploadedFile(result);
 					$(".uploadDiv").html(cloneObj.html());

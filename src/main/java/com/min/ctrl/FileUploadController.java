@@ -68,27 +68,26 @@ public class FileUploadController {
 			if(uploadPath.exists()==false) {
 				uploadPath.mkdirs(); //폴더 생성
 			}//make yyyy/MM/dd 폴더
+			
 			for(MultipartFile multipartFile : uploadFile) {
-//				log.info(uploadFile);
 				
 				FileVo fileVo = new FileVo();
+				log.info("--------------uploadAjaxAction---------------------------------------");
+				log.info("uploadFileName: "+multipartFile.getOriginalFilename());
+				log.info("uploadFileSize: "+multipartFile.getSize());
 				
+				String uploadFileName = multipartFile.getOriginalFilename();
 				
-			log.info("--------------uploadAjaxAction---------------------------------------");
-			log.info("uploadFileName: "+multipartFile.getOriginalFilename());
-			log.info("uploadFileSize: "+multipartFile.getSize());
-			
-			String uploadFileName = multipartFile.getOriginalFilename();
-			
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
-			log.info("파일이름" + uploadFileName);
-			System.out.println("파일이름만 출력해봄 : "+uploadFileName);
-			fileVo.setOriginal_file_name(uploadFileName);
-			
-			UUID uuid = UUID.randomUUID();
-			uploadFileName = uuid.toString()+"-"+uploadFileName;
-			System.out.println("랜덤으로 생기는 파일 이름 : " + uploadFileName);
-			
+				uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\")+1);
+				fileVo.setOriginal_file_name(uploadFileName);
+				log.info("파일이름" + uploadFileName);
+				System.out.println("파일이름만 출력해봄 : "+uploadFileName);
+
+				UUID uuid = UUID.randomUUID();
+				uploadFileName = uuid.toString()+"-"+uploadFileName;
+				System.out.println("---------------------------uploadFileName");
+				System.out.println("랜덤으로 생기는 파일 이름 : " + uploadFileName);
+
 				try {
 					File saveFile = new File(uploadPath, uploadFileName);
 					multipartFile.transferTo(saveFile);
@@ -116,15 +115,16 @@ public class FileUploadController {
 		
 		//이미지 파일을 판단하는 메소드
 		private boolean checkImageType(File file) {
+			String contentType;
 			try {
-				String contentType = Files.probeContentType(file.toPath());
+				contentType = Files.probeContentType(file.toPath());
 				return contentType.startsWith("image");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 			return false;
 		}
-		
+
 		//이미지일 경우 섬네일 데이터 전송하기
 		@GetMapping("/user/display.do")
 		@ResponseBody
