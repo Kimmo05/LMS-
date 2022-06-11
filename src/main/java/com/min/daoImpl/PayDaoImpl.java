@@ -110,5 +110,11 @@ public class PayDaoImpl implements PayDao{
 		return sqlSession.selectOne(NS+"countCoupon",map);
 	}
 
+	//결제시 마일리지 10% 적립 
+	@Override
+	public int plusMileage(Map<String, Object> map) {
+		return sqlSession.update(NS+"plusMileage",map);
+	}
+
 	
 }

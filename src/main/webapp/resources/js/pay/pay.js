@@ -10,14 +10,16 @@
   			var finalAmount = moneyText.replace(regex, "");
     	  	console.log(listVar);
 			console.log(finalAmount);
+			var plusMile = parseInt(finalAmount) * 1/10;
     	  	if(listVar == "payco"){
     	  		//함수 안에 가격,결제내용 을 보내줄 예정
-    	  		request_pay2("payco",finalAmount);
+    	  		request_pay2("payco",finalAmount,plusMile);
     	  	}else if(listVar == "kakaopay"){
-    	  		request_pay2("kakaopay",finalAmount);
+    	  		request_pay2("kakaopay",finalAmount,plusMile);
     	  	}else if(listVar == "toss"){
-    	  		request_pay2("tosspay",finalAmount);
+    	  		request_pay2("tosspay",finalAmount,plusMile);
     	  	};
+			
   		}
 		
 		//쿠폰사용 버튼
@@ -85,13 +87,17 @@
   			
 			//마일리지 입력값 가져오기
   			 var getMile = document.getElementById('milage').value;
-//   			 if(보유마일리지>사용마일리지){
-//   				 alert("보유마일리지가 부족합니다!")
-//   			 }else{실행};
 
-			 
-			 
-  			 //최종할인액
+			var getMyMilage = document.getElementById('mile');
+			var myMilage = getMyMilage.innerText;
+			console.log(myMilage);
+			
+   			if(parseInt(myMilage)<parseInt(getMile)){
+   				 alert("보유마일리지가 부족합니다!");
+   			}else if(getMile=="" || parseInt(getMile)<1000){
+				alert("마일리지는 1000p 이상부터 사용가능합니다.");
+			}else{
+			 //최종할인액
 			 var calcTotalDiscount = parseInt(couponAmount)+parseInt(getMile);
 			 var totalCalc = classPrice-calcTotalDiscount;
   			 alert("마일리지가 사용되었습니다!");
@@ -101,7 +107,11 @@
 				= '<p style="color:tomato;">'+getMile+'</p>';
   			 getMoney.innerHTML 
   			    = '<h4><i class="fa fa-credit-card-alt"></i>&nbsp;&nbsp;Final Amount &nbsp;&nbsp;<small class="text-muted">최종 금액</small></h4><br><h1><i class="fa fa-krw"></i>&nbsp;'+totalCalc+'</h1>';
-							
+			};
+
+			 
+			 
+  							
   		}
   		
   
@@ -110,7 +120,7 @@
 	  
 	  
 	 //값에 따른 결제창
-	 function request_pay2(pgText,finalAmount){
+	 function request_pay2(pgText,finalAmount,plusMile){
 		//총 할인금액 가져오기
 		const getTotalDiscount = document.getElementById('totalDiscount');
 		var totalDiscount = parseInt(getTotalDiscount.innerText);
@@ -149,14 +159,15 @@
 							payRow : classPrice,
 							payDiscount : totalDiscount,
 							payUmilage : useMileage,
-							payCounum : couNum
+							payCounum : couNum,
+							payPlusMilage : plusMile
 				    		//기타 필요한 데이터가 있으면 추가 전달
 			    		}
 			    	}).done(function(data){
 			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 						alert("정상");			    			
 			    	});
-					location.href="./paySuccess.do?paynum="+rsp.imp_uid+"&finalAmount="+rsp.paid_amount;
+					location.href="./paySuccess.do?paynum="+rsp.imp_uid+"&finalAmount="+rsp.paid_amount+"&plusMile="+plusMile;
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;

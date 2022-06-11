@@ -226,4 +226,9 @@
 		AND COU_DELFLAG ='${cou_delflag}'
 	</select>
 	
+	<!-- 결제시 마일리지 적립 -->
+	<update id="plusMileage" parameterType="java.util.Map">
+		UPDATE TRAINEE SET TRA_MILAGE = TRA_MILAGE+#{plusMileage} WHERE TRA_ID =#{tra_id}
+	</update>
+	
 </mapper>

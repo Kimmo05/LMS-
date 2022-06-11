@@ -34,25 +34,27 @@ public class payController{
 	
 	//결제페이지 이동
 	@RequestMapping(value = "/pay.do", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String home(Model model,Authentication user) {
 		logger.info("----------- payments 이동 ---------");
 		Map<String, Object> map = new HashMap<String, Object>();
-		//세션의 로그인된 아이디로 값 변경 필요.
-		map.put("cou_tra_id", "thdwndrl1234");
+		map.put("tra_id", user.getPrincipal());
+		map.put("cou_tra_id", user.getPrincipal());
+		int mile = service.myMilage(map);
 		List<CouponVo> lists = service.couponSelect(map);
 		model.addAttribute("lists",lists);
-		
+		model.addAttribute("mile",mile);
 		return "user/payments";
 	}
 	
 	//결제완료시 결제완료 페이지로 이동
 	@RequestMapping(value = "/paySuccess.do", method = RequestMethod.GET)
-	public String paySuccess(Model model,String paynum,String finalAmount) {
+	public String paySuccess(Model model,String paynum,String finalAmount,String plusMile) {
 		logger.info("--------결제성공 이동 ---------");
 		System.out.println(paynum);
 		System.out.println(finalAmount);
 		model.addAttribute("paynum",paynum);
 		model.addAttribute("finalAmount",finalAmount);
+		model.addAttribute("plusMile",plusMile);
 		return "user/paySuccess";
 	}
 	
@@ -157,9 +159,7 @@ public class payController{
 		
 		List<CouponVo> coulists = service.myCoupon(map);
 		int mile = service.myMilage(map);
-		System.out.println(mile);
 		int count = service.countCoupon(map);
-		
 		
 		model.addAttribute("coulists",coulists);
 		model.addAttribute("mile",mile);

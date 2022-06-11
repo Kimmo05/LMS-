@@ -54,4 +54,7 @@ public interface PayDao {
 	//내 보유쿠폰 장수 조회
 	public int countCoupon(Map<String, Object> map);
 	
+	//결제시 마일리지 적립
+	public int plusMileage(Map<String, Object> map);
+	
 }

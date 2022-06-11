@@ -30,7 +30,9 @@ public class PayServiceImpl implements IPayService{
 
 	@Override
 	public int payInsert(Map<String, Object> map) {
-		return dao.payInsert(map);
+		int n1 = dao.payInsert(map);
+		int n2 = dao.plusMileage(map);
+		return n1 + n2;
 	}
 
 	@Override

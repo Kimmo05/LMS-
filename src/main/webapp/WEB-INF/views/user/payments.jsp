@@ -81,7 +81,8 @@
 					</dl>
 					<br>
 					<h5>Coupon &nbsp;&nbsp;<small class="text-muted">쿠폰사용</small></h5><br>
-					<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal" >쿠폰 사용하기</button><br><br>
+					<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal" >쿠폰 사용하기</button><br>
+					<br>
 					<!-- 모달모달 -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                       <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -126,8 +127,10 @@
                     </div>
                     <!-- 모달 끝 -->
                     <div class ="btns">
-	 					<h5>Milage&nbsp;&nbsp;<small class="text-muted">마일리지 사용</small></h5><br><input type="number" name="milage" id="milage">&nbsp;
-	 					<button class="btn btn-info btn-sm" type="button" onclick="useMilage()">사용하기</button><br><br>
+	 					<h5>Milage&nbsp;&nbsp;<small class="text-muted">마일리지 사용</small></h5><br><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="0p" name="milage" id="milage">&nbsp;
+	 					<button class="btn btn-info btn-sm" type="button" onclick="useMilage()">사용하기</button><br>
+	 					<small class="text-muted">회원님의 보유 마일리지는 <b><span style="color:tomato" id="mile">${mile}</span> point</b> 입니다.</small>
+	 					<br>
 						<br>
 						<h5>Method of payment &nbsp;&nbsp;<small class="text-muted">결제방식 선택</small></h5><br>
 					 	<input type="radio" name="selectPay" value="payco" checked="checked">&nbsp;페이코&nbsp;&nbsp;<img src="../resources/images/pay/payco.png"/>&nbsp;&nbsp;&nbsp;&nbsp;
