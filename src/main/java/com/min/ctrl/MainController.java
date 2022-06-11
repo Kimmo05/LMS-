@@ -59,12 +59,21 @@ public class MainController {
 		}
 		
 	// 마이페이지
-		@RequestMapping(value = "{/user/myProfile.do, /ins/myProfile.do}", method = {RequestMethod.GET})
+		@RequestMapping(value = {"/user/myProfile.do", "/ins/myProfile.do"}, method = {RequestMethod.GET})
 		public String myProfile(
 				Locale locale, Model model,Authentication user) {
 			log.info("myProfile 마이페이지 이동 ");
 			
 			return "user/myProfile";
+		}
+		
+   // 개인정보 수정
+		@RequestMapping(value = {"/user/editProfile.do", "/ins/editProfile.do"}, method = {RequestMethod.GET})
+		public String editProfile(
+		        Locale locale, Model model,Authentication user) {
+			log.info("editProfile 개인정보 수정페이지 이동 ");
+					
+				return "user/editProfile";
 		}
 
 }

@@ -48,7 +48,7 @@ var pagingAjax= function (){
 					$.each(value, function(k,v){
 					varHtml += "  <tr>";
 					varHtml += "     <td><input type='checkbox' name='chkVal'></td>";
-	                varHtml += " <td>"+v.sub_num+"</td>";
+					varHtml += "   <td onclick='modalOpen("+subVo.getSub_num()+")'><a href='#' data-bs-toggle='modal' data-original-title='test' data-bs-target='#exampleModal'>"+subVo.getSub_num()+"</a></td>";
 	                varHtml += " <td><a href='./adminSubjectDetail.do?sub_num="+v.sub_num+"'>"+v.sub_title+"</a></td>";
 	                varHtml += " <td>";
 	                if(v.cod_name === "JAVA"){

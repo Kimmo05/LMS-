@@ -1,5 +1,7 @@
 package com.min.ctrl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,15 +15,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.min.service.SubjectService;
 import com.min.vo.InfoUser;
 import com.min.vo.MemberVo;
+import com.min.vo.PayVo;
 import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
 
@@ -33,6 +40,10 @@ public class SubjectUserController {
 
 	@Autowired
 	private SubjectService sService;
+
+	
+	
+	
 	
 	//1) 과목 등록양식 페이지로 이동
 	@RequestMapping(value = {"/user/user_subjectInsertForm.do","/ins/user_subjectInsertForm.do"}, method = RequestMethod.GET)
@@ -45,7 +56,7 @@ public class SubjectUserController {
 
 	//1-2)과목 등록하기
 	@RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"}, method = RequestMethod.POST)
-	public String insertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
+	public String userInsertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
 		MemberVo mvo = (MemberVo) user.getDetails();
 		System.out.println(mvo);
 		map.put("sub_reg_id", mvo.getId());
@@ -64,10 +75,10 @@ public class SubjectUserController {
 	}
 	
 	//2) 과목 조회
-	//2-3) 일반회원 과목 전체조회 페이지로 이동
-	@RequestMapping(value = {"/user/user_subjectList.do","/ins/user_subjectList.do"}, method = RequestMethod.GET)
-	public String usersubject(RowNumVo rVo, Model model) {
-		log.info("********* Welcome SubjectController! usersubject 로 이동합니다. subjectInsertForm *********");
+	//2-3) 비회원/일반회원/강사 과목 전체조회 페이지로 이동
+	@RequestMapping(value = {"/user_subjectList.do","/user/user_subjectList.do","/ins/user_subjectList.do"}, method = RequestMethod.GET)
+	public String userSelectSubject(RowNumVo rVo, Model model) {
+		log.info("********* Welcome SubjectController! userSelectSubject 로 이동합니다. userSelectSubject *********");
 
 		List<SubjectVo> list = sService.subSelectAllUser(rVo);
 		model.addAttribute("list",list);
@@ -116,20 +127,34 @@ public class SubjectUserController {
 //		mav.setViewName("user_subjectList");
 //		return mav;
 //	}
+	
 	//2-4) 일반회원 과목 상세조회
-	@RequestMapping(value = "/comSubjectDetail.do", method = RequestMethod.GET)
-	public String comSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {
+	@RequestMapping(value = {"/user/user_subjectDetail.do","/ins/user_subjectDetail.do"}, method = RequestMethod.GET)
+	@ResponseBody
+	public SubjectVo userSubjectDetail(String subnum) {
 		log.info("********* Welcome SubjectController! comSubjectDetail 상세조회 subSelectDetail *********");
-		session.setAttribute("sub_num", sub_num);
-		SubjectVo result = sService.comSubjectDetail(sub_num);
-		model.addAttribute("result", result);
-		System.out.println(result);
-		return "commons/comSubjectDetail";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("subnum", subnum);
+		SubjectVo sVo = sService.userSubjectDetail(subnum);
+		return sVo;
 	}
 
+	//2-5) 일반회원 과목 마이페이지 과목조회 페이지로 이동
+//	@RequestMapping(value = {"/user/user_mySubjectList.do","/ins/user_mySubjectList.do"}, method = RequestMethod.GET)
+//	public String subSelectMySubject(MemberVo mVo, Model model, SubjectVo sVo) {
+//		log.info("********* Welcome SubjectController! subSelectMySubject 로 이동합니다. subSelectMySubject *********");
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("sub_reg_id", mVo.getId());
+//		List<SubjectVo> list = sService.subSelectMySubject(sVo);
+//		model.addAttribute("list",list);
+//		return "user/user_mySubjectList";
+//	}
+	@RequestMapping(value = {"/user/user_mySubjectList.do","/ins/user_mySubjectList.do"}, method = RequestMethod.GET)
+	public String subSelectMySubject(Authentication user, Model model) {
+		log.info("********* Welcome SubjectController! subSelectMySubject 과목 마이페이지 과목조회 페이지로 이동합니다. subSelectMySubject *********");
 
-
-
+		return "user/user_mySubjectList";
+	}
 	
 
 }

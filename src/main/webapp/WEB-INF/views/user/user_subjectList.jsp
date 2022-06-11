@@ -261,7 +261,8 @@
 											</ul>
 
 											<h6 class="f-w-600">
-												<a href="./comSubjectDetail.do?sub_num=${sVo.sub_num}">${sVo.sub_title}</a><span class="pull-right"> <fmt:parseDate var='cDate' value="${sVo.sub_regdate}" pattern="yyyy-MM-dd" /> <fmt:formatDate value="${cDate }" /></span>
+												<a href="javascript:modalOpen('${sVo.sub_num})" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal">${sVo.sub_title}</a><span class="pull-right">
+												<fmt:parseDate var='cDate' value="${sVo.sub_regdate}" pattern="yyyy-MM-dd" /> <fmt:formatDate value="${cDate}" /></span>
 											</h6>
 											<p>${sVo.sub_content}</p>
 										</div>
@@ -273,10 +274,46 @@
 				</div>
 			</div>
 		</div>
+		
+		<div class="col-sm-12">
+                <div class="card">
+                
+                  <div class="card-body btn-showcase">
+                      <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                      <div class="modal-dialog modal modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content text-center d-block">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">과목 상세보기<small class="text-muted">과목 상세정보</small></h5>
+                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
+                          </div>
+                          <div class="modal-body">
+                          	<br><br>
+                          	<h6 id="modalTitle">ㅇㅇㅇ</h6>
+                          	<div id="modalText">dㅇㅇd</div>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</div>
 	
 	<script type="text/javascript">
-	window.addEventListener("scroll",infiniteScroll);
+/* 	window.addEventListener("scroll",infiniteScroll);
 	
 	let isUpdateList = true;
 	
@@ -289,16 +326,32 @@
 				isUpdateList=false;
 			}
 		}
-	}
+	} */
+	
+	
+ 	function modalOpen(subnum){
+		console.log("일반회원 과목 상세조회 모달 오픈"+subnum);
+		 $.ajax({
+			url:"./user_subjectDetail.do",
+			method:"POST",
+			data:{
+				subnum:subnum
+			},
+			success:function(data){
+				console.log("모달 성공");
+				console.log(data);
+				
+				const getTextTitle = document.getElementById('modalTitle');
+				getTextTitle.innerHTML = '<h6><span>"+subnum+"</span></h6>';
+				const getTextModal = document.getElementById('modalText');
+				getTextModal.innerHTML = '<h6>과목설명<span>"+data.sub_content+"</span></h6>';
+			}
+		 })
+	} 
 	
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

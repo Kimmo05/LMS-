@@ -184,12 +184,12 @@ public class Subject_test {
 //	}
 	//2-4) 일반회원의 과목 상세 조회
 //	@Test
-	public void comSubjectDetailTest() {
-		log.info("comSubjectDetail JUnit Test 실행");
-		String sub_num = "20220602SUB174";
-		SubjectVo sVo =  sDao.comSubjectDetail(sub_num);
-		System.out.println(sVo);
-	}
+//	public void comSubjectDetailTest() {
+//		log.info("comSubjectDetail JUnit Test 실행");
+//		String sub_num = "20220602SUB174";
+//		SubjectVo sVo =  sDao.comSubjectDetail(sub_num);
+//		System.out.println(sVo);
+//	}
 	
 
 }
