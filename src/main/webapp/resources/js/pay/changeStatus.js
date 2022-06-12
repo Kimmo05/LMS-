@@ -95,6 +95,7 @@ function statusUpdate(paynum){
 		location.href="./statusUpdate.do?paynum="+paynum;
 		importCancel(paynum);
 	}
-	
 	alert("환불 완료되었습니다!");
+	
+	
 }

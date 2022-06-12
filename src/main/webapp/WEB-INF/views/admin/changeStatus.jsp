@@ -15,6 +15,7 @@
 </style>
 </head>
 <%@ include file="./admin_header.jsp" %>
+<%@ include file="../payAlert.jsp" %>
 <body>
   
         <div class="page-body">

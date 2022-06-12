@@ -6,8 +6,8 @@
 <title>첫 페이지</title>
 </head>
 <%@ include file="../header.jsp" %>
+<%@ include file="../payAlert.jsp" %>
 <script type="text/javascript" src="../resources/js/pay/alert.js"></script>
-<script type="text/javascript" src="../resources/js/pay/sweetalert.min.js"></script>
 <body>
   
         <div class="page-body">
@@ -30,7 +30,7 @@
               <h5>${coulists}</h5>
               <h2>마일리지 ${mile}</h2>
               <h2>쿠폰 장수 ${count}</h2>
-              <button class="btn btn-success sweet-8" type="button" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-8']);" data-bs-original-title="" title="">Success</button>
+              <button class="btn btn-primary m-2" id="alertStart" onclick="allort()">Alert 실행</button>
             </div>
           </div>
           <!-- Container-fluid Ends-->

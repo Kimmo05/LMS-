@@ -93,14 +93,23 @@
 			console.log(myMilage);
 			
    			if(parseInt(myMilage)<parseInt(getMile)){
-   				 alert("보유마일리지가 부족합니다!");
+				Swal.fire({
+				      icon: 'error',
+				      text: "보유마일리지가 부족합니다!",
+				    });
    			}else if(getMile=="" || parseInt(getMile)<1000){
-				alert("마일리지는 1000p 이상부터 사용가능합니다.");
+				Swal.fire({
+				      icon: 'error',
+				      text: "마일리지는 1000p 이상부터 사용가능합니다.",
+				    });
 			}else{
 			 //최종할인액
 			 var calcTotalDiscount = parseInt(couponAmount)+parseInt(getMile);
 			 var totalCalc = classPrice-calcTotalDiscount;
-  			 alert("마일리지가 사용되었습니다!");
+			 Swal.fire({
+		      icon: 'success',
+		      text: '마일리지가 사용되었습니다!',
+		    });
 			 getTotalDiscount.innerHTML
 				= '<p style="color:tomato;">'+calcTotalDiscount+'</p>';
 			 getUsedMilage.innerHTML
@@ -142,12 +151,12 @@
 			    buyer_email : "buyer@iamport.kr"
 			  }, function(rsp) {
 			    if ( rsp.success ) {
-			    	var msg = '결제가 완료되었습니다.';
-	    			msg += '\n고유ID : ' + rsp.imp_uid;
-	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-	    			msg += '\n결제 금액 : ' + rsp.paid_amount;
-	    			msg += '\n카드 승인번호 : ' + rsp.apply_num;
-	    			alert(msg);
+			    	var msg = '결제가 완료되었습니다!';
+					Swal.fire({
+				      icon: 'success',
+					  title: 'Payment success',
+				      text: msg,
+				    });
 			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 			    	jQuery.ajax({
 			    		url: "./payment/pay.do", 
@@ -169,10 +178,11 @@
 			    	});
 					location.href="./paySuccess.do?paynum="+rsp.imp_uid+"&finalAmount="+rsp.paid_amount+"&plusMile="+plusMile;
 			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
-			        
-			        alert(msg);
+			        Swal.fire({
+				      icon: 'error',
+					  title: 'Payments failure',
+				      text: rsp.error_msg,
+				    });
 			    }
 			});
 	 }

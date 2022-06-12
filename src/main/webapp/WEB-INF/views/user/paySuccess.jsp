@@ -6,6 +6,7 @@
 <title>결제완료</title>
 </head>
 <%@ include file="../header.jsp" %>
+
 <body>
   
         <div class="page-body">
