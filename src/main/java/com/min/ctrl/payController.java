@@ -48,10 +48,23 @@ public class payController{
 	
 	//결제완료시 결제완료 페이지로 이동
 	@RequestMapping(value = "/paySuccess.do", method = RequestMethod.GET)
-	public String paySuccess(Model model,String paynum,String finalAmount,String plusMile) {
+	public String paySuccess(Model model,String paynum,String finalAmount,String plusMile,Authentication user) {
 		logger.info("--------결제성공 이동 ---------");
 		System.out.println(paynum);
 		System.out.println(finalAmount);
+		int finalPrice = Integer.parseInt(finalAmount);
+		if(finalPrice >= 100000) {
+			Map<String, Object> map = new  HashMap<String, Object>();
+			map.put("cou_codeper", "10");
+			map.put("cou_per", "10");
+			map.put("cou_tra_id", user.getPrincipal());
+			map.put("cou_name", "10만원 이상 구매고객 10%쿠폰");
+			int n = service.plusCoupon(map);
+			System.out.println("쿠폰발급!!@@"+n);
+			model.addAttribute("coupon","10만원 이상 구매고객 10%쿠폰");
+		}else {
+			model.addAttribute("coupon","0");
+		}
 		model.addAttribute("paynum",paynum);
 		model.addAttribute("finalAmount",finalAmount);
 		model.addAttribute("plusMile",plusMile);

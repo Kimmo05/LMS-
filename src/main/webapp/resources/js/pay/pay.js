@@ -86,7 +86,7 @@
 			const getUsedMilage = document.getElementById('useMileage');
   			
 			//마일리지 입력값 가져오기
-  			 var getMile = document.getElementById('milage').value;
+  			var getMile = document.getElementById('milage').value;
 
 			var getMyMilage = document.getElementById('mile');
 			var myMilage = getMyMilage.innerText;

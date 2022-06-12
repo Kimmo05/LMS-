@@ -96,7 +96,7 @@
 	</select>
 	
 	<!-- 쿠폰 지급 -->
-	<insert id="couponInsert" parameterType="java.util.Map">
+	<insert id="plusCoupon" parameterType="java.util.Map">
 	INSERT INTO COUPON
 	(COU_CODE,
 	 COU_TRA_ID,
@@ -104,10 +104,10 @@
 	 COU_PER,
 	 COU_DELFLAG,
 	 COU_DATE)
-	VALUES(TO_CHAR(SYSDATE,'YYYYMMDD')||'_'||10||'_C'||LPAD(COU_SEQ.NEXTVAL,3,'0'),
-	'thdwndrl1234',
-	'그냥주는쿠폰',
-	10,
+	 VALUES(TO_CHAR(SYSDATE,'YYYYMMDD')||'_'||#{cou_codeper}||'_C'||LPAD(COU_SEQ.NEXTVAL,3,'0'),
+	#{cou_tra_id},
+	#{cou_name},
+	#{cou_per},
 	'Y',
 	SYSDATE)
 	</insert>
@@ -174,7 +174,11 @@
 	
 	<!-- 마이페이지 내의 환불신청 -->
 	<update id="cancelUpdate" parameterType="java.util.Map">
-		UPDATE PAY SET PAY_CANCATE='${pay_cancate}',PAY_STATUS='${pay_status}',PAY_CANCONTENT ='${pay_cancontent}' WHERE PAY_NUM = '${pay_num}'
+		UPDATE PAY 
+		SET PAY_CANCATE='${pay_cancate}',
+		PAY_STATUS='${pay_status}',
+		PAY_CANCONTENT ='${pay_cancontent}' 
+		WHERE PAY_NUM = '${pay_num}'
 	</update>
 	
 	<!-- 환불 승인시에 쿠폰 반환 -->

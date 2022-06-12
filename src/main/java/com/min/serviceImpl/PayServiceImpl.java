@@ -89,4 +89,9 @@ public class PayServiceImpl implements IPayService{
 		return dao.countCoupon(map);
 	}
 
+	@Override
+	public int plusCoupon(Map<String, Object> map) {
+		return dao.plusCoupon(map);
+	}
+
 }

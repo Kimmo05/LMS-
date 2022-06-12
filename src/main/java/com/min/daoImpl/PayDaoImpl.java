@@ -27,10 +27,10 @@ public class PayDaoImpl implements PayDao{
 	}
 	
 	//관리자페이지 상태별 조회
-		@Override
-		public List<PayVo> paySelectStatus(Map<String, Object> map) {
-			return sqlSession.selectList(NS+"paySelectStatus",map);
-		}
+	@Override
+	public List<PayVo> paySelectStatus(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"paySelectStatus",map);
+	}
 		
 	//결제 insert
 	@Override
@@ -114,6 +114,12 @@ public class PayDaoImpl implements PayDao{
 	@Override
 	public int plusMileage(Map<String, Object> map) {
 		return sqlSession.update(NS+"plusMileage",map);
+	}
+
+	//10만원 이상 결제시에 쿠폰 발급
+	@Override
+	public int plusCoupon(Map<String, Object> map) {
+		return sqlSession.insert(NS+"plusCoupon",map);
 	}
 
 	

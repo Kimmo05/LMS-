@@ -48,4 +48,6 @@ public interface IPayService {
 	//내 보유쿠폰 장수 조회
 	public int countCoupon(Map<String, Object> map);
 	
+	//10만원 이상 결제 시에 쿠폰 발급
+	public int plusCoupon(Map<String, Object> map);
 }

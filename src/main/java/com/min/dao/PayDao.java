@@ -57,4 +57,7 @@ public interface PayDao {
 	//결제시 마일리지 적립
 	public int plusMileage(Map<String, Object> map);
 	
+	//10만원 이상 결제 시에 쿠폰 발급
+	public int plusCoupon(Map<String, Object> map);
+	
 }
