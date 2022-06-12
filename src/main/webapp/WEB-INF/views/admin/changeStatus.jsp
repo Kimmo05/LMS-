@@ -159,7 +159,7 @@
                                 <textarea class="form-control" id="canReason" disabled="disabled" style="color:tomato;"></textarea>
                               </div>
                             </form>
-                            <div id="payNumber" style="display:none;">d</div>
+                            <div id="payNumber" style="display:none;"></div>
                           </div>
                           <div class="modal-footer">
                           	<div id="changeButton"><button class="btn btn-primary" type="button" onclick="statusUpdate(0)">승인하기</button></div>

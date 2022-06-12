@@ -95,11 +95,13 @@
    			if(parseInt(myMilage)<parseInt(getMile)){
 				Swal.fire({
 				      icon: 'error',
+					  title : 'Check Mileage!',
 				      text: "보유마일리지가 부족합니다!",
 				    });
    			}else if(getMile=="" || parseInt(getMile)<1000){
 				Swal.fire({
 				      icon: 'error',
+					  title : 'Check Please!',
 				      text: "마일리지는 1000p 이상부터 사용가능합니다.",
 				    });
 			}else{
@@ -108,6 +110,7 @@
 			 var totalCalc = classPrice-calcTotalDiscount;
 			 Swal.fire({
 		      icon: 'success',
+			  title : 'Mileage used!',
 		      text: '마일리지가 사용되었습니다!',
 		    });
 			 getTotalDiscount.innerHTML
@@ -156,7 +159,9 @@
 				      icon: 'success',
 					  title: 'Payment success',
 				      text: msg,
-				    });
+				    }).then(function(){
+					location.href="./paySuccess.do?paynum="+rsp.imp_uid+"&finalAmount="+rsp.paid_amount+"&plusMile="+plusMile;
+				})
 			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 			    	jQuery.ajax({
 			    		url: "./payment/pay.do", 
@@ -176,7 +181,7 @@
 			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 						alert("정상");			    			
 			    	});
-					location.href="./paySuccess.do?paynum="+rsp.imp_uid+"&finalAmount="+rsp.paid_amount+"&plusMile="+plusMile;
+					
 			    } else {
 			        Swal.fire({
 				      icon: 'error',
