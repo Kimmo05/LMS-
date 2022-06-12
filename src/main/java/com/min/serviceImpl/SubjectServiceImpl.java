@@ -57,37 +57,47 @@ public class SubjectServiceImpl implements SubjectService{
 		return sDao.subjectTotalUser();
 	}
 	//2-1) 관리자의 과목 전체목록 조회
+	@Override
+	public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo) {
+		log.info("========== SubjectServiceImpl/subSelectAllAdmin 관리자의 과목 전체목록 갯수 ==========");
+		return sDao.subSelectAllAdmin(rVo);
+	}
+	@Override
+	public List<SubjectVo> subSelectStatusAdmin(RowNumVo rVo) {
+		log.info("========== SubjectServiceImpl/subSelectAllAdmin 관리자의ㄴ 과목 전체목록 갯수 ==========");
+		return sDao.subSelectStatusAdmin(rVo);
+	}
+	//2-2) 관리자의 과목 상세 조회
+	@Override
+	public SubjectVo adminSubjectDetail(String sub_num) {
+		log.info("========== SubjectServiceImpl/adminSubjectDetail 관리자의 과목 상세 조회 ==========");
+		log.info("========== SubjectServiceImpl/adminSubjectDetail 관리자의 과목 상세 조회 : "+sub_num+ " ==========");
+		return sDao.adminSubjectDetail(sub_num);
+	}
+	//2-3) 관리자의 과목승인을 위한 전체목록 조회
+	@Override
+	public List<SubjectVo> subSelectToApproveAdmin(RowNumVo rVo) {
+		log.info("========== SubjectServiceImpl/subSelectToApproveAdmin 관리자의 과목승인을 위한 전체목록 조회 ==========");
+		return sDao.subSelectAllAdmin(rVo);
+	}
+	
+	
+	//3-1) 비회원/일반회원/강사의 과목 전체목록 조회
 		@Override
-		public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo) {
-			log.info("========== SubjectServiceImpl/subSelectAllAdmin 일반회원의 과목 전체목록 갯수 ==========");
-			return sDao.subSelectAllAdmin(rVo);
-		}
-		@Override
-		public List<SubjectVo> subSelectStatusAdmin(RowNumVo rVo) {
-			log.info("========== SubjectServiceImpl/subSelectAllAdmin 일반회원의 과목 전체목록 갯수 ==========");
-			return sDao.subSelectStatusAdmin(rVo);
-		}
-		//2-1) 관리자의 과목 상세 조회
-		@Override
-		public SubjectVo adminSubjectDetail(String sub_num) {
-			log.info("========== SubjectServiceImpl/adminSubjectDetail 관리자의 과목 상세 조회 ==========");
-			log.info("========== SubjectServiceImpl/adminSubjectDetail 관리자의 과목 상세 조회 : "+sub_num+ " ==========");
-			return sDao.adminSubjectDetail(sub_num);
-		}
-		//2-3) 비회원/일반회원/강사의 과목 전체목록 조회
-		@Override
-		public List<SubjectVo> subSelectAllUser(RowNumVo rVo) {
+		public List<SubjectVo> subSelectAllUser(SubjectVo sVo) {
 			log.info("========== SubjectServiceImpl/subSelectAllUser 일반회원의 과목 전체목록 조회 ==========");
-			return sDao.subSelectAllUser(rVo);
+			return sDao.subSelectAllUser(sVo);
 		}
-		//2-4) 일반회원의 과목 상세 조회
+	
+		
+		//3-2) 일반회원의 과목 상세 조회
 		@Override
-		public SubjectVo userSubjectDetail(String subnum) {
+		public SubjectVo userSubjectDetail(String sub_num) {
 			log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 ==========");
-			log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 : "+subnum+ "==========");
-			return sDao.userSubjectDetail(subnum);
+			log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 : "+sub_num+ "==========");
+			return sDao.userSubjectDetail(sub_num);
 		}
-		//2-5) 일반회원/강사의 마이페이지에서의 등록 과목 목록 조회
+		//3-3) 일반회원/강사의 마이페이지에서의 등록 과목 목록 조회
 		@Override
 		public List<SubjectVo> subSelectMySubject(SubjectVo sVo) {
 			log.info("========== SubjectServiceImpl/subSelectMySubject  마이페이지에서의 등록 과목 목록 조회 ==========");
@@ -95,13 +105,14 @@ public class SubjectServiceImpl implements SubjectService{
 			return sDao.subSelectMySubject(sVo);
 		}
 		
-		//3) 관리자의 과목 상태변경
+		//4) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
 		@Override
-		public boolean subUpdateStatusA(Map<String, Object> map) {
+		public int subUpdateStatusA(Map<String, Object> map) {
 			log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 ==========");
 			log.info("========== SubjectServiceImpl/comSubjectDetail 일반회원의 과목 상세 조회 : {} "+map+"==========");
 			return sDao.subUpdateStatusA(map);
 		}
+
 
 
 

@@ -51,8 +51,7 @@
                             <!-- 유저 정보 밑 부분 -->
                             <ul class="nav main-menu contact-options" role="tablist">
                               <li class="nav-item">
-                                <button class="badge-light btn-block btn-mail w-100" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="me-2" data-feather="users"></i>내 과목 생성하기</button>
-                                <button class="badge-light btn-block btn-mail w-100" type="button" ><a href="./user_subjectInsertForm.do"><i class="me-2" data-feather="users"></i>내 과목 생성하기 페이지로</a></button>
+                                <button class="badge-light btn-block btn-mail w-100" type="button" onclick="./user_subjectInsertForm.do"><i class="me-2" data-feather="users"></i>내 과목 생성하기</button>
                                 
                                 
                                 <!-- 내 과목 생성하기 누르면 생기는 모달 창 시작 -->
@@ -171,7 +170,7 @@
                                     <a class="contact-tab-0 nav-link active" id="v-pills-user-tab" data-bs-toggle="pill" onclick="activeDiv(0)" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="true">
                                         <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle update_img_0" src="../assets/images/user/2.png" alt="">
                                           <div class="media-body">
-                                            <h6> <span class="first_name_0">과목 명 </span><span class="last_name_0"> </span></h6>
+                                            <h6> <span class="first_name_0">${list.sub_title}</span><span class="last_name_0"> </span></h6>
                                             <p class="email_add_0">담당 강사</p><span><p class="email_add_1">등록일</p></span>
                                           </div>
                                         </div>

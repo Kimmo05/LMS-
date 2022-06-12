@@ -9,7 +9,7 @@ import com.min.vo.SubjectVo;
 
 public interface SubjectDao {
 	
-	//1) 과목 등록
+		//1) 과목 등록
 		//1-1) 과목 등록시 과목정보(과목명, 과목설명, 과목카테고리코드, 과목등록자ID)입력
 		public int subInsertSubject(Map<String, Object> map);
 		//1-2) 과목 등록시 등록자정보(등록자 코드, 등록자 권한, 과목등록자ID)입력
@@ -29,14 +29,20 @@ public interface SubjectDao {
 		public List<SubjectVo> subSelectStatusAdmin(RowNumVo rVo);
 		//2-2) 관리자의 과목 상세 조회
 		public SubjectVo adminSubjectDetail(String sub_num);
-		//2-3) 비회원/일반회원/강사의 과목 전체목록 조회
-		public List<SubjectVo> subSelectAllUser(RowNumVo rVo);
-		//2-4) 일반회원의 과목 상세 조회
-		public SubjectVo userSubjectDetail(String subnum);
+		//2-3) 관리자의 과목 승인을위한 전체목록 조회
+		public List<SubjectVo> subSelectToApproveAdmin(RowNumVo rVo);
 		
-		
+		//3-1) 비회원/일반회원/강사의 과목 전체목록 조회
+		public List<SubjectVo> subSelectAllUser(SubjectVo sVo);
+		//3-2) 비회원/일반회원/강사의 과목 상세 조회
+		public SubjectVo userSubjectDetail(String sub_num);
+		//3-3) 일반회원/강사의 마이페이지에서의 과목 목록 조회
 		public List<SubjectVo> subSelectMySubject(SubjectVo sVo);
 		
 		//3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
-		public boolean subUpdateStatusA(Map<String, Object> map);
+		public int subUpdateStatusA(Map<String, Object> map);
+		
+		
+		//4) 과목 승인 시 과목 상태 업데이트
+//		public int statusUpdate(Map<String, Object> map);
 }

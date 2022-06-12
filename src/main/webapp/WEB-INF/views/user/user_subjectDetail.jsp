@@ -4,20 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 과목 상세조회 화면</title>
+<title>일반회원, 비회원, 강사 과목 상세조회 화면</title>
 </head>
-<%@ include file="./admin_header.jsp" %>
+<%@ include file="../header.jsp" %>
 <body>
 <div class="page-body">
-          <div class="container-fluid">
-    <div class="page-header">
-    
+		<div class="container-fluid">
+        <div class="page-header">
               <div class="row">
                 <div class="col-sm-6">
                   <h3>과목 상세</h3>
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">관리자</li>
+                    <li class="breadcrumb-item">일반회원,비회원,강사</li>
                     <li class="breadcrumb-item">과목</li>
                     <li class="breadcrumb-item active">과목 상세보기</li>
                   </ol>
@@ -193,7 +192,7 @@
                     </div>
                   </div>
               </div>
-        
+            </div>
 
 
           <div class="row">
@@ -241,54 +240,7 @@
               </div>
             </div>
             </div>
-           <c:if test="${results.sub_status eq 'R'}">
-          <div class="row">
-           <div class="col-sm-12">
-            <div class="card">
-              <div class="row product-page-main">
-                  <ul class="nav nav-tabs border-tab mb-0" id="top-tab" role="tablist">
-                    <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-controls="top-home" aria-selected="false">반려사유</a>
-                      <div class="material-border"></div>
-                    </li>
-                  </ul>
-                  <div class="tab-content" id="top-tabContent">
-                    <div class="tab-pane fade active show" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
-                    <br>
-                    	<div class="product-price">반려사유  
-                    	<p class="mb-0 m-t-20">&nbsp;&nbsp; ${results.sub_rejection}</p><br>
-                        </div>
-                        <div class="product-price">수강 난이도
-                    	<p class="mb-0 m-t-20">&nbsp;&nbsp; ${results.cur_level}</p><br>
-                        </div>
-                        <div class="product-price">수강 시간
-                    	<p class="mb-0 m-t-20">&nbsp;&nbsp; ${results.cur_time} 시간</p><br>
-                        </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-            </c:if>
-            
-            
-             <div class="row">
-           <div class="col-sm-12">
-            <div class="card">
-            <div class="col-sm-12 col-xl-2">
-              <div class="row product-page-main">
-                             <button type="button" class="btn btn-outline-primary-2x">승인하기</button><span><button type="button" class="btn btn-outline-warning-2x">반려하기</button></span>
-                             
-                </div>
-                </div>
-              </div>
-            </div>
-            </div>
-            
-
-            </div>
-            </div>
-            
+</div>
 </body>
-<%@include file="./admin_footer.jsp" %>
+<%@include file="../footer.jsp" %>
 </html>

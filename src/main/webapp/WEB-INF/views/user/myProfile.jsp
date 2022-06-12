@@ -158,7 +158,7 @@
                           <div class="collapse show" id="collapseicon8" aria-labelledby="collapseicon8" data-parent="#accordion">
                             <div class="card-body social-list filter-cards-view">
                               <div class="media"><!-- <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/2.png"> -->
-                                <div class="media-body"><span class="d-block">1</span><a href="./user_mySubjectList.do">등록한 과목 보러가기</a></div>
+                                <div class="media-body"><span class="d-block">1</span><a href="./user_subSelectMySubject.do?sub_reg_id=${info.id}">등록한 과목 보러가기</a></div>
                               </div>
                               <!-- <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.png">
                                 <div class="media-body"><span class="d-block">Sarah Loren</span><a href="javascript:void(0)">Add Friend</a></div>
