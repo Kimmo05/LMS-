@@ -78,6 +78,7 @@ public class payController{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pay_num", paynum);
 		PayVo vo = service.getPayDetail(map);
+		map.put("pay_num", vo);
 		return vo;
 	}
 	

@@ -8,7 +8,9 @@ function modalOpen(paynum){
 				paynum : paynum
 			},success:function(data){
 				console.log("성공이다");
-				console.log(data);
+				console.log(typeof data);
+				var j = JSON.stringify(data)
+				console.log(j);
 				var noCoupon;
 				if(data.pay_ucounum == null){
 					 noCoupon = "사용안함";
