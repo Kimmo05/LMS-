@@ -122,5 +122,10 @@ public class PayDaoImpl implements PayDao{
 		return sqlSession.insert(NS+"plusCoupon",map);
 	}
 
+	//sms발송시 회원의 전화번호 가져오기
+	public String selectPhone(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"selectPhone",map);
+	}
+
 	
 }

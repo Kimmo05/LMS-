@@ -60,4 +60,7 @@ public interface PayDao {
 	//10만원 이상 결제 시에 쿠폰 발급
 	public int plusCoupon(Map<String, Object> map);
 	
+	//sms서비스를위해 번호 가져오기
+	public String selectPhone(Map<String, Object> map);
+	
 }

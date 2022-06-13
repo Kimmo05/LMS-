@@ -235,4 +235,8 @@
 		UPDATE TRAINEE SET TRA_MILAGE = TRA_MILAGE+#{plusMileage} WHERE TRA_ID =#{tra_id}
 	</update>
 	
+	<!-- SMS 발송시 회원번호 가져오기 -->
+	<select id="selectPhone" resultType="String" parameterType="java.util.Map">
+		SELECT TRA_PHONE FROM TRAINEE WHERE TRA_ID =#{tra_id}
+	</select>
 </mapper>

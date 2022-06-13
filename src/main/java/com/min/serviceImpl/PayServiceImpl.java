@@ -94,4 +94,9 @@ public class PayServiceImpl implements IPayService{
 		return dao.plusCoupon(map);
 	}
 
+	@Override
+	public String selectPhone(Map<String, Object> map) {
+		return dao.selectPhone(map);
+	}
+
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.min.dao.PayDao;
 import com.min.service.IPayService;
+import com.min.serviceImpl.coolSMS;
 import com.min.vo.CouponVo;
 import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
@@ -31,6 +32,9 @@ public class payController{
 	
 	@Autowired
 	private IPayService service;
+	
+	@Autowired
+	private coolSMS SMSservice;
 	
 	//결제페이지 이동
 	@RequestMapping(value = "/pay.do", method = RequestMethod.GET)
@@ -68,6 +72,12 @@ public class payController{
 		model.addAttribute("paynum",paynum);
 		model.addAttribute("finalAmount",finalAmount);
 		model.addAttribute("plusMile",plusMile);
+		//회원 전화번호 가져오기
+		Map<String, Object> phoneMap = new HashMap<String, Object>();
+		phoneMap.put("tra_id", user.getPrincipal());
+		String phone = service.selectPhone(phoneMap); 
+		String phoneNum = phone.substring(0, 3)+"-"+phone.substring(3,7)+"-"+phone.substring(7,phone.length());
+		SMSservice.certifiedPhoneNumber(phoneNum , paynum,"pay");
 		return "user/paySuccess";
 	}
 	
@@ -130,11 +140,16 @@ public class payController{
 	
 	//관리자 환불요청 승인
 	@RequestMapping(value = "/statusUpdate.do" , method = RequestMethod.GET)
-	public String statusUpdate(String paynum) {
+	public String statusUpdate(String paynum,Authentication user) {
 		System.out.println(paynum+"@!@!@!@!@!");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pay_num", paynum);
 		int n = service.statusUpdate(map);
+		Map<String, Object> phoneMap = new HashMap<String, Object>();
+		phoneMap.put("tra_id", user.getPrincipal());
+		String phone = service.selectPhone(phoneMap); 
+		String phoneNum = phone.substring(0, 3)+"-"+phone.substring(3,7)+"-"+phone.substring(7,phone.length());
+		SMSservice.certifiedPhoneNumber(phoneNum , paynum,"refund");
 		System.out.println(n + "성공입니다~");
 		return "redirect:/user/changeStatus.do";
 	}
