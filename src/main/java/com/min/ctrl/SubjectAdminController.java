@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.min.service.SubjectService;
 import com.min.vo.InfoUser;
 import com.min.vo.MemberVo;
+import com.min.vo.PayVo;
 import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
 
@@ -89,6 +90,37 @@ public class SubjectAdminController {
 		return "admin/admin_subjectList";
 	}
 	
+	//관리자 전체조회 상태별 조회
+//	@RequestMapping(value = "/admin_subjectList.do", method = RequestMethod.GET)
+//	public String subSelectStatusAdmin(String getStatus, Model model, HttpSession session,Authentication user) {
+//		System.out.println("***********************subjectAdminController  *********");
+//		System.out.println("***********************subjectAdminController"+getStatus);
+//		MemberVo mvo =(MemberVo) user.getDetails();
+//		
+//		Map<String, Object> map= new HashMap<String, Object>();
+//		map.put("pay_status", getStatus);
+//		
+//		List<SubjectVo> lists = null;
+//		RowNumVo rowVo = null;
+//		
+//		if(session.getAttribute("row")==null) {
+//			rowVo = new  RowNumVo();
+//		}else {
+//			rowVo=(RowNumVo) session.getAttribute("row");
+//		
+//			if(user.getAuthorities().toString().indexOf("ADMIN")!=-1) {
+//				rowVo.setTotal(sService.subjectTotalAdmin());
+//				lists=sService.subSelectStatusAdmin(rowVo);
+//			}
+//				System.out.println("***********************subjectAdminController"+lists);
+//			model.addAttribute("lists",lists);
+//			model.addAttribute("row",rowVo);
+//			model.addAttribute("status",getStatus);
+//			
+//			
+//	}
+//		return "admin/admin_subjectList";
+//	}
 	//2-2) 관리자 과목 상세조회
 	@RequestMapping(value = "/adminSubjectDetail.do", method = RequestMethod.GET)
 	public String adminSubjectDetail(@RequestParam String sub_num, String id, Model model, HttpSession session) {

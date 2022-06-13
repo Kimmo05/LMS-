@@ -212,11 +212,17 @@
 		</dependency>
 		
 		<!-- Jackson Library -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.13.2.2</version>
-		</dependency>
+			<!-- 데이터를 브라우저로 전송하기 위한 별도의 객체 생성 방법 -->
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>2.13.2.2</version>
+			</dependency>
+			<dependency>
+			    <groupId>com.fasterxml.jackson.dataformat</groupId>
+			    <artifactId>jackson-dataformat-xml</artifactId>
+			    <version>2.13.2</version>
+			</dependency>
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -229,7 +235,7 @@
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-<!-- FileUpload에 필요한 라이브러리 -->
+		<!-- FileUpload에 필요한 라이브러리 -->
 			<dependency>
 			    <groupId>commons-io</groupId>
 			    <artifactId>commons-io</artifactId>
@@ -247,6 +253,8 @@
    				 <artifactId>thumbnailator</artifactId>
    				 <version>0.4.17</version>
 			</dependency>
+			
+			
       <!-- transaction 처리 -->
 		<dependency>
 			<groupId>org.springframework</groupId>

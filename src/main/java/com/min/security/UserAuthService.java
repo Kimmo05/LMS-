@@ -80,6 +80,7 @@ public class UserAuthService  implements AuthenticationProvider{
 		user_info.setBirth(dto.getBirth());
 		user_info.setPhone(dto.getPhone());
 		user_info.setMilage(dto.getMilage());
+		user_info.setProfile(dto.getProfile());
 		user_info.setRegdate(dto.getRegdate());
 		user_info.setDelflag(dto.getDelflag());
 		user_info.setLike(dto.getLike());
