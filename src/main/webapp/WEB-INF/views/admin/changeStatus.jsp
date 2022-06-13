@@ -126,7 +126,7 @@
                           	<br><br>
                           	<h1 class="display-1"><i class="fa fa-credit-card-alt"></i></h1><br>
                           	<h6 id="modalTitle">ddd</h6>
-                          	<div id="modalText">dd</div>
+                          	<div id="modalText">ddd</div>
                           </div>
                           <div class="modal-footer">
                             <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
