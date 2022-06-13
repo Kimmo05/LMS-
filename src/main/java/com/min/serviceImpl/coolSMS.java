@@ -17,7 +17,7 @@ public class coolSMS {
 
 		        // 4개의 입력값 필요
 		        HashMap<String, String> params = new HashMap<String, String>();
-		        params.put("to", "010-4343-2291");    // 수신전화번호
+		        params.put("to", phoneNumber);    // 수신전화번호
 		        params.put("from", "010-4343-2291");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨 -> 발신전화 번호는 coolSMS에 등록해줘야됨
 		        params.put("type", "SMS");// type 방식
 		        if(payOrRefund.equals("pay")) {
