@@ -76,35 +76,37 @@
         <div class="row">
           <div class="col-12">
             <div class="login-card">
-              <form class="theme-form login-form" method="POST" action="./logingo.do">
-                <h4>일반회원 로그인</h4>
+              <form class="theme-form login-form needs-validation" novalidate="" method="POST" action="./logingo.do">
+                <h4>강사 로그인</h4>
                 <h6>Welcome back! Log in to your account.</h6>
                 <div class="form-group">
                   <label>ID</label>
                   <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
                     <input class="form-control" type="text" name="id" id="inputId" required="" placeholder="Id" value="${id}">
+                    <div class="invalid-tooltip">아이디를 입력해주세요</div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>Password</label>
                   <div class="input-group"><span class="input-group-text"><i class="icon-lock"></i></span>
-                    <input class="form-control" type="password" name="pw" id="inputPw"  placeholder="*********" value="${pw}">
+                    <input class="form-control" type="password" name="pw" id="inputPw" value="${pw}" required="" placeholder="*********">
+                     <div class="invalid-tooltip">비밀번호를 입력해주세요</div>
                     <div class="show-hide"><span class="show">                         </span></div>
                   </div>
                 </div>
-             <input name="remember-me" type="checkbox"> : Remember me 
+            
                 <div class="form-group">
+                
+                <input name="remember-me" type="checkbox"> : Remember me 
+                
+                <a class="link" href="forget-password.html">비밀번호 찾기</a>
+                <a class="link" style="padding-right: 8px;" href="./findTraIdView.do">아이디&nbsp; º </a>
                 <font color="red">
 				<p> ${securityexceptionmsg}</p>
 				</font>
 				<c:if test="${not empty securityexceptionmsg}">
-                <input name="remember-me" type="checkbox"> : Remember me 
-           		
-    		
-    		
-				
-    	
-    	</c:if>
+
+    				</c:if>
 				<br>
 				<input type="hidden" name="loginRedirect" value="${loginRedirect}" />
                   <input class="btn btn-success" type="submit" value="Log In" data-bs-toggle="tooltip" title="btn btn-success"  onclick="loginCheck()">
@@ -120,16 +122,34 @@
                     <li><a href="https://www.instagram.com/login" target="_blank"><i data-feather="instagram">                  </i></a></li>
                   </ul>
                 </div>
-                <p>Don't have account?<a class="ms-2" href="./traSignUp.do">회원가입</a></p>
-                <p><a class="ms-2" href="./reMain.do">돌아가기</a></p>
-                  <input class="btn btn-warning btn-block btn-lg" type="button" value="돌아가기" onclick="history.back(-1)">
+                <p>계정이 없으신가요??<a class="ms-2" href="./InsSingUpgo.do">회원가입</a></p>
+                <p>메인화면으로 돌아가시겠습니까?<a class="ms-2" href="./">이동</a></p>
+                  <input class="btn btn-warning btn-block btn-xs " type="button" value="뒤로가기" onclick="history.back(-1)">
               </form>
             </div>
           </div>
         </div>
       </div>
     </section>
-    
+     <script>
+      (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+      if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+      }, false);
+      });
+      }, false);
+      })();
+    </script>
     <!-- page-wrapper end-->
     <!-- latest jquery-->
     <script src="./assets/js/jquery-3.5.1.min.js"></script>

@@ -67,8 +67,8 @@
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           		</sec:authorize>
           		<sec:authorize access="isAuthenticated()">
-          		<div class="logo-wrapper"><a href="./main.do"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
-            <div class="dark-logo-wrapper"><a href="./main.do"><img class="img-fluid" src="./assets/images/logo/dark-logo.png" alt=""></a></div>
+          		<div class="logo-wrapper"><a href="./reMain.do"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
+            <div class="dark-logo-wrapper"><a href="./reMain.do"><img class="img-fluid" src="./assets/images/logo/dark-logo.png" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           		</sec:authorize>
           		
@@ -194,15 +194,14 @@
         <!-- Page Sidebar Start-->
         <header class="main-nav">
          <sec:authorize access="isAuthenticated()"> 
-            <sec:authentication property="Details" var="info" />
-          <div class="sidebar-user text-center"><a class="setting-primary" href="./myProfile.do"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="C:\\Users\\longd\\Desktop\\login.png" alt="">
+          <div class="sidebar-user text-center"><a class="setting-primary" href="./editProfile.do"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="./assets/images/dashboard/1.png" alt="">
             <div class="badge-bottom"><span class="badge badge-primary">
             
             <c:if test = "${auth eq '[ROLE_USER]'}">일반회원 </c:if>
             <c:if test = "${auth eq '[ROLE_INSTROCTUR]'}">강사 </c:if>
             <c:if test = "${auth eq '[ROLE_ADMIN]'}">관리자 </c:if>
             </span></div><a href="user-profile.html">
-          
+             <sec:authentication property="Details" var="info" />
              <sec:authentication property="principal"  var="id" />
               <h6 class="mt-3 f-14 f-w-600">${info.name}</h6></a>
             <p class="mb-0 font-roboto">${id}<br>${info.email}</p>

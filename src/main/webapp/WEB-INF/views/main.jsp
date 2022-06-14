@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <link rel="stylesheet" type="text/css" href="../assets/css/sweetalert2.css">
 <title>첫 페이지</title>
 </head>
 <%@ include file="./header.jsp" %>
@@ -54,14 +55,15 @@
                     <sec:authorize access="isAuthenticated()">
 	<p>
 		
+		<sec:authentication property="Details" var="info" /><br>
 		<sec:authentication property="principal"  var="id" /><br>
 	    principal =>  시큐리티 세션 아아디 : ${id}<br>
-		<sec:authentication property="Details" var="info" /><br>
 		시큐리티 세션 .디테일 부분
 		이름 : ${info.name}<br>
 		이메일 : ${info.email} <br>
 		생년월일 : ${info.birth}<br>
 		프로필 : ${info.profile}<br>
+		경력: ${info.career}<br>
 		가입일 :   ${info.regdate}<br>
 		은행 :   ${info.bank}<br>
 		계좌번호 :   ${info.banknum }<br>
@@ -71,6 +73,7 @@
 		시큐리티 세션 권한: <sec:authentication property="Authorities" /><br>
 	</p>
 </sec:authorize>
+
                   </div>
                 </div>
               </div>
@@ -79,26 +82,75 @@
           <!-- Container-fluid Ends-->
         </div>
         <!-- footer start-->
-        <footer class="footer">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6 footer-copyright">
-                <p class="mb-0">Copyright 2021-22 © viho All rights reserved.</p>
-              </div>
-              <div class="col-md-6">
-                <p class="pull-right mb-0">Hand crafted & made with <i class="fa fa-heart font-secondary"></i></p>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
+      
+      
 
 
 
 <%@include file="./footer.jsp" %>
+<script type="text/javascript">
+// window.onbeforeunload = function(e) {
+//     var dialogText = 'Dialog text here';
+//     e.returnValue = dialogText;
+//     return dialogText;
+// };
+window.onload = function() {
+	
+	var auth   = '${info.auth}'
+    var delflag   = '${info.delflag}'
+	console.log(delflag , auth);
+	if(auth == "ROLE_INSTROCTUR" && delflag =="P"){
+		Swal.fire({
+			  title: '경력 등록',
+			  text: "서비스를 이용하시려면 경력등록이 필요합니다!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3db39d',
+			  cancelButtonColor: '#e4818b',
+			  cancelButtonText: '취소',
+			  confirmButtonText: '등록하기!'
+			}).then((result) => {
+			  if (result.value) {
+				  window.location='./InsCareer.do';
+			  
+			  }
+			})
+			}else if(auth == "ROLE_INSTROCTUR" && delflag =="R"){
+				Swal.fire({
+					  title: '경력 등록 대기중',
+					  text: "경력 등록 진행 중 입니다.!",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3db39d',
+					  cancelButtonColor: '#e4818b',
+					  cancelButtonText: '취소',
+					  confirmButtonText: '등록하기!'
+					}).then((result) => {
+					  if (result.value) {
+						  window.location='./myProfile.do';
+					  
+					  }
+					})
+			}else if(auth == "ROLE_INSTROCTUR" && delflag =="C"){
+				Swal.fire({
+					  title: '경력 승인 취소',
+					  text: "경력 등록이 취소되었습니다. 다시 등록해주세요.!",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3db39d',
+					  cancelButtonColor: '#e4818b',
+					  cancelButtonText: '취소',
+					  confirmButtonText: '등록하기!'
+					}).then((result) => {
+					  if (result.value) {
+						  window.location='./InsCareer.do';
+					  
+					  }
+					})
+			}
+			};
+</script>
+  	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-
-  
 </body>
 </html>

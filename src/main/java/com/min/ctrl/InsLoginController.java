@@ -47,7 +47,7 @@ public class InsLoginController {
 	//메인페이지 헤더초기화
 	@RequestMapping(value = "/reMain.do", method = RequestMethod.GET)
 	public String redirectHome(Locale locale, Model model,Authentication user) {
-		log.info("Welcome home! The client locale is {}.", locale);
+		log.info("Welcome home! 리다이렉트 {}.", locale);
 		
 		
 		return "redirect:/";
@@ -75,21 +75,9 @@ public class InsLoginController {
 		System.out.println("로그인 페이지로 이동 합시다");
 		return "InsLoginForm";
 	}
+  
 
-	@RequestMapping(value = "/loginCheckTraMap.do", method = RequestMethod.POST)
-	public @ResponseBody Map<String, String> loginCheckMap(@RequestParam Map<String, Object> map){
-		Map<String, String> rMap = new HashMap<String, String>();
-		log.info("********* Welcome Member_Controller loginCheckMap! : {} *********", map);
-		MemberVo mVo = service.loginTra(map);
-		log.info("********* Welcome! Member_Controller loginCheckMap 로그인 정보 : {} *********", mVo);
-		if(mVo == null) {
-			rMap.put("isc", "실패");
-		}else {
-			rMap.put("isc", "성공");
-		}
-		return rMap;
-	}
-
+ 
 	//로그인 완료 후 메인 페이지로 가는 매핑
 	@RequestMapping(value = "/result.do", method = RequestMethod.GET)
 	public String maingo(Authentication user, Model model , HttpSession session) {
@@ -130,15 +118,44 @@ public class InsLoginController {
 	public String SignUpgo() {
 		return "insRegister";
 	}
-
+   
+	//강사 아이디 중복확인
+	@RequestMapping(value = "/CheckInsId.do", method = RequestMethod.GET)
+	@ResponseBody
+	public int idCheck(@RequestParam("id") String id) {
+		log.info("*id : ", id);
+		return service.checkInsId(id);
+	}
 
 	// 회원가입 성공 매핑
 	@RequestMapping(value = "/InsSingUpSc.do", method = RequestMethod.POST)
 	public String maingo(@RequestParam Map<String, Object> map, Model model) {
 		System.out.println("회원가입 정보"+map);
 		service.InsSignUp(map);
-		return "redirect:/user/loginPage.do";
+		service.insertCar(map);
+		return "redirect:/ins/loginPage.do";
 	}
+	// 강사 경력 등록 페이지 이동
+	@RequestMapping(value = "/InsCareer.do", method = RequestMethod.GET)
+	public String InsCareer( ) {
+		log.info("강사 경력등록 페이지 ");
+		return "/InsCareer";
+	}
+	
+	@RequestMapping(value="/insertCar.do",method = RequestMethod.POST)
+	public String insertCar(@RequestParam Map<String,Object> map, Model model,Authentication user) {
+		log.info("경력 등록 :",map);
+		MemberVo mvo = (MemberVo) user.getDetails();
+		map.put("id", mvo.getId() );
+		service.updateCar(map);
+		
+		log.info("경력자 아이디 등록 :",map);
+		
+		return "redirect:/ins/logout.do";
+	}
+	
+	
+	
 	
 	//관리자 페이지
 	@RequestMapping(value = "/admin/adminPage.do", method = RequestMethod.GET)

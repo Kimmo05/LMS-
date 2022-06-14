@@ -52,15 +52,19 @@
 		<security:intercept-url pattern="/images/**" access="permitAll" />
 		<!-- 정적 리소스는 모두 접근 허용 -->
 <!-- 		<security:intercept-url pattern="/assets/**/**" access="permitAll" /> -->
-	<security:intercept-url pattern="/**" access="permitAll" /> 
+	<security:intercept-url pattern="/**" access="hasRole('USER')" /> 
 		<!-- 전체허용.? -->
 		<security:intercept-url pattern="/user/*.do" access="permitAll"/>
 	
 		<security:access-denied-handler error-page="/user/AuthError.do"/>
+		<security:intercept-url pattern="/user/*.do" access="hasRole('USER')"/>
 		
 		<security:intercept-url pattern="/user/myProfile.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/loginPage.do" access="permitAll"/>
+		<security:intercept-url pattern="/user/findTraId.do" access="permitAll"/>
+		<security:intercept-url pattern="/user/idCheck.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/page.do" access="hasRole('ADMIN')"/>
+		<security:intercept-url pattern="/user/updateProfile.do" access="permitAll"/>
 		
 		<security:intercept-url pattern="/user/adminTraList.do" access="hasRole('ADMIN')"/>
 		<security:intercept-url pattern="/user/**" access="hasRole('USER')"/>

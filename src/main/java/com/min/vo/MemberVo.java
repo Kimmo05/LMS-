@@ -29,6 +29,10 @@ public class MemberVo {
 	private String career;
 	private String delflag;
 	private String regdate;
-	
+	private String car_file;
+	private String car_depart;
+	private String car_position;
+	private String car_period;
+	private String car_content;
 
 }

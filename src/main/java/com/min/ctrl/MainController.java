@@ -45,7 +45,7 @@ public class MainController {
 	public String LoginHome(Locale locale, Model model) {
 		log.info("로그인 후 메인 {}", locale);
 		
-		return "main";
+		return "redirect:main";
 	}
 	
 	// 로그인 페이지로 가는 매핑
