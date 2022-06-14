@@ -1,104 +1,138 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-    
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<title>첫 페이지</title>
+    <title>첫 페이지</title>
 </head>
 <%@ include file="./header.jsp" %>
 <body>
-  
-        <div class="page-body">
-          <div class="container-fluid">
-            <div class="page-header">
-              <div class="row">
-                <div class="col-sm-6">
-                  <h3>이름</h3>
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.do">Home</a></li>
-                    <li class="breadcrumb-item">중분류</li>
-                    <li class="breadcrumb-item active">소분류</li>
-                  </ol>
-                </div>
-                <div class="col-sm-6">
-                  <!-- Bookmark Start-->
-                  <div class="bookmark">
-                    <ul>
-                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
-                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
-                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
-                      <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
-                      <li><a href="javascript:void(0)"><i class="bookmark-search" data-feather="star"></i></a>
-                        <form class="form-inline search-form">
-                          <div class="form-group form-control-search">
-                            <input type="text" placeholder="Search..">
-                          </div>
-                        </form>
-                      </li>
-                    </ul>
-                  </div>
-                  <!-- Bookmark Ends-->
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Container-fluid starts-->
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="card">
-                  <div class="card-header pb-0">
-                    <h5>메인 페이지</h5>
-                    <sec:authorize access="isAuthenticated()">
-	<p>
-		
-		<sec:authentication property="principal"  var="id" /><br>
-	    principal =>  시큐리티 세션 아아디 : ${id}<br>
-		<sec:authentication property="Details" var="info" /><br>
-		시큐리티 세션 .디테일 부분
-		이름 : ${info.name}<br>
-		이메일 : ${info.email} <br>
-		생년월일 : ${info.birth}<br>
-		프로필 : ${info.profile}<br>
-		가입일 :   ${info.regdate}<br>
-		은행 :   ${info.bank}<br>
-		계좌번호 :   ${info.banknum }<br>
-		회원상태 : ${info.delflag } <br>
-		회원권한 : ${info.auth} <br>
-		비밀번호 : <sec:authentication property="Credentials" /><br>
-		시큐리티 세션 권한: <sec:authentication property="Authorities" /><br>
-	</p>
-</sec:authorize>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Container-fluid Ends-->
-        </div>
-        <!-- footer start-->
-        <footer class="footer">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6 footer-copyright">
-                <p class="mb-0">Copyright 2021-22 © viho All rights reserved.</p>
-              </div>
-              <div class="col-md-6">
-                <p class="pull-right mb-0">Hand crafted & made with <i class="fa fa-heart font-secondary"></i></p>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
 
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <%--                    <sec:authorize access="isAuthenticated()">--%>
+                        <%--	<p>--%>
+                        <%--		--%>
+                        <%--		<sec:authentication property="principal"  var="id" /><br>--%>
+                        <%--	    principal =>  시큐리티 세션 아아디 : ${id}<br>--%>
+                        <%--		<sec:authentication property="Details" var="info" /><br>--%>
+                        <%--		시큐리티 세션 .디테일 부분--%>
+                        <%--		이름 : ${info.name}<br>--%>
+                        <%--		이메일 : ${info.email} <br>--%>
+                        <%--		생년월일 : ${info.birth}<br>--%>
+                        <%--		프로필 : ${info.profile}<br>--%>
+                        <%--		가입일 :   ${info.regdate}<br>--%>
+                        <%--		은행 :   ${info.bank}<br>--%>
+                        <%--		계좌번호 :   ${info.banknum }<br>--%>
+                        <%--		회원상태 : ${info.delflag } <br>--%>
+                        <%--		회원권한 : ${info.auth} <br>--%>
+                        <%--		비밀번호 : <sec:authentication property="Credentials" /><br>--%>
+                        <%--		시큐리티 세션 권한: <sec:authentication property="Authorities" /><br>--%>
+                        <%--	</p>--%>
+                        <%--</sec:authorize>--%>
+                        <div class="row">
+                            <div class="col-xl-4 xl-50 col-sm-6 box-col-6">
+                                <div class="card">
+                                    <div class="product-box learning-box">
+                                        <div class="product-img"><img class="img-fluid top-radius-blog"
+                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                            <div class="product-hover">
+                                                <ul>
+                                                    <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
+                                                    </li>
+                                                    <li><a href="learning-detailed.html"><i class="icon-import"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="details-main"><a href="learning-detailed.html">
+                                            <div class="bottom-details">
+                                                <h6>UX Development.</h6>
+                                            </div>
+                                        </a>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem Ipsum has.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 xl-50 col-sm-6 box-col-6">
+                                <div class="card">
+                                    <div class="product-box learning-box">
+                                        <div class="product-img"><img class="img-fluid top-radius-blog"
+                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                            <div class="product-hover">
+                                                <ul>
+                                                    <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
+                                                    </li>
+                                                    <li><a href="learning-detailed.html"><i class="icon-import"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="details-main"><a href="learning-detailed.html">
+                                            <div class="bottom-details">
+                                                <h6>UX Development.</h6>
+                                            </div>
+                                        </a>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem Ipsum has.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 xl-50 col-sm-6 box-col-6">
+                                <div class="card">
+                                    <div class="product-box learning-box">
+                                        <div class="product-img"><img class="img-fluid top-radius-blog"
+                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                            <div class="product-hover">
+                                                <ul>
+                                                    <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
+                                                    </li>
+                                                    <li><a href="learning-detailed.html"><i class="icon-import"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="details-main"><a href="learning-detailed.html">
+                                            <div class="bottom-details">
+                                                <h6>UX Development.</h6>
+                                            </div>
+                                        </a>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
+                                                industry. Lorem Ipsum has.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+</div>
+<!-- footer start-->
+</div>
+</div>
 
 
 <%@include file="./footer.jsp" %>
 
 
-  
 </body>
 </html>

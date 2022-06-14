@@ -6,10 +6,10 @@
 <insert id="subInsertSubject" parameterType="map">
 	INSERT INTO SUBJECT (SUB_NUM, SUB_TITLE, SUB_CONTENT, 
 						SUB_COD_CODE, SUB_REGDATE,SUB_REG_ID, 
-					 	SUB_REG_CODE, SUB_STATUS) 
+					 	SUB_REG_CODE, SUB_STATUS,SUB_SCORE)
 			VALUES (TO_CHAR(SYSDATE,'yyyyMMdd')||'SUB'||SUB_SEQ.NEXTVAL,#{sub_title},#{sub_content},
 					#{sub_cod_code},SYSDATE,#{sub_reg_id},
-					'REG'||SUB_REG_SEQ.NEXTVAL,'W')
+					'REG'||SUB_REG_SEQ.NEXTVAL,'W','{"score":[],"communicationTotal":0, "curriculumTotal":0, "bookTotal":0, "practiceTotal":0, "immersionTotal":0}')
 	<selectKey keyProperty="sub_num" resultType="java.lang.String" order="AFTER" >
 		SELECT MAX(SUB_NUM) FROM (SELECT SUB_NUM FROM SUBJECT ORDER BY SUB_REGDATE DESC) WHERE ROWNUM = 1
 	</selectKey>

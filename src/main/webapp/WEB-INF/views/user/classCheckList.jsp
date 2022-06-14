@@ -25,8 +25,9 @@
         <!-- Container-fluid starts-->
         <div class="container-fluid">
             <div class="row">
-                <h5>Content</h5>
+                <h5>${title}</h5>
                 <form action="./classCheckList.do" method="post" id="checkForm">
+                    <input type="hidden" name="sub_num" value="${sub_num}">
                     <div class="card">
                         <div class="card-header pb-0">
                             <h5>강사와의 소통은 잘 이루어 졌나요?</h5>
@@ -163,11 +164,6 @@
                     <button type="button" class="btn btn-light" onclick="javascript: history.back()">취소</button>
                     <button type="button" class="btn btn-primary" id="smitBtn">제출</button>
                 </form>
-                communication : '평점 1~5',
-                curriculum:'평점',
-                book:'평점',
-                practice:'평점',
-                immersion:'평점'
             </div>
         </div>
         <!-- Container-fluid Ends-->

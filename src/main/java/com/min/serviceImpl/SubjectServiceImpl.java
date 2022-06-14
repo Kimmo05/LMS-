@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.min.dao.SubjectDao;
 import com.min.service.SubjectService;
 import com.min.vo.MemberVo;
 import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
+import com.min.dao.SubjectDao;
 
 import lombok.extern.slf4j.Slf4j;
 

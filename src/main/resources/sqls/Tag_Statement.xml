@@ -39,4 +39,9 @@
         FROM TAG
         WHERE TAG_NAME = #{name}
     </select>
+
+
+    <select id="selectTagSubjectCode" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT COD_TAG FROM SUB_CODE WHERE COD_CODE = #{code}
+    </select>
 </mapper>
