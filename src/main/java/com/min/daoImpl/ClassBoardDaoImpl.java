@@ -55,5 +55,25 @@ public class ClassBoardDaoImpl implements IClassBoardDao{
 	public String findFile(int seq) {
 		return sqlSession.selectOne(NS+"findFile",seq);
 	}
+
+	@Override
+	public int documentModify(Map<String, Object> map) {
+		return sqlSession.update(NS+"documentModify",map);
+	}
+
+	@Override
+	public int classBoardDocModify(Map<String, Object> map) {
+		return sqlSession.update(NS+"classBoardDocModify",map);
+	}
+
+	@Override
+	public int classBoardDocDelete(int seq) {
+		return sqlSession.delete(NS+"classBoardDocDelete",seq);
+	}
+	
+	@Override
+	public int documentDelete(int seq) {
+		return sqlSession.delete(NS+"documentDelete",seq);
+	}
 	
 }
