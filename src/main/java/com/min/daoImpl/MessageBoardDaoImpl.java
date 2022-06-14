@@ -1,6 +1,7 @@
 package com.min.daoImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -30,7 +31,20 @@ public class MessageBoardDaoImpl implements IMessageBoardDao{
 	public MessageBoardVo mesBoardSelectDetail(int seq) {
 		return sqlSession.selectOne(NS+"mesBoardSelectDetail",seq);
 	}
+
+	@Override
+	public int mesBoardInsert(Map<String, Object> map) {
+		return sqlSession.insert(NS+"mesBoardInsert",map);
+	}
+
+	@Override
+	public int mesBoardDelete(Map<String, Object> map) {
+		return sqlSession.delete(NS+"mesBoardDelete",map);
+	}
 	
-	
+	@Override
+	public int mesBoardReply(Map<String, Object> map) {
+		return sqlSession.insert(NS+"mesBoardReply",map);
+	}
 	
 }

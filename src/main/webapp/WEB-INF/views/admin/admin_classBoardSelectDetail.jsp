@@ -8,8 +8,10 @@
 <script type="text/javascript">
 function download(val){
 	location.href="./documentDownload.do?doc_originname="+val.value;
-// 	location.href="./documentDownload.do";
-// 	location.href="./test.do";
+}
+
+function del(val){
+	location.href="./classBoardDocDelete.do?cbo_doc_seq="+val.value;
 }
 
 </script>
@@ -19,10 +21,6 @@ function download(val){
     <div class="page-header">
       <div class="row">
         <div class="col-sm-6">
-          <h3>${result.cbo_cate}</h3>
-          <h3>${result}</h3>
-          <h3>${result.cbo_seq}</h3>
-          <h3>${doc_originname}</h3>
 <%--           <input type="hidden" name="doc_originname" value="${doc_originname}" readonly="readonly"> --%>
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
@@ -45,16 +43,16 @@ function download(val){
                   <ul class="blog-social">
                     <li><i class="icofont icofont-user"></i></li>
                     <li>강사: ${result.cbo_ins_id}</li>
-<%--                     <li><i class="icofont icofont-thumbs-up"></i>${result.cbo_youtubeadd}</li> --%>
                     <li><i class="icofont icofont-ui-chat"></i>등록일: ${result.cbo_regdate}</li>
                   </ul>
-                  <h3>${result.cbo_title}</h3>
-                  <!-- 추후 ck에디터로 업데이트 예정 -->
-                  <p style="float: right;">${result.cbo_youtubeadd}</p>
-                  
+                  <input type="hidden" name="cbo_doc_seq" value="${result.cbo_doc_seq}">
                   <c:if test="${result.cbo_cate eq '자료'}">
                   <button value="${doc_originname}" name="doc_originname" type="submit" style="float: right; margin-top: 15px;" class="btn btn-light" onclick="download(this)">다운로드</button>
                   </c:if>
+                  <h3 style="margin-top: 20px;">${result.cbo_title}</h3>
+                  <!-- 추후 ck에디터로 업데이트 예정 -->
+                  <p style="float: right;">${result.cbo_youtubeadd}</p>
+                  
                   <div class="single-blog-content-top">
                     <p>${result.cbo_content}</p>
                   </div>
@@ -68,6 +66,7 @@ function download(val){
   </div>
   <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-light" onclick="javascript:history.back(-1)">뒤로가기</button>
   <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" onclick="modify()">글 수정하기</button>
+  <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-danger" value="${result.cbo_doc_seq}" onclick="del(this)">삭제하기</button>
 <%--   <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classModifyForm.do?cla_num=${result.cla_num}">글 수정하기</a> --%>
 </div>
 </body>

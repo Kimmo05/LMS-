@@ -24,7 +24,7 @@ public class ClassVo implements Serializable{
 	private int cla_price;
 	private int cla_dailytime;
 	private String cla_startdate;
-	private String cla_totaltime;
+	private int cla_totaltime;
 	private String cla_like;
 	private String cla_status;
 	private String cla_regdate;

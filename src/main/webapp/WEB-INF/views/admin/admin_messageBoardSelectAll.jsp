@@ -17,11 +17,10 @@ function insertForm(val){
 	var selected = $("#mes_cate option:selected").val();
 	console.log(selected);
 	
-// 	if(selected == '동영상' || selected == null){
-// 		location.href="./classVideoInsertForm.do";
-// 	}else{
-// 		location.href="./classDocumentInsertForm.do";
-// 	}
+}
+
+function insertForm(){
+	location.href = "./messageBoardInsertForm.do";
 }
 
 

@@ -64,8 +64,8 @@ public class ClassServiceImpl implements IClassService {
 	}
 	
 	@Override
-	public int classTimeSearch(String cla_num) {
-		return dao.classTimeSearch(cla_num);
+	public List<VoteVo> classTimeSearch(ClassVo vo) {
+		return dao.classTimeSearch(vo);
 	}
 	
 	@Override
@@ -74,8 +74,8 @@ public class ClassServiceImpl implements IClassService {
 	}
 	
 	@Override
-	public int updateVote(VoteVo vo) {
-		return dao.updateVote(vo);
+	public int updateVote(Map<String, Object> map) {
+		return dao.updateVote(map);
 	}
 	
 	@Override
@@ -84,9 +84,44 @@ public class ClassServiceImpl implements IClassService {
 	}
 	
 	@Override
+	public List<VoteVo> voteRatio(VoteVo vo) {
+		return dao.voteRatio(vo);
+	}
+	
+	@Override
+	public VoteVo voteIns(VoteVo vo) {
+		return dao.voteIns(vo);
+	}
+	
+	@Override
+	public List<VoteVo> votedPeople(VoteVo vo) {
+		return dao.votedPeople(vo);
+	}
+	
+	
+	@Override
+	public int classStatusUpdate(Map<String, Object> map) {
+		return dao.classStatusUpdate(map);
+	}
+	
+	@Override
+	public int voteDelete(Map<String, Object> map) {
+		return dao.voteDelete(map);
+	}
+	
+	@Override
+	public int votedInsert(Map<String, Object> map) {
+		return dao.votedInsert(map);
+	}
+	
+	
+	@Override
 	public List<SubjectVo> subjectSelected() {
 		return dao.subjectSelected();
 	}
+
+
+	
 	
 	
 	
