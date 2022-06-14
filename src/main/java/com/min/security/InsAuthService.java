@@ -98,7 +98,6 @@ public class InsAuthService  implements AuthenticationProvider{
 
 	@Override
 	public boolean supports(Class<?> authentication) {
-		// TODO Auto-generated method stub
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
 

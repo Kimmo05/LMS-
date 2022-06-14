@@ -17,4 +17,5 @@ public class InstructorVo {
 	private String ins_name;
 	private String ins_email;
 	private String ins_carrer;
+	private VoteVo voteVo;
 }

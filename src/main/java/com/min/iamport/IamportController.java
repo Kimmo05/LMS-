@@ -73,8 +73,8 @@ public class IamportController {
 	
 	//결제 및 insert
 	@PostMapping("pay.do")
-	public void getPay(String merchant_uid, String imp_uid,String payRow,String payDiscount,int payUmilage,String payCounum,Authentication user) {
-		System.out.println("merchant_uid 는 ?? : " + merchant_uid);
+	public void getPay(String merchant_uid, String imp_uid,String payRow,String payDiscount,int payUmilage,String payCounum,Authentication user,int payPlusMilage) {
+		System.out.println("merchant_uid 는 ?? : " + merchant_uid + "pay : "+payPlusMilage);
 		System.out.println("imp_uid는 ?? : " + imp_uid); //주문번호
 		try {
 			//payco와 kcp만 지원
@@ -118,18 +118,13 @@ public class IamportController {
 				couponMap.put("cou_code", payCounum);
 				service.updateCoupon(couponMap);
 			}
-			if(payUmilage == 0) {
-				map.put("pay_umilage", "");
-			}else {
-				map.put("pay_umilage", payUmilage);
-				Map<String,Object> mileMap = new HashMap<String, Object>();
-				mileMap.put("useMilage", payUmilage);
-				mileMap.put("tra_id", user.getPrincipal());
-				service.updateMileage(mileMap);
-			}
-			
-			
-			
+			map.put("pay_umilage", payUmilage);
+			Map<String,Object> mileMap = new HashMap<String, Object>();
+			mileMap.put("useMilage", payUmilage);
+			mileMap.put("tra_id", user.getPrincipal());
+			service.updateMileage(mileMap);
+			map.put("plusMileage", payPlusMilage);
+			map.put("tra_id", user.getPrincipal());
 			//insert 가자
 			int n = service.payInsert(map);
 			System.out.println(n + "@@@!!@@@@@@@@");
@@ -152,9 +147,8 @@ public class IamportController {
 	
 	//환불 승인.
 	@RequestMapping(value = "cancel.do", method = RequestMethod.POST)
-	public String testCancelPaymentAlreadyCancelledImpUid() {
-        String test_already_cancelled_imp_uid = "imp_317120240807";
-        CancelData cancel_data = new CancelData(test_already_cancelled_imp_uid, true); //imp_uid를 통한 전액취소
+	public void testCancelPaymentAlreadyCancelledImpUid(String paynum) {
+        CancelData cancel_data = new CancelData(paynum, true); //imp_uid를 통한 전액취소
         System.out.println("환불 ok~");
         try {
             IamportResponse<Payment> payment_response = client.cancelPaymentByImpUid(cancel_data);
@@ -175,47 +169,9 @@ public class IamportController {
                     break;
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "nextpage";
     }
 	
-	
-	//주문조회
-	@PostMapping("payInfo.do")
-	@ResponseBody
-	public String getPayInfo() {
-		
-		String test_Imp_uid = "imp_422570689158"; //payco 주문 아이디
-		
-		try {
-			//payco와 kcp만 지원
-			//카카오페이의 경우 pay_response를 활용
-			//IamportResponse<PaymentBalance> payment_response = client.paymentBalanceByImpUid(test_Imp_uid);
-			IamportResponse<Payment> pay_response = client.paymentByImpUid(test_Imp_uid);
-			
-			System.out.println(pay_response.getResponse().getMerchantUid()); //주문번호 o
-			System.out.println(pay_response.getResponse().getBuyerName()); //구매자이름 o
-			System.out.println(pay_response.getResponse().getName()); // 주문명 o
-			System.out.println(pay_response.getResponse().getAmount()); // 가격 o
-			System.out.println(pay_response.getResponse().getStatus()); // 주문상태 o
-			System.out.println(pay_response.getResponse().getPayMethod()); // 결제수단 o
-			System.out.println(pay_response.getResponse().getPaidAt()); // 결제시각 o
-			
-		} catch (IamportResponseException e) {
-			
-			System.out.println(e.getMessage());
-			
-			switch(e.getHttpStatusCode()) {
-			case 401: System.out.println("401임다");break;
-			case 500: System.out.println("500임다");break;
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return "success";
-	}
 	
 }

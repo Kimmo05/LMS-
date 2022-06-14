@@ -18,4 +18,14 @@ public interface IClassBoardDao {
 	public int classBoardDocInsert(Map<String, Object> map);
 	
 	public String findFile(int seq);
+	
+	public int documentModify(Map<String, Object> map);
+	
+	public int classBoardDocModify(Map<String, Object> map);
+	
+	public int classBoardDocDelete(int seq);
+	
+	public int documentDelete(int seq);
+	
+	
 }

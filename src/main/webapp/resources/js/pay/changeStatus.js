@@ -45,9 +45,13 @@ function modalOpen(paynum){
 }
 
 //환불정보 받아오기
-function cancelWhy(paynum){
+function cancelWhy(paynum,payStatus){
 	console.log("환불정보 모달창 오픈!");
 	console.log(paynum);
+	if(payStatus == '환불승인'){
+		const getButton = document.getElementById('changeButton');
+		getButton.innerHTML='<button class="btn btn-danger disabled" type="button" onclick="statusUpdate(0)">승인됨</button>'
+	}
 	$.ajax({
 		url : "./getPayDetail.do",
 		method : "post",
@@ -65,16 +69,45 @@ function cancelWhy(paynum){
 	})
 }
 
+//아임포트 환불
+function importCancel(payNum){
+		 $.ajax({
+			 type:"post",
+			 url:"./payment/cancel.do",
+			 data : {
+				paynum : payNum
+			},
+			 success:function(result){
+				console.log(result);
+			 }
+		 })
+}
+
 //상태 변경
 function statusUpdate(paynum){
 	console.log("상태 변경 후 redirect");
 	if(paynum == 0){
 		const getcanCate = document.getElementById('payNumber');
 		var getPayNumber = getcanCate.innerText;
-		location.href="./statusUpdate.do?paynum="+getPayNumber;
+		console.log(getPayNumber);
+		Swal.fire({
+				      icon: 'success',
+					  title : 'Refund Success',
+				      text: "환불이 완료되었습니다!",
+				    }).then(function(){
+					location.href="./statusUpdate.do?paynum="+getPayNumber;
+				})
+		importCancel(getPayNumber);
 	}else{
-		location.href="./statusUpdate.do?paynum="+paynum;
+		Swal.fire({
+				      icon: 'success',
+					  title : 'Refund Success',
+				      text: "환불이 완료되었습니다!",
+				    }).then(function(){
+					location.href="./statusUpdate.do?paynum="+paynum;
+				})
+		importCancel(paynum);
 	}
 	
-	alert("상태변경 완료되었습니다!");
+	
 }

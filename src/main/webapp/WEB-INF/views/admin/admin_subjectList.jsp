@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>관리자 전체목록 리스트 화면</title>
 </head>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="./js/subjectList.js"></script>
 <%@ include file="./admin_header.jsp" %>
 <body>
@@ -91,7 +91,7 @@
                       </ul>
               </div>
               </div>
-              
+          <!--     
               		<div class="col-sm-12">
                 <div class="card">
                 
@@ -116,7 +116,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               
           </div>
        </div>

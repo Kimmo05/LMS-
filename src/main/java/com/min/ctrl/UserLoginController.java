@@ -78,13 +78,14 @@ public class UserLoginController {
 		log.info("Welcome home! The client locale is {}.", locale);
 		
 		
-		return "redirect:/";
+		return "redirect:/app/";
 	}
 	// 로그인 페이지로 가는 매핑
 	@RequestMapping(value = "/loginPage.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Authentication user, Model model, HttpServletRequest req) {
-		System.out.println("사용자로 로그인");
+		
+		log.info("일반회원 로그인");
 //		UserDetails userdto = (UserDetails) user.getPrincipal();
 //		System.out.println("---------------"+userdto);
 //		model.addAttribute("user", userdto.toString());
@@ -100,11 +101,9 @@ public class UserLoginController {
 		if(user != null) {
 			return "redirect:/user/result.do";
 		}
-		System.out.println("로그인 페이지로 이동 합시다");
+		log.info("일반회원 로그인 페이지로 이동");
 		return "TraLoginForm";
 	}
-
-	
 
 	//로그인 완료 후 메인 페이지로 가는 매핑
 	@RequestMapping(value = "/result.do", method = RequestMethod.GET)
@@ -237,7 +236,7 @@ public class UserLoginController {
 	}
 	
 	
-	@PostMapping(value="/uploadAjaxAction.do" , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="/traUploadAjaxAction.do" , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	 @ResponseBody
 	 public ResponseEntity<FileVo> uploadFormPost(MultipartFile uploadFile) {
 	
@@ -323,7 +322,7 @@ public class UserLoginController {
 			return false;
 		}
 	 
-		@GetMapping("/display.do")	
+		@GetMapping("/traDisplay.do")	
 		@ResponseBody
 		public ResponseEntity<byte[]> getFile(String fileName) {
 
@@ -350,7 +349,7 @@ public class UserLoginController {
 		}
 	
 		
-		@GetMapping("/updateProfile.do")	
+		@GetMapping("/traUpdateProfile.do")	
 		@ResponseBody
 		public ResponseEntity<byte[]> getFileName(String fileName,Authentication user,HttpSession session) throws IOException {
 			Map<String, Object> map = new HashMap<String, Object>();

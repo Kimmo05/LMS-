@@ -16,4 +16,8 @@ public interface IClassBoardService {
 	public int classDocInsert(Map<String, Object> map);
 	
 	public String findFile(int seq);
+	
+	public int documentUpdate(Map<String, Object> map);
+	
+	public int classBoardDocDelete(int seq);
 }

@@ -49,12 +49,13 @@ SELECT  TRA_ID ,
 		TRA_AUTH,
 		TRA_MILAGE ,
 		TRA_LIKE ,
-		TRA_PREFER,
+		JSON_QUERY(TRA_LIKE,'$' RETURNING VARCHAR2) AS TRA_LIKE,
+		JSON_QUERY(TRA_PREFER,'$' RETURNING VARCHAR2) AS TRA_PREFER,
 		TRA_REGDATE ,
 		TRA_DELFLAG 
 	FROM TRAINEE 
 		WHERE TRA_ID=#{id}
-		AND TRA_DELFLAG IN ('N','W)
+		AND TRA_DELFLAG IN ('N','W')
 </select>
 <!-- 일반회원 회원가입 -->
 <insert id="traSignUp"  parameterType="map">
@@ -68,12 +69,13 @@ TRA_BIRTH,
 TRA_MILAGE,
 TRA_AUTH,
 TRA_REGDATE, 
-TRA_DELFLAG)
+TRA_DELFLAG,
+ TRA_PREFER)
 VALUES(#{id},#{pw}, #{name}, 
 #{email}, #{phone}, 
 #{birth}, 1000, 'ROLE_USER', 
 SYSDATE,
-'N')
+'N','{"subject":[],"more_time":null,"less_time":null,"date":null,"recommand":[]}')
 </insert>
 <!-- 일반회원 개인정보 수정 -->
 <update id="updateTra"  parameterType="map">

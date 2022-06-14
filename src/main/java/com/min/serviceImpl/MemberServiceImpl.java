@@ -39,13 +39,11 @@ public class MemberServiceImpl implements IMemberService{
 
 	@Override
 	public MemberVo loginIns(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return dao.loginIns(map);
 	}
 
 	@Override
 	public int InsSignUp(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return dao.InsSignUp(map);
 	}
 

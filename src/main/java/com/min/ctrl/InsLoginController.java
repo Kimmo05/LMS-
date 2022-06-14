@@ -56,7 +56,8 @@ public class InsLoginController {
 	@RequestMapping(value = "/loginPage.do", method = {RequestMethod.GET,RequestMethod.POST})
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Authentication user, Model model, HttpServletRequest req) {
-		System.out.println("사용자로 로그인");
+		
+		log.info("강사 로그인");
 //		UserDetails userdto = (UserDetails) user.getPrincipal();
 //		System.out.println("---------------"+userdto);
 //		model.addAttribute("user", userdto.toString());
@@ -72,7 +73,7 @@ public class InsLoginController {
 		if(user != null) {
 			return "redirect:/ins/result.do";
 		}
-		System.out.println("로그인 페이지로 이동 합시다");
+		log.info("강사 로그인 페이지로 이동");
 		return "InsLoginForm";
 	}
   

@@ -1,3 +1,4 @@
+package com.min.bean;
 //package com.min.bean;
 //
 //import java.util.List;

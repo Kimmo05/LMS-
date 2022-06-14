@@ -35,4 +35,5 @@ public class MemberVo {
 	private String car_period;
 	private String car_content;
 
+
 }

@@ -15,6 +15,7 @@
 </style>
 </head>
 <%@ include file="./admin_header.jsp" %>
+<%@ include file="../payAlert.jsp" %>
 <body>
   
         <div class="page-body">
@@ -106,8 +107,8 @@
 	                              <td>${vo.pay_date}</td>
 	                              <td>${vo.pay_candate}</td>
 	                              <td>
-	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy" onclick="cancelWhy('${vo.pay_num}')">환불사유</button>&nbsp;<button class="btn btn-primary btn-xs" type="button" onclick="statusUpdate('${vo.pay_num}')">승인하기</button></c:if>
-	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy" onclick="cancelWhy('${vo.pay_num}')">환불사유</button>&nbsp;<button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy" onclick="cancelWhy('${vo.pay_num}','${vo.pay_status}')">환불사유</button>&nbsp;<button class="btn btn-primary btn-xs" type="button" onclick="statusUpdate('${vo.pay_num}')">승인하기</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy" onclick="cancelWhy('${vo.pay_num}','${vo.pay_status}')">환불사유</button>&nbsp;<button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
 	                              </td>
                             	</tr>  	
                           	</c:forEach>
@@ -125,7 +126,7 @@
                           	<br><br>
                           	<h1 class="display-1"><i class="fa fa-credit-card-alt"></i></h1><br>
                           	<h6 id="modalTitle">ddd</h6>
-                          	<div id="modalText">dd</div>
+                          	<div id="modalText">ddd</div>
                           </div>
                           <div class="modal-footer">
                             <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
@@ -158,10 +159,10 @@
                                 <textarea class="form-control" id="canReason" disabled="disabled" style="color:tomato;"></textarea>
                               </div>
                             </form>
-                            <div id="payNumber" style="display:none;">d</div>
+                            <div id="payNumber" style="display:none;"></div>
                           </div>
                           <div class="modal-footer">
-                          	<button class="btn btn-primary" type="button" onclick="statusUpdate(0)">승인하기</button>
+                          	<div id="changeButton"><button class="btn btn-primary" type="button" onclick="statusUpdate(0)">승인하기</button></div>
                             <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
                           </div>
                         </div>

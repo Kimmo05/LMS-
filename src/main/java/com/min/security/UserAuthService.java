@@ -16,7 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.min.service.IMemberService;
-
+import com.min.vo.CareerVo;
 import com.min.vo.MemberVo;
 
 
@@ -83,6 +83,8 @@ public class UserAuthService  implements AuthenticationProvider{
 		user_info.setProfile(dto.getProfile());
 		user_info.setRegdate(dto.getRegdate());
 		user_info.setDelflag(dto.getDelflag());
+		user_info.setLike(dto.getLike());
+		user_info.setPrefer(dto.getPrefer());
 		
         // 반환할 값을 만든다.
         UsernamePasswordAuthenticationToken result 
@@ -96,7 +98,6 @@ public class UserAuthService  implements AuthenticationProvider{
 
 	@Override
 	public boolean supports(Class<?> authentication) {
-		// TODO Auto-generated method stub
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
 

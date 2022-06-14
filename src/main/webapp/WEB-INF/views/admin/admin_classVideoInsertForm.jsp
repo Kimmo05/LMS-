@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item">과정 전체조회</li>
                     <li class="breadcrumb-item">과정 상세조회</li>
                     <li class="breadcrumb-item">과정 자료게시판</li>
-                    <li class="breadcrumb-item">글 등록하기</li>
+                    <li class="breadcrumb-item">동영상 자료 등록하기</li>
                   </ol>
                 </div>
                 <div class="col-sm-6">
@@ -32,7 +32,7 @@
                   <div class="card-header pb-0">
                     <h5>동영상 등록</h5>
                   </div>
-                  <form class="form theme-form" action="./classInsert.do" method="post">
+                  <form class="form theme-form" action="./documentVideoInsert.do" method="post">
                     <div class="card-body">
                       <div class="row">
                         <div class="col">
@@ -45,8 +45,8 @@
                       <div class="row">
                         <div class="col">
                           <div class="mb-3">
-                            <label class="form-label" for="exampleInputPassword2">내용</label>
-                            <input class="form-control" id="exampleInputPassword2" type="text" placeholder="내용을 입력해주세요">
+                            <label class="form-label" for="exampleFormControlInput1">동영상 주소</label>
+                            <input name="videoAdd" class="form-control" id="exampleFormControlInput1" type="text" placeholder="제목을 입력해주세요">
                           </div>
                         </div>
                       </div>

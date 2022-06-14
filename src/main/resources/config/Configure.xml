@@ -3,7 +3,7 @@
 <configuration>
 
 <typeAliases>
-<typeAlias type="com.min.vo.CouponVo" alias="CouponVo"/>
+	<typeAlias type="com.min.vo.CouponVo" alias="CouponVo"/>
 	<typeAlias type="com.min.vo.ClassBoardVo" alias="ClassBoardVo"/>
 	<typeAlias type="com.min.vo.ClassPeopleVo" alias="ClassPeopleVo"/>
 	<typeAlias type="com.min.vo.ClassSubjectVo" alias="ClassSubjectVo"/>

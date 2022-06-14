@@ -59,4 +59,24 @@ public class ITagServiceImpl implements ITagService {
     public String selectTagJson(String name) {
         return dao.selectTagJson(name);
     }
+
+    @Override
+    public String selectTagAll() {
+        return dao.selectTagAll();
+    }
+    @Override
+    public int updateTag(Map<String, Object> map) {
+
+        return dao.updateTag(map);
+    }
+
+    @Override
+    public String selectSubjectTag(String id) {
+        return dao.selectSubjectTag(id);
+    }
+
+    @Override
+    public String selectTagSubjectCode(String code) {
+        return dao.selectTagSubjectCode(code);
+    }
 }
