@@ -164,19 +164,21 @@ public class SubjectAdminController {
 	
 	
 	//3) 관리자의 과목 상태변경
-	@RequestMapping(value = "/subUpdateStatusA.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/subUpdateStatusA.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String subUpdateStatusA(String sub_num){
+	public String subUpdateStatusA(SubjectVo sVo, String sub_num){
 		log.info("********* Welcome SubjectController! subUpdateStatusA 관리자의 상태변경 subUpdateStatusA *********");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sub_num", sub_num);
 		
-//		int n =  sService.subUpdateStatusA(map);
+			int n =  sService.subUpdateStatusA(map);
+			System.out.println("상태가 업데이트 된 과목 수 : "+ n);
+		
 		return "redirect:/user/admin_subjectApprove.do;";
 	}
+		
 
-
-
+	
 
 
 }

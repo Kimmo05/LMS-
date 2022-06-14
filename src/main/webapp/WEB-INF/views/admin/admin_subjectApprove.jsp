@@ -58,7 +58,6 @@
                           <th scope="col"><h6 class="f-w-700">등록자</h6></th>
                           <th scope="col"><h6 class="f-w-700">등록일</h6></th>
                           	<th scope="col"><h6 class="f-w-700">승인상태</h6></th>
-                          	<th scope="col"><h6 class="f-w-700">관리</h6></th>
                         </tr>
                       </thead>
     				<tbody>

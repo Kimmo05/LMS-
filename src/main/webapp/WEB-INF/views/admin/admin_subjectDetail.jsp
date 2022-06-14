@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 과목 상세조회 화면</title>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link
+         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+         rel="stylesheet"
+         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+         crossorigin="anonymous"
+      />
 </head>
 <%@ include file="./admin_header.jsp" %>
 <body>
@@ -277,8 +285,7 @@
             <div class="card">
             <div class="col-sm-12 col-xl-2">
               <div class="row product-page-main">
-                             <button type="button" class="btn btn-outline-primary-2x">승인하기</button><span><button type="button" class="btn btn-outline-warning-2x">반려하기</button></span>
-                             
+                             <button id="confirm" class="btn btn-outline-primary-2x" type="button" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-5']);">승인하기</button>
                 </div>
                 </div>
               </div>
@@ -288,7 +295,62 @@
 
             </div>
             </div>
-            
+     
+      <script type="text/javascript">
+/*      $('.approve').on("click",function(){
+    	alert('승인 클릭 이벤트 발생'); 
+     }); */
+     
+/*      var btn = "test";
+     $(document).ready(function(){
+    	 $("button[name=approve]").click(function(){
+    		 btn=$(this).attr("value");
+    	 });
+     }); */
+/*      
+     function changeStatus(){
+    	 alert("승인 버튼이 클릭이되었습니다.");
+     } */
+      $("#confirm").click(function () {
+    	 Swal.fire({
+       	  title: '해당 과목을 승인하시겠습니까?',
+       	  showDenyButton: true,
+       	  showCancelButton: true,
+       	  confirmButtonText: '승인',
+       	  denyButtonText: '반려',
+       	}).then((result) => { //버튼 클릭시 결과
+       	  if (result.isConfirmed) {
+       	    Swal.fire('승인처리되었습니다!', './subUpdateStatusA.do', 'success');
+	       	history.back();
+       	  } else if (result.isDenied) {
+       		const { value: text } = Swal.fire({
+       		  input: 'textarea',
+       		  inputLabel: '반려사유',
+       		  inputPlaceholder: '반려사유를 입력해주세요.',
+       		  inputAttributes: {
+       		    'aria-label': '반려사유를 입력해주세요.'
+       		  },
+       		  showCancelButton: true,
+       		confirmButtonText: '저장'
+       		}).then((result) => {
+       			if (result.isConfirmed) {
+       	       	    Swal.fire('반려사유가 등록되었습니다!', '', 'success')
+       	       	  } else if (result.isDenied) {
+       	       		Swal.fire('Changes are not saved', '', 'info')
+       	       	  }
+       		})
+
+       		if (text) {
+       		  Swal.fire(text)
+       		} 
+       	   /*  Swal.fire('Changes are not saved', '', 'info') */
+       	  }
+       	})
+    	  });
+
+ 	
+     
+     </script>
 </body>
 <%@include file="./admin_footer.jsp" %>
 </html>

@@ -39,7 +39,6 @@ var pagingAjax= function (){
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>등록자</h6></th>  ";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>등록일</h6></th>";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>승인상태</h6></th>";
-	            varHtml += "       <th scope='col'><h6 class='f-w-700'>관리</h6></th>";
 				varHtml += "     </tr>";
 	            varHtml += "   </thead>";
 				varHtml += "	<tbody>";
@@ -105,7 +104,6 @@ var pagingAjax= function (){
 			              }else if(v.sub_status === "D"){
 			              varHtml += "    		<td><span class='badge rounded-pill badge-danger'>삭제</span></td>                              ";
 			              }
-			                 varHtml += "     	 <td><a><button type='button' class='btn btn-pill btn-outline-info-2x btn-xs'>승인</button><button type='button' class='btn btn-pill btn-outline-warning-2x btn-xs'>반려</button></a></td>";
 			                 varHtml += "  </tr>                                                                                                      ";	
 					
 				});
@@ -226,7 +224,7 @@ function pageLast(pNum,total,pageListNum,pageList){
 
 
 //과목 승인처리를 위한 부분
-window.onload = function(){
+/*window.onload = function(){
 	var buttons = document.getElementsByTagName("button");
 	console.log(buttons.length);
 	for(var i=0; i<buttons.length; i++){
@@ -242,7 +240,7 @@ window.onload = function(){
 			
 			var tmp = this;
 			$.ajax({
-				url:"./subUpdateStatusA.do",
+				url:"./user/subUpdateStatusA.do",
 				type:"post",
 				data:{"id":id},
 				success:function(msg){
@@ -261,7 +259,7 @@ window.onload = function(){
 		}
 	}
 }
-
+*/
 
 
 

@@ -56,19 +56,14 @@ public class SubjectDaoImpl implements SubjectDao{
 		return sqlSession.insert(NS+"subUpdateInstructor", map);
 	}
 	
-	//2) 과목 조회
-	//0) 페이징 처리를 위한 과목 전체 갯수 출력(관리자)
+	//2) 관리자의 과목 조회
+	//2-0) 페이징 처리를 위한 과목 전체 갯수 출력(관리자)
 	@Override
 	public int subjectTotalAdmin() {
 		log.info("========== SubjectDaoImpl/subjectTotalAdmin ==========");
 		return sqlSession.selectOne(NS+"subjectTotalAdmin");
 	}
-	//0) 페이징 처리를 위한 과목 전체 갯수 출력(일반회원)
-	@Override
-	public int subjectTotalUser() {
-		log.info("========== SubjectDaoImpl/subjectTotalUser ==========");
-		return sqlSession.selectOne(NS+"subjectTotalUser");
-	}
+	
 	//2-1) 관리자의 과목 전체 목록 조회
 	@Override
 	public List<SubjectVo> subSelectAllAdmin(RowNumVo rVo) {
@@ -98,6 +93,14 @@ public class SubjectDaoImpl implements SubjectDao{
 		return sqlSession.selectList(NS+"subSelectToApproveAdmin", rVo);
 	}
 
+	
+	//3) 비회원/일반회원/강사의 과목 조회
+	//3-0) 페이징 처리를 위한 과목 전체 갯수 출력(일반회원)
+		@Override
+		public int subjectTotalUser() {
+			log.info("========== SubjectDaoImpl/subjectTotalUser ==========");
+			return sqlSession.selectOne(NS+"subjectTotalUser");
+		}
 	//3-1) 비회원/일반회원/강사의 과목 전체 목록 조회
 	@Override
 	public List<SubjectVo> subSelectAllUser(SubjectVo sVo) {
@@ -105,7 +108,7 @@ public class SubjectDaoImpl implements SubjectDao{
 		log.info("========== subSelectAllUser : "+sVo+" ==========");
 		return sqlSession.selectList(NS+"subSelectAllUser", sVo);
 	}
-	//3-2) 일반회원의 과목 상세 조회
+	//3-2) 비회원/일반회원/강사의 과목 상세 조회
 	@Override
 	public SubjectVo userSubjectDetail(String sub_num) {
 		log.info("========== SubjectDaoImpl/userSubjectDetail ==========");
@@ -121,15 +124,58 @@ public class SubjectDaoImpl implements SubjectDao{
 	}
 	
 
-	//4) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
+	//4) 과목 승인
+	//4-1) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
 	@Override
 	public int subUpdateStatusA(Map<String, Object> map) {
 		log.info("========== SubjectDaoImpl/subUpdateStatusA ==========");
 		log.info("========== subUpdateStatusA : "+map+" ==========");
 		int n = sqlSession.update(NS+"subUpdateStatusA");
-		return (n>0)?1:0;
+		return sqlSession.update(NS+"subUpdateStatusA",map);
+	}
+	//4-2) 과목 등록 후 관리자의 과목 검수 후 과목상태를 삭제'D'으로 변경
+	@Override
+	public int subUpdateStatusD(Map<String, Object> map) {
+		log.info("========== SubjectDaoImpl/subUpdateStatusD ==========");
+		log.info("========== subUpdateStatusD : "+map+" ==========");
+		int n = sqlSession.update(NS+"subUpdateStatusD");
+		return sqlSession.update(NS+"subUpdateStatusD",map);
+	}
+	//4-3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 반려'R'으로 변경
+	@Override
+	public int subUpdateStatusR(Map<String, Object> map) {
+		log.info("========== SubjectDaoImpl/subUpdateStatusR ==========");
+		log.info("========== subUpdateStatusR : "+map+" ==========");
+		int n = sqlSession.update(NS+"subUpdateStatusR");
+		return sqlSession.update(NS+"subUpdateStatusR",map);
+	}
+	//4-4) 과목 반려시 관리자의 과목 반려 사유 입력
+	@Override
+	public int subUpdateRejection(Map<String, Object> map) {
+		log.info("========== SubjectDaoImpl/subUpdateRejection ==========");
+		log.info("========== subUpdateRejection : "+map+" ==========");
+		int n = sqlSession.update(NS+"subUpdateRejection");
+		return sqlSession.update(NS+"subUpdateRejection",map);
 	}
 	
+	//5) 과목 수정
+	//5-1) 일반회원/강사 과목 수정시 과목 정보 수정
+	@Override
+	public int subUpdateSubject(Map<String, Object> map) {
+		log.info("========== SubjectDaoImpl/subUpdateSubject ==========");
+		log.info("========== subUpdateSubject : "+map+" ==========");
+		int n = sqlSession.update(NS+"subUpdateSubject");
+		return sqlSession.update(NS+"subUpdateSubject",map);
+	}
+	//5-2) 일반회원/강사 과목 수정시 커리큘럼 정보 수정
+	@Override
+	public int subUpdateCurriculum(Map<String, Object> map) {
+		log.info("========== SubjectDaoImpl/subUpdateCurriculum ==========");
+		log.info("========== subUpdateCurriculum : "+map+" ==========");
+		int n = sqlSession.update(NS+"subUpdateCurriculum");
+		return sqlSession.update(NS+"subUpdateCurriculum",map);
+	}
+
 
 	}
 

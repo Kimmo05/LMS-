@@ -75,26 +75,31 @@
                 </div>
               </div>
             </div>
+            
+             <div class="container-fluid search-page">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card col-sm-12">
+                  <div class="card-header pb-4">
+                    <form class="search-form">
+                      <div class="form-group m-2">
+                        <label class="sr-only">Email</label>
+                      </div>
+                      <div class="form-group mb-0">
+                        <div class="input-group"><span class="input-group-text"><i class="icon-search"></i></span>
+                          <input class="form-control-plaintext" type="search" placeholder="Search..">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
           </div>
           <!-- Container-fluid Ends-->
         </div>
-        <!-- footer start-->
-        <footer class="footer">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-6 footer-copyright">
-                <p class="mb-0">Copyright 2021-22 © viho All rights reserved.</p>
-              </div>
-              <div class="col-md-6">
-                <p class="pull-right mb-0">Hand crafted & made with <i class="fa fa-heart font-secondary"></i></p>
-              </div>
-            </div>
-          </div>
-        </footer>
+ 
       </div>
     </div>
-
-
+</div>
+</div>
 
 <%@include file="./footer.jsp" %>
 

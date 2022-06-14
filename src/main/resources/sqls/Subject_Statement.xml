@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.min.daoImpl.SubjectDaoImpl">
-
+<!-- 1) 과목 등록 -->
 <!-- 1-1) 과목 정보 입력 -->
 <insert id="subInsertSubject" parameterType="map">
 	INSERT INTO SUBJECT (SUB_NUM, SUB_TITLE, SUB_CONTENT, 
@@ -39,7 +39,7 @@
 </update>
 
 
-<!-- 2) 과목 조회 -->
+<!-- 2) 관리자 과목 조회 -->
 <!-- 2-0) 페이징 처리를 위한 과목 전체 갯수 출력 -->
 <select id="subjectTotalAdmin" resultType="java.lang.Integer">
 	 SELECT COUNT(*) FROM SUBJECT
@@ -95,6 +95,10 @@
 						ON T1.SUB_COD_CODE=T2.COD_CODE
 </select>
 
+
+
+<!-- 3) 비회원/일반회원/강사 과목 조회 -->
+<!-- 3-0 페이징 처리를 위한 과목 전체 갯수 출력 -->
 <select id="subjectTotalUser" resultType="java.lang.Integer">
 	 SELECT COUNT(*) FROM SUBJECT WHERE SUB_STATUS = 'A'
 </select>
@@ -122,7 +126,7 @@ SELECT RN, SUB_NUM, SUB_TITLE, SUB_CONTENT, SUB_REG_ID, COD_NAME, SUB_REGDATE
 				SUB_TAG, sc2.COD_TAG  , SUB_REG_ID , 
 				SUB_INS , SUB_REGDATE , SUB_SCORE , 
 				sc.CUR_DETAIL ,
-				sc.CUR_SUBCONTENT , sc.CUR_VERSION , sc.CUR_TIME , 
+				sc.CUR_SUBCONTENT , sc.CUR_VERSION , sc.CUR_TIME , sc.CUR_NUM,
 				sc.CUR_LEVEL , sc.CUR_FILE , sc2.COD_NAME 
 						FROM SUBJECT s JOIN SUB_CURRICULUM sc 
 																	ON s.SUB_NUM = sc.CUR_SUB_NUM 
@@ -137,18 +141,43 @@ SELECT RN, SUB_NUM, SUB_TITLE, SUB_CONTENT, SUB_REG_ID, COD_NAME, SUB_REGDATE
 		FROM SUBJECT s JOIN SUB_CODE sc 
 						ON s.SUB_COD_CODE = sc.COD_CODE 
 			WHERE SUB_REG_ID = #{sub_reg_id}	
-			ORDER BY SUB_REGDATE DESC 
+			ORDER BY SUB_REGDATE DESC
 </select>
 
 
-<!-- 4) 관리자가 과목 검수 후 해당 과목에 대한 승인 처리 (과목 상태변경) -->
+<!-- 4) 관리자의 과목 상태변경 -->
 <!-- 	<foreach collection="sub_nums" item="sub_num" open="(" close=")" separator="," >
 		#{sub_num}
 	</foreach> -->
+<!-- 4-1) 과목 승인 후 'A'로 상태 변경 -->
 <update id="subUpdateStatusA" parameterType="map">
 	UPDATE SUBJECT SET SUB_STATUS = 'A' WHERE SUB_NUM = #{sub_num}
 </update>
+<!-- 4-2) 과목 삭제 후 'D'로 상태 변경 -->
+<update id="subUpdateStatusD" parameterType="map">
+	UPDATE SUBJECT SET SUB_STATUS = 'D' WHERE SUB_NUM = #{sub_num}
+</update>
+<!-- 4-3) 과목 반려 후 'R'로 상태 변경 -->
+<update id="subUpdateStatusR" parameterType="map">
+	UPDATE SUBJECT SET SUB_STATUS = 'R' WHERE SUB_NUM = #{sub_num}
+</update>
+<!-- 4-4) 과목 반려 시 반려사유 입력 -->
+<update id="subUpdateRejection" parameterType="map">
+	UPDATE SUBJECT SET SUB_REJECTION = #{sub_rejection} WHERE SUB_NUM = #{sub_num}
+</update>
 
+
+<!-- 5) 일반회원/강사의 등록 과목 수정 -->
+<update id="subUpdateSubject" parameterType="map">
+	UPDATE SUBJECT 	
+		SET SUB_REGDATE = SYSDATE, SUB_CONTENT = #{sub_content}
+		WHERE SUB_NUM = #{sub_num}
+</update>
+<update id="subUpdateCurriculum" parameterType="map">
+	UPDATE SUB_CURRICULUM 
+		SET CUR_DETAIL=#{cur_detail}, CUR_SUBCONTENT=#{cur_subcontent}, CUR_VERSION=#{cur_version}, CUR_TIME=#{cur_time}, CUR_LEVEL=#{cur_level}, CUR_FILE=#{cur_file} 
+			WHERE CUR_SUB_NUM = #{cur_sub_num}
+</update>
 
 
 

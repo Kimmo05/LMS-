@@ -90,7 +90,6 @@ public class SubjectApproveListBeanAdmin {
 		}else if(subVo.getSub_status().equals("D")) {
 			sb.append("   		<td><span class='badge rounded-pill badge-danger'>삭제</span></td>                           ");
 		}
-		sb.append("   	 <td><a><button type='button' class='btn btn-pill btn-outline-info-2x btn-xs'>승인</button></a><a><button type='button' class='btn btn-pill btn-outline-warning-2x btn-xs'>반려</button></a></td>");
 		sb.append("</tr>                                                                                                       ");
 		return sb.toString();
 	}
