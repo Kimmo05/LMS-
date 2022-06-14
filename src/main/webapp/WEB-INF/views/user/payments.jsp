@@ -66,8 +66,13 @@
                   </div>
                   <div class="card-body">
                   	<h5>Class info &nbsp;&nbsp;<small class="text-muted">강좌정보</small></h5><br>
-                    <h6 class="card-title">JSP과정</h6><br>
-                    <p>&nbsp; jsp과정 설명은 ~~이다</p> 
+                    <h6 class="card-title" id="claTitle">입문자도 할 수 있는 JSP 과정</h6><br>
+                    <ul>
+                    	<li>
+                    		<div id="claContent"><i class="fa fa-angle-double-right txt-primary m-r-10"></i>이 과정은 jsp 입문자도 쉽게 접근할수 있도록 커리큘럼이 짜진 강의이며 jsp와 Servlet에 중점적인 과목들이 포함되어 있습니다.</div>
+                    	</li>
+                    </ul>
+                    
                     <hr>
                     <h5>Pay info &nbsp;&nbsp;<small class="text-muted">금액정보</small></h5><br>
                     <dl class="row">
