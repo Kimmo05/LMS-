@@ -113,7 +113,6 @@ function selectAll(selectAll)  {
             <div class="row">
               <div class="col-sm-12">
                 <div class="blog-single">
-                
                  <c:forEach items="${lists}" var="vo" varStatus="vs">
                  <input type="checkbox" name="sub_num" value="${vo.sub_num}" style="float: left; margin-left: 13px; margin-top: 2px;">
                  <input type="hidden" value="${vo.sub_num}" name="sub">
@@ -143,7 +142,6 @@ function selectAll(selectAll)  {
             </div>
           </div>
           </form>
-<%-- 			<c:if test="${insLists != 'null'}"> --%>
 			<div class="col-sm-12">
 			<form action="#" method="post" id="frm2" onsubmit="return vote()">
                 <div class="card">
@@ -151,13 +149,12 @@ function selectAll(selectAll)  {
                     <div class="tab-content" id="top-tabContent">
                       <div class="tab-pane fade show active" id="top-home" role="tabpanel" aria-labelledby="top-home-tab">
                         <div class="row">
-                        
              			 <c:forEach items="${insList}" var="vo" varStatus="vs">
                           <div class="col-xxl-4 col-lg-6">
              			 	<input onclick="selectAll(selectAll)" type="checkbox" id="vot_sub_num${vs.count}" name="vot_sub_num" value="${vo.voteVo.vot_sub_num}" style="float: left; margin-left: 10px; margin-top: 2px;">
                           	<div class="parent" id="red" style="display: none;">
              			 	<input type="checkbox" id="ins_id${vs.count}" name="ins_id" value="${vo.ins_id}" style="float: left; margin-left: 10px; margin-top: 2px;">
-             			 	<input type="hidden" name="ins" value="${vo.ins_id}"">
+             			 	<input type="hidden" name="ins" value="${vo.ins_id}">
                           	</div>
                             <i data-feather="list" style="float: left; padding-bottom: 8px;"></i><h6 style="border: 10px; border-radius: 5px;">&nbsp;지원 강사 ${vs.count}</h6>
                             <div class="project-box">
@@ -200,39 +197,24 @@ function selectAll(selectAll)  {
                           </div>
                  		  </c:forEach>
                               <p style="font-size: 13px; color: silver;">※ 투표는 과목에 따라서 투표가 가능합니다.  과목이 다른 강사는 동일한 강사여도 투표가 가능합니다 </p>
-                            
-<%-- 							<c:forEach items="${percent}" var="vo" varStatus="vs"> --%>
-<!--                               <div class="project-status mt-4"> -->
-<!--                                 <div class="media mb-0"> -->
-<%--                                   <p>지원강사 ${vs.count}</p> --%>
-<%--                                   <div class="media-body text-end"><span>${vo}%</span></div> --%>
-<!--                                 </div> -->
-<!--                                 <div class="progress" style="height: 5px"> -->
-<%--                                   <div class="progress-bar-animated bg-primary progress-bar-striped" role="progressbar" style="width: ${vo}px;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div> --%>
-<!--                                 </div> -->
-<!--                               </div> -->
-<%--                               </c:forEach> --%>
                          </div>
                         </div>
                        </div>
                      </div>
                     </div>
-<%-- 						${percent}                     --%>
                     	  <button style="margin-left : 30px; width: 132px;" type="submit" class="btn btn-outline-primary">투표하기</button>
                     </form>
                   </div>
                   <br>
-<%--                  </c:if> --%>
           <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-light" onclick="javascript:history.back(-1)">뒤로가기</button>
           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classBoardSelectedAll.do">자료게시판</a>
           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classModifyForm.do?cla_num=">글 수정하기</a>
+<%--           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./pay.do?cla_title=${result.cla_title}&cla_content=${result.cla_content}">결제하기</a> --%>
           <!-- Container-fluid Ends-->
         </div>
         <br>
         <br>
         <br>
-        
-        
 </body>
 <%@include file="./admin_footer.jsp" %>
 <script src="../resources/js/statistics/like.js"></script>

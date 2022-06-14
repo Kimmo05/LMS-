@@ -3,6 +3,7 @@ package com.min.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.min.vo.ClassPeopleVo;
 import com.min.vo.ClassSubjectVo;
 import com.min.vo.ClassVo;
 import com.min.vo.InstructorVo;
@@ -46,12 +47,13 @@ public interface IClassDao {
 	// 투표자 최종 선정을 위한 삭제
 	public int voteDelete(Map<String, Object> map);
 	
-	
 	// 과정상태 변경
 	public int classStatusUpdate(Map<String, Object> map);
 	
-	
-	
+	// 투표한 수강자 추가
+	public int classPeoInsert(Map<String, Object> map);
+	// 투표자 찾기
+	public int classPeoSelectAll(ClassPeopleVo vo);
 	
 	
 	

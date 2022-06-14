@@ -5,6 +5,11 @@
 <title>Insert title here</title>
 <%@ include file="./admin_header.jsp" %>
 <body>
+<script type="text/javascript">
+function del(){
+	location.href="./"
+}
+</script>
 <div class="page-body">
           <div class="container-fluid">
             <div class="page-header">
@@ -32,7 +37,7 @@
                   <div class="card-header pb-0">
                     <h5>동영상 등록</h5>
                   </div>
-                  <form class="form theme-form" action="./documentVideoInsert.do" method="post">
+                  <form class="form theme-form" action="./classVideoInsert.do" method="post">
                     <div class="card-body">
                       <div class="row">
                         <div class="col">
@@ -60,7 +65,7 @@
                       </div>
                     </div>
                     <div class="card-footer text-end">
-                      <button class="btn btn-primary" type="submit" onclick="deleteOne()">신청</button>
+                      <button class="btn btn-primary" type="submit" onclick="del()">신청</button>
                       <input class="btn btn-light" type="reset" value="취소">
                     </div>
                   </form>
