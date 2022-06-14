@@ -8,6 +8,7 @@
     <title>첫 페이지</title>
        <link rel="stylesheet" type="text/css" href="../assets/css/sweetalert2.css">
 </head>
+<%-- <jsp:forward page="main.do"/> --%>
 <%@ include file="./header.jsp" %>
 <body>
 <div class="page-body">

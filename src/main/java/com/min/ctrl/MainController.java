@@ -27,14 +27,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-@RequestMapping(value = "/app/*")
+@RequestMapping
 public class MainController {
 
 	@Autowired
 	IMemberService service;
 	
 	//첫 메인페이지
-	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/app/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		log.info("로그인전 메인 {}.", locale);
 		System.out.println("SecurityContextHolder 에 등록된 정보 확인");
@@ -58,11 +58,11 @@ public class MainController {
 	public String LoginHome(Locale locale, Model model) {
 		log.info("로그인 후 메인 {}", locale);
 		
-		return "redirect:main";
+		return "main";
 	}
 	
 	// 로그인 페이지로 가는 매핑
-		@RequestMapping(value = "/loginPage.do", method = {RequestMethod.GET})
+		@RequestMapping(value = "/app/loginPage.do", method = {RequestMethod.GET})
 		public String selectlogin(
 				Locale locale, Model model,Authentication user) {
 			System.out.println("로그인 선택창 이동");
