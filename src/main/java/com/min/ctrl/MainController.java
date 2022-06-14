@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
+@RequestMapping(value = "/app/*")
 public class MainController {
 
 	@Autowired
@@ -36,7 +37,19 @@ public class MainController {
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		log.info("로그인전 메인 {}.", locale);
+		System.out.println("SecurityContextHolder 에 등록된 정보 확인");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
+		if ( auth != null) {
+			
+			System.out.println("Authentication getAuthorities: " + auth.getAuthorities().toString());
+			System.out.println("Authentication getPrincipal: " + auth.getPrincipal());
+			System.out.println("Authentication getName: " +auth.getName());
+			System.out.println("Authentication getCredentials: " + auth.getCredentials());
+			System.out.println("Authentication getDetails: " + auth.getDetails());
+			System.out.println("Authentication isAuthenticated: " + auth.isAuthenticated());
+			
+		}
 		
 		return "main";
 	}
@@ -45,7 +58,7 @@ public class MainController {
 	public String LoginHome(Locale locale, Model model) {
 		log.info("로그인 후 메인 {}", locale);
 		
-		return "main";
+		return "redirect:main";
 	}
 	
 	// 로그인 페이지로 가는 매핑

@@ -23,5 +23,8 @@
 	<context:component-scan base-package="com.min" />
 	<task:annotation-driven scheduler=""/>
 	<task:scheduler id="scheduler" pool-size="10"/>
-
+<!--	<task:scheduled-tasks>-->
+<!--		<task:scheduled ref="cronDaoImpl" method="test" cron="0/6 * * * * *"/>-->
+<!--		<task:scheduled ref="cronServiceImpl" method="new_item" cron="0/11 * * * * *"/>-->
+<!--	</task:scheduled-tasks>-->
 </beans:beans>

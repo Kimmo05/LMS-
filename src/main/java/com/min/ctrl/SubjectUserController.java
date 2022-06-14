@@ -2,13 +2,17 @@ package com.min.ctrl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.min.service.ITagService;
 import org.json.simple.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +47,8 @@ public class SubjectUserController {
 	@Autowired
 	private SubjectService sService;
 
+	@Autowired
+	private ITagService tagService;
 	// 1) 과목 등록양식 페이지로 이동
 	@RequestMapping(value = { "/user/user_subjectInsertForm.do",
 			"/ins/user_subjectInsertForm.do" }, method = RequestMethod.GET)
@@ -53,42 +59,47 @@ public class SubjectUserController {
 	}
 
 	// 1-2)과목 등록하기
-	
+
 	@RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"},method = RequestMethod.POST)
-	public String userInsertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) { 
-		MemberVo mvo = (MemberVo) user.getDetails(); System.out.println(mvo);
-		map.put("sub_reg_id", mvo.getId()); 
-	
+	public String userInsertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
+		MemberVo mvo = (MemberVo) user.getDetails(); String code = map.get("sub_cod_code").toString();
+		String tags = tagService.selectTagSubjectCode(code);
+		Matcher matcher = TagController.TAG_REGEX.matcher(tags);
+		List<String> tagList = new ArrayList<String>();
+		while (matcher.find()){
+			tagList.add(matcher.group().replace(" ","").replace("#",""));
+		}
+		System.out.println(tagList);
+		System.out.println(mvo);
+		map.put("sub_reg_id", mvo.getId());
 		int n = sService.InsertSubject(map);
-		System.out.println(map); 
-		
-		map.put("reg_auth",mvo.getAuth()); 
-		map.put("reg_id",mvo.getId()); 
-		
+		System.out.println(map);
+		map.put("reg_auth",mvo.getAuth());
+		map.put("reg_id", mvo.getId());
 		if(mvo.getAuth().equals("ROLE_INSTRUCTOR")) {
 			map.put("sub_ins_id", mvo.getId());
-		}else { 
+		}else {
 			map.put("sub_ins_id","담당 강사 미정");
-		} 
-		
+		}
+
 		int m = sService.UpdateSubIns(map);
-		System.out.println("두번쨰 "+map); 
-		
+		System.out.println("두번쨰 "+map);
+
 		return "redirect:/user/user_subjectList.do";
 	}
 	
 
-	
-	
 
-//	 @RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"},method = RequestMethod.POST) 
+
+
+//	 @RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"},method = RequestMethod.POST)
 //	 public String userInsertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
-//	 
-////		 JSONArray arry = new JSONArray(); 
-////		 arry = 
+//
+////		 JSONArray arry = new JSONArray();
+////		 arry =
 //	 return "";
 //	 }
-	 
+
 	// 2) 과목 조회
 	// 2-3) 비회원/일반회원/강사 과목 전체조회 페이지로 이동
 	@RequestMapping(value = { "/user/user_subjectList.do", "/ins/user_subjectList.do" }, method = RequestMethod.GET)
