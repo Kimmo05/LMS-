@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.min.dao.IClassDao;
 import com.min.service.IClassService;
+import com.min.vo.ClassPeopleVo;
 import com.min.vo.ClassSubjectVo;
 import com.min.vo.ClassVo;
 import com.min.vo.InstructorVo;
@@ -114,12 +115,23 @@ public class ClassServiceImpl implements IClassService {
 		return dao.votedInsert(map);
 	}
 	
+	@Override
+	public int classPeoInsert(Map<String, Object> map) {
+		return dao.classPeoInsert(map);
+	}
+	
+	
+	@Override
+	public int classPeoSelectAll(ClassPeopleVo vo) {
+		return dao.classPeoSelectAll(vo);
+	}
+	
+	
 	
 	@Override
 	public List<SubjectVo> subjectSelected() {
 		return dao.subjectSelected();
 	}
-
 
 	@Override
 	public ClassVo classSelectLastInsert() {

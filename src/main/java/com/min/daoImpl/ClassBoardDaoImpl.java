@@ -76,4 +76,9 @@ public class ClassBoardDaoImpl implements IClassBoardDao{
 		return sqlSession.delete(NS+"documentDelete",seq);
 	}
 	
+	@Override
+	public int classBoardVideoDelete(int seq) {
+		return sqlSession.delete(NS+"classBoardVideoDelete",seq);
+	}
+	
 }
