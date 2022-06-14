@@ -21,7 +21,7 @@ public class coolSMS {
 		        params.put("from", "010-4343-2291");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨 -> 발신전화 번호는 coolSMS에 등록해줘야됨
 		        params.put("type", "SMS");// type 방식
 		        if(payOrRefund.equals("pay")) {
-		        	params.put("text", "결제가 완료되었습니다.\n회원님의 결제번호는" + "["+payNum+"]" + "입니다.");
+		        	params.put("text", "결제가 완료되었습니다.\n회원님의 결제번호는" + "["+payNum+"]" + "입니다");
 		        }else{
 		        	params.put("text", "환불이 승인되었습니다.\n결제시 사용된 마일리지와 쿠폰은 반환됩니다.");
 		        }
