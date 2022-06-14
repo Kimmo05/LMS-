@@ -110,7 +110,7 @@ var pagingAjax= function (){
 			              }else if(v.sub_status === "D"){
 			              varHtml += "    		<td><span class='badge rounded-pill badge-danger'>삭제</span></td>                              ";
 			              }
-			                 varHtml += "     	 <td><a><button type='button' class='btn btn-pill btn-outline-danger-2x btn-xs'>삭제</button></a></td>";
+			                 varHtml += "     	 <td><button type='button' class='btn btn-pill btn-outline-danger-2x btn-xs' onclick='del("+v.sub_num+")'>삭제</button></td>";
 			                 varHtml += "  </tr>                                                                                                      ";	
 					
 				});
@@ -222,3 +222,9 @@ function pageLast(pNum,total,pageListNum,pageList){
 	pNum.value=pNum;
 	pagingAjax()
 }
+
+function del(val){
+	console.log("삭제 : ",val);
+	location.href="./subUpdateStatusD.do?chk="+val;
+}
+

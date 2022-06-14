@@ -307,10 +307,7 @@
     		 btn=$(this).attr("value");
     	 });
      }); */
-/*      
-     function changeStatus(){
-    	 alert("승인 버튼이 클릭이되었습니다.");
-     } */
+
       $("#confirm").click(function () {
     	 Swal.fire({
        	  title: '해당 과목을 승인하시겠습니까?',
@@ -320,7 +317,8 @@
        	  denyButtonText: '반려',
        	}).then((result) => { //버튼 클릭시 결과
        	  if (result.isConfirmed) {
-       	    Swal.fire('승인처리되었습니다!', 'success');
+       	    Swal.fire('승인처리되었습니다!', 'success'),
+       	    location.href='./subUpdateStatusA.do?sub_num=';
 	       	history.back();
        	  } else if (result.isDenied) {
        		const { value: text } = Swal.fire({

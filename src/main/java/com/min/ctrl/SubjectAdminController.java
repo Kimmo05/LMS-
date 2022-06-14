@@ -164,11 +164,10 @@ public class SubjectAdminController {
 	
 	
 	//3) 관리자의 과목 상태변경
-	@RequestMapping(value = "/user/subUpdateStatusA.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/subUpdateStatusA.do", method = {RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
-	public String subUpdateStatusA(SubjectVo sVo, String sub_num){
+	public String subUpdateStatusA(@RequestParam Map<String, Object> map, SubjectVo sVo, String sub_num){
 		log.info("********* Welcome SubjectController! subUpdateStatusA 관리자의 상태변경 subUpdateStatusA *********");
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("sub_num", sub_num);
 		
 			int n =  sService.subUpdateStatusA(map);
@@ -176,9 +175,31 @@ public class SubjectAdminController {
 		
 		return "redirect:/user/admin_subjectApprove.do;";
 	}
-		
-
 	
+	//3) 관리자의 과목 상태변경
+	@RequestMapping(value = "/user/subUpdateStatusD.do", method = {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public String subUpdateStatusD(@RequestParam Map<String, Object> map, SubjectVo sVo, String sub_num){
+		log.info("********* Welcome SubjectController! subUpdateStatusD 관리자의 상태변경 subUpdateStatusA *********");
+		map.put("sub_num", sub_num);
+		
+			int n =  sService.subUpdateStatusD(map);
+			System.out.println("상태가 D로 업데이트 된 과목 수 : "+ n);
+		
+		return "redirect:/user/admin_subjectList.do;";
+	}	
+
+	//TODO 013 다중 삭제
+		@RequestMapping(value = "/subUpdateStatusD.do", method = {RequestMethod.POST, RequestMethod.GET})
+		public String meltiDel(@RequestParam Map<String, Object> map, Authentication user, HttpServletResponse response,  String sub_num){
+			log.info("********* Welcome SubjectController! subUpdateStatusD 관리자의 상태변경 subUpdateStatusD *********");
+			int n =0;
+			if(user.getAuthorities().equals("ROLE_ADMIN")) {	
+				map.put("sub_num", sub_num);
+				n= sService.subUpdateStatusD(map);
+			}
+			return "redirect:/user/admin_subjectApprove.do;";
+		}
 
 
 }
