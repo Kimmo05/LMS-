@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>일반회원 과목 등록 양식 페이지</title>
+<title>일반회원 과목 수정 양식 페이지</title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <style type="text/css">
 
@@ -32,8 +32,8 @@
 					<div class="card">
 						<div class="row">
 							<div class="card-header pb-0">
-								<h5>과목 등록</h5>
-								<h6>등록할 과목/커리큘럼에 대한 정보를 입력해주세요!</h6>
+								<h5>과목 수정</h5>
+								<h6>수정할 과목/커리큘럼에 대한 정보를 입력해주세요!</h6>
 							</div>
 						</div>
 					</div>
@@ -47,7 +47,7 @@
 										<div class="col">
 											<div class="mb-3">
 												<label>과목명</label> <input class="form-control" type="text"
-													name="sub_title" placeholder="과목명 *">
+													name="sub_title" placeholder="${results.sub_title}">
 											</div>
 										</div>
 									</div>
@@ -63,7 +63,7 @@
 														<div class="form-control-static">과목 설명 예시입니다.</div>
 													</div>
 												</div>
-												<textarea class="form-control" id="sub_content" name="sub_content" rows="3"></textarea>
+												<textarea class="form-control" id="sub_content" name="sub_content" rows="3" placeholder="${results.sub_content}"></textarea>
 												<div id="sub_content_cnt">0 자 / 최대 1000자</div>
 											</div>
 										</div>
@@ -75,12 +75,13 @@
 										<div class="col-sm-4">
 											<div class="mb-3">
 												<label>과목 버전</label> <input class="form-control" type="text"
-													name="cur_version" placeholder="Enter Subject Version">
+													name="cur_version" placeholder="${results.cur_version}">
 											</div>
 											<div class="mb-3">
 												<label>과목 카테고리</label> <select class="form-select"
 													id="sub_cod_code" name="sub_cod_code"
 													onchange="showCategory()">
+													<option value="">${results.sub_cod_code}</option>
 													<option value="">------- 선택 -------</option>
 													<option value="SUB101">JAVA</option>
 													<option value="SUB102">C</option>
@@ -109,13 +110,14 @@
 											<div class="mb-3">
 												<label>과목 수강 시간</label> <input class="form-control"
 													type="text" name="cur_time"
-													placeholder="Enter Subject Time">
+													placeholder="${results.cur_time}">
 											</div>
 										</div>
 										<div class="col-sm-4">
 											<div class="col">
 												<label>과목 난이도</label> <select class="form-select"
 													id="cur_level" name="cur_level" onchange="showLevel()">
+													<option value="">${results.cur_level}</option>
 													<option value="">------- 선택 -------</option>
 													<option value="초급">초급</option>
 													<option value="중급">중급</option>
@@ -132,7 +134,7 @@
 											<div class="mb-3">
 												<label>커리큘럼 기타내용</label>
 												<textarea class="form-control"
-													id="exampleFormControlTextarea4" name="cur_detail" rows="3"></textarea>
+													id="exampleFormControlTextarea4" name="cur_detail" rows="3" placeholder="${results.cur_detail}"></textarea>
 											</div>
 										</div>
 									</div>
@@ -141,7 +143,7 @@
 											<div class="mb-3">
 												<label>커리큘럼 상세내용</label>
 												<div class="form-control-static">과목에 대한 수강 요청사항 및 수강생과의 약속을 적어주세요!</div>
-												<textarea class="form-control" id="cur_subcontent" name="cur_subcontent" rows="3"></textarea>
+												<textarea class="form-control" id="cur_subcontent" name="cur_subcontent" rows="3" placeholder="${results.cur_subcontent}"></textarea>
 												<div id="cur_subcontent_cnt">0 자 / 최대 2000자</div>
 											</div>
 										</div>
@@ -151,7 +153,7 @@
 											<div class="mb-3" id="inputBox">
 												<label>과목에 입력할 해시태그</label>
 												<div class="form-control-static">해시태그를 입력해주세요! <br> 예시) #java #JAVA #배우고싶다</div>
-												<textarea class="form-control" id="sub_tag" name="sub_tag" rows="3" autocomplete="off"></textarea>
+												<textarea class="form-control" id="sub_tag" name="sub_tag" rows="3" autocomplete="off" placeholder="${results.sub_tag}"></textarea>
 											</div>
 										</div>
 									</div>
@@ -160,7 +162,7 @@
 											<div class="mb-3" id="inputBox">
 												<label>임시 파일업로드</label>
 												<div class="form-control-static">임시 파일업로드</div>
-												<textarea class="form-control" id="cur_file" name="cur_file" rows="3" a></textarea>
+												<textarea class="form-control" id="cur_file" name="cur_file" rows="3" placeholder="${results.cur_file}"></textarea>
 											</div>
 										</div>
 									</div>
@@ -207,7 +209,7 @@
 								<div class="row">
 									<div class="col">
 										<div class="text-end">
-											<a href="./subjectList.do" style="align-content: right;"><input class="btn btn-light" type="button" value="뒤로가기"></a>
+											<a href="./user_subjectDetail.do?sub_num=${results.sub_num}" style="align-content: right;"><input class="btn btn-light" type="button" value="뒤로가기"></a>
 											<button class="btn btn-primary" type="submit" onclick="deleteOne()">등록하기</button>
 										</div>
 									</div>
@@ -271,7 +273,7 @@
 		});
 		
 		//과목 등록시 태그 부분
-	 	$(document).ready(function(){
+	/* 	$(document).ready(function(){
 			   var frm = $("#tag");
 			   
 			   $("#tag").keyup(function(){
@@ -305,7 +307,7 @@
 			      $("#tag").addClass("item");
 			      $("#tag").val("#");
 			   });
-			}); 
+			}); */
 
 	</script>
 	

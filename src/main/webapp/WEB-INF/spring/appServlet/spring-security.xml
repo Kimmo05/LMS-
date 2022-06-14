@@ -62,6 +62,13 @@
 		<security:intercept-url pattern="/user/myProfile.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/loginPage.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/uploadAjaxAction.do" access="permitAll"/>
+		<security:intercept-url pattern="/user/display.do" access="permitAll"/>
+		<security:intercept-url pattern="/user/download.do" access="permitAll"/>
+		<security:intercept-url pattern="/user/user_subjectDetail.do" access="permitAll"/>
+		<security:intercept-url pattern="/user/user_mySubjectList.do" access="permitAll"/>
+		
+		<security:intercept-url pattern="/user/admin_subjectDetail.do" access="hasRole('ADMIN')"/>
+		
 		<security:intercept-url pattern="/user/page.do" access="hasRole('ADMIN')"/>
 		
 		<security:intercept-url pattern="/user/adminTraList.do" access="hasRole('ADMIN')"/>

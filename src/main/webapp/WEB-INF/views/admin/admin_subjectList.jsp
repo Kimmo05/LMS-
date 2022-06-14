@@ -91,7 +91,7 @@
                       </ul>
               </div>
               </div>
-              
+          <!--     
               		<div class="col-sm-12">
                 <div class="card">
                 
@@ -116,7 +116,7 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
               
           </div>
        </div>
