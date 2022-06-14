@@ -73,7 +73,7 @@ function insertForm(val){
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
+<!--                       <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td> -->
 <!--                       <th scope="col">seq</th> -->
                       <th scope="col">과정 강사</th>
                       <th scope="col">글 제목</th>

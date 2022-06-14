@@ -74,9 +74,9 @@ public class ClassDaoImpl implements IClassDao{
 	}
 	
 	@Override
-	public int classTimeSearch(String cla_num) {
+	public List<VoteVo> classTimeSearch(ClassVo vo) {
 		logger.info("ClassDaoImpl classTimeSearch / 과정 과목 총 수업시간 계산을 위한 계산");
-		return sqlSession.selectOne(NS+"classTimeSearch",cla_num);
+		return sqlSession.selectList(NS+"classTimeSearch",vo);
 	}
 
 	@Override
@@ -86,15 +86,48 @@ public class ClassDaoImpl implements IClassDao{
 	}
 	
 	@Override
-	public int updateVote(VoteVo vo) {
-		logger.info("ClassDaoImpl updateVote / 과정 과목 당 강사 투표 : {}",vo);
-		return sqlSession.update(NS+"updateVote",vo);
+	public int updateVote(Map<String, Object> map) {
+		logger.info("ClassDaoImpl updateVote / 과정 과목 당 강사 투표 : {}",map);
+		return sqlSession.update(NS+"updateVote",map);
 	}
 	
 	@Override
 	public List<InstructorVo> classInsInfo(String id) {
 		return sqlSession.selectList(NS+"classInsInfo",id);
 	}
+	
+	@Override
+	public List<VoteVo> voteRatio(VoteVo vo) {
+		return sqlSession.selectList(NS+"voteRatio",vo);
+	}
+	
+	@Override
+	public VoteVo voteIns(VoteVo vo) {
+		return sqlSession.selectOne(NS+"voteIns",vo);
+	}
+	
+	@Override
+	public List<VoteVo> votedPeople(VoteVo vo) {
+		return sqlSession.selectList(NS+"votedPeople",vo);
+	}
+	
+	@Override
+	public int voteDelete(Map<String, Object> map) {
+		logger.info("ClassDaoImpl voteDelete : {}",map);
+		return sqlSession.delete(NS+"voteDelete",map);
+	}
+
+	@Override
+	public int votedInsert(Map<String, Object> map) {
+		logger.info("ClassDaoImpl votedInsert : {}",map);
+		return sqlSession.insert(NS+"votedInsert", map);
+	}
+
+	@Override
+	public int classStatusUpdate(Map<String, Object> map) {
+		return sqlSession.update(NS+"classStatusUpdate",map);
+	}
+	
 	
 	
 	@Override

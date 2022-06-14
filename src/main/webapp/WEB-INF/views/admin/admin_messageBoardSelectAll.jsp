@@ -17,11 +17,10 @@ function insertForm(val){
 	var selected = $("#mes_cate option:selected").val();
 	console.log(selected);
 	
-// 	if(selected == '동영상' || selected == null){
-// 		location.href="./classVideoInsertForm.do";
-// 	}else{
-// 		location.href="./classDocumentInsertForm.do";
-// 	}
+}
+
+function insertForm(){
+	location.href = "./messageBoardInsertForm.do";
 }
 
 
@@ -72,7 +71,7 @@ function insertForm(val){
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
+<!--                       <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td> -->
 <!--                       <th scope="col">seq</th> -->
 					  <c:if test="${mes_cate eq 'Q' or mes_cate eq null}">
                       <th scope="col">MY ID</th>

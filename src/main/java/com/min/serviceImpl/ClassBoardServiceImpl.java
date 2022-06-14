@@ -45,4 +45,18 @@ public class ClassBoardServiceImpl implements IClassBoardService {
 		return dao.findFile(seq);
 	}
 	
+	@Override
+	public int documentUpdate(Map<String, Object> map) {
+		int n = dao.documentModify(map);
+		int m = dao.classBoardDocModify(map);
+		return (n>0||m>0)? 1:0;
+	}
+	
+	@Override
+	public int classBoardDocDelete(int seq) {
+		int n = dao.classBoardDocDelete(seq);
+		int m = dao.documentDelete(seq);
+		return (n>0||m>0)? 1:0;
+	}
 }
+
