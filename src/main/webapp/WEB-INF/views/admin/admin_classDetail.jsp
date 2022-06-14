@@ -59,10 +59,6 @@ function selectAll(selectAll)  {
 		$("input:checkbox[name=vot_sub_num]:checked").prop("checked",false);
 	}
 }
-	
-$(document).ready(function() {
-	$('span').clone().appendTo('h1');
-}); 
 
 </script>
 <body>

@@ -1,4 +1,4 @@
-package com.min.bean;
+package com.min.coolSMS.bean;
 
 import java.util.List;
 

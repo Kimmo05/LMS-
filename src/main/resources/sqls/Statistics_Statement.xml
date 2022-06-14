@@ -87,4 +87,17 @@
             #{id}
         </foreach>
     </select>
+<!--  과목평점을 가져오기  -->
+    <select id="selectSubjectScore" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT SUB_SCORE FROM SUBJECT WHERE SUB_NUM= #{id}
+    </select>
+<!--  과목 평점을 업데이트  -->
+    <update id="updateSubjectScore" parameterType="java.util.Map">
+        UPDATE SUBJECT SET SUB_SCORE = #{score} WHERE SUB_NUM = #{id}
+    </update>
+
+<!--  과목 이름 가져오기  -->
+    <select id="selectSubjectTitle" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT SUB_TITLE FROM SUBJECT WHERE SUB_NUM = #{id}
+    </select>
 </mapper>
