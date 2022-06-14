@@ -216,7 +216,7 @@
 			<dependency>
 			    <groupId>com.fasterxml.jackson.core</groupId>
 			    <artifactId>jackson-databind</artifactId>
-			    <version>2.13.2.2</version>
+			    <version>2.13.2</version>
 			</dependency>
 			<dependency>
 			    <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -224,17 +224,6 @@
 			    <version>2.13.2</version>
 			</dependency>
 
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.13.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>1.9.13</version>
-		</dependency>
 		<!-- jsonArray -->
 		<dependency>
 		    <groupId>net.sf.json-lib</groupId>

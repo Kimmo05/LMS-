@@ -46,7 +46,7 @@
                                 <div class="card">
                                     <div class="product-box learning-box">
                                         <div class="product-img"><img class="img-fluid top-radius-blog"
-                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                                                      src="./resources/images/main01.jpg" alt="">
                                             <div class="product-hover">
                                                 <ul>
                                                     <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
@@ -71,7 +71,7 @@
                                 <div class="card">
                                     <div class="product-box learning-box">
                                         <div class="product-img"><img class="img-fluid top-radius-blog"
-                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                                                      src="./resources/images/main02.jpg" alt="">
                                             <div class="product-hover">
                                                 <ul>
                                                     <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
@@ -96,7 +96,7 @@
                                 <div class="card">
                                     <div class="product-box learning-box">
                                         <div class="product-img"><img class="img-fluid top-radius-blog"
-                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                                                      src="./resources/images/main03.jpg" alt="">
                                             <div class="product-hover">
                                                 <ul>
                                                     <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
