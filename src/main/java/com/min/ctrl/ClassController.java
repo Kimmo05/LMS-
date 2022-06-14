@@ -12,10 +12,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.min.service.ITagService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -37,11 +39,14 @@ import com.min.vo.SubjectVo;
 import com.min.vo.VoteVo;
 
 @Controller
+@RequestMapping(value = "/user/*")
 public class ClassController {
 
 	@Autowired
 	private IClassService service;
-	
+	@Autowired
+	private ITagService tagService;
+
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@RequestMapping(value = "/classListForm.do", method = RequestMethod.GET)
@@ -60,8 +65,12 @@ public class ClassController {
 	
 	@RequestMapping(value = "/classSelectDetail.do", method = RequestMethod.GET, produces = "application/json")
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) throws org.json.simple.parser.ParseException {
+		JSONParser parser = new JSONParser();
 		session.setAttribute("cla_num", cla_num);
 		ClassVo result = service.classSelectDetail(cla_num);
+		String like = result.getCla_like();
+		JSONArray likeArr = (JSONArray) parser.parse(like);
+		result.setCla_like(String.valueOf(likeArr.size()));
 		List<SubjectVo> lists = service.classSelectedSub(cla_num);
 		
 		model.addAttribute("result", result);
@@ -75,7 +84,6 @@ public class ClassController {
 		System.out.println(insList);
 		
 		JSONObject obj = new JSONObject();
-		JSONParser parser = new JSONParser();
 		String res = "";
 		
 		List<Double> per = new ArrayList<Double>();
@@ -113,8 +121,9 @@ public class ClassController {
 				System.out.println("비율 : "+cnt.get(j).toString());
 				int ratio = (int) cnt.get(j);
 				Double percent = ratio*100/total;
+				Double pe = (double) Math.round(percent*100)/100.0;
 				System.out.println(percent);
-				per.add(percent);
+				per.add(pe);
 			}
 		} catch (Exception e) {
 			System.out.println("투표자가 없습니다.");
@@ -136,21 +145,38 @@ public class ClassController {
 	}
 	
 	@RequestMapping(value = "/classInsert.do", method = RequestMethod.POST)
-	public String classInsert(@RequestParam String title, @RequestParam String content, @RequestParam List<String> subList) {
+	public String classInsert(@RequestParam String title, @RequestParam String content, @RequestParam List<String> subList) throws ParseException {
+		JSONParser parser = new JSONParser();
 		logger.info("classInsert : 과정 생성");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cla_title", title);
 		map.put("cla_content", content);
 		int n = service.classFormInsert(map);
+		ClassVo classVo = service.classSelectLastInsert();
+		String classNum = classVo.getCla_num();
 		map.clear();
+		//TODO 과정 태그 넣기
 		for (String listed : subList) {
 			map.put("csu_sub_num", listed);
 			map.put("vot_sub_num", listed);
 			int m = service.classSubjectInsert(map);
 			map.clear();
+			String tag = tagService.selectSubjectTag(listed);
+			Matcher matcher = TagController.TAG_REGEX.matcher(tag);
+			while (matcher.find()){
+				String temp = matcher.group().replace(" ", "_").replace("#", "").toString().toLowerCase();
+				JSONObject object = (JSONObject) parser.parse(tagService.selectTagJson(temp));
+				JSONArray array = (JSONArray) object.get("class");
+				array.add(classNum);
+				object.replace("class",array);
+				map.put("id",object.toJSONString());
+				map.put("name",temp);
+				tagService.updateTag(map);
+			}
+			map.clear();
 		}
 		service.classTimeUpdate();
-		return "redirect:/classListForm.do";
+		return "redirect:/user/classListForm.do";
 	}
 	
 	
@@ -388,7 +414,7 @@ public class ClassController {
 		}
 	}
 		
-		return "redirect:/classSelectDetail.do?cla_num="+cla_num;
+		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 	}
 	
 	@RequestMapping(value = "/voteBoxInsert.do", method = RequestMethod.POST)
@@ -398,7 +424,7 @@ public class ClassController {
 		map.put("vot_cla_num", cla_num);
 		map.put("vot_ins_id", "thdwndrlrkdtk123");
 		service.voteBoxInsert(map);
-		return "redirect:/classSelectDetail.do?cla_num="+cla_num;
+		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 	}
 	
 	@RequestMapping(value = "/updateVote.do", method = RequestMethod.POST)
@@ -502,7 +528,7 @@ public class ClassController {
 			System.out.println("ID : "+id);
 			
 			
-			return "redirect:/classListForm.do";
+			return "redirect:/user/classListForm.do";
 		}
 		for (Object object : arr) {
 			JSONObject list2 = (JSONObject) parser.parse(object.toString());
@@ -514,7 +540,7 @@ public class ClassController {
 //			
 			if(ids.equals(inputId)) {
 				System.out.println("중복된 아이디가 있습니다.");
-				return "redirect:/classSelectDetail.do?cla_num="+cla_num;
+				return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 			}
 			
 		}
@@ -537,7 +563,7 @@ public class ClassController {
 		
 		System.out.println("ID : "+id);
 	
-		return "redirect:/classSelectDetail.do?cla_num="+cla_num;
+		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 	}
 	
 	

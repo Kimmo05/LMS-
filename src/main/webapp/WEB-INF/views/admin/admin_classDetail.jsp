@@ -63,6 +63,7 @@ function selectAll(selectAll)  {
 $(document).ready(function() {
 	$('span').clone().appendTo('h1');
 }); 
+
 </script>
 <body>
 	 <!-- Page Sidebar Ends-->
@@ -71,6 +72,7 @@ $(document).ready(function() {
             <div class="page-header">
               <div class="row">
                 <div class="col-sm-6">
+                  <input type="hidden" value="${result.cla_num}" id="claid">
                   <h3>${result.cla_title}</h3>
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
@@ -93,7 +95,7 @@ $(document).ready(function() {
                           <ul class="blog-social">
                             <li>${result.cla_startdate}</li>
                             <li><i class="icofont icofont-user"></i></li>
-                            <li><i class="icofont icofont-thumbs-up"></i>${result.cla_like}</li>
+                            <li id="likeBtn" style="cursor: pointer;"><i class="icofont icofont-thumbs-up" ></i><span id="likeCnt">${result.cla_like}</span></li>
                             <li><i class="icofont icofont-ui-chat"></i>${result.cla_status}</li>
                           </ul>
                           <h4>
@@ -237,4 +239,5 @@ $(document).ready(function() {
         
 </body>
 <%@include file="./admin_footer.jsp" %>
+<script src="../resources/js/statistics/like.js"></script>
 </html>

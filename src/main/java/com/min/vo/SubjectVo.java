@@ -62,5 +62,25 @@ public class SubjectVo {
 	private String cod_code;
 	private String cod_name;
 	private String cod_tag;
+	
+	/*
+	 * SUB_CURRICULUM TABLE Vo
+	 * cur_num 커리큘럼 번호
+	 * cur_sub_num 과목번호
+	 * cur_detail 커리큘럼 기타내용
+	 * cur_subcontent 커리큘럼 상세내용
+	 * cur_version 커리큘럼 버전
+	 * cur_time 커리큘럼 시간
+	 * cur_level 커리큘럼 난이도
+	 * cur_file 커리큘럼 첨부파일
+	 */
+	private String cur_num;
+	private String cur_sub_num;
+	private String cur_detail;
+	private String cur_subcontent;
+	private String cur_version;
+	private String cur_time;
+	private String cur_level;
+	private String cur_file;
 
 }

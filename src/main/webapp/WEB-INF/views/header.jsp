@@ -46,6 +46,7 @@
     <link id="color" rel="stylesheet" href="./assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 </head>
 <body>
   <!-- Loader starts-->
@@ -194,7 +195,7 @@
         <!-- Page Sidebar Start-->
         <header class="main-nav">
          <sec:authorize access="isAuthenticated()"> 
-          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="./assets/images/dashboard/1.png" alt="">
+          <div class="sidebar-user text-center"><a class="setting-primary" href="./myProfile.do"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="./assets/images/dashboard/1.png" alt="">
             <div class="badge-bottom"><span class="badge badge-primary">
             
             <c:if test = "${auth eq '[ROLE_USER]'}">일반회원 </c:if>
@@ -215,7 +216,10 @@
               <li><span><span class="counter"></span>k</span>
                 <p>정보3 </p>
               </li>
-            </ul>
+            </ul><br>
+            <div>
+            <a href="./myProfile.do" type="button" class="btn btn-outline-light txt-dark">마이 페이지</a> 
+            </div>
           </div>
          </sec:authorize>
           <nav>
@@ -244,10 +248,12 @@
                       <li><a href="./index.do">메뉴2</a></li>
                     </ul>
                   </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./user_subjectList.do">(일반회원)과목 전체 조회</a></li>
-                      <li><a href="./user_subjectInsertForm.do">과목 등록</a></li>
+                      <li><a href="./user_subjectInsertForm.do">내 과목 만들기</a></li>
+                      <li><a href="./user_subjectList.do">전체과목 보러가기</a></li>
+                      <li><a href="./usersubject.do">과목 조회 연습용</a></li>
+                      <li><a href="./uploadForm.do">과목 파일업로드</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
@@ -259,13 +265,14 @@
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./pay.do">결제하기</a></li>
-                      <li><a href="./pay.do">결제조회</a></li>
+                      <li><a href="./user_Mypay.do">결제조회</a></li>
+                      <li><a href="./user_MyDiscount.do">내 마일리지,쿠폰</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./tag.do">태그</a></li>
+                      <li><a href="./myLikelist.do">내 좋아요 목록</a></li>
                     </ul>
                   </li>
                  

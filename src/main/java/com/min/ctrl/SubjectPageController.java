@@ -23,7 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-public class PageController {
+@RequestMapping(value = "/user/*")
+public class SubjectPageController {
 	
 	@Autowired
 	private SubjectService sService;
@@ -34,17 +35,21 @@ public class PageController {
 		log.info("PageController rowVo : {}", session.getAttribute("rowVo"));
 		log.info("SubjectController subjectList 세션확인 : {}", user);
 		
-		
+		MemberVo mvo = (MemberVo) user.getDetails();
+		System.out.println("**********************************************pageController"+mvo);
 		JSONObject json = null;
 		
 		//로그인한 회원이 관리자일경우
 		if(user.getAuthorities().toString().indexOf("ADMIN")!=-1) {
+			System.out.println("pageControllerAdmin"+user.getAuthorities());
+			System.out.println("pageControllerAdmin"+mvo);
 			rowVo.setTotal(sService.subjectTotalAdmin());
-			json=jsonForm(sService.subSelectAllAdmin(rowVo),rowVo, (Authentication) user.getDetails());
+			json=jsonForm(sService.subSelectAllAdmin(rowVo),rowVo, mvo);
 		}
-//		else if(user.getAuthorities().equals("[ROLE_USER]")) {
+//		else if(user.getAuthorities().toString().indexOf("USER")!=-1) {
+//			System.out.println("**********************************************일반회원인지 확인용 " +user.getAuthorities());
 //			rowVo.setTotal(sService.subjectTotalUser());
-//			json=jsonForm(sService.subSelectAllUser(rowVo),rowVo,(Authentication) user.getDetails());
+//			json=jsonForm(sService.subSelectAllUser(rowVo),rowVo, mvo);
 //		}
 		
 		session.removeAttribute("row");
@@ -57,7 +62,7 @@ public class PageController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private JSONObject jsonForm(List<SubjectVo> subjectListRow, RowNumVo rowVo, Authentication user) {
+	private JSONObject jsonForm(List<SubjectVo> subjectListRow, RowNumVo rowVo, MemberVo mvo) {
 		//반환되는 , 전송되는 객체
 		JSONObject json = new JSONObject(); 
 		//글들을 담는 객체
@@ -75,6 +80,7 @@ public class PageController {
 			obj.put("sub_ins", sVo.getSub_ins());
 			obj.put("sub_regdate", sVo.getSub_regdate());
 			obj.put("sub_status", sVo.getSub_status());
+			jList.add(obj);
 		}
 		
 		log.info("JSON으로 변환된 글 리스트 :  {}", jList.toString());

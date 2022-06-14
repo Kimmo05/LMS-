@@ -121,9 +121,8 @@ public class ClassServiceImpl implements IClassService {
 	}
 
 
-	
-	
-	
-	
-	
+	@Override
+	public ClassVo classSelectLastInsert() {
+		return dao.classSelectLastInsert();
+	}
 }

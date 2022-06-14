@@ -28,7 +28,7 @@ public class SecurityController implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println("------------------"+"AdminSecurityController 작동중");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("username", username);
+		map.put("id", username);
 		MemberVo dto = service.loginTra(map);
 		if(dto == null) {
 			 dto = service.loginIns(map);

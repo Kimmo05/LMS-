@@ -9,6 +9,9 @@
 	table{
 		text-align:center;
 	}
+	input:disabled {
+    	color: tomato;
+	}
 </style>
 </head>
 <%@ include file="./admin_header.jsp" %>
@@ -103,14 +106,14 @@
 	                              <td>${vo.pay_date}</td>
 	                              <td>${vo.pay_candate}</td>
 	                              <td>
-	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy">환불사유</button>&nbsp;<button class="btn btn-primary btn-xs" type="button">승인하기</button></c:if>
-	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy">환불사유</button>&nbsp;<button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불대기'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy" onclick="cancelWhy('${vo.pay_num}','${vo.pay_status}')">환불사유</button>&nbsp;<button class="btn btn-primary btn-xs" type="button" onclick="statusUpdate('${vo.pay_num}')">승인하기</button></c:if>
+	                              	<c:if test="${vo.pay_status eq '환불승인'}"><button class="btn btn-danger btn-xs" type="button" data-bs-toggle="modal" data-original-title="test" data-bs-target="#cancelWhy" onclick="cancelWhy('${vo.pay_num}','${vo.pay_status}')">환불사유</button>&nbsp;<button class="btn btn-danger btn-xs disabled" type="button">승인됨</button></c:if>
 	                              </td>
                             	</tr>  	
                           	</c:forEach>
                           </tbody>
                         </table>
-                        <!-- 모달 -->
+                        <!-- 상세정보 모달 -->
                       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                       <div class="modal-dialog modal modal-dialog-centered" role="document">
                         <div class="modal-content text-center d-block">
@@ -130,22 +133,35 @@
                         </div>
                       </div>
                     </div>
-                    <!-- 모달 -->
-                    <!-- 모달 -->
+                    <!-- 상세정보 모달 -->
+                    <!-- 환불사유 모달 -->
                       <div class="modal fade" id="cancelWhy" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
                       <div class="modal-dialog modal modal-dialog-centered" role="document">
-                        <div class="modal-content text-center d-block">
+                        <div class="modal-content ">
                           <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Reason for refund&nbsp;&nbsp;<small class="text-muted">환불사유</small></h5>
                             <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
                           </div>
                           <div class="modal-body">
-                          	<br><br>
-                          	<h1 class="display-1"><i class="fa fa-question-circle"></i></h1><br>
-                          	<h6 id="modalTitle">ddd</h6>
-                          	<div id="modalText">dd</div>
+                          	<br>
+                          	<div class="text-center d-block">
+	                          	<h1 class="display-1"><i class="fa fa-question-circle"></i></h1><br>
+	                          	<h6 id="modalTitle">환불 상세 정보입니다.</h6><br>
+                          	</div>
+                          	<form>
+                              <div class="mb-3">
+                                <label class="col-form-label" for="canCate">Category&nbsp;&nbsp;<small class="text-muted">환불 카테고리</small></label>
+                                <input class="form-control" id="canCate" type="text" value="" data-bs-original-title="" title="" disabled="disabled">
+                              </div>
+                              <div class="mb-3">
+                                <label class="col-form-label" for="canReason">Reason&nbsp;&nbsp;<small class="text-muted">환불 사유</small></label>
+                                <textarea class="form-control" id="canReason" disabled="disabled" style="color:tomato;"></textarea>
+                              </div>
+                            </form>
+                            <div id="payNumber" style="display:none;">d</div>
                           </div>
                           <div class="modal-footer">
+                          	<div id="changeButton"><button class="btn btn-primary" type="button" onclick="statusUpdate(0)">승인하기</button></div>
                             <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
                           </div>
                         </div>

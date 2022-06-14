@@ -136,6 +136,8 @@ public class ClassDaoImpl implements IClassDao{
 		return sqlSession.selectList(NS+"subjectSelected");
 	}
 
-	
-	
+	@Override
+	public ClassVo classSelectLastInsert() {
+		return sqlSession.selectOne(NS+"classSelectLastInsert");
+	}
 }

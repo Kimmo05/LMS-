@@ -55,6 +55,8 @@ public interface IClassDao {
 	
 	
 	
+	//최근에 등록된 과정 출력
+	public ClassVo classSelectLastInsert();
 	
 	// 과목 리스트 뽑기(임시)
 	public List<SubjectVo> subjectSelected();

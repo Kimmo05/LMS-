@@ -20,6 +20,7 @@ import com.min.service.IMessageBoardService;
 import com.min.vo.MessageBoardVo;
 
 @Controller
+@RequestMapping(value = "/user/*")
 public class MessageBoardController {
 
 	@Autowired
@@ -74,7 +75,7 @@ public class MessageBoardController {
 		map.put("mes_recipient", mes_recipient);
 		map.put("mes_content", mes_content);
 		service.mesBoardInsert(map);
-		return "redirect:/messendBoardSelectAll.do";
+		return "redirect:/user/messendBoardSelectAll.do";
 	}
 	
 	
@@ -83,7 +84,7 @@ public class MessageBoardController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mes_seq", mes_seq);
 		service.mesBoardDelete(map);
-		return "redirect:/messendBoardSelectAll.do";
+		return "redirect:/user/messendBoardSelectAll.do";
 	}
 	
 	@RequestMapping(value = "/mesBoardReplyForm.do", method = RequestMethod.GET)
@@ -100,7 +101,7 @@ public class MessageBoardController {
 		map.put("mes_reffer", mes_reffer);
 		map.put("mes_content", content);
 		service.mesBoardReply(map);
-		return "redirect:/messendBoardSelectAll.do";
+		return "redirect:/user/messendBoardSelectAll.do";
 	}
 	
 }

@@ -6,7 +6,7 @@
 
 	<display-name>LMS_Project</display-name>
 	<welcome-file-list>
-	    <welcome-file>/main/main.do</welcome-file>
+	    <welcome-file>/main.do</welcome-file>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
 	<!-- Root Context -->
@@ -30,13 +30,14 @@
 			<param-value>
 			/WEB-INF/spring/appServlet/servlet-context.xml
 			/WEB-INF/spring/appServlet/aop-context.xml
+			/WEB-INF/spring/appServlet/file-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-		<multipart-config>
-		<!-- 추가 -->
+<!-- 		<multipart-config>
+		추가
 	    <location>c:/upload/tmp</location>
-	    </multipart-config>
+	    </multipart-config> -->
 	</servlet>
 
 	<servlet-mapping>

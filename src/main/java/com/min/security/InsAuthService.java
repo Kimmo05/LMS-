@@ -33,18 +33,29 @@ public class InsAuthService  implements AuthenticationProvider{
 		String user_pw = (String)authentication.getCredentials();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", username);
-		System.out.println("MemberAuthService: id:{} , pwd:{} "+ username +"//"+ user_pw);
+		System.out.println("InsAuthService: id:{} , pwd:{} "+ username +"//"+ user_pw);
 		
-		MemberVo dto = service.loginIns(map);
+		MemberVo dto = new MemberVo();
 		
-		// 정보가 없으면 나간다.
-		if ( username == null || username == "" ) {
-			throw new BadCredentialsException("Member 로그인 아이디가 없습니다." + username );
-		}
-//		if ( user_pw == null || user_pw == ""  ) {
-//			throw new BadCredentialsException("Member 로그인 암호가 없습니다." + user_pw );
-//		}
-		
+		try{
+			 dto = service.loginIns(map);
+			 if ( dto.getAuth() == null || dto.getAuth() == ""  ) {
+				throw new BadCredentialsException("Member 로그인 암호가 없습니다." + dto.getAuth() );
+				}
+			} catch (NullPointerException e){
+				e.printStackTrace();
+				throw new BadCredentialsException("아이디 및 비밀번호가 틀렸습니다.");
+				
+			}
+			// 정보가 없으면 나간다.
+			if ( username == null || username == "" ) {
+				throw new BadCredentialsException("Member 로그인 아이디가 없습니다." + username );
+			}
+			if ( user_pw == null || user_pw == ""  ) {
+				throw new BadCredentialsException("Member 로그인 암호가 없습니다." + user_pw );
+			}
+			
+			
 		
 		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
 		roles.add(new SimpleGrantedAuthority(dto.getAuth())); // ADMIN
@@ -53,12 +64,14 @@ public class InsAuthService  implements AuthenticationProvider{
 		// 로그인한 사용자의 부가정보를 담아준다.
 		MemberVo user_info = new MemberVo();
 		user_info.setId(dto.getId());
+		user_info.setPw(dto.getPw());
 		user_info.setAuth(dto.getAuth());
 		user_info.setName(dto.getName());
 		user_info.setEmail(dto.getEmail());
 		user_info.setBirth(dto.getBirth());
 		user_info.setPhone(dto.getPhone());
 		user_info.setMilage(dto.getMilage());
+		user_info.setProfile(dto.getProfile());
 		user_info.setBank(dto.getBank());
 		user_info.setBanknum(dto.getBanknum());
 		user_info.setRegdate(dto.getRegdate());

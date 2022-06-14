@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.min.dao.PayDao;
 import com.min.service.IPayService;
 import com.min.vo.CouponVo;
+import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
 
@@ -108,6 +109,61 @@ public class payController{
 		model.addAttribute("lists",lists);
 		model.addAttribute("status",getText);
 		return "admin/changeStatus";
+	}
+	
+	//관리자 환불요청 승인
+	@RequestMapping(value = "/statusUpdate.do" , method = RequestMethod.GET)
+	public String statusUpdate(String paynum) {
+		System.out.println(paynum+"@!@!@!@!@!");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pay_num", paynum);
+		int n = service.statusUpdate(map);
+		System.out.println(n + "성공입니다~");
+		return "redirect:/user/changeStatus.do";
+	}
+	
+	//회원 결제조회 페이지
+	@RequestMapping(value = "/user_Mypay.do" ,method = RequestMethod.GET)
+	public String userMypay(Authentication user,Model model) {
+		logger.info("-------------user_Mypay 이동 -------------");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pay_tra_buyer", user.getPrincipal());
+		List<PayVo> list = service.selectMyPay(map);
+		model.addAttribute("lists",list);
+		return "user/user_Mypay";
+	}
+	
+	//마이페이지 환불신청
+	@RequestMapping(value = "/cancelUpdate.do", method = RequestMethod.POST)
+	public void cancelUpdate(String pay_num,String pay_cancate,String pay_status,String pay_cancontent) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pay_cancate", pay_cancate);
+		map.put("pay_status", pay_status);
+		map.put("pay_cancontent", pay_cancontent);
+		map.put("pay_num", pay_num);
+		int n = service.cancelUpdate(map);
+		System.out.println(n);
+	}
+	
+	//내 마일리지,쿠폰 조회페이지 이동
+	@RequestMapping(value = "/user_MyDiscount.do",method = RequestMethod.GET)
+	public String user_MyDiscount(Model model,Authentication user) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("tra_id", user.getPrincipal());
+		map.put("cou_tra_id", user.getPrincipal());
+		map.put("cou_delflag", "Y");
+		
+		List<CouponVo> coulists = service.myCoupon(map);
+		int mile = service.myMilage(map);
+		System.out.println(mile);
+		int count = service.countCoupon(map);
+		
+		
+		model.addAttribute("coulists",coulists);
+		model.addAttribute("mile",mile);
+		model.addAttribute("count",count);
+		
+		return "user/user_MyDiscount";
 	}
 	
 }

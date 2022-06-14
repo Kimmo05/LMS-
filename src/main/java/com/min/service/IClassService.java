@@ -50,4 +50,6 @@ public interface IClassService {
 	
 	// 과목 리스트 뽑기(임시)
 	public List<SubjectVo> subjectSelected();
+	//최근에 등록된 과정 불러오기
+	public ClassVo classSelectLastInsert();
 }

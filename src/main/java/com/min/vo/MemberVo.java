@@ -27,6 +27,8 @@ public class MemberVo {
 	private String career;
 	private String delflag;
 	private String regdate;
+	private String like;
+	private String prefer;
 	
 
 }

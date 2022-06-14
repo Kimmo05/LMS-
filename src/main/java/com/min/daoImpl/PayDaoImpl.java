@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.min.dao.PayDao;
 import com.min.vo.CouponVo;
+import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
 @Repository
@@ -59,6 +60,54 @@ public class PayDaoImpl implements PayDao{
 	@Override
 	public PayVo getPayDetail(Map<String, Object> map) {
 		return sqlSession.selectOne(NS+"getPayDetail",map);
+	}
+
+	//환불 상태 변경
+	@Override
+	public int statusUpdate(Map<String, Object> map) {
+		return sqlSession.update(NS+"statusUpdate",map);
+	}
+
+	//마이페이지 내 결제조회
+	@Override
+	public List<PayVo> selectMyPay(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"selectMyPay",map);
+	}
+
+	//마이페이지 내의 환불상태 업데이트
+	@Override
+	public int cancelUpdate(Map<String, Object> map) {
+		return sqlSession.update(NS+"cancelUpdate",map);
+	}
+
+	//환불승인시에 쿠폰반환
+	@Override
+	public int returnCoupon(Map<String, Object> map) {
+		return sqlSession.update(NS+"returnCoupon",map);
+	}
+
+	//환불승인시에 마일리지 반환
+	@Override
+	public int returnMileage(Map<String, Object> map) {
+		return sqlSession.update(NS+"returnMileage",map);
+	}
+
+	//내 마일리지 조회
+	@Override
+	public int myMilage(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"myMilage",map);
+	}
+
+	//내 보유쿠폰 조회
+	@Override
+	public List<CouponVo> myCoupon(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"myCoupon",map);
+	}
+
+	//내 보유쿠폰장수 조회
+	@Override
+	public int countCoupon(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"countCoupon",map);
 	}
 
 	

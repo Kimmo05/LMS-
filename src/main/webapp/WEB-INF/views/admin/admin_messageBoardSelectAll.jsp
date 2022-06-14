@@ -71,7 +71,7 @@ function insertForm(){
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td>
+<!--                       <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td> -->
 <!--                       <th scope="col">seq</th> -->
 					  <c:if test="${mes_cate eq 'Q' or mes_cate eq null}">
                       <th scope="col">MY ID</th>

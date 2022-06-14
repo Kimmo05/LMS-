@@ -31,6 +31,7 @@ import com.min.service.IClassBoardService;
 import com.min.vo.ClassBoardVo;
 
 @Controller
+@RequestMapping(value = "/user/*")
 public class ClassBoardController {
 
 	@Autowired
@@ -82,7 +83,7 @@ public class ClassBoardController {
 		map.put("cbo_content", content);
 		map.put("cbo_youtubeadd", videoAdd);
 		service.classVideoInsert(map);
-		return "redirect:/classBoardSelectedAll.do";
+		return "redirect:/user/classBoardSelectedAll.do";
 	}
 	
 	
@@ -169,7 +170,7 @@ public class ClassBoardController {
 		}
 		service.documentUpdate(map);
 		
-		return "redirect:/classBoardSelectedAll.do";
+		return "redirect:/user/classBoardSelectedAll.do";
 	}
 	
 	
@@ -222,7 +223,7 @@ public class ClassBoardController {
 	@RequestMapping(value = "/classBoardDocDelete.do", method = RequestMethod.GET)
 	public String classBoardDocDelete(@RequestParam int cbo_doc_seq) {
 		service.classBoardDocDelete(cbo_doc_seq);
-		return "redirect:/classBoardSelectedAll.do";
+		return "redirect:/user/classBoardSelectedAll.do";
 	}
 	
 	

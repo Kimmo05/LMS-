@@ -10,7 +10,9 @@
 	<result column="Tra_birth" property="birth" />		
 	<result column="Tra_phone" property="phone" />		
 	<result column="Tra_auth" property="auth" />		
-	<result column="Tra_profile" property="profile" />		
+	<result column="Tra_like" property="like" />
+	<result column="Tra_prefer" property="prefer" />
+	<result column="Tra_profile" property="profile" />
 	<result column="Tra_delflag" property="delflag" />		
 	<result column="Tra_regdate" property="regdate" />				
 </resultMap>
@@ -30,17 +32,20 @@
 	<result column="Ins_regdate" property="regdate" />				
 </resultMap>
 
+
+
 <!-- 일반회원 로그인 -->
 <select id="loginTra" resultMap="TraResult" parameterType="map" resultType="MemberVo">
 SELECT  TRA_ID ,
+		TRA_PW , 
 		TRA_NAME ,
 		TRA_EMAIL ,
 		TRA_PHONE ,
 		TRA_BIRTH ,
 		TRA_PROFILE ,
 		TRA_AUTH ,
-		TRA_LIKE ,
-		TRA_PREFER,
+		JSON_QUERY(TRA_LIKE,'$' RETURNING VARCHAR2) AS TRA_LIKE,
+		JSON_QUERY(TRA_PREFER,'$' RETURNING VARCHAR2) AS TRA_PREFER,
 		TRA_REGDATE ,
 		TRA_DELFLAG 
 	FROM TRAINEE 
@@ -59,13 +64,30 @@ TRA_BIRTH,
 TRA_PROFILE,
 TRA_AUTH,
 TRA_REGDATE, 
-TRA_DELFLAG)
+TRA_DELFLAG,
+ TRA_PREFER)
 VALUES(#{id},#{pw}, #{name}, 
 #{email}, #{phone}, 
 #{birth}, #{profile}, 'ROLE_USER', 
 SYSDATE,
-'N')
+'N','{"subject":[],"more_time":null,"less_time":null,"date":null,"recommand":[]}')
 </insert>
+<select id="findTraId">
+SELECT TRA_ID  FROM 
+TRAINEE 
+WHERE TRA_NAME  =#{name} 
+AND TRA_EMAIL =#{email};
+</select>
+
+
+<!-- 회원 탈퇴 신청 (W = 탈퇴 승인 대기) -->
+<update id="delTra" parameterType="map">
+UPDATE TRAINEE SET TRA_DELFLAG ='W'
+WHERE TRA_ID =#{id}
+</update>
+
+
+
 <!-- 관리자 일반회원 페이징 -->
 <select id="adminUserListRow"  resultMap="TraResult" parameterType="RowNumVo" resultType="MemberVo">
 SELECT  RN, TRA_ID ,
@@ -98,6 +120,7 @@ SELECT  RN, TRA_ID ,
 <select id="loginIns" resultMap="InsResult" parameterType="map" resultType="MemberVo">
 SELECT INS_ID,  
 INS_NAME, 
+INS_PW,
 INS_EMAIL, 
 INS_PHONE, 
 INS_BIRTH, 
@@ -134,5 +157,19 @@ SYSDATE,
 #{banknum},#{bank},
 'N')
 </insert>
+
+<update id="insUpdatePw">
+UPDATE INSTRUCTOR SET
+INS_PW =#{pw} 
+WHERE INS_ID =#{id} AND 
+	  INS_NAME=#{name} AND 
+	  INS_EMAIL=#{email} 
+</update>
+<!-- 관리자 회원 탈퇴 승인(Y = 탈퇴) -->
+<update id="adminDelTra">
+UPDATE TRAINEE SET TRA_DELFLAG ='Y'
+WHERE TRA_ID =#{id}
+</update>
+
 
 </mapper>
