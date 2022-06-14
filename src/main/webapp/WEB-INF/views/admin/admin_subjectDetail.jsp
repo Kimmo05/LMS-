@@ -320,7 +320,7 @@
        	  denyButtonText: '반려',
        	}).then((result) => { //버튼 클릭시 결과
        	  if (result.isConfirmed) {
-       	    Swal.fire('승인처리되었습니다!', './subUpdateStatusA.do', 'success');
+       	    Swal.fire('승인처리되었습니다!', 'success');
 	       	history.back();
        	  } else if (result.isDenied) {
        		const { value: text } = Swal.fire({
