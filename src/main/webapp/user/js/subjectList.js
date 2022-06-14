@@ -48,8 +48,8 @@ var pagingAjax= function (){
 					$.each(value, function(k,v){
 					varHtml += "  <tr>";
 					varHtml += "     <td><input type='checkbox' name='chkVal'></td>";
-					varHtml += "   <td onclick='modalOpen("+subVo.getSub_num()+")'><a href='#' data-bs-toggle='modal' data-original-title='test' data-bs-target='#exampleModal'>"+subVo.getSub_num()+"</a></td>";
-	                varHtml += " <td><a href='./adminSubjectDetail.do?sub_num="+v.sub_num+"'>"+v.sub_title+"</a></td>";
+					varHtml += "   <td ><a href='./admin_subjectDetail.do?sub_num="+v.sub_num+"'>"+v.sub_num+"</a></td>";
+	                varHtml += " <td><a href='./admin_subjectDetail.do?sub_num="+v.sub_num+"'>"+v.sub_title+"</a></td>";
 	                varHtml += " <td>";
 	                if(v.cod_name === "JAVA"){
 	                varHtml += "        <span class='badge rounded-pill' style='background-color:#006400 '>"+v.cod_name+"</span>   ";

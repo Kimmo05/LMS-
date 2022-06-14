@@ -27,7 +27,6 @@ public class MemberDaoImpl implements IMemberDao{
 
 	@Override
 	public MemberVo loginTra(Map<String, Object> map) {
-		// TODO Auto-generated method st
 		return  sqlSession.selectOne(NS+"loginTra",map);
 	}
 
@@ -41,25 +40,21 @@ public class MemberDaoImpl implements IMemberDao{
 
 	@Override
 	public MemberVo loginIns(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS+"loginIns",map);
 	}
 
 	@Override
 	public int InsSignUp(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return sqlSession.insert(NS+"InsSignUp",map);
 	}
 
 	@Override
 	public List<MemberVo> adminUserListRow(RowNumVo rvo) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectList(NS+"adminUserListRow",rvo);
 	}
 
 	@Override
 	public int adminUserListTotal() {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NS+"adminUserListTotal");
 	}
 

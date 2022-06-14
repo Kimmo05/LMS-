@@ -1,4 +1,4 @@
-package com.min.bean;
+package com.min.coolSMS.bean;
 
 import java.util.List;
 
@@ -32,8 +32,8 @@ public class SubjectListBeanAdmin {
 		StringBuffer sb = new StringBuffer();
 		sb.append("<tr>");
 		sb.append("<td><input type='checkbox' name='chkVal'></td>");
-		sb.append("   <td onclick='modalOpen("+subVo.getSub_num()+")'><a href='#' data-bs-toggle='modal' data-original-title='test' data-bs-target='#exampleModal'>"+subVo.getSub_num()+"</a></td>");
-		sb.append("   <td><a href='javascript:subjectDetail()'>"+subVo.getSub_title()+"</a></td>");
+		sb.append("   <td><a href='#'>"+subVo.getSub_num()+"</a></td>");
+		sb.append("   <td><a href='./admin_subjectDetail.do?sub_num="+subVo.getSub_num()+"'>"+subVo.getSub_title()+"</a></td>");
 		sb.append("   <td>");
 		if(subVo.getCod_name().equals("JAVA")) {
 			sb.append("          <span class='badge rounded-pill' style='background-color:#006400'>"+subVo.getCod_name()+"</span>");

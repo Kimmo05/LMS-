@@ -60,8 +60,8 @@
       <div class="page-main-header">
         <div class="main-header-right row m-0">
           <div class="main-header-left">
-            <div class="logo-wrapper"><a href="index.do"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
-            <div class="dark-logo-wrapper"><a href="index.do"><img class="img-fluid" src="./assets/images/logo/dark-logo.png" alt=""></a></div>
+            <div class="logo-wrapper"><a href="./"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
+            <div class="dark-logo-wrapper"><a href="./"><img class="img-fluid" src="./assets/images/logo/dark-logo.png" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           </div>
           <div class="left-menu-header col">
@@ -165,15 +165,15 @@
               </li>
               <sec:authentication property="Authorities" var="auth" />
                <sec:authorize access="isAnonymous()">
- 				<li class="onhover-dropdown p-0">
+             <li class="onhover-dropdown p-0">
                 <button class="btn btn-primary-light" type="button"><a href="./loginPage.do"><i data-feather="log-in"></i>Log in</a></button>
-              	</li>
-				</sec:authorize>
+                 </li>
+            </sec:authorize>
                <sec:authorize access="isAuthenticated()">
-				<li class="onhover-dropdown p-0"> 
+            <li class="onhover-dropdown p-0"> 
                  <button class="btn btn-primary-light" type="button"><a href="./logout.do"><i data-feather="log-out"></i>Log out</a></button> 
-              	</li>
-				</sec:authorize>
+                 </li>
+            </sec:authorize>
             </ul>
           </div>
           <div class="d-lg-none mobile-toggle pull-right w-auto"><i data-feather="more-horizontal"></i></div>
@@ -238,7 +238,7 @@
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./admin_subjectList.do">과목 조회</a></li>
-                      <li><a href="./admin_subApprove.do">과목 승인</a></li>
+                      <li><a href="./admin_subjectApprove.do">과목 승인</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>

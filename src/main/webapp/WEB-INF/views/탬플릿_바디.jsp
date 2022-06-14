@@ -5,6 +5,7 @@
 <head>
 <title>첫 페이지</title>
 </head>
+<%--다른 폴더 안에 들어가면 인클루드 된 파일 경로 앞에 .을 붙여야함--%>
 <%@ include file="./header.jsp" %>
 <body>
   
