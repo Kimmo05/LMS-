@@ -85,7 +85,7 @@ function insertForm(val){
                   <c:forEach var="vo" items="${lists}"  varStatus="vs">
 		              <tr>
 <%-- 		              	 <td>${vo.cbo_seq}</td> --%>
-		                 <td><input type="checkbox" name="chkVal"></td>
+<!-- 		                 <td><input type="checkbox" name="chkVal"></td> -->
 		                 <td>${vo.cbo_ins_id}</td>
 		                 <td><a href="./classBoardSelectDetail.do?cbo_seq=${vo.cbo_seq}">${vo.cbo_title}</a></td>
 		                 <td>${vo.cbo_cate}</td>

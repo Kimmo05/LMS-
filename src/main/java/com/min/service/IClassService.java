@@ -3,6 +3,7 @@ package com.min.service;
 import java.util.List;
 import java.util.Map;
 
+import com.min.vo.ClassPeopleVo;
 import com.min.vo.ClassSubjectVo;
 import com.min.vo.ClassVo;
 import com.min.vo.InstructorVo;
@@ -47,6 +48,12 @@ public interface IClassService {
 	public int votedInsert(Map<String, Object> map);
 	// 과정 상태변경
 	public int classStatusUpdate(Map<String, Object> map);
+	
+	// 투표한 수강자 추가
+	public int classPeoInsert(Map<String, Object> map);
+	
+	// 투표자 찾기
+	public int classPeoSelectAll(ClassPeopleVo vo);
 	
 	// 과목 리스트 뽑기(임시)
 	public List<SubjectVo> subjectSelected();

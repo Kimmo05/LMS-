@@ -59,7 +59,7 @@ public class ClassBoardController {
 	public String classBoardSelectDetail(HttpSession session, Model model, @RequestParam int cbo_seq) {
 		ClassBoardVo result = service.classBoardSelectDetail(cbo_seq);
 		session.setAttribute("cbo_seq", cbo_seq);
-		session.setAttribute("doc_seq", result.getCbo_doc_seq());
+		session.setAttribute("cbo_doc_seq", result.getCbo_doc_seq());
 		model.addAttribute("result", result);
 		String doc_originname = service.findFile(cbo_seq);
 		model.addAttribute("doc_originname", doc_originname);
@@ -221,13 +221,17 @@ public class ClassBoardController {
 	}
 	
 	@RequestMapping(value = "/classBoardDocDelete.do", method = RequestMethod.GET)
-	public String classBoardDocDelete(@RequestParam int cbo_doc_seq) {
+	public String classBoardDocDelete(@SessionAttribute("cbo_doc_seq") int cbo_doc_seq) {
 		service.classBoardDocDelete(cbo_doc_seq);
 		return "redirect:/user/classBoardSelectedAll.do";
 	}
 	
 	
-	
+	@RequestMapping(value = "/classBoardVideoDelete.do", method = RequestMethod.GET)
+	public String classBoardVideoDelete(@SessionAttribute("cbo_seq") int cbo_seq) {
+		service.classBoardVideoDelete(cbo_seq);
+		return "redirect:/user/classBoardSelectedAll.do";
+	}
 	
 	
 }
