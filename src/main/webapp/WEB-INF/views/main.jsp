@@ -20,6 +20,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
+                <div class="card-header pb-0">
+                    <h5>Recommended courses</h5>
+                  </div>
                     <div class="card-header pb-0">
                         <%--                    <sec:authorize access="isAuthenticated()">--%>
                         <%--	<p>--%>
@@ -58,11 +61,12 @@
                                         </div>
                                         <div class="details-main"><a href="learning-detailed.html">
                                             <div class="bottom-details">
-                                                <h6>UX Development.</h6>
+                                                <h6>JSP 전문가 과정</h6>
                                             </div>
                                         </a>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has.</p>
+                                            <p>JSP 전문가가 되고 싶은 수강자들을 모집중이며 난이도가 있는 과정이니 중급개발자 이상 지원을 권장드립니다.</p>
+                                            <br>
+                                            <button class="btn btn-primary" type="button">Go Detail</button>
                                         </div>
                                     </div>
                                 </div>
@@ -83,11 +87,12 @@
                                         </div>
                                         <div class="details-main"><a href="learning-detailed.html">
                                             <div class="bottom-details">
-                                                <h6>UX Development.</h6>
+                                                <h6>빅데이터 기초 과정</h6>
                                             </div>
                                         </a>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has.</p>
+                                            <p>빅데이터를 취미 혹은 배경지식이 없는 상태에서 배워보고 싶은 수강자들을 모집중입니다.</p>
+                                            <br>
+                                            <button class="btn btn-primary" type="button">Go Detail</button>
                                         </div>
                                     </div>
                                 </div>
@@ -108,16 +113,65 @@
                                         </div>
                                         <div class="details-main"><a href="learning-detailed.html">
                                             <div class="bottom-details">
-                                                <h6>UX Development.</h6>
+                                                <h6>Security 심화강좌</h6>
                                             </div>
                                         </a>
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has.</p>
+                                            <p>웹 분야 데이터 보안에 관심이 많은 수강자를 모집중입니다. 심화강좌이기때문에 중급개발자 이상 지원을 권장합니다.</p>
+                                            <br>
+                                            <button class="btn btn-primary" type="button">Go Detail</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <h5>Recommended Instructor</h5>
+                        <hr>
+                        <div class="row">
+	                        <div class="col-sm-12 col-xl-6">
+				                <div class="card">
+				                  <div class="card-header d-flex justify-content-between align-items-center pb-0">
+				                    <h5><i class="fa fa-user"></i>&nbsp;&nbsp;Min Kyun Jeon</h5>
+				                    <div class="setting-list">
+				                      <ul class="list-unstyled setting-option">
+				                        <li>
+				                          <div class="setting-primary"><i class="icon-settings"></i></div>
+				                        </li>
+				                        <li><i class="view-html fa fa-code font-primary"></i></li>
+				                        <li><i class="icofont icofont-maximize full-card font-primary"></i></li>
+				                        <li><i class="icofont icofont-minus minimize-card font-primary"></i></li>
+				                        <li><i class="icofont icofont-refresh reload-card font-primary"></i></li>
+				                        <li><i class="icofont icofont-error close-card font-primary"></i></li>
+				                      </ul>
+				                    </div>
+				                  </div>
+				                  <div class="card-body">
+				                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+				                  </div>
+				                </div>
+				              </div>
+				              <div class="col-sm-12 col-xl-6">
+				                <div class="card">
+				                  <div class="card-header d-flex justify-content-between align-items-center pb-0">
+				                    <h5><i class="icofont icofont-truck me-2"></i> Icon in Heading</h5>
+				                    <div class="setting-list">
+				                      <ul class="list-unstyled setting-option">
+				                        <li>
+				                          <div class="setting-primary"><i class="icon-settings"></i></div>
+				                        </li>
+				                        <li><i class="view-html fa fa-code font-primary"></i></li>
+				                        <li><i class="icofont icofont-maximize full-card font-primary"></i></li>
+				                        <li><i class="icofont icofont-minus minimize-card font-primary"></i></li>
+				                        <li><i class="icofont icofont-refresh reload-card font-primary"></i></li>
+				                        <li><i class="icofont icofont-error close-card font-primary"></i></li>
+				                      </ul>
+				                    </div>
+				                  </div>
+				                  <div class="card-body">
+				                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+				                  </div>
+				                </div>
+				              </div>
+			             </div> 
                     </div>
                 </div>
             </div>
