@@ -47,6 +47,7 @@
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <!-- Loader starts-->
@@ -63,13 +64,13 @@
         <div class="main-header-left">
              <sec:authorize access="isAnonymous()">
           
-            <div class="logo-wrapper"><a href="./main.do"><img class="img-fluid" src="../resources/images/logo.png" alt=""></a></div>
+            <div class="logo-wrapper"><a href="./main.do"><img class="img-fluid" src="./resources/images/logo.png" alt=""></a></div>
             <div class="dark-logo-wrapper"><a href="./main.do"><img class="img-fluid" src="../assets/images/logo/dark-logo.png" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           		</sec:authorize>
           		<sec:authorize access="isAuthenticated()">
 
-          		<div class="logo-wrapper"><a href="./main.do"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a></div>
+          		<div class="logo-wrapper"><a href="./main.do"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
             <div class="dark-logo-wrapper"><a href="./main.do"><img class="img-fluid" src="../assets/images/logo/dark-logo.png" alt=""></a></div>
 
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
