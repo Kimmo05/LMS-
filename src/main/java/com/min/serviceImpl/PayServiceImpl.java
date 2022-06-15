@@ -99,4 +99,14 @@ public class PayServiceImpl implements IPayService{
 		return dao.selectPhone(map);
 	}
 
+//	@Override
+//	public int insertSalary(Map<String, Object> map) {
+//		return dao.insertSalary(map);
+//	}
+
+	@Override
+	public int updateClaPeople(Map<String, Object> map) {
+		return dao.updateClaPeople(map);
+	}
+
 }

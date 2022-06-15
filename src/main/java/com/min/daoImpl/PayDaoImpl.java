@@ -126,6 +126,18 @@ public class PayDaoImpl implements PayDao{
 	public String selectPhone(Map<String, Object> map) {
 		return sqlSession.selectOne(NS+"selectPhone",map);
 	}
+	
+//	//수강료 지급
+//	@Override
+//	public int insertSalary(Map<String, Object> map) {
+//		return sqlSession.insert(NS+"insertSalary",map);
+//	}
+
+	//수강자로 등록
+	@Override
+	public int updateClaPeople(Map<String, Object> map) {
+		return sqlSession.update(NS+"updateClaPeople",map);
+	}
 
 	
 }
