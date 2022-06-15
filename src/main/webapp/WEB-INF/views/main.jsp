@@ -6,10 +6,11 @@
 <html>
 <head>
     <title>첫 페이지</title>
+       <link rel="stylesheet" type="text/css" href="../assets/css/sweetalert2.css">
 </head>
+<%-- <jsp:forward page="main.do"/> --%>
 <%@ include file="./header.jsp" %>
 <body>
-
 <div class="page-body">
     <div class="container-fluid">
         <div class="page-header">
@@ -17,6 +18,9 @@
     </div>
     <!-- Container-fluid starts-->
     <div class="container-fluid">
+    <!-- 시큐리티 권한 가져오는 부분 삭제 금지 -->
+     <sec:authorize access="isAuthenticated()">--%>
+    	<sec:authentication property="Details" var="info" />
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -191,10 +195,73 @@
 <!-- footer start-->
 </div>
 </div>
-
+</sec:authorize>
 
 <%@include file="./footer.jsp" %>
-
-
+</div>
+</div>
+<script type="text/javascript">
+// window.onbeforeunload = function(e) {
+//     var dialogText = 'Dialog text here';
+//     e.returnValue = dialogText;
+//     return dialogText;
+// };
+window.onload = function() {
+	
+	var auth   = '${info.auth}'
+    var delflag   = '${info.delflag}'
+	console.log(delflag , auth);
+	if(auth == "ROLE_INSTROCTUR" && delflag =="P"){
+		Swal.fire({
+			  title: '경력 등록',
+			  text: "서비스를 이용하시려면 경력등록이 필요합니다!",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3db39d',
+			  cancelButtonColor: '#e4818b',
+			  cancelButtonText: '취소',
+			  confirmButtonText: '등록하기!'
+			}).then((result) => {
+			  if (result.value) {
+				  window.location='./InsCareer.do';
+			  
+			  }
+			})
+			}else if(auth == "ROLE_INSTROCTUR" && delflag =="R"){
+				Swal.fire({
+					  title: '경력 등록 대기중',
+					  text: "경력 등록 진행 중 입니다.!",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3db39d',
+					  cancelButtonColor: '#e4818b',
+					  cancelButtonText: '취소',
+					  confirmButtonText: '등록하기!'
+					}).then((result) => {
+					  if (result.value) {
+						  window.location='./myProfile.do';
+					  
+					  }
+					})
+			}else if(auth == "ROLE_INSTROCTUR" && delflag =="C"){
+				Swal.fire({
+					  title: '경력 승인 취소',
+					  text: "경력 등록이 취소되었습니다. 다시 등록해주세요.!",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3db39d',
+					  cancelButtonColor: '#e4818b',
+					  cancelButtonText: '취소',
+					  confirmButtonText: '등록하기!'
+					}).then((result) => {
+					  if (result.value) {
+						  window.location='./InsCareer.do';
+					  
+					  }
+					})
+			}
+			};
+</script>
+  	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
 </html>
