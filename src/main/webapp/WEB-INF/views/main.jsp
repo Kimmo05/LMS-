@@ -19,8 +19,9 @@
     <!-- Container-fluid starts-->
     <div class="container-fluid">
     <!-- 시큐리티 권한 가져오는 부분 삭제 금지 -->
-     <sec:authorize access="isAuthenticated()">--%>
+     <sec:authorize access="isAuthenticated()">
     	<sec:authentication property="Details" var="info" />
+    	</sec:authorize>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
@@ -195,7 +196,7 @@
 <!-- footer start-->
 </div>
 </div>
-</sec:authorize>
+
 
 <%@include file="./footer.jsp" %>
 </div>
