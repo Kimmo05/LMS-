@@ -49,7 +49,7 @@
                                 <div class="card">
                                     <div class="product-box learning-box">
                                         <div class="product-img"><img class="img-fluid top-radius-blog"
-                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                                                      src="../resources/images/main01.jpeg.jpg" alt="">
                                             <div class="product-hover">
                                                 <ul>
                                                     <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
@@ -75,7 +75,7 @@
                                 <div class="card">
                                     <div class="product-box learning-box">
                                         <div class="product-img"><img class="img-fluid top-radius-blog"
-                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                                                      src="../resources/images/main03.jpg" alt="">
                                             <div class="product-hover">
                                                 <ul>
                                                     <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
@@ -101,7 +101,7 @@
                                 <div class="card">
                                     <div class="product-box learning-box">
                                         <div class="product-img"><img class="img-fluid top-radius-blog"
-                                                                      src="./assets/images/faq/4.jpg" alt="">
+                                                                      src="../resources/images/main02.jpg" alt="">
                                             <div class="product-hover">
                                                 <ul>
                                                     <li><a href="learning-detailed.html"><i class="icon-link"></i></a>
@@ -145,14 +145,19 @@
 				                    </div>
 				                  </div>
 				                  <div class="card-body">
-				                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+				                    <p>“처음부터 다 이해하고 잘 할 수 있는 일은 없습니다.”<br>
+										IT를 몰라서 SW 개발을 해본 적이 없어서..’ 이러한 두려운 마음은 열정과 자신감만 있다면 못할 일이 없습니다.
+										풀리지 않는 문제는 없습니다.
+										취업을 위한 가장 중요한 시기에 SW분야의 정확한 기술과 경험을 전수하고
+										난해한 문제점을 같이 고민하고 풀어가겠습니다.
+										목표한 곳까지의 “페이스메이커”가 되어 끝까지 함께 하겠습니다.</p>
 				                  </div>
 				                </div>
 				              </div>
 				              <div class="col-sm-12 col-xl-6">
 				                <div class="card">
 				                  <div class="card-header d-flex justify-content-between align-items-center pb-0">
-				                    <h5><i class="icofont icofont-truck me-2"></i> Icon in Heading</h5>
+				                    <h5><i class="fa fa-user"></i>&nbsp;&nbsp;Jung Gi Song</h5>
 				                    <div class="setting-list">
 				                      <ul class="list-unstyled setting-option">
 				                        <li>
@@ -167,7 +172,10 @@
 				                    </div>
 				                  </div>
 				                  <div class="card-body">
-				                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</p>
+				                    <p>“여러분과 좋은 인연을 맺고 싶습니다.”<br>
+										"취업"이 인생의 전부는 아니지만 현재 여러분의 "관심"이었으면 좋겠습니다.
+										모든 일은 "관심"에서부터 시작됩니다.<br><br>
+										저도 여러분을 "관심"있게 지켜볼 수 있도록 힘내겠습니다 :)</p>
 				                  </div>
 				                </div>
 				              </div>
