@@ -70,7 +70,7 @@ function insertForm(){
               <div class="table-responsive">
                 <table class="table table-hover">
                   <thead>
-                    <tr>
+                    <tr style="border-left: 50px;">
 <!--                       <td><input type="checkbox" name="chkAll" onclick="checkAlls(this.checked)"></td> -->
 <!--                       <th scope="col">seq</th> -->
 					  <c:if test="${mes_cate eq 'Q' or mes_cate eq null}">
@@ -88,7 +88,7 @@ function insertForm(){
                   <c:forEach var="vo" items="${lists}"  varStatus="vs">
 		              <tr>
 		              	 <td id="seq" hidden="hidden">${vo.mes_seq}</td>
-		                 <td><input type="checkbox" name="chkVal"></td>
+<!-- 		                 <td><input type="checkbox" name="chkVal"></td> -->
 		                 <c:if test="${mes_cate eq 'Q' or mes_cate eq null}">
 		                 <td>${vo.mes_sender}</td>
 		                 </c:if>

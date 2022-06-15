@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.min.service.IMemberService;
+import com.min.service.IPayService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,6 +33,9 @@ public class MainController {
 
 	@Autowired
 	IMemberService service;
+	
+	@Autowired
+	IPayService payService;
 	
 	//첫 메인페이지
 	@RequestMapping(value = "/app/main.do", method = RequestMethod.GET)
@@ -76,6 +80,15 @@ public class MainController {
 		public String myProfile(
 				Locale locale, Model model,Authentication user) {
 			log.info("myProfile 마이페이지 이동 ");
+			Map<String, Object> cmap = new HashMap<String, Object>();
+			cmap.put("cou_tra_id", user.getPrincipal());
+			cmap.put("cou_delflag", "Y");
+			Map<String, Object> milemap = new HashMap<String, Object>();
+			milemap.put("tra_id", user.getPrincipal());
+			int coup = payService.countCoupon(cmap);
+			int mile = payService.myMilage(milemap);
+			model.addAttribute("coup",coup);
+			model.addAttribute("mile",mile);
 			
 			return "user/myProfile";
 		}

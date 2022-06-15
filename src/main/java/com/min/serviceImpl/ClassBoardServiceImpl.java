@@ -51,12 +51,20 @@ public class ClassBoardServiceImpl implements IClassBoardService {
 		int m = dao.classBoardDocModify(map);
 		return (n>0||m>0)? 1:0;
 	}
-	
+
 	@Override
 	public int classBoardDocDelete(int seq) {
-		int n = dao.classBoardDocDelete(seq);
-		int m = dao.documentDelete(seq);
+		int m = dao.classBoardDocDelete(seq);
+		int n = dao.documentDelete(seq);
 		return (n>0||m>0)? 1:0;
 	}
+
+	@Override
+	public int classBoardVideoDelete(int seq) {
+		return dao.classBoardVideoDelete(seq);
+	}
+	
+	
+	
 }
 

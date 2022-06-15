@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.min.dao.IClassDao;
+import com.min.vo.ClassPeopleVo;
 import com.min.vo.ClassSubjectVo;
 import com.min.vo.ClassVo;
 import com.min.vo.InstructorVo;
@@ -128,6 +129,10 @@ public class ClassDaoImpl implements IClassDao{
 		return sqlSession.update(NS+"classStatusUpdate",map);
 	}
 	
+	@Override
+	public int classPeoInsert(Map<String, Object> map) {
+		return sqlSession.insert(NS+"classPeoInsert",map);
+	}
 	
 	
 	@Override
@@ -137,7 +142,14 @@ public class ClassDaoImpl implements IClassDao{
 	}
 
 	@Override
+	public int classPeoSelectAll(ClassPeopleVo vo) {
+		return sqlSession.selectOne(NS+"classPeoSelectAll",vo);
+	}
+	
+	
+	@Override
 	public ClassVo classSelectLastInsert() {
 		return sqlSession.selectOne(NS+"classSelectLastInsert");
 	}
+
 }

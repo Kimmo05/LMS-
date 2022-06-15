@@ -1,74 +1,75 @@
-//package com.min;
-//
-//
-//import static org.hamcrest.CoreMatchers.endsWith;
-//
-//import java.io.BufferedReader;
-//import java.io.File;
-//import java.io.IOException;
-//import java.io.InputStreamReader;
-//import java.io.UnsupportedEncodingException;
-//import java.net.HttpURLConnection;
-//import java.net.MalformedURLException;
-//import java.net.ProtocolException;
-//import java.net.URL;
-//import java.net.URLConnection;
-//import java.net.URLEncoder;
-//import java.text.ParseException;
-//import java.text.SimpleDateFormat;
-//import java.time.Year;
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.Calendar;
-//import java.util.Collection;
-//import java.util.Date;
-//import java.util.HashMap;
-//import java.util.HashSet;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Set;
-//import java.util.UUID;
-//import java.util.stream.Collectors;
-//import java.util.stream.Stream;
-//
-//import org.json.simple.JSONArray;
-//import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.scheduling.annotation.Scheduled;
-//import org.springframework.test.context.ContextConfiguration;
-//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-//
-//import com.fasterxml.jackson.annotation.JsonInclude;
-//import com.fasterxml.jackson.core.JsonProcessingException;
-//import com.fasterxml.jackson.databind.JsonNode;
-//import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.google.gson.Gson;
-//import com.google.gson.JsonObject;
-//import com.min.dao.IClassBoardDao;
-//import com.min.dao.IClassDao;
-//import com.min.service.IClassService;
-//import com.min.vo.ClassBoardVo;
-//import com.min.vo.ClassVo;
-//import com.min.vo.InstructorVo;
-//import com.min.vo.SubjectVo;
-//import com.min.vo.VoteVo;
-//
-//import lombok.EqualsAndHashCode.Include;
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
-//public class Class_Test {
-//
-//	@Autowired
-//	private IClassDao dao;
-//
-//	@Autowired
-//	private IClassBoardDao bDao;
-//
-//	@Autowired
-//	private IClassService service;
+package com.min;
+
+
+import static org.hamcrest.CoreMatchers.endsWith;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.min.dao.IClassBoardDao;
+import com.min.dao.IClassDao;
+import com.min.service.IClassService;
+import com.min.vo.ClassBoardVo;
+import com.min.vo.ClassPeopleVo;
+import com.min.vo.ClassVo;
+import com.min.vo.InstructorVo;
+import com.min.vo.SubjectVo;
+import com.min.vo.VoteVo;
+
+import lombok.EqualsAndHashCode.Include;
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
+public class Class_Test {
+
+	@Autowired
+	private IClassDao dao;
+
+	@Autowired
+	private IClassBoardDao bDao;
+
+	@Autowired
+	private IClassService service;
 //
 //
 ////	@Test
@@ -436,185 +437,213 @@
 //		System.out.println(result);
 //	}
 //
-////	@Test
-//	public void test3() {
-//		String result = bDao.findFile(7);
-//		System.out.println(result);
-//	}
-//
-//	
-//	// 최종본
-////	@Test
-//	public void test5() throws org.json.simple.parser.ParseException {
-//			JSONParser parser = new JSONParser();
-//			JSONArray id = new JSONArray();
-//			String cla_num = "CLA028";
-//			String vot_sub_num = "20220523SUB100";
-//			String ins_id = "fmaylam36426";
-//			String inputId = "guswo1";
-//			JSONArray arr = new JSONArray();
-//			String ids = "";
-//			
-////			try {
-//			JSONObject fin = new JSONObject();
-//			
-//			VoteVo vo = new VoteVo();
-//			vo.setVot_sub_num(vot_sub_num);
-//			vo.setVot_cla_num(cla_num);
-//			vo.setVot_ins_id(ins_id);
-//			
-//			// 첫번째 =================================
-//			// 기존 투표자들을 추출해서 다시 업데이트 과정 전초
+//	@Test
+	public void test3() {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cpe_mem_id", "altkdlf2273");
+		map.put("cpe_cla_num", "CLA027");
+		service.classPeoInsert(map);
+		
+	}
+	
+//	@Test
+	public void te() {
+		
+	}
+	
+	// 최종본
+	@Test
+	public void test5() throws org.json.simple.parser.ParseException {
+			JSONParser parser = new JSONParser();
+			JSONArray id = new JSONArray();
+			String cla_num = "CLA027";
+			String vot_sub_num = "20220523SUB101";
+			String ins_id = "thdwndrlrkdtk123";
+			String inputId = "kdellenbrook2p640";
+			JSONArray arr = new JSONArray();
+			String ids = "";
+			Map<String, Object> maped = new HashMap<String, Object>();
 //			try {
-//				VoteVo result = service.voteIns(vo);
-//				System.out.println(result);
-//				JSONArray json = (JSONArray) parser.parse(result.getVot_voter());
-////				JSONObject json = (JSONObject) parser.parse(result.getVot_voter());
-//				
-////				System.out.println("json : "+json);
-//				
-//				for (int i = 0; i < json.size(); i++) {
-////					System.out.println("listed : "+listed);
-//					JSONObject obj = (JSONObject) parser.parse(json.get(i).toString());
-//					System.out.println(obj.get("id"));
-//					obj.put("id", obj.get("id")); 
-//					obj.put("pay", obj.get("pay"));
-//					id.add(obj);
-//				}
-//				
-//				System.out.println(id);
-//			} catch (Exception e) {
+			JSONObject fin = new JSONObject();
+			
+			VoteVo vo = new VoteVo();
+			vo.setVot_sub_num(vot_sub_num);
+			vo.setVot_cla_num(cla_num);
+			vo.setVot_ins_id(ins_id);
+			
+			// 첫번째 =================================
+			// 기존 투표자들을 추출해서 다시 업데이트 과정 전초
+			try {
+				VoteVo result = service.voteIns(vo);
+				System.out.println(result);
+				JSONArray json = (JSONArray) parser.parse(result.getVot_voter());
+//				JSONObject json = (JSONObject) parser.parse(result.getVot_voter());
+				
+//				System.out.println("json : "+json);
+				
+				for (int i = 0; i < json.size(); i++) {
+//					System.out.println("listed : "+listed);
+					JSONObject obj = (JSONObject) parser.parse(json.get(i).toString());
+					System.out.println(obj.get("id"));
+					obj.put("id", obj.get("id")); 
+					obj.put("pay", obj.get("pay"));
+					id.add(obj);
+				}
+				
+				System.out.println(id);
+			} catch (Exception e) {
+			}
+//			VoteVo result = service.voteIns(vo);
+//			System.out.println(result);
+//			
+//			JSONArray json = (JSONArray) parser.parse(result.getVot_voter());
+////			JSONObject json = (JSONObject) parser.parse(result.getVot_voter());
+//			
+//			JSONArray id = new JSONArray();
+//			
+//			
+////			System.out.println("json : "+json);
+//			
+//			for (int i = 0; i < json.size(); i++) {
+////				System.out.println("listed : "+listed);
+//				JSONObject obj = (JSONObject) parser.parse(json.get(i).toString());
+//				System.out.println(obj.get("id"));
+//				obj.put("id", obj.get("id")); 
+//				obj.put("pay", obj.get("pay"));
+//				id.add(obj);
 //			}
-////			VoteVo result = service.voteIns(vo);
-////			System.out.println(result);
-////			
-////			JSONArray json = (JSONArray) parser.parse(result.getVot_voter());
-//////			JSONObject json = (JSONObject) parser.parse(result.getVot_voter());
-////			
-////			JSONArray id = new JSONArray();
-////			
-////			
-//////			System.out.println("json : "+json);
-////			
-////			for (int i = 0; i < json.size(); i++) {
-//////				System.out.println("listed : "+listed);
-////				JSONObject obj = (JSONObject) parser.parse(json.get(i).toString());
-////				System.out.println(obj.get("id"));
-////				obj.put("id", obj.get("id")); 
-////				obj.put("pay", obj.get("pay"));
-////				id.add(obj);
-////			}
-////			
-////			System.out.println(id);
 //			
-//			
-//			// 두번째 =================================
-//			// 새로 투표하는 사람이 전에 투표했는지 확인 과정
-//			
-////			try {
-//				
-//			
-//			
-////			List<String> array = new ArrayList<String>();
-//			JSONArray array = new JSONArray();
-//			VoteVo all = new VoteVo();
-//			all.setVot_sub_num(vot_sub_num);
-//			all.setVot_cla_num(cla_num);
-//			List<VoteVo> lists = service.voteRatio(all);
-//			System.out.println("원본 : "+lists);
-//			System.out.println("■■■■■■■■■■");
-////			for (int i = 0; i < lists.size(); i++) {
-////				JSONArray list = (JSONArray) parser.parse(lists.toString());
-//			
-//			
-////			JSONArray list = (JSONArray) parser.parse(lists.toString());
-////			System.out.println(list.toJSONString());
+//			System.out.println(id);
+			
+			
+			// 두번째 =================================
+			// 새로 투표하는 사람이 전에 투표했는지 확인 과정
+			
+//			try {
+				
+			
+			
+//			List<String> array = new ArrayList<String>();
+			JSONArray array = new JSONArray();
+			VoteVo all = new VoteVo();
+			all.setVot_sub_num(vot_sub_num);
+			all.setVot_cla_num(cla_num);
+			List<VoteVo> lists = service.voteRatio(all);
+			System.out.println("원본 : "+lists);
+			System.out.println("■■■■■■■■■■");
 //			for (int i = 0; i < lists.size(); i++) {
-//				
-//				System.out.println("lists : "+ lists.get(i).getVot_voter());
-//				String res = lists.get(i).getVot_voter();
-//				
-//				if(lists.get(i).getVot_voter() == null) {
-////					result = lists.get(i).getVot_voter();
-////					res = "";
-//					continue;
-////					System.out.println("result1 : "+res);
-//				}
-//				
-//				array = (JSONArray) parser.parse(res);
-//				
-//				for (int j = 0; j < array.size(); j++) {
-//					JSONObject obj = (JSONObject) array.get(j);
-//					System.out.println(obj);
-//					arr.add(obj);
-//				}
-//				
-//				
+//				JSONArray list = (JSONArray) parser.parse(lists.toString());
+			
+			
+//			JSONArray list = (JSONArray) parser.parse(lists.toString());
+//			System.out.println(list.toJSONString());
+			for (int i = 0; i < lists.size(); i++) {
+				
+				System.out.println("lists : "+ lists.get(i).getVot_voter());
+				String res = lists.get(i).getVot_voter();
+				
+				if(lists.get(i).getVot_voter() == null) {
+//					result = lists.get(i).getVot_voter();
+//					res = "";
+					continue;
+//					System.out.println("result1 : "+res);
+				}
+				
+				array = (JSONArray) parser.parse(res);
+				
+				for (int j = 0; j < array.size(); j++) {
+					JSONObject obj = (JSONObject) array.get(j);
+					System.out.println(obj);
+					arr.add(obj);
+				}
+				
+				
+			}
+			
+			System.out.println(array);
+			
+			System.out.println("최종 : " + arr);
+			if(lists.equals("") || arr == null) {
+				System.out.println("투표한 사람이 없습니다.");
+				
+				fin.put("id", inputId);
+				fin.put("pay", "before");
+				id.add(fin);
+				
+				Map<String, Object> map = new HashMap();
+				map.put("vot_cla_num", cla_num);
+				map.put("vot_sub_num", vot_sub_num);
+				map.put("vot_ins_id", ins_id);
+				map.put("vot_voter", id.toJSONString());
+				
+				service.updateVote(map);
+				
+				System.out.println("ID : "+id);
+				// insert 문구 넣기 ----------------------
+				ClassPeopleVo voed = new ClassPeopleVo();
+				voed.setCpe_cla_num(cla_num);
+				voed.setCpe_mem_id(inputId);
+				int n = service.classPeoSelectAll(voed);
+				if(n>0) {
+					return;
+				}else {
+					maped.put("cpe_mem_id", inputId);
+					maped.put("cpe_cla_num", cla_num);
+					service.classPeoInsert(maped);
+					System.out.println("maped : "+maped);
+				}
+				return;
+			}
 //			}
-//			
-//			System.out.println(array);
-//			
-//			System.out.println("최종 : " + arr);
-//			if(lists.equals("") || arr == null) {
-//				System.out.println("투표한 사람이 없습니다.");
+//			JSONArray list = (JSONArray) parser.parse(arr);
+//			JSONObject list = (JSONObject) parser.parse(result);
+//			System.out.println(list.toJSONString());
+			for (Object object : arr) {
+				JSONObject list2 = (JSONObject) parser.parse(object.toString());
+				System.out.println("obj : "+list2);
+				ids = list2.get("id").toString();
+				System.out.println(ids);
+				
+//				JSONObject ided = (JSONObject)parser.parse(list.toJSONString());
 //				
-//				fin.put("id", inputId);
-//				fin.put("pay", "before");
-//				id.add(fin);
-//				
-//				Map<String, Object> map = new HashMap();
-//				map.put("vot_cla_num", cla_num);
-//				map.put("vot_sub_num", vot_sub_num);
-//				map.put("vot_ins_id", ins_id);
-//				map.put("vot_voter", id.toJSONString());
-//				
-//				service.updateVote(map);
-//				
-//				System.out.println("ID : "+id);
-//				
-//				
-//				return;
-//			}
-////			}
-////			JSONArray list = (JSONArray) parser.parse(arr);
-////			JSONObject list = (JSONObject) parser.parse(result);
-////			System.out.println(list.toJSONString());
-//			for (Object object : arr) {
-//				JSONObject list2 = (JSONObject) parser.parse(object.toString());
-//				System.out.println("obj : "+list2);
-//				ids = list2.get("id").toString();
-//				System.out.println(ids);
-//				
-////				JSONObject ided = (JSONObject)parser.parse(list.toJSONString());
-////				
-//				if(ids.equals(inputId)) {
-//					System.out.println("중복된 아이디가 있습니다.");
-//					return;
-//				}
-//				
-//			}
-////			System.out.println("id값 구하기 : "+list.get("id"));
-////			System.out.println("result2 : "+ re);
-//			
-//			
-//			fin.put("id", inputId);
-//			fin.put("pay", "before");
-//			id.add(fin);
-//			
-//			Map<String, Object> map = new HashMap();
-//			map.put("vot_cla_num", cla_num);
-//			map.put("vot_sub_num", vot_sub_num);
-//			map.put("vot_ins_id", ins_id);
-//			map.put("vot_voter", id.toJSONString());
-//			
-//			service.updateVote(map);
-//			
-//			System.out.println("ID : "+id);
-//		
-//			
-//			
-//			
-//			
+				if(ids.equals(inputId)) {
+					System.out.println("중복된 아이디가 있습니다.");
+					return;
+				}
+				
+			}
+//			System.out.println("id값 구하기 : "+list.get("id"));
+//			System.out.println("result2 : "+ re);
+			
+			
+			fin.put("id", inputId);
+			fin.put("pay", "before");
+			id.add(fin);
+			
+			Map<String, Object> map = new HashMap();
+			map.put("vot_cla_num", cla_num);
+			map.put("vot_sub_num", vot_sub_num);
+			map.put("vot_ins_id", ins_id);
+			map.put("vot_voter", id.toJSONString());
+			
+			service.updateVote(map);
+			
+			System.out.println("ID : "+id);
+		
+			// insert 문구 넣기 ----------------------
+			ClassPeopleVo voed = new ClassPeopleVo();
+			voed.setCpe_cla_num(cla_num);
+			voed.setCpe_mem_id(inputId);
+			int n = service.classPeoSelectAll(voed);
+			if(n>0) {
+				return;
+			}else {
+				maped.put("cpe_mem_id", inputId);
+				maped.put("cpe_cla_num", cla_num);
+				service.classPeoInsert(maped);
+				System.out.println("maped : "+maped);
+			}
+			
 //			// 여기부터 x
 //			
 //			
@@ -636,7 +665,7 @@
 ////				System.out.println("ID : "+id);
 ////				
 ////			}
-//	}
+	}
 //	
 ////	@Test
 //	public void test10() throws org.json.simple.parser.ParseException {
@@ -933,118 +962,117 @@
 ////		
 ////	}
 ////	// 투표된 강사 선정
-////	@Test
-////	public void vo2() throws org.json.simple.parser.ParseException {
-////		String sub[] = {"20220523SUB100"};
-////		
-////		for (int h = 0; h < sub.length; h++) {
-////		
-//////		String sub = "20220523SUB100";
-////		
-////		VoteVo vo = new VoteVo();
-////		vo.setVot_sub_num(sub[h]);
-//////		vo.setVot_sub_num(sub);
-////		vo.setVot_cla_num("CLA028");
-////		List<VoteVo> lists = service.voteRatio(vo);
-////		String cla_num = "CLA028";
-//////		String vot_sub_num = "20220523SUB100";
-////		
-////		JSONParser parser = new JSONParser();
-////		String resu = "";
-////		String ins = "";
-//////		String sub_num = "";
-////		int max = 0;
-////		int voted = 0;
-////		JSONArray cnted = new JSONArray();
-////		JSONObject json = new JSONObject();
-////		JSONArray array = new JSONArray();
-////		JSONArray arr = new JSONArray();
-////			try {
-////			for (int i = 0; i < lists.size(); i++) {
-////				JSONObject obj = new JSONObject();
-////				resu = lists.get(i).getVot_voter();
-////				ins = lists.get(i).getVot_ins_id();
-////				
-////				System.out.println("원본 : "+resu);
-////				System.out.println("강사 : "+ins);
-////				
-////				if(lists.get(i).getVot_voter() == null) {
-////					continue;
-////				}
-////				array = (JSONArray) parser.parse(resu.toString());
-////				System.out.println("array : "+array);
-////				JSONObject obj2 = new JSONObject();
-////				for (int j = 0; j < array.size(); j++) {
-////					obj2 = (JSONObject) parser.parse(array.get(j).toString());
-////					arr.add(obj2);
-////				}
-////				
-////				
-////				if(resu==null) {
-////					resu = "0";
-////					obj.put("voted", resu);
-////					obj.put("id", ins);
-////					cnted.add(obj);
-////				}else {
-////					JSONArray listed = (JSONArray) parser.parse(resu.toString());
-////					System.out.println("listed : "+listed);
-////					voted = 0;
-////					for (int j = 0; j < listed.size(); j++) {
-////						voted++;
-////						
-////					}
-////					
-////					
-////					System.out.println("횟수 : "+voted);
-////					obj.put("voted", voted);
-////					obj.put("id", ins);
-////					cnted.add(obj);
-////				}
-////			}
-////			System.out.println("arr : "+arr.toJSONString());
-////			System.out.println("확인 "+cnted);
-////			
-////			JSONObject r = new JSONObject();
-////			JSONArray re = new JSONArray();
-////			for (int i = 0; i < cnted.size(); i++) {
-////				JSONObject obj = (JSONObject) cnted.get(i);
-////				
-////				if(Integer.parseInt(obj.get("voted").toString()) > max) {
-////					max = Integer.parseInt(obj.get("voted").toString());
-////					r.put("voted", max);
-////					r.put("id", obj.get("id"));
-////					re.add(r);
-////						
-////				}
-////			}
-////			
-////			System.out.println("최종 뽑힌 강사 : "+re);
-////			for (int i = 0; i < re.size(); i++) {
-////				json = (JSONObject) parser.parse(re.get(i).toString());
-////			}
-////			System.out.println(json.get("id"));
-////			
-////			Map<String, Object> mapped = new HashMap<String, Object>();
-////			mapped.put("vot_cla_num", cla_num);
-////			mapped.put("vot_sub_num", sub[h]);
-////			service.voteDelete(mapped);
-////			mapped.clear();
-////			
-////			mapped.put("vot_cla_num", cla_num);
-////			mapped.put("vot_sub_num", sub[h]);
-////			mapped.put("vot_ins_id", json.get("id"));
-////			mapped.put("vot_voter", arr.toJSONString());
-////			service.votedInsert(mapped);
-////			System.out.println(mapped);
-////			
-////			
-////			
-////			
-////		} catch (Exception e) {
-////			System.out.println("투표자가 없습니다.");
-////		}
-////	}
-////	}
+//	@Test
+	public void vo2() throws org.json.simple.parser.ParseException {
+		String sub[] = {"20220523SUB100", "20220523SUB101"};
+		
+		for (int h = 0; h < sub.length; h++) {
+		
+//		String sub = "20220523SUB100";
+		
+		VoteVo vo = new VoteVo();
+		vo.setVot_sub_num(sub[h]);
+//		vo.setVot_sub_num(sub);
+		vo.setVot_cla_num("CLA027");
+		List<VoteVo> lists = service.voteRatio(vo);
+		String cla_num = "CLA027";
+//		String vot_sub_num = "20220523SUB100";
+		
+		JSONParser parser = new JSONParser();
+		String resu = "";
+		String ins = "";
+//		String sub_num = "";
+		int max = 0;
+		int voted = 0;
+		JSONArray cnted = new JSONArray();
+		JSONObject json = new JSONObject();
+		JSONArray array = new JSONArray();
+		JSONArray arr = new JSONArray();
+			try {
+			for (int i = 0; i < lists.size(); i++) {
+				JSONObject obj = new JSONObject();
+				resu = lists.get(i).getVot_voter();
+				ins = lists.get(i).getVot_ins_id();
+				
+				System.out.println("원본 : "+resu);
+				System.out.println("강사 : "+ins);
+				
+				if(lists.get(i).getVot_voter() == null) {
+					continue;
+				}
+				array = (JSONArray) parser.parse(resu.toString());
+				System.out.println("array : "+array);
+				JSONObject obj2 = new JSONObject();
+				for (int j = 0; j < array.size(); j++) {
+					obj2 = (JSONObject) parser.parse(array.get(j).toString());
+					arr.add(obj2);
+				}
+				
+				
+				if(resu==null) {
+					resu = "0";
+					obj.put("voted", resu);
+					obj.put("id", ins);
+					cnted.add(obj);
+				}else {
+					JSONArray listed = (JSONArray) parser.parse(resu.toString());
+					System.out.println("listed : "+listed);
+					voted = 0;
+					for (int j = 0; j < listed.size(); j++) {
+						voted++;
+						
+					}
+					
+					System.out.println("횟수 : "+voted);
+					obj.put("voted", voted);
+					obj.put("id", ins);
+					cnted.add(obj);
+				}
+			}
+			System.out.println("arr : "+arr.toJSONString());
+			System.out.println("확인 "+cnted);
+			
+			JSONObject r = new JSONObject();
+			JSONArray re = new JSONArray();
+			for (int i = 0; i < cnted.size(); i++) {
+				JSONObject obj = (JSONObject) cnted.get(i);
+				
+				if(Integer.parseInt(obj.get("voted").toString()) > max) {
+					max = Integer.parseInt(obj.get("voted").toString());
+					r.put("voted", max);
+					r.put("id", obj.get("id"));
+					re.add(r);
+						
+				}
+			}
+			
+			System.out.println("최종 뽑힌 강사 : "+re);
+			for (int i = 0; i < re.size(); i++) {
+				json = (JSONObject) parser.parse(re.get(i).toString());
+			}
+			System.out.println(json.get("id"));
+			
+//			Map<String, Object> mapped = new HashMap<String, Object>();
+//			mapped.put("vot_cla_num", cla_num);
+//			mapped.put("vot_sub_num", sub[h]);
+//			service.voteDelete(mapped);
+//			mapped.clear();
+//			
+//			mapped.put("vot_cla_num", cla_num);
+//			mapped.put("vot_sub_num", sub[h]);
+//			mapped.put("vot_ins_id", json.get("id"));
+//			mapped.put("vot_voter", arr.toJSONString());
+//			service.votedInsert(mapped);
+//			System.out.println(mapped);
+			
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println("투표자가 없습니다.");
+		}
+	}
+	}
 ////	
 ////	@Scheduled(fixedDelay=1000)
 ////	@Test
@@ -1259,114 +1287,114 @@
 ////
 ////
 ////
-//////	@Test
-////	public void calDate() throws IOException, org.json.simple.parser.ParseException {
-////		List<String> res = new ArrayList<String>();
-////		int cnt = 0;
-////		int ch = 2022;
-////		do {
-////		for (int j = 1; j < 13; j++) {
-////		String serviceKey = "zy%2FZZCSwzH2XN%2FGYNR%2FGFFKJ2z6s368WViy%2FwfzkHNxge5pG99WjgHiLmuFP9KQl60hNZPmAU9D8jExKOL9AiQ%3D%3D";
-////        String addr = "http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService";
-////        String query = "/getRestDeInfo?";
-////        StringBuffer stringBuffer = new StringBuffer();
-////        stringBuffer.append(addr);
-////        stringBuffer.append(query);
-////        stringBuffer.append("solYear="+ch);
-////        stringBuffer.append("&solMonth="+String.format("%02d", j));
-//////        stringBuffer.append("&solMonth=01");
-////        stringBuffer.append("&_type=json");
-////        stringBuffer.append("&ServiceKey=" + serviceKey);
-////
-//////        System.out.println("stringBuffer.toString() "+ stringBuffer.toString());
-////
-////        try {
-////            URL url = new URL(stringBuffer.toString());
-////            URLConnection conn = url.openConnection();
-////            BufferedReader rd = null;
-////            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
-////
-////            String line= rd.readLine();
-////
-////            JSONParser jsonParser = new JSONParser();//JSON데이터를 넣어 JSON Object 로 만들어 준다.
-////            JSONObject jsonObject = (JSONObject) jsonParser.parse(line);
-////            JSONObject obj = (JSONObject) jsonObject.get("response");
-////            JSONObject obj2 = (JSONObject) obj.get("body");
-////
-////            try {
-////            	JSONObject obj3 = (JSONObject) obj2.get("items");
-////                JSONArray holidays = (JSONArray) obj3.get("item");
-////
-////                System.out.println(holidays);
-////
-////
-////                System.out.println("■■■■■■■■■■■■■■■ 휴일 ■■■■■■■■■■■■■■■");
-////                for (int i = 0; i < holidays.size(); i++) {
-////                	JSONObject holiday = (JSONObject) holidays.get(i);
-////                	long selholi = (long) holiday.get("locdate");
-////                	res.add(String.valueOf(selholi));
-////                	System.out.println(selholi);
-////    			}
-////                System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
-////                System.out.println(res);
-////
-////			}
-////            catch (Exception e) {
-////            	try {
-////            		JSONObject obj3 = (JSONObject) obj2.get("items");
-//////    	            System.out.println(obj3);
-////    	            JSONObject obj4 = (JSONObject) obj3.get("item");
-//////    	            System.out.println(obj4);
-////    	            long selholi = (long) obj4.get("locdate");
-////    	            System.out.println("■■■■■■■■■■■■■■■ 휴일 ■■■■■■■■■■■■■■■");
-////    	            System.out.println(selholi);
-////    	            System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
-////				} catch (Exception e2) {
-////					System.out.println("==해당 월에는 공휴일이 없습니다==");
-////				}
-////			}
-////
-////            rd.close();
-////
-////        }
-////        catch (IOException e) {
-////        	e.printStackTrace();
-////        }
-////    }
-////
-////		ch++;
-////		} while (ch<2024);
-////
-////
-////		 Calendar cal = Calendar.getInstance();
-////		// 사용자가 등록하는 월, 일을 여기다 매핑
-//// 		// Calendar의 Month는 0부터 시작하므로 -1 해준다.
-//// 		cal.set(2022, 12-1, 24-1);
-////// 		System.out.println(cal.getTime());
-////
-//// 		for (int i = 0; i < 30; i++) {
-//// 			// cal.set = 2022-10-20
-//// 			// 실제 = 2022-11-21
-//// 			cal.add(Calendar.DATE, 1); // one day increment
-//// 			String result = String.valueOf(cal.get(Calendar.YEAR)) + String.format("%02d", cal.get(Calendar.MONTH)+1)+String.format("%02d", cal.get(Calendar.DATE));
-////
-//// 			int day = cal.get(Calendar.DAY_OF_WEEK);
-//// 			System.out.println("----------------------------");
-//// 			System.out.println("최종 폼 : "+result);
-//// 			System.out.println("월 : "+ cal.get(Calendar.MONTH));
-//// 			System.out.println(cal.getTime());
-//// 			System.out.println("----------------------------");
-//// 			// 일요일 : 1 , 토요일 : 7
-//// 			if(day == 1 || day == 7 || res.contains(result)) {
-//// 				cnt++;
-//// 				i--;
-//// 				System.out.println(cnt+ "번째");
-//// 			}
-////
-//// 		}
-////
-////
-////	}
+//	@Test
+//	public void calDate() throws IOException, org.json.simple.parser.ParseException {
+//		List<String> res = new ArrayList<String>();
+//		int cnt = 0;
+//		int ch = 2022;
+//		do {
+//		for (int j = 1; j < 13; j++) {
+//		String serviceKey = "zy%2FZZCSwzH2XN%2FGYNR%2FGFFKJ2z6s368WViy%2FwfzkHNxge5pG99WjgHiLmuFP9KQl60hNZPmAU9D8jExKOL9AiQ%3D%3D";
+//        String addr = "http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService";
+//        String query = "/getRestDeInfo?";
+//        StringBuffer stringBuffer = new StringBuffer();
+//        stringBuffer.append(addr);
+//        stringBuffer.append(query);
+//        stringBuffer.append("solYear="+ch);
+//        stringBuffer.append("&solMonth="+String.format("%02d", j));
+//        stringBuffer.append("&solMonth=01");
+//        stringBuffer.append("&_type=json");
+//        stringBuffer.append("&ServiceKey=" + serviceKey);
+//
+//        System.out.println("stringBuffer.toString() "+ stringBuffer.toString());
+//
+//        try {
+//            URL url = new URL(stringBuffer.toString());
+//            URLConnection conn = url.openConnection();
+//            BufferedReader rd = null;
+//            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+//
+//            String line= rd.readLine();
+//
+//            JSONParser jsonParser = new JSONParser();//JSON데이터를 넣어 JSON Object 로 만들어 준다.
+//            JSONObject jsonObject = (JSONObject) jsonParser.parse(line);
+//            JSONObject obj = (JSONObject) jsonObject.get("response");
+//            JSONObject obj2 = (JSONObject) obj.get("body");
+//
+//            try {
+//            	JSONObject obj3 = (JSONObject) obj2.get("items");
+//                JSONArray holidays = (JSONArray) obj3.get("item");
+//
+//                System.out.println(holidays);
+//
+//
+//                System.out.println("■■■■■■■■■■■■■■■ 휴일 ■■■■■■■■■■■■■■■");
+//                for (int i = 0; i < holidays.size(); i++) {
+//                	JSONObject holiday = (JSONObject) holidays.get(i);
+//                	long selholi = (long) holiday.get("locdate");
+//                	res.add(String.valueOf(selholi));
+//                	System.out.println(selholi);
+//    			}
+//                System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+//                System.out.println(res);
+//
+//			}
+//            catch (Exception e) {
+//            	try {
+//            		JSONObject obj3 = (JSONObject) obj2.get("items");
+//    	            System.out.println(obj3);
+//    	            JSONObject obj4 = (JSONObject) obj3.get("item");
+//    	            System.out.println(obj4);
+//    	            long selholi = (long) obj4.get("locdate");
+//    	            System.out.println("■■■■■■■■■■■■■■■ 휴일 ■■■■■■■■■■■■■■■");
+//    	            System.out.println(selholi);
+//    	            System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+//				} catch (Exception e2) {
+//					System.out.println("==해당 월에는 공휴일이 없습니다==");
+//				}
+//			}
+//
+//            rd.close();
+//
+//        }
+//        catch (IOException e) {
+//        	e.printStackTrace();
+//        }
+//    }
+//
+//		ch++;
+//		} while (ch<2024);
+//
+//
+//		 Calendar cal = Calendar.getInstance();
+//		// 사용자가 등록하는 월, 일을 여기다 매핑
+// 		// Calendar의 Month는 0부터 시작하므로 -1 해준다.
+// 		cal.set(2022, 12-1, 24-1);
+// 		System.out.println(cal.getTime());
+//
+// 		for (int i = 0; i < 30; i++) {
+// 			// cal.set = 2022-10-20
+// 			// 실제 = 2022-11-21
+// 			cal.add(Calendar.DATE, 1); // one day increment
+// 			String result = String.valueOf(cal.get(Calendar.YEAR)) + String.format("%02d", cal.get(Calendar.MONTH)+1)+String.format("%02d", cal.get(Calendar.DATE));
+//
+// 			int day = cal.get(Calendar.DAY_OF_WEEK);
+// 			System.out.println("----------------------------");
+// 			System.out.println("최종 폼 : "+result);
+// 			System.out.println("월 : "+ cal.get(Calendar.MONTH));
+// 			System.out.println(cal.getTime());
+// 			System.out.println("----------------------------");
+// 			// 일요일 : 1 , 토요일 : 7
+// 			if(day == 1 || day == 7 || res.contains(result)) {
+// 				cnt++;
+// 				i--;
+// 				System.out.println(cnt+ "번째");
+// 			}
+//
+// 		}
+//
+//
+//	}
 ////
 ////
 //////	@Test
@@ -1445,7 +1473,16 @@
 //////		char[] result = (vo.toString().substring(1,vo.toString().length()-1).replace("[", "(")).replace("]", ")").toCharArray();
 //////		System.out.println(result);
 ////	}
-////
-////
-////}
+	
+//		@Test
+//		public void dd() {
+//			ClassVo result = service.classSelectDetail("CLA027");
+//			System.out.println(result);
+//			result.getCla_enddate();
+//			
+//		}
+	
+	
+	
+}
 ////

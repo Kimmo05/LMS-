@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.min.service.IClassService;
+import com.min.vo.ClassPeopleVo;
 import com.min.vo.ClassVo;
 import com.min.vo.InstructorVo;
 import com.min.vo.SubjectVo;
@@ -435,7 +436,8 @@ public class ClassController {
 //		String cla_num = "CLA027";
 //		String vot_sub_num = "20220523SUB101";
 //		String ins_id = "thdwndrlrkdtk123";
-		String inputId = "ghkdwoaks123";
+		String inputId = "altkdlf2273";
+		Map<String, Object> mapped = new HashMap<String, Object>();
 		
 		
 //		try {
@@ -526,8 +528,20 @@ public class ClassController {
 			
 			System.out.println("ID : "+id);
 			
+			ClassPeopleVo voed = new ClassPeopleVo();
+			voed.setCpe_cla_num(cla_num);
+			voed.setCpe_mem_id(inputId);
+			int n = service.classPeoSelectAll(voed);
+			if(n>0) {
+				return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
+			}else {
+				mapped.put("cpe_mem_id", inputId);
+				mapped.put("cpe_cla_num", cla_num);
+				service.classPeoInsert(mapped);
+				System.out.println("maped : "+mapped);
+			}
 			
-			return "redirect:/user/classListForm.do";
+			return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 		}
 		for (Object object : arr) {
 			JSONObject list2 = (JSONObject) parser.parse(object.toString());
@@ -562,6 +576,19 @@ public class ClassController {
 		
 		System.out.println("ID : "+id);
 	
+		ClassPeopleVo voed = new ClassPeopleVo();
+		voed.setCpe_cla_num(cla_num);
+		voed.setCpe_mem_id(inputId);
+		int n = service.classPeoSelectAll(voed);
+		if(n>0) {
+			return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
+		}else {
+			mapped.put("cpe_mem_id", inputId);
+			mapped.put("cpe_cla_num", cla_num);
+			service.classPeoInsert(mapped);
+			System.out.println("maped : "+mapped);
+		}
+		
 		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 	}
 	
