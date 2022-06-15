@@ -22,19 +22,40 @@
 <!-- 		<security:password-encoder ref="passwordEncoder" /> -->
 	</security:authentication-provider>	
 </security:authentication-manager>	
-	
-	
-<!-- /////////////////////////////////  main  ////////////////////////////////////// -->
-<security:http auto-config="true" pattern="/app/**" use-expressions="true" >
-		<security:intercept-url pattern="../assets/**" access="permitAll" />
-		<security:intercept-url pattern="/main.do" access="permitAll" />
+	 <security:http auto-config="true" pattern="/*" use-expressions="true" >
+     <security:intercept-url pattern="./assets/**" access="permitAll" />
+	    <security:intercept-url pattern="./assets/**" access="permitAll" />
+		<security:intercept-url pattern="./js/**" access="permitAll" />
+		<security:intercept-url pattern="./css/**" access="permitAll" />
+		<security:intercept-url pattern="./images/**" access="permitAll" />
 		<security:intercept-url pattern="/**" access="permitAll" />
 		
+	
 		
 <!-- 				<security:intercept-url pattern="/user/**" access="permitAll"/> -->
 		
 		<security:logout invalidate-session="true" 
 		logout-url="/logout.do" 
+		logout-success-url="/loginPage.do?logout" delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
+	
+	
+		</security:http>
+	
+<!-- /////////////////////////////////  main  ////////////////////////////////////// -->
+    <security:http auto-config="true" pattern="/app/**" use-expressions="true" >
+     <security:intercept-url pattern="./assets/**" access="permitAll" />
+	    <security:intercept-url pattern="../assets/**" access="permitAll" />
+		<security:intercept-url pattern="../js/**" access="permitAll" />
+		<security:intercept-url pattern="../css/**" access="permitAll" />
+		<security:intercept-url pattern="../images/**" access="permitAll" />
+		<security:intercept-url pattern="/app/**" access="permitAll" />
+		
+	
+		
+<!-- 				<security:intercept-url pattern="/user/**" access="permitAll"/> -->
+		
+		<security:logout invalidate-session="true" 
+		logout-url="/app/logout.do" 
 		logout-success-url="/loginPage.do?logout" delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
 	
 	
@@ -49,7 +70,7 @@
 	
 <!-- /////////////////////////////////  user  ////////////////////////////////////// -->
 <security:http auto-config="true" pattern="/user/**" use-expressions="true" authentication-manager-ref="userAuthManager">
-		<security:intercept-url pattern="./assets/**" access="permitAll" />
+		<security:intercept-url pattern="../assets/**" access="permitAll" />
 		<security:intercept-url pattern="../js/**" access="permitAll" />
 		<security:intercept-url pattern="../css/**" access="permitAll" />
 		<security:intercept-url pattern="../images/**" access="permitAll" />

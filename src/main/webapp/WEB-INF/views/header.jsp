@@ -111,7 +111,7 @@
         <!-- Page Sidebar Start-->
         <header class="main-nav">
          <sec:authorize access="isAuthenticated()"> 
-          <div class="sidebar-user text-center"><a class="setting-primary" href="./editProfile.do"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="./assets/images/dashboard/1.png" alt="">
+          <div class="sidebar-user text-center"><a class="setting-primary" href="./editProfile.do"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="../assets/images/dashboard/1.png" alt="">
             <div class="badge-bottom"><span class="badge badge-primary">
             
             <c:if test = "${auth eq '[ROLE_USER]'}">일반회원 </c:if>

@@ -22,10 +22,11 @@ public interface IClassBoardDao {
 	public int documentModify(Map<String, Object> map);
 	
 	public int classBoardDocModify(Map<String, Object> map);
-	
+	//과정 자료게시판 삭제 (파일 자료 삭제)
 	public int classBoardDocDelete(int seq);
-	
 	public int documentDelete(int seq);
+	//과정 자료게시판 삭제 (비디오 자료 삭제)
+	public int classBoardVideoDelete(int seq);
 	
 	
 }

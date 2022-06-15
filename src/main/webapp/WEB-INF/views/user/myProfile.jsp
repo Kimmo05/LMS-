@@ -53,7 +53,7 @@
               <div class="row">
                 <!-- user profile header start-->
                 <div class="col-sm-12">
-                  <div class="card profile-header"><img class="img-fluid bg-img-cover" src="../assets/images/user-profile/bg-profile.jpg" alt="">
+                  <div class="card profile-header"><img class="img-fluid bg-img-cover" src="../assets/images/user-profile/test1.jpg" alt="">
                     <div class="profile-img-wrrap"><img class="img-fluid bg-img-cover" src="../assets/images/user-profile/bg-profile.jpg" alt=""></div>
                     <!-- 배경안에 박스 -->
                     <div class="userpro-box">
@@ -80,10 +80,10 @@
                               <div class="follow-num counter">325</div><span>등록한 과목</span>
                             </li>
                             <li>
-                              <div class="follow-num counter">450</div><span>등록한 과정</span>
+                              <div class="follow-num counter">${mile}</div><span>내 마일리지</span>
                             </li>
                             <li>
-                              <div class="follow-num counter">500</div><span>좋아요</span>
+                              <div class="follow-num counter">${coup}</div><span>내 쿠폰</span>
                             </li>
                           </ul>
                         </div>

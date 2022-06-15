@@ -72,6 +72,11 @@ public class payController{
 		model.addAttribute("paynum",paynum);
 		model.addAttribute("finalAmount",finalAmount);
 		model.addAttribute("plusMile",plusMile);
+		//수강자 등록하기
+		Map<String, Object> claMap = new HashMap<String, Object>();
+		claMap.put("tra_id", user.getPrincipal());
+		int claResult = service.updateClaPeople(claMap);
+		System.out.println("수강자 등록 확인 !!"+claResult);
 		//회원 전화번호 가져오기
 		Map<String, Object> phoneMap = new HashMap<String, Object>();
 		phoneMap.put("tra_id", user.getPrincipal());

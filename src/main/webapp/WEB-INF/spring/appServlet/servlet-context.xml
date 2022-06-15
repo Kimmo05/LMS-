@@ -14,7 +14,7 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-
+	<resources location="/assets/**" mapping="/assets/**"></resources>
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -23,8 +23,10 @@
 	<context:component-scan base-package="com.min" />
 	<task:annotation-driven scheduler=""/>
 	<task:scheduler id="scheduler" pool-size="10"/>
+
 <!--	<task:scheduled-tasks>-->
 <!--		<task:scheduled ref="cronDaoImpl" method="test" cron="0/6 * * * * *"/>-->
 <!--		<task:scheduled ref="cronServiceImpl" method="new_item" cron="0/11 * * * * *"/>-->
 <!--	</task:scheduled-tasks>-->
+
 </beans:beans>
