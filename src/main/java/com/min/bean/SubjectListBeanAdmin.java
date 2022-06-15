@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.min.bean;
 
 import java.util.List;
@@ -103,3 +104,5 @@ public class SubjectListBeanAdmin {
 
 
 }
+=======
+>>>>>>> 7f8dabf73ab7e6e3688636ff9e6da3904bc63bb7
