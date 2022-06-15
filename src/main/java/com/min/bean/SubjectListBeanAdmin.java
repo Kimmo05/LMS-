@@ -96,7 +96,7 @@ public class SubjectListBeanAdmin {
 		}else if(subVo.getSub_status().equals("D")) {
 			sb.append("   		<td><span class='badge rounded-pill badge-danger'>삭제</span></td>                           ");
 		}
-		sb.append("   	 <td><button type='button' class='btn btn-pill btn-outline-danger-2x btn-xs'  onclick='del("+subVo.getSub_num()+")'>삭제</button></td>");
+		sb.append("   	 <td><button id='btn' type='button' class='btn btn-pill btn-outline-danger-2x btn-xs'  onclick='del("+subVo.getSub_num()+")'>삭제</button></td>");
 		sb.append("</tr>                                                                                                       ");
 		return sb.toString();
 	}

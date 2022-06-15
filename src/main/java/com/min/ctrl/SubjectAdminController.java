@@ -138,7 +138,6 @@ public class SubjectAdminController {
 		log.info("SubjectController subjectList 세션확인 : {}", user);
 		MemberVo mvo =(MemberVo) user.getDetails();
 
-		
 		List<SubjectVo> lists = null;
 		RowNumVo rowVo = null;
 		
@@ -163,43 +162,25 @@ public class SubjectAdminController {
 	}
 	
 	
-	//3) 관리자의 과목 상태변경
+	//4) 과목 승인
+	//4-1) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'로 변경
 	@RequestMapping(value = "/user/subUpdateStatusA.do", method = {RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
-	public String subUpdateStatusA(@RequestParam Map<String, Object> map, SubjectVo sVo, String sub_num){
+	public void subUpdateStatusA(@RequestParam(value="sub_num") String sub_num){
 		log.info("********* Welcome SubjectController! subUpdateStatusA 관리자의 상태변경 subUpdateStatusA *********");
-		map.put("sub_num", sub_num);
-		
-			int n =  sService.subUpdateStatusA(map);
-			System.out.println("상태가 업데이트 된 과목 수 : "+ n);
-		
-		return "redirect:/user/admin_subjectApprove.do;";
+			int n =  sService.subUpdateStatusA(sub_num);
+			System.out.println("상태가 승인으로 업데이트 된 과목 수 : "+ n);
 	}
-	
-	//3) 관리자의 과목 상태변경
+	//4-2) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'D'로 변경
 	@RequestMapping(value = "/user/subUpdateStatusD.do", method = {RequestMethod.POST, RequestMethod.GET})
 	@ResponseBody
-	public String subUpdateStatusD(@RequestParam Map<String, Object> map, SubjectVo sVo, String sub_num){
-		log.info("********* Welcome SubjectController! subUpdateStatusD 관리자의 상태변경 subUpdateStatusA *********");
-		map.put("sub_num", sub_num);
-		
-			int n =  sService.subUpdateStatusD(map);
-			System.out.println("상태가 D로 업데이트 된 과목 수 : "+ n);
-		
-		return "redirect:/user/admin_subjectList.do;";
-	}	
-
-	//TODO 013 다중 삭제
-		@RequestMapping(value = "/subUpdateStatusD.do", method = {RequestMethod.POST, RequestMethod.GET})
-		public String meltiDel(@RequestParam Map<String, Object> map, Authentication user, HttpServletResponse response,  String sub_num){
-			log.info("********* Welcome SubjectController! subUpdateStatusD 관리자의 상태변경 subUpdateStatusD *********");
-			int n =0;
-			if(user.getAuthorities().equals("ROLE_ADMIN")) {	
-				map.put("sub_num", sub_num);
-				n= sService.subUpdateStatusD(map);
-			}
-			return "redirect:/user/admin_subjectApprove.do;";
-		}
-
+	public void subUpdateStatusD(@RequestParam(value="sub_num") String sub_num){
+		log.info("********* Welcome SubjectController! subUpdateStatusD 관리자의 상태변경 subUpdateStatusD *********");
+			int n =  sService.subUpdateStatusD(sub_num);
+			System.out.println("상태가 반려로 업데이트 된 과목 수 : "+ n);
+	}
+	
+	
+	
 
 }

@@ -106,17 +106,17 @@ public class SubjectServiceImpl implements SubjectService{
 	//4) 과목 승인
 	//4-1) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
 	@Override
-	public int subUpdateStatusA(Map<String, Object> map) {
+	public int subUpdateStatusA(String sub_num) {
 		log.info("========== SubjectServiceImpl/subUpdateStatusA 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경 ==========");
-		log.info("========== SubjectServiceImpl/subUpdateStatusA 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경 : {} "+map+"==========");
-		return sDao.subUpdateStatusA(map);
+		log.info("========== SubjectServiceImpl/subUpdateStatusA 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경 : {} "+sub_num+"==========");
+		return sDao.subUpdateStatusA(sub_num);
 	}
 	//4-2) 과목 등록 후 관리자의 과목 검수 후 과목상태를 삭제'D'으로 변경
 	@Override
-	public int subUpdateStatusD(Map<String, Object> map) {
+	public int subUpdateStatusD(String sub_num) {
 		log.info("========== SubjectServiceImpl/subUpdateStatusD 과목 등록 후 관리자의 과목 검수 후 과목상태를 삭제'D'으로 변경 ==========");
-		log.info("========== SubjectServiceImpl/subUpdateStatusD 과목 등록 후 관리자의 과목 검수 후 과목상태를 삭제'D'으로 변경 : {} "+map+"==========");
-		return sDao.subUpdateStatusD(map);
+		log.info("========== SubjectServiceImpl/subUpdateStatusD 과목 등록 후 관리자의 과목 검수 후 과목상태를 삭제'D'으로 변경 : {} "+sub_num+"==========");
+		return sDao.subUpdateStatusD(sub_num);
 	}
 	//4-3) 과목 반려시 과목상태 반려 'R'로 변경 및 반려사유 입력
 	@Override
