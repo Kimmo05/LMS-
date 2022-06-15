@@ -239,4 +239,9 @@
 	<select id="selectPhone" resultType="String" parameterType="java.util.Map">
 		SELECT TRA_PHONE FROM TRAINEE WHERE TRA_ID =#{tra_id}
 	</select>
+	
+	<!-- 수강자로 등록 -->
+	<update id="updateClaPeople" parameterType="java.util.Map">
+		UPDATE CLASS_PEOPLE SET CPE_STATUS ='N' WHERE CPE_MEM_ID=#{tra_id}
+	</update>
 </mapper>

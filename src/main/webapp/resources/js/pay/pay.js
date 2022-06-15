@@ -5,6 +5,12 @@
   		function checkPay(){
   			var listVar = $("input[name='selectPay']:checked").val();
 			const getMoney = document.getElementById('money');
+			const getTitle = document.getElementById('claTitle');
+			const getContent = document.getElementById('claContent');
+			var payTitle = getTitle.innerText;
+			var payContent = getContent.innerText;
+			console.log(payTitle);
+			console.log(payContent);
   			var moneyText = getMoney.innerText;
 			var regex = /[^0-9]/g;
   			var finalAmount = moneyText.replace(regex, "");
@@ -13,11 +19,11 @@
 			var plusMile = parseInt(finalAmount) * 1/10;
     	  	if(listVar == "payco"){
     	  		//함수 안에 가격,결제내용 을 보내줄 예정
-    	  		request_pay2("payco",finalAmount,plusMile);
+    	  		request_pay2("payco",finalAmount,plusMile,payTitle);
     	  	}else if(listVar == "kakaopay"){
-    	  		request_pay2("kakaopay",finalAmount,plusMile);
+    	  		request_pay2("kakaopay",finalAmount,plusMile,payTitle);
     	  	}else if(listVar == "toss"){
-    	  		request_pay2("tosspay",finalAmount,plusMile);
+    	  		request_pay2("tosspay",finalAmount,plusMile,payTitle);
     	  	};
 			
   		}
@@ -132,7 +138,7 @@
 	  
 	  
 	 //값에 따른 결제창
-	 function request_pay2(pgText,finalAmount,plusMile){
+	 function request_pay2(pgText,finalAmount,plusMile,payTitle){
 		//총 할인금액 가져오기
 		const getTotalDiscount = document.getElementById('totalDiscount');
 		var totalDiscount = parseInt(getTotalDiscount.innerText);
@@ -149,7 +155,7 @@
 		 IMP.request_pay({
 			    pg : pgText,  // KG이니시스 일반결제창 호출(상점아이디 MID-a 적용)
 			    amount : finalAmount,
-			    name : "api 페이코 주문 테스트", //강의명으로 수정
+			    name : payTitle, //강의명으로 수정
 			    buyer_name : "송중기", //세션값으로 변경
 			    buyer_email : "buyer@iamport.kr"
 			  }, function(rsp) {
