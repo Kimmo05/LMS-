@@ -53,7 +53,7 @@
               <div class="row">
                 <!-- user profile header start-->
                 <div class="col-sm-12">
-                  <div class="card profile-header"><img class="img-fluid bg-img-cover" src="../assets/images/user-profile/bg-profile.jpg" alt="">
+                  <div class="card profile-header"><img class="img-fluid bg-img-cover" src="../assets/images/user-profile/test1.jpg" alt="">
                     <div class="profile-img-wrrap"><img class="img-fluid bg-img-cover" src="../assets/images/user-profile/bg-profile.jpg" alt=""></div>
                     <!-- 배경안에 박스 -->
                     <div class="userpro-box">
