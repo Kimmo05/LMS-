@@ -26,7 +26,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(value = "/user/*")
 public class StatisticsController {
 
     private static final Logger logger = LoggerFactory.getLogger(StatisticsController.class);
@@ -34,7 +33,7 @@ public class StatisticsController {
     private IStatisticsService service;
 
     //선호 조사시 과목코드를 가져오는 메소드
-    @RequestMapping(value = "/getSubjectList.do", method = RequestMethod.GET, produces = "application/text; charset=utf-8")
+    @RequestMapping(value = {"user/getSubjectList.do",}, method = RequestMethod.GET, produces = "application/text; charset=utf-8")
     @ResponseBody
     public String getSubject() {
         String res = service.selectSubjectCode();
@@ -42,7 +41,7 @@ public class StatisticsController {
     }
 
     //선호 조사 페이지
-    @RequestMapping(value = "/prefer.do", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "user/prefer.do", method = {RequestMethod.GET, RequestMethod.POST})
     public String prefer(HttpServletRequest request, String time, String date, String[] subjects,String difficulty, Authentication authentication) {
 
         if (request.getMethod().equals("GET")) {
@@ -71,7 +70,7 @@ public class StatisticsController {
     }
 
     //좋아요 클릭 시
-    @RequestMapping(value = "/clickLike.do", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
+    @RequestMapping(value = "user/clickLike.do", method = RequestMethod.POST, produces = "application/text; charset=utf-8")
     @ResponseBody
     public String clickLike(String claid, Authentication authentication) throws ParseException {
         String userid = (String) authentication.getPrincipal();
@@ -86,7 +85,7 @@ public class StatisticsController {
     }
 
     //내 좋아요 목록보기
-    @RequestMapping(value = "/myLikelist.do", method = RequestMethod.GET)
+    @RequestMapping(value = "user/myLikelist.do", method = RequestMethod.GET)
     public String myLikelist(Authentication authentication, Model model) throws ParseException {
         //TODO 좋아요를 누르면 세션에 있는 좋아요 리스트 값이 안바껴서 문제임
         MemberVo vo = (MemberVo) authentication.getDetails();
@@ -109,7 +108,7 @@ public class StatisticsController {
         return "user/myLikelist";
     }
 
-    @RequestMapping(value = "/classCheckList.do", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "user/classCheckList.do", method = {RequestMethod.GET,RequestMethod.POST})
     public String classCheckList(@RequestParam Map<String,String> result, HttpServletRequest request,
                                  Authentication authentication,Model model) throws ParseException {
         if(request.getMethod().equals("GET")){
