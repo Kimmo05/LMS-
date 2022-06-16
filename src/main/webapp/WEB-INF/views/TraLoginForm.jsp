@@ -96,7 +96,7 @@
             
                 <div class="form-group">
                 <input name="remember-me" type="checkbox"> : Remember me 
-                 <a class="link" href="forget-password.html">비밀번호 찾기</a>
+                 <a class="link" href="./findTraPwView.do">비밀번호 찾기</a>
                 <a class="link" style="padding-right: 8px;" href="./findTraIdView.do">아이디&nbsp; º </a>
                 <font color="red">
 				<p> ${securityexceptionmsg}</p>

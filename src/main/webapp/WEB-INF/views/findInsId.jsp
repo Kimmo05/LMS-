@@ -106,7 +106,7 @@
 		}else{
 			$.ajax({
 // 				url:"./loginCheckText.do", // 반환되는 값을 Text 로 처리
-				url:"./findTraId.do", // 반환되는 값을 Map(JSON) 으로 처리
+				url:"./findInsId.do", // 반환되는 값을 Map(JSON) 으로 처리
 				method:"post",
 				data:"name=" + name.value + "&email=" + email.value,
 				success:function(msg){
@@ -143,7 +143,7 @@
           <div class="col-12">
             <div class="login-card">
               <form class="theme-form login-form needs-validation" novalidate="" method="POST" >
-                <h4>아이디 찾기</h4>
+                <h4>강사 아이디 찾기</h4>
                 <h6>이름과 이메일을 입력해주세요.</h6>
                 <div class="form-group">
                   <label>이름</label>
@@ -173,7 +173,7 @@
                     
                   </ul>
                 </div>
-                <p>Don't have account?<a class="ms-2" href="./traSignUp.do">회원가입</a></p>
+                <p>Don't have account?<a class="ms-2" href="./InsSingUpgo.do">회원가입</a></p>
                 <p><a class="ms-2" href="./main.do">메인으로</a></p>
                   <input class="btn btn-warning btn-block btn-lg" type="button" value="돌아가기" onclick="history.back(-1)">
               </form>

@@ -127,6 +127,15 @@ public class InsLoginController {
 		log.info("*id : ", id);
 		return service.checkInsId(id);
 	}
+	
+	//이메일 중복 체크
+			@RequestMapping(value = "/CheckInsEmail.do", method = RequestMethod.GET)
+			@ResponseBody
+			public int emailCheck(@RequestParam("email") String email) {
+				log.info("일반회원 이메일 중복체크 : ", email);
+				
+				return service.checkInsEmail(email);
+			}
 
 	// 회원가입 성공 매핑
 	@RequestMapping(value = "/InsSingUpSc.do", method = RequestMethod.POST)
@@ -156,7 +165,31 @@ public class InsLoginController {
 	}
 	
 	
-	
+			//아이디 찾기
+			@RequestMapping(value = "/findInsIdView.do", method = RequestMethod.GET)
+			public String findTraIdView() {
+				
+				return "findInsId";
+			}
+
+
+			//아이디 찾기
+			@RequestMapping(value = "/findInsId.do", method = RequestMethod.POST)
+			public @ResponseBody  Map<String, String> findTraId (@RequestParam Map<String, Object> map, Model model) {
+				Map<String, String> rMap = new HashMap<String, String>();
+				log.info("********* Welcome Member_Controller findTraId! : {} *********", map);
+				MemberVo mVo = service.findInsId(map);
+				
+				log.info("********* Welcome! Member_Controller findTraId : {} *********", mVo);
+				if(mVo == null) {
+					rMap.put("isc", "실패");
+				}else {
+					rMap.put("isc", "성공");
+					rMap.put("test", mVo.getId());
+				}
+				return rMap;
+			}
+			
 	
 	//관리자 페이지
 	@RequestMapping(value = "/admin/adminPage.do", method = RequestMethod.GET)

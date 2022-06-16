@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FindTraIdForm</title>
+<title>FindTraPwForm</title>
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +46,7 @@
 		console.log('아이디 찾기');
 		var name = document.getElementById('inputName');
 		var email = document.getElementById('inputEmail');
+		var id = document.getElementById('inputId');
 		console.log(name.value, email.value);
 		
 		var frm = document.forms[0];
@@ -106,22 +107,27 @@
 		}else{
 			$.ajax({
 // 				url:"./loginCheckText.do", // 반환되는 값을 Text 로 처리
-				url:"./findTraId.do", // 반환되는 값을 Map(JSON) 으로 처리
-				method:"post",
-				data:"name=" + name.value + "&email=" + email.value,
-				success:function(msg){
-					console.log(msg, typeof msg); // 형태 확인
-					console.log(msg.isc);
-					if(msg.isc == "성공"){
-						console.log(msg.isc);
-						console.log(msg.test);
-						$("#result").html("아이디 : "+msg.test);
+				url:"./finduserpwd.do", // 반환되는 값을 Map(JSON) 으로 처리
+				dataType :'json',
+				data:{"id":id.value,"name":name.value ,"email":email.value},
+				success:function(data){
+					console.log(data);
+					if(data ==true){
+						console.log(data);
+						alert("임시 비밀번호가 발급되었습니다.메일함을 확인해 주세요");
+
 					}else{
-						$("#result").html("해당하는 아이디가 존재하지 않습니다.");
+					
+						Swal.fire({
+							  icon: 'error',
+							  title: 'Oops...',
+							  text: '정확하게 입력해 주세요!',
+							})
+						console.log(data);
 					}
 				},
 				error:function(){
-					swal("로그인","로그인에 장애가 발생");
+					swal("에러"," 장애가 발생");
 				}
 			})
 		}
@@ -143,8 +149,15 @@
           <div class="col-12">
             <div class="login-card">
               <form class="theme-form login-form needs-validation" novalidate="" method="POST" >
-                <h4>아이디 찾기</h4>
-                <h6>이름과 이메일을 입력해주세요.</h6>
+                <h4>비밀번호 찾기</h4>
+                <h6>아이디 , 이름 ,  이메일을 입력해주세요.</h6>
+                  <div class="form-group">
+                  <label>아이디</label>
+                  <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
+                    <input class="form-control" type="text" name="id" id="inputId" required="" placeholder="아이디">
+                
+                  </div>
+                </div>
                 <div class="form-group">
                   <label>이름</label>
                   <div class="input-group"><span class="input-group-text"><i class="icon-user"></i></span>
