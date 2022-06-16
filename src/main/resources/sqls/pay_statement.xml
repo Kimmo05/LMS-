@@ -1,25 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.min.daoImpl.PayDaoImpl">
-	<select id="paySelect" resultType="PayVo">
+
+	<!-- 관리자 결제 전체조회 -->
+	<select id="paySelectAll" resultType="PayVo">
 		SELECT PAY_NUM,
-			 PAY_TRA_BUYER,
-			 PAY_CLA_NUM,
-			 PAY_PRICE,
-			 PAY_METHOD,
-			 PAY_PG,
-			 PAY_STATUS,
-			 PAY_DATE,
-			 PAY_CONTENT,
-			 PAY_RAW, PAY_DISCOUNT,
-			 PAY_CANDATE,
-			 PAY_CANCATE,
-			 PAY_CANCONTENT, 
-			 PAY_UCOUNUM, 
-			 PAY_UMILAGE
+		PAY_TRA_BUYER,
+		PAY_CLA_NUM, 
+		PAY_PRICE, 
+		PAY_METHOD, 
+		PAY_PG, 
+		PAY_STATUS, 
+		PAY_DATE, 
+		PAY_CONTENT, 
+		PAY_RAW, 
+		PAY_DISCOUNT, 
+		PAY_CANDATE,
+		PAY_CANCATE, 
+		PAY_CANCONTENT, 
+		PAY_UCOUNUM, 
+		PAY_UMILAGE
 		FROM PAY
+		ORDER BY PAY_DATE DESC
 	</select>
 	
+	<!-- 관리자 전체조회 페이지 상태변경시 쿼리 -->
+	<select id="paySelectStatus" resultType="PayVo">
+		SELECT PAY_NUM,
+		PAY_TRA_BUYER,
+		PAY_CLA_NUM, 
+		PAY_PRICE, 
+		PAY_METHOD, 
+		PAY_PG, 
+		PAY_STATUS, 
+		PAY_DATE, 
+		PAY_CONTENT, 
+		PAY_RAW, 
+		PAY_DISCOUNT, 
+		PAY_CANDATE,
+		PAY_CANCATE, 
+		PAY_CANCONTENT, 
+		PAY_UCOUNUM, 
+		PAY_UMILAGE
+		FROM PAY
+		WHERE PAY_STATUS=#{pay_status}
+		ORDER BY PAY_DATE DESC
+	</select>
+	
+	<!-- 결제 -->
 	<insert id="payInsert" parameterType="java.util.Map">
 		INSERT INTO PAY
 		(PAY_NUM,
@@ -56,4 +84,164 @@
 		 #{pay_umilage})
 	</insert>
 	
+	<!-- 보유쿠폰 조회/ 결제시 사용가능 쿠폰 조회/ delflag Y일시 사용가능-->
+	<select id="couponSelect" parameterType="java.util.Map" resultType="CouponVo">
+	SELECT COU_CODE,
+	 COU_TRA_ID,
+	 COU_NAME,
+	 COU_PER, 
+	 COU_DELFLAG, 
+	 COU_DATE
+	 FROM COUPON WHERE COU_TRA_ID =#{cou_tra_id}
+	</select>
+	
+	<!-- 쿠폰 지급 -->
+	<insert id="plusCoupon" parameterType="java.util.Map">
+	INSERT INTO COUPON
+	(COU_CODE,
+	 COU_TRA_ID,
+	 COU_NAME,
+	 COU_PER,
+	 COU_DELFLAG,
+	 COU_DATE)
+	 VALUES(TO_CHAR(SYSDATE,'YYYYMMDD')||'_'||#{cou_codeper}||'_C'||LPAD(COU_SEQ.NEXTVAL,3,'0'),
+	#{cou_tra_id},
+	#{cou_name},
+	#{cou_per},
+	'Y',
+	SYSDATE)
+	</insert>
+	
+	<!-- 쿠폰사용 결제시 보우큐폰 상태 수정 -->
+	<update id="updateCoupon" parameterType="java.util.Map">
+	UPDATE COUPON SET COU_DELFLAG ='N' WHERE COU_CODE =#{cou_code}
+	</update>
+	
+	<!-- 마일리지 사용 결제시 보유마일리지 상태 수정  -->
+	<update id="updateMileage" parameterType="java.util.Map">
+	UPDATE TRAINEE SET TRA_MILAGE = TRA_MILAGE-#{useMilage} WHERE TRA_ID =#{tra_id}
+	</update>
+	
+	<!-- 결제 상세조회 -->
+	<select id="getPayDetail" parameterType="java.util.Map" resultType="PayVo">
+	SELECT PAY_NUM,
+		PAY_TRA_BUYER,
+		PAY_CLA_NUM, 
+		PAY_PRICE, 
+		PAY_METHOD, 
+		PAY_PG, 
+		PAY_STATUS, 
+		PAY_DATE, 
+		PAY_CONTENT, 
+		PAY_RAW, 
+		PAY_DISCOUNT, 
+		PAY_CANDATE,
+		PAY_CANCATE, 
+		PAY_CANCONTENT, 
+		PAY_UCOUNUM, 
+		PAY_UMILAGE
+		FROM PAY
+		WHERE PAY_NUM=#{pay_num}
+	</select>
+	
+	<!-- 환불승인 -->
+	<update id="statusUpdate" parameterType="java.util.Map">
+		UPDATE PAY SET PAY_STATUS = '환불승인',PAY_CANDATE=SYSDATE WHERE PAY_NUM ='${pay_num}' 
+	</update>
+	
+	<!-- 마이페이지 내 결제조회 -->
+	<select id="selectMyPay" resultType="PayVo">
+		SELECT PAY_NUM,
+		PAY_TRA_BUYER,
+		PAY_CLA_NUM, 
+		PAY_PRICE, 
+		PAY_METHOD, 
+		PAY_PG, 
+		PAY_STATUS, 
+		PAY_DATE, 
+		PAY_CONTENT, 
+		PAY_RAW, 
+		PAY_DISCOUNT, 
+		PAY_CANDATE,
+		PAY_CANCATE, 
+		PAY_CANCONTENT, 
+		PAY_UCOUNUM, 
+		PAY_UMILAGE
+		FROM PAY
+		WHERE PAY_TRA_BUYER ='${pay_tra_buyer}'
+		ORDER BY PAY_DATE DESC
+	</select>
+	
+	<!-- 마이페이지 내의 환불신청 -->
+	<update id="cancelUpdate" parameterType="java.util.Map">
+		UPDATE PAY 
+		SET PAY_CANCATE='${pay_cancate}',
+		PAY_STATUS='${pay_status}',
+		PAY_CANCONTENT ='${pay_cancontent}' 
+		WHERE PAY_NUM = '${pay_num}'
+	</update>
+	
+	<!-- 환불 승인시에 쿠폰 반환 -->
+	<update id="returnCoupon"  parameterType="java.util.Map">
+		UPDATE COUPON 
+		SET COU_DELFLAG ='Y' 
+		WHERE COU_CODE = (SELECT PAY_UCOUNUM 
+			FROM PAY 
+			WHERE PAY_NUM='${pay_num}')
+	</update>
+	
+	<!-- 환불 승인시에 마일리지 반환 -->
+	<update id="returnMileage"  parameterType="java.util.Map">
+		UPDATE TRAINEE 
+		SET TRA_MILAGE = TRA_MILAGE + (SELECT PAY_UMILAGE 
+				FROM PAY 
+				WHERE PAY_NUM='${pay_num}') 
+			WHERE TRA_ID =(SELECT PAY_TRA_BUYER 
+				FROM PAY 
+				WHERE PAY_NUM ='${pay_num}')
+	</update>
+	
+	<!-- 내 마일리지 조회 -->
+	<select id="myMilage" resultType="int" parameterType="java.util.Map">
+		SELECT 
+	 	TRA_MILAGE
+		FROM TRAINEE
+		WHERE TRA_ID ='${tra_id}'
+	</select>
+	
+	<!-- 내 보유쿠폰 조회 -->
+	<select id="myCoupon" resultType="CouponVo" parameterType="java.util.Map">
+		SELECT COU_CODE,
+		COU_TRA_ID,
+		COU_NAME,
+		COU_PER,
+		COU_DELFLAG,
+		COU_DATE
+		FROM COUPON
+		WHERE COU_TRA_ID ='${cou_tra_id}' 
+		AND COU_DELFLAG ='${cou_delflag}'
+	</select>
+	
+	<!-- 내 보유쿠폰장수 조회 -->
+	<select id="countCoupon" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*)
+		FROM COUPON
+		WHERE COU_TRA_ID ='${cou_tra_id}' 
+		AND COU_DELFLAG ='${cou_delflag}'
+	</select>
+	
+	<!-- 결제시 마일리지 적립 -->
+	<update id="plusMileage" parameterType="java.util.Map">
+		UPDATE TRAINEE SET TRA_MILAGE = TRA_MILAGE+#{plusMileage} WHERE TRA_ID =#{tra_id}
+	</update>
+	
+	<!-- SMS 발송시 회원번호 가져오기 -->
+	<select id="selectPhone" resultType="String" parameterType="java.util.Map">
+		SELECT TRA_PHONE FROM TRAINEE WHERE TRA_ID =#{tra_id}
+	</select>
+	
+	<!-- 수강자로 등록 -->
+	<update id="updateClaPeople" parameterType="java.util.Map">
+		UPDATE CLASS_PEOPLE SET CPE_STATUS ='N' WHERE CPE_MEM_ID=#{tra_id}
+	</update>
 </mapper>

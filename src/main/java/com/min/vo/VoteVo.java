@@ -1,5 +1,8 @@
 package com.min.vo;
 
+import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +14,13 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class VoteVo {
-	public String vot_cla_num;
-	public String vot_sub_num;
-	public String vot_ins_id;
-	public String vot_voter;
+@AllArgsConstructor
+public class VoteVo implements Serializable{
+	private static final long serialVersionUID = 6759607719140795125L;
+	private String vot_cla_num;
+	private String vot_sub_num;
+	private String vot_ins_id;
+	private String vot_voter;
+	
+	private ClassVo classvo;
 }

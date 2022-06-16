@@ -1,6 +1,7 @@
 package com.min.daoImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -22,15 +23,62 @@ public class ClassBoardDaoImpl implements IClassBoardDao{
 	private String NS = "com.min.daoImpl.Class.";
 
 	@Override
-	public List<ClassBoardVo> classBoardSelectAll() {
-		return sqlSession.selectList(null);
+	public List<ClassBoardVo> classBoardSelectedAll(ClassBoardVo vo) {
+		return sqlSession.selectList(NS+"classBoardSelectedAll",vo);
+	}
+	
+	
+	@Override
+	public ClassBoardVo classBoardSelectDetail(int seq) {
+		return sqlSession.selectOne(NS+"classBoardSelectDetail",seq);
+	}
+
+
+	@Override
+	public int classVideoInsert(Map<String, Object> map) {
+		return sqlSession.insert(NS+"classVideoInsert",map);
+	}
+
+
+	@Override
+	public int classDocInsert(Map<String, Object> map) {
+		return sqlSession.insert(NS+"classDocInsert",map);
+	}
+
+
+	@Override
+	public int classBoardDocInsert(Map<String, Object> map) {
+		return sqlSession.insert(NS+"classBoardDocInsert",map);
+	}
+	
+	@Override
+	public String findFile(int seq) {
+		return sqlSession.selectOne(NS+"findFile",seq);
 	}
 
 	@Override
-	public ClassBoardVo classBoardSelectDetail() {
-		return null;
+	public int documentModify(Map<String, Object> map) {
+		return sqlSession.update(NS+"documentModify",map);
+	}
+
+	@Override
+	public int classBoardDocModify(Map<String, Object> map) {
+		return sqlSession.update(NS+"classBoardDocModify",map);
+	}
+
+	@Override
+	public int classBoardDocDelete(int seq) {
+		return sqlSession.delete(NS+"classBoardDocDelete",seq);
 	}
 	
+	@Override
+	public int documentDelete(int seq) {
+		return sqlSession.delete(NS+"documentDelete",seq);
+	}
 	
+	@Override
+	public int classBoardVideoDelete(int seq) {
+		return sqlSession.delete(NS+"classBoardVideoDelete",seq);
+	}
 	
 }

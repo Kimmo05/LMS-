@@ -16,29 +16,31 @@ import org.slf4j.LoggerFactory;
 
 public class AccessFilter implements Filter {
 
-	private static final Logger logger = LoggerFactory.getLogger(AccessFilter.class);
-	
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		logger.info("========== Filter 작동 ===========");
-	}
+    private static final Logger logger = LoggerFactory.getLogger(AccessFilter.class);
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		
-		String url = (String)StringUtils.defaultIfEmpty(req.getRequestURL().toString(), "URL 없음");
-		String queryString = StringUtils.defaultString(req.getQueryString(), "");
-		logger.info("=============== URL : {} ================", url);
-		logger.info("=========== QueryString : {} =============", queryString);
-		
-		chain.doFilter(request, response);
-	}
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        logger.info("========== Filter 작동 ===========");
+    }
 
-	@Override
-	public void destroy() {
-		logger.info("========== Filter 작동 끝 ===========");
-	}
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+
+        String url = (String) StringUtils.defaultIfEmpty(req.getRequestURL().toString(), "URL 없음");
+        String queryString = StringUtils.defaultString(req.getQueryString(), "");
+        logger.info("URL : {}", url);
+        if (!queryString.isEmpty()) {
+            logger.info("QueryString : {}", queryString);
+        }
+
+        chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        logger.info("========== Filter 작동 끝 ===========");
+    }
 
 }

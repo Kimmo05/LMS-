@@ -2,10 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <%@ include file="./admin_header.jsp" %>
 <body>
 <!-- Page Sidebar Ends-->
@@ -44,8 +41,6 @@
                   </div>
                 </div>
               </div>
-              
-              
               <div class="col-sm-12">
                 <div class="card">
                   <div class="card-body">
@@ -93,15 +88,15 @@
                                   </li>
                                 </ul>
                               </div>
-                              <div class="project-status mt-4">
-                                <div class="media mb-0">
-                                  <p>70% </p>
-                                  <div class="media-body text-end"><span>Done</span></div>
-                                </div>
-                                <div class="progress" style="height: 5px">
-                                  <div class="progress-bar-animated bg-primary progress-bar-striped" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              </div>
+<!--                               <div class="project-status mt-4"> -->
+<!--                                 <div class="media mb-0"> -->
+<!--                                   <p>70% </p> -->
+<!--                                   <div class="media-body text-end"><span>Done</span></div> -->
+<!--                                 </div> -->
+<!--                                 <div class="progress" style="height: 5px"> -->
+<!--                                   <div class="progress-bar-animated bg-primary progress-bar-striped" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!--                                 </div> -->
+<!--                               </div> -->
                             </div>
                           </div>
                  		  </c:forEach>

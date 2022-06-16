@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,29 +23,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
     <!-- Font Awesome-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
     <!-- ico-font-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/icofont.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/icofont.css">
     <!-- Themify icon-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/themify.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/themify.css">
     <!-- Flag icon-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/flag-icon.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/flag-icon.css">
     <!-- Feather icon-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/feather-icon.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/feather-icon.css">
     <!-- Plugins css start-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/animate.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/chartist.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/date-picker.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/prism.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/vector-map.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/animate.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/chartist.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/date-picker.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/prism.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/vector-map.css">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <!-- App css-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-    <link id="color" rel="stylesheet" href="./assets/css/color-1.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
-    <link rel="stylesheet" type="text/css" href="./assets/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
 </head>
 <body>
   <!-- Loader starts-->
@@ -59,8 +60,8 @@
       <div class="page-main-header">
         <div class="main-header-right row m-0">
           <div class="main-header-left">
-            <div class="logo-wrapper"><a href="index.do"><img class="img-fluid" src="./assets/images/logo/logo.png" alt=""></a></div>
-            <div class="dark-logo-wrapper"><a href="index.do"><img class="img-fluid" src="./assets/images/logo/dark-logo.png" alt=""></a></div>
+            <div class="logo-wrapper"><a href="./main.do"><img class="img-fluid" src="../assets/images/logo/logo.png" alt=""></a></div>
+            <div class="dark-logo-wrapper"><a href="./main.do"><img class="img-fluid" src="../assets/images/logo/dark-logo.png" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           </div>
           <div class="left-menu-header col">
@@ -136,7 +137,7 @@
               <li class="onhover-dropdown"><i data-feather="message-square"></i>
                 <ul class="chat-dropdown onhover-show-div">
                   <li>
-                    <div class="media"><img class="img-fluid rounded-circle me-3" src="./assets/images/user/4.jpg" alt="">
+                    <div class="media"><img class="img-fluid rounded-circle me-3" src="../assets/images/user/4.jpg" alt="">
                       <div class="media-body"><span>Ain Chavez</span>
                         <p class="f-12 light-font">Lorem Ipsum is simply dummy.</p>
                       </div>
@@ -144,7 +145,7 @@
                     </div>
                   </li>
                   <li>
-                    <div class="media"><img class="img-fluid rounded-circle me-3" src="./assets/images/user/1.jpg" alt="">
+                    <div class="media"><img class="img-fluid rounded-circle me-3" src="../assets/images/user/1.jpg" alt="">
                       <div class="media-body"><span>Erica Hughes</span>
                         <p class="f-12 light-font">Lorem Ipsum is simply dummy.</p>
                       </div>
@@ -152,7 +153,7 @@
                     </div>
                   </li>
                   <li>
-                    <div class="media"><img class="img-fluid rounded-circle me-3" src="./assets/images/user/2.jpg" alt="">
+                    <div class="media"><img class="img-fluid rounded-circle me-3" src="../assets/images/user/2.jpg" alt="">
                       <div class="media-body"><span>Kori Thomas</span>
                         <p class="f-12 light-font">Lorem Ipsum is simply dummy.</p>
                       </div>
@@ -162,9 +163,17 @@
                   <li class="text-center"> <a class="f-w-700" href="javascript:void(0)">See All     </a></li>
                 </ul>
               </li>
-              <li class="onhover-dropdown p-0">
-                <button class="btn btn-primary-light" type="button"><a href="login_two.html"><i data-feather="log-out"></i>Log out</a></button>
-              </li>
+              <sec:authentication property="Authorities" var="auth" />
+               <sec:authorize access="isAnonymous()">
+             <li class="onhover-dropdown p-0">
+                <button class="btn btn-primary-light" type="button"><a href="./loginPage.do"><i data-feather="log-in"></i>Log in</a></button>
+                 </li>
+            </sec:authorize>
+               <sec:authorize access="isAuthenticated()">
+            <li class="onhover-dropdown p-0"> 
+                 <button class="btn btn-primary-light" type="button"><a href="./logout.do"><i data-feather="log-out"></i>Log out</a></button> 
+                 </li>
+            </sec:authorize>
             </ul>
           </div>
           <div class="d-lg-none mobile-toggle pull-right w-auto"><i data-feather="more-horizontal"></i></div>
@@ -175,22 +184,31 @@
       <div class="page-body-wrapper horizontal-menu">
         <!-- Page Sidebar Start-->
         <header class="main-nav">
-          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="./assets/images/dashboard/1.png" alt="">
-            <div class="badge-bottom"><span class="badge badge-primary">프로필 밑에 작은 글자</span></div><a href="user-profile.html">
-              <h6 class="mt-3 f-14 f-w-600">프로필 밑에 이름</h6></a>
-            <p class="mb-0 font-roboto">프로필 밑에 설명</p>
+         <sec:authorize access="isAuthenticated()"> 
+          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="settings"></i></a><img class="img-90 rounded-circle" src="../assets/images/dashboard/1.png" alt="">
+            <div class="badge-bottom"><span class="badge badge-primary">
+            
+            <c:if test = "${auth eq '[ROLE_USER]'}">일반회원 </c:if>
+            <c:if test = "${auth eq '[ROLE_INSTROCTUR]'}">강사 </c:if>
+            <c:if test = "${auth eq '[ROLE_ADMIN]'}">관리자 </c:if>
+            </span></div><a href="user-profile.html">
+             <sec:authentication property="Details" var="info" />
+             <sec:authentication property="principal"  var="id" />
+              <h6 class="mt-3 f-14 f-w-600">${info.name}</h6></a>
+            <p class="mb-0 font-roboto">${id}<br>${info.email}</p>
             <ul>
-              <li><span><span class="counter">수치1(클래스에 counter있으면 숫자만 가능)</span>k</span>
+              <li><span><span class="counter"></span>k</span>
                 <p>정보1</p>
               </li>
               <li><span>수치2</span>
                 <p>정보2</p>
               </li>
-              <li><span><span class="counter">수치3(클래스에 counter있으면 숫자만 가능)</span>k</span>
+              <li><span><span class="counter"></span>k</span>
                 <p>정보3 </p>
               </li>
             </ul>
           </div>
+         </sec:authorize>
           <nav>
             <div class="main-navbar">
               <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
@@ -199,6 +217,13 @@
                   <li class="back-btn">
                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
                   </li>
+                   <c:if test = "${auth eq '[ROLE_ADMIN]'}">
+                    <li class="sidebar-main-title">
+                    <div>
+                            <button class="btn btn-primary btn-lg" type="button"><a href="./main.do"><i data-feather="log-out"></i>메인 페이지</a></button> 
+                    </div>
+                  </li>
+                 </c:if>
                   <li class="sidebar-main-title">
                     <div>
                       <h6>General </h6>
@@ -206,26 +231,26 @@
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>회원관리</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
+                       <li><a href="./adminTraList.do">일반회원 관리</a></li>
                       <li><a href="./index.do">메뉴2</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./admin_subjectList.do">과목 조회</a></li>
+                      <li><a href="./admin_subjectApprove.do">과목 승인</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./classListForm.do">과정 리스트</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./messendBoardSelectAll.do">쪽지 게시판</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./adminSelectPay.do">회원결제 전체조회</a></li>
+                      <li><a href="./changeStatus.do">환불신청 / 환불승인</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>

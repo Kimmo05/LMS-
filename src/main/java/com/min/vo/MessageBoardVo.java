@@ -1,5 +1,8 @@
 package com.min.vo;
 
+import java.io.Serializable;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +14,15 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MessageBoardVo {
-	public int mes_seq;
-	public String mes_sender;
-	public String mes_recipient;
-	public String mes_content;
-	public String mes_cate;
-	public int mes_reffer;
-	public String mes_regdate;
-	public String mes_read;
+@AllArgsConstructor
+public class MessageBoardVo implements Serializable {
+	private static final long serialVersionUID = 3283147620152681216L;
+	private int mes_seq;
+	private String mes_sender;
+	private String mes_recipient;
+	private String mes_content;
+	private String mes_cate;
+	private int mes_reffer;
+	private String mes_regdate;
+	private String mes_read;
 }
