@@ -152,12 +152,12 @@ SELECT  RN, TRA_ID ,
 		TRA_REGDATE ,
 		TRA_DELFLAG 
 		FROM TRAINEE t 
-		WHERE  TRA_DELFLAG = ('N','W'))
+		WHERE  TRA_DELFLAG IN ('N','W'))
 			WHERE RN BETWEEN #{start} AND #{last}
 </select>
 <select id="adminUserListTotal" resultType="Integer">
 	SELECT COUNT(*) FROM TRAINEE s
-	WHERE TRA_DELFLAG = ('N','W')
+	WHERE TRA_DELFLAG IN ('N','W')
 </select>
 
 
@@ -231,7 +231,7 @@ WHERE CAR_SEQ = #{car_seq}
 <update id="updateCarDelflag" parameterType="map">
 UPDATE INSTRUCTOR
 SET
-INS_DELFLAG='R'
+INS_DELFLAG='N'
 WHERE INS_ID=#{id}
 </update>
 
@@ -251,6 +251,17 @@ SELECT COUNT(*) FROM INSTRUCTOR WHERE INS_ID = #{id}
 <select id="checkInsEmail"  parameterType="String" resultType="Integer">
 SELECT COUNT(*) FROM INSTRUCTOR WHERE INS_EMAIL = #{email}
 </select>
+<update id="updateInsPw" parameterType="map" >
+		update INSTRUCTOR set INS_PW = #{pw} 
+		WHERE INS_ID = #{id}
+		AND INS_NAME = #{name}
+		AND INS_EMAIL = #{email}
+		
+	</update>
+<select id="findInsPw"  resultMap="InsResult" parameterType="map" resultType="MemberVo">
+	select * from INSTRUCTOR WHERE INS_ID = #{id} and INS_NAME=#{name} and INS_EMAIL=#{email}
+</select>
+
 
 
 <!-- 강사 개인정보 수정 -->
@@ -263,7 +274,7 @@ INS_PHONE=#{phone},
 INS_BIRTH=#{birth},  
 INS_BANKNUM=#{banknum}, 
 INS_BANK=#{bank}, 
-INS_REGDATE=SYSDATE, 
+INS_REGDATE=SYSDATE
 WHERE INS_ID=#{id}
 </update>
 

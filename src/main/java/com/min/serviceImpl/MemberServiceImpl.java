@@ -157,6 +157,16 @@ public class MemberServiceImpl implements IMemberService{
 		// TODO Auto-generated method stub
 		return dao.updateTraPw(map);
 	}
+	@Override
+	public MemberVo findInsPw(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.findInsPw(map);
+	}
+	@Override
+	public int updateInsPw(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return dao.updateInsPw(map);
+	}
 
 	
 

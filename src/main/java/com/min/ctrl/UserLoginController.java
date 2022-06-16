@@ -156,15 +156,19 @@ public class UserLoginController {
 	}
 	
 	//일반회원 개인정보 수정
-	@RequestMapping(value = "/editUser.do", method = RequestMethod.POST)
-	public String editUserProfile(@RequestParam Map<String, Object> map, Model model,Authentication user) {
+	@RequestMapping(value = "/editUser.do", method = {RequestMethod.POST,RequestMethod.GET})
+	public String  editUserProfile(@RequestParam Map<String, Object> map, Model model,Authentication user) {
 		MemberVo mvo = (MemberVo) user.getDetails();
 		map.put("id", mvo.getId());
 		
 		log.info("개인정보 수정",mvo);
 		System.out.println(map);
-		service.updateTra(map);
-		return "/user/logout.do";
+	   service.updateTra(map);
+		
+		
+		
+		return "redirect:/user/logout.do";
+	
 	}
 	
 	
@@ -201,7 +205,7 @@ public class UserLoginController {
 			return "findTraPw";
 		}
 
-		@GetMapping(value = "/finduserpwd",produces = {MediaType.APPLICATION_JSON_VALUE})
+		@GetMapping(value = "/findTraPw.do",produces = {MediaType.APPLICATION_JSON_VALUE})
 		public @ResponseBody String findPw (@RequestParam Map<String, Object> map, Model model) throws Exception {
 			
 			String result=null;

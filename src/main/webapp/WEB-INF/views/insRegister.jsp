@@ -213,6 +213,8 @@ LMS에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(LMS
                     <input class="form-control" type="email" id="email" name="email" required="" placeholder="Test@gmail.com">
                   </div>
                 </div>
+                    <span class="check_font" id="email_check"></span>
+                  
                 <div class="col-sm-6 col-md-6">
                           <div class="mb-3">
                 <label>은행</label>
@@ -240,8 +242,7 @@ LMS에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(LMS
                     </div>
                      <span class="check_font" id="phone_check"></span>
                   </div>
-                                  <span class="check_font" id="email_check"></span>
-                  
+                              
   <div class="col-lg-12">
 
       <!--  end panel-body -->

@@ -35,6 +35,8 @@ public interface IMemberService{
 		//일반회원 비밀번호 찾기
 		public MemberVo findTraPw(Map<String, Object> map);
 		public int updateTraPw(Map<String, Object> map);
+		
+		
 		//*********강사 **********
 		//시큐리티 강사 로그인
 		public MemberVo loginIns(Map<String, Object> map);
@@ -56,6 +58,10 @@ public interface IMemberService{
 		public int updateCar(Map<String, Object> map);
 		//강사 이메일 중복 체크
 		public int checkInsEmail(String id);
+		//일반회원 비밀번호 찾기
+		public MemberVo findInsPw(Map<String, Object> map);
+		public int updateInsPw(Map<String, Object> map);
+		
 		
 		//페이징처리
 		public List<MemberVo> adminUserListRow(RowNumVo rvo);

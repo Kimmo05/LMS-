@@ -64,7 +64,9 @@ public interface IMemberDao {
 	public int updateCar(Map<String, Object> map);
 	//강사 회원상태 변경
 	public int updateCarDelflag(Map<String, Object> map);
-	
+	//일반회원 비밀번호 찾기
+	public MemberVo findInsPw(Map<String, Object> map);
+	public int updateInsPw(Map<String, Object> map);
 	
 	
 	//페이징처리

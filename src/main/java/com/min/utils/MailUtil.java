@@ -24,7 +24,7 @@ public class MailUtil {
 		String fromEmail="modali05@naver.com"; //보내는 사람 이메일 
 		String fromName="관리자"; //보내는 사람 이름
 		
-		String subject=""; //메일 제목
+		String subject="LMS 비밀번호 메일입니다"; //메일 제목
 		String msg="";
 		
 		msg +="<div align='lift'";
