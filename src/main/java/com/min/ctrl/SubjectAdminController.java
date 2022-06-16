@@ -180,7 +180,11 @@ public class SubjectAdminController {
 			System.out.println("상태가 반려로 업데이트 된 과목 수 : "+ n);
 	}
 	
-	
-	
+	//4-3) 
+	@RequestMapping(value = "/user/subReject.do", method = RequestMethod.POST)
+	public String subReject() {
+		
+		return "";
+	}
 
 }
