@@ -177,13 +177,19 @@ public class SubjectAdminController {
 	public void subUpdateStatusD(@RequestParam(value="sub_num") String sub_num){
 		log.info("********* Welcome SubjectController! subUpdateStatusD 관리자의 상태변경 subUpdateStatusD *********");
 			int n =  sService.subUpdateStatusD(sub_num);
-			System.out.println("상태가 반려로 업데이트 된 과목 수 : "+ n);
+			System.out.println("상태가 종료로 업데이트 된 과목 수 : "+ n);
 	}
 	
 	//4-3) 
 	@RequestMapping(value = "/user/subReject.do", method = RequestMethod.POST)
-	public String subReject() {
-		
+	public String subReject(@RequestParam Map<String, Object> map) {
+		log.info("********* Welcome SubjectController! subReject 관리자의 과목 반려 subReject *********");
+		SubjectVo sVo = new SubjectVo();
+		map.put("sub_num", sVo.getSub_num());
+		map.put("sub_rejection", sVo.getSub_rejection());
+		int n = sService.subReject(map);
+		System.out.println(map);
+		System.out.println("상태가 반려로 업데이트 된 과목 수 : "+ n);
 		return "";
 	}
 

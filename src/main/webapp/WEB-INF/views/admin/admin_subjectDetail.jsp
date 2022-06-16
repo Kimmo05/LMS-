@@ -284,7 +284,7 @@
            <div class="col-sm-12">
             <div class="card">
             <div class="col-sm-12 col-xl-2">
-              <div class="row product-page-main">
+              <div class="row product-page-main" id="button">
               <c:if test="${results.sub_status eq 'W'}">
                      <button id="btnA" class="btn btn-outline-primary-2x" type="button">승인하기</button>
                      <button id="btnD" class="btn btn-outline-danger-2x" type="button">과목종료</button>
@@ -298,7 +298,7 @@
               </div>
             </div>
             </div>
-            
+           
 
             </div>
             </div>
@@ -358,7 +358,24 @@
     		  });
     	  });
     	  
-    	  
+    	  $(function(){
+    		  $("#btnR").click(function(){
+    	 		  console.log("btnR 눌림"); 
+    	 		  
+    	 		 var sub_num = '${results.sub_num}'
+   	 		 	 console.log(sub_num); 
+        		 $("#button").append("<div class='row'>");
+        		 $("#button").append("<div class='col'>");
+        		 $("#button").append("<div class='mb-3'>");
+        		 $("#button").append("<label>반려사유</label>");
+        		 $("#button").append("<input class='form-control' type='text' name='sub_rejection' placeholder='과목 반려사유'>");
+        		 $("#button").append("</div>");
+        		 $("#button").append("</div>");
+        		 $("#button").append("</div>");
+    	 		
+        		  
+    		  });
+    	  });
     	  
     	  
     	  
