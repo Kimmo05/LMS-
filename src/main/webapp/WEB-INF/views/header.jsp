@@ -169,8 +169,6 @@
                     <ul class="nav-submenu menu-content">
                       <li><a href="./user_subjectInsertForm.do">내 과목 만들기</a></li>
                       <li><a href="./user_subjectList.do">전체과목 보러가기</a></li>
-                      <li><a href="./usersubject.do">과목 조회 연습용</a></li>
-                      <li><a href="./uploadForm.do">과목 파일업로드</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>

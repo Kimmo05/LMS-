@@ -102,7 +102,7 @@ public class SubjectUserController {
 
 	// 2) 과목 조회
 	// 2-3) 비회원/일반회원/강사 과목 전체조회 페이지로 이동
-	@RequestMapping(value = { "/user/user_subjectList.do", "/ins/user_subjectList.do" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/app/user_subjectList.do","/user/user_subjectList.do", "/ins/user_subjectList.do" }, method = RequestMethod.GET)
 	public String userSelectSubject(SubjectVo sVo, Model model) {
 		log.info("********* Welcome SubjectController! userSelectSubject 로 이동합니다. userSelectSubject *********");
 
@@ -155,7 +155,7 @@ public class SubjectUserController {
 //	}
 
 	// 2-4) 일반회원 과목 상세조회
-	@RequestMapping(value = { "/user/user_subjectDetail.do", "/ins/user_subjectDetail.do" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/app/user_subjectDetail.do","/user/user_subjectDetail.do", "/ins/user_subjectDetail.do" }, method = RequestMethod.GET)
 	public String userSubjectDetail(SubjectVo sVo, HttpSession session, Model model, @RequestParam String sub_num) {
 		log.info("********* Welcome SubjectController! userSubjectDetail 상세조회 subSelectDetail *********");
 		SubjectVo results = sService.userSubjectDetail(sub_num);
