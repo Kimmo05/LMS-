@@ -48,35 +48,45 @@ public class SubjectUserController {
 
 	@Autowired
 	private ITagService tagService;
-	// 1) 과목 등록양식 페이지로 이동
-	@RequestMapping(value = { "/user/user_subjectInsertForm.do",
-			"/ins/user_subjectInsertForm.do" }, method = RequestMethod.GET)
+	
+	// 1) 과목 등록양식 페이지로 이동하는 메소드 (비회원은 접근 접근 불가능한 페이지)
+	@RequestMapping(value = { "/user/user_subjectInsertForm.do", "/ins/user_subjectInsertForm.do" }, method = RequestMethod.GET)
 	public String subInsertForm(Authentication user, Model model) {
-		log.info("********* Welcome SubjectController! subInsertForm 과목 등록양식 페이지로 이동합니다. subjectInsertForm *********");
+		log.info("********* SubjectController - subInsertForm 과목 등록 양식 페이지로 이동 *********");
 
 		return "user/user_subjectInsertForm";
 	}
 
-	// 1-2)과목 등록하기
-
+	
+	// 1-2)과목 등록하는 메소드
 	@RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"},method = RequestMethod.POST)
 	public String userInsertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
+		log.info("********* SubjectController - userInsertSubject 과목 등록 *********");
+		
 		MemberVo mvo = (MemberVo) user.getDetails(); String code = map.get("sub_cod_code").toString();
 		String tags = tagService.selectTagSubjectCode(code);
 		Matcher matcher = TagController.TAG_REGEX.matcher(tags);
+
 		List<String> tagList = new ArrayList<String>();
+		
 		while (matcher.find()){
 			tagList.add(matcher.group().replace(" ","").replace("#",""));
 		}
 		System.out.println(tagList);
 		System.out.println(mvo);
+
 		map.put("sub_reg_id", mvo.getId());
+		
 		int n = sService.InsertSubject(map);
 		System.out.println(map);
+		
 		map.put("reg_auth",mvo.getAuth());
 		map.put("reg_id", mvo.getId());
+		
+		//과목 등록자가 강사일 경우 담당강사에 등록자 아이디 put
 		if(mvo.getAuth().equals("ROLE_INSTRUCTOR")) {
 			map.put("sub_ins_id", mvo.getId());
+		//일반회원일경우 등록자 아이디 putX	
 		}else {
 			map.put("sub_ins_id","담당 강사 미정");
 		}
@@ -87,17 +97,6 @@ public class SubjectUserController {
 		return "redirect:/user/user_subjectList.do";
 	}
 	
-
-
-
-
-//	 @RequestMapping(value = {"/user/subjectInsert.do","/ins/subjectInsert.do"},method = RequestMethod.POST)
-//	 public String userInsertSubject(@RequestParam Map<String, Object> map, Authentication user, HttpSession session) {
-//
-////		 JSONArray arry = new JSONArray();
-////		 arry =
-//	 return "";
-//	 }
 
 	// 2) 과목 조회
 	// 2-3) 비회원/일반회원/강사 과목 전체조회 페이지로 이동
@@ -118,10 +117,8 @@ public class SubjectUserController {
 //		log.info("SubjectController subjectList");
 //		log.info("SubjectController subjectList 세션확인 : {}", user);
 //		MemberVo mvo = (MemberVo) user.getDetails();
-//		
 //		List<SubjectVo> lists = null;
 //		RowNumVo rowVo = null;
-//		
 //		if(session.getAttribute("row")==null) {
 //			rowVo = new  RowNumVo();
 //		}else {
@@ -134,13 +131,12 @@ public class SubjectUserController {
 //			rowVo.setTotal(sService.subjectTotalUser());
 //			lists=sService.subSelectAllUser(rowVo);
 //		}
-//		
 //			System.out.println(lists);
 //		model.addAttribute("lists",lists);
 //		model.addAttribute("row",rowVo);
-//		
 //		return "user/user_subjectList";
 //	}
+	
 //	@RequestMapping(value = "/user/user_subjectList.do", method = {RequestMethod.GET, RequestMethod.POST})
 //	public ModelAndView selectSubjectUser(RowNumVo rVo) {
 //		ModelAndView mav = new ModelAndView();
@@ -156,7 +152,7 @@ public class SubjectUserController {
 	// 2-4) 일반회원 과목 상세조회
 	@RequestMapping(value = { "/app/user_subjectDetail.do","/user/user_subjectDetail.do", "/ins/user_subjectDetail.do" }, method = RequestMethod.GET)
 	public String userSubjectDetail(SubjectVo sVo, HttpSession session, Model model, @RequestParam String sub_num) {
-		log.info("********* Welcome SubjectController! userSubjectDetail 상세조회 subSelectDetail *********");
+		log.info("********* SubjectController - userSubjectDetail 상세조회 *********");
 		SubjectVo results = sService.userSubjectDetail(sub_num);
 
 		model.addAttribute("results", results);
@@ -164,40 +160,27 @@ public class SubjectUserController {
 	}
 
 	// 2-5) 일반회원 과목 마이페이지 과목조회 페이지로 이동
-	/*
-	 * @RequestMapping(value =
-	 * {"/user/user_mySubjectList.do","/ins/user_mySubjectList.do"}, method =
-	 * RequestMethod.GET) public String subSelectMySubjectPage(Authentication user,
-	 * Model model) { log.
-	 * info("********* Welcome SubjectController! subSelectMySubject 과목 마이페이지 과목조회 페이지로 이동합니다. subSelectMySubject *********"
-	 * ); return "user/user_mySubjectList"; }
-	 */
-	@RequestMapping(value = { "/user/user_subSelectMySubject.do",
-			"/ins/user_subSelectMySubject.do" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/user/user_subSelectMySubject.do","/ins/user_subSelectMySubject.do" }, method = RequestMethod.GET)
 	public String subSelectMySubject(SubjectVo sVo, HttpSession session, Model model, Authentication user) {
-		log.info(
-				"********* Welcome SubjectController! subSelectMySubject 과목 마이페이지 과목조회 페이지로 이동합니다. subSelectMySubject *********");
-		log.info("********* Welcome SubjectController! subSelectMySubject 마이페이지 목록 조회 subSelectMySubject *********");
+		log.info("********* SubjectController - subSelectMySubject 과목 마이페이지 과목조회 페이지로 이동 *********");
 		MemberVo mvo = (MemberVo) user.getDetails();
 		System.out.println(mvo);
 
 		sVo.setSub_reg_id(mvo.getId());
-		System.out.println("++++++++++++++++++++++++++++++" + mvo.getId());
+		System.out.println("mvo 체크용 mvo.getId()" + mvo.getId());
 		List<SubjectVo> list = sService.subSelectMySubject(sVo);
-		model.addAttribute("list", list);
+		model.addAttribute("list 체크용 list", list);
 		log.info("컨트롤러에서 찍는 아이디에 해당하는 리스트 " + list);
 		log.info("세션 저장된 아이디 : " + mvo.getId());
 		return "user/user_subSelectMySubject";
 	}
 
 	// 5) 일반회원/강사 과목 수정 페이지로 이동
-	@RequestMapping(value = { "/user/user_subjectModifyForm.do",
-			"/ins/user_subjectModifyForm.do" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/user/user_subjectModifyForm.do","/ins/user_subjectModifyForm.do" }, method = RequestMethod.GET)
 	public String subUpdateSubject(SubjectVo sVo, Model model, Authentication user, @RequestParam String sub_num) {
-		log.info("********* Welcome SubjectController! subUpdateSubject 로 이동합니다. subUpdateSubject *********");
+		log.info("********* SubjectController - subUpdateSubject 과목 일반회원/강사 과목 수정 페이지로 이동 *********");
 
 		SubjectVo results = sService.userSubjectDetail(sub_num);
-
 		model.addAttribute("results", results);
 
 		return "user/user_subjectModifyForm";

@@ -13,7 +13,7 @@
          <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
      
 <meta charset="UTF-8">
-<title>일반회원 과목 등록 양식 페이지</title>
+<title>일반회원 정보 수정 페이지</title>
   <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <%@ include file="../header.jsp" %>
