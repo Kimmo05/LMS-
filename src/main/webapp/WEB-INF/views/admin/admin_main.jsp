@@ -7,11 +7,15 @@
 </head>
 <%@ include file="./admin_header.jsp" %>
 <body>
-  
        <div class="page-body">
+       <div class="card">
+  <div class="row">
           <div class="container-fluid">
-            <div class="page-header">
+          <div class="col-sm-12">
+                <div class="card">
+            <div class="card-header pb-0">
               <div class="row">
+        
                 <div class="col-sm-6">
                   <h3>${info.name}(관리자)님 환영합니다.</h3>
                   <ol class="breadcrumb">
@@ -40,6 +44,7 @@
                 </div>
               </div>
             </div>
+          </div>
           </div>
           <!-- Container-fluid starts-->
           <div class="container-fluid faq-section">
@@ -247,8 +252,11 @@
 				</div>       
               </div>
               </div>
+              </div>
+              </div>
+              </div>
               
-
+</div>
 
 
 <%@include file="./admin_footer.jsp" %>
