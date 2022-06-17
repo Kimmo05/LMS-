@@ -177,4 +177,16 @@ public class MemberDaoImpl implements IMemberDao{
 		return sqlSession.update(NS+"updateTraPw",map);
 	}
 
+	@Override
+	public MemberVo findInsPw(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+"findInsPw",map);
+	}
+
+	@Override
+	public int updateInsPw(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(NS+"updateInsPw",map);
+	}
+
 }

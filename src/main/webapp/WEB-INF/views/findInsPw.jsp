@@ -107,7 +107,7 @@
 		}else{
 			$.ajax({
 // 				url:"./loginCheckText.do", // 반환되는 값을 Text 로 처리
-				url:"./findTraPw.do", // 반환되는 값을 Map(JSON) 으로 처리
+				url:"./findInspw.do", // 반환되는 값을 Map(JSON) 으로 처리
 				dataType :'json',
 				data:{"id":id.value,"name":name.value ,"email":email.value},
 				success:function(data){
@@ -149,7 +149,7 @@
           <div class="col-12">
             <div class="login-card">
               <form class="theme-form login-form needs-validation" novalidate="" method="POST" >
-                <h4>일반회원 비밀번호 찾기</h4>
+                <h4>강사 비밀번호 찾기</h4>
                 <h6>아이디 , 이름 ,  이메일을 입력해주세요.</h6>
                   <div class="form-group">
                   <label>아이디</label>

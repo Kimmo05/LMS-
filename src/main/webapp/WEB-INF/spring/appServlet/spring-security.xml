@@ -84,6 +84,7 @@
 		<security:intercept-url pattern="/user/traSignUp.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/reMain.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/main.do" access="permitAll"/>
+		
 		<security:intercept-url pattern="/user/findTraIdView.do" access="permitAll"/>
 		<security:intercept-url pattern="/user/**" access="permitAll"/>
 		
