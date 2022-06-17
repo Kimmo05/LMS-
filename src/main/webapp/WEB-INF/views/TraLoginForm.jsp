@@ -106,6 +106,7 @@
     				</c:if>
 				<br>
 				<input type="hidden" name="loginRedirect" value="${loginRedirect}" />
+				<br>
                   <input class="btn btn-success" type="submit" value="Log In" data-bs-toggle="tooltip" title="btn btn-success"  onclick="loginCheck()">
                 </div>
                 <div class="login-social-title">                
@@ -120,8 +121,8 @@
                   </ul>
                 </div>
                 <p>Don't have account?<a class="ms-2" href="./traSignUp.do">회원가입</a></p>
-                <p><a class="ms-2" href="../app/main.do">돌아가기</a></p>
-                  <input class="btn btn-warning btn-block btn-lg" type="button" value="돌아가기" onclick="history.back(-1)">
+                  <p>메인화면으로 돌아가시겠습니까?<a class="ms-2" href="../app/main.do">이동</a></p>
+<!--                   <input class="btn btn-warning btn-block btn-lg" type="button" value="돌아가기" onclick="history.back(-1)"> -->
               </form>
             </div>
           </div>

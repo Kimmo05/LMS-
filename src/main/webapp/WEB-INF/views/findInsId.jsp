@@ -105,7 +105,6 @@
              });
 		}else{
 			$.ajax({
-// 				url:"./loginCheckText.do", // 반환되는 값을 Text 로 처리
 				url:"./findInsId.do", // 반환되는 값을 Map(JSON) 으로 처리
 				method:"post",
 				data:"name=" + name.value + "&email=" + email.value,
