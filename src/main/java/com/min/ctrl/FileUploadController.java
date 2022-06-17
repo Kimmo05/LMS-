@@ -42,8 +42,7 @@ public class FileUploadController {
 	//**파일업로드 컨트롤러
 		@RequestMapping(value = "/user/uploadForm.do", method = RequestMethod.GET)
 		public String uploadForm() {
-			log.info("********* uploadForm *********");
-			System.out.println("여기까지 이동성공");
+			log.info(" uploadForm : 업로드 폼 이동");
 			return "user/uploadForm";
 		}
 		
