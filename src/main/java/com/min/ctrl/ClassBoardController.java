@@ -239,6 +239,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classBoardVideoDelete.do", method = RequestMethod.GET)
 	public String classBoardVideoDelete(@SessionAttribute("cbo_seq") int cbo_seq) {
+		log.info("classBoardVideoDelete : 자료 게시판 동영상 삭제");
 		service.classBoardVideoDelete(cbo_seq);
 		return "redirect:/user/classBoardSelectedAll.do";
 	}
