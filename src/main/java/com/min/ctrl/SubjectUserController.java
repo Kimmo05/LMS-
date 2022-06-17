@@ -168,22 +168,20 @@ public class SubjectUserController {
 		System.out.println(mvo);
 
 		sVo.setSub_reg_id(mvo.getId());
-		System.out.println("++++++++++++++++++++++++++++++" + mvo.getId());
+		System.out.println("mvo 체크용 mvo.getId()" + mvo.getId());
 		List<SubjectVo> list = sService.subSelectMySubject(sVo);
-		model.addAttribute("list", list);
+		model.addAttribute("list 체크용 list", list);
 		log.info("컨트롤러에서 찍는 아이디에 해당하는 리스트 " + list);
 		log.info("세션 저장된 아이디 : " + mvo.getId());
 		return "user/user_subSelectMySubject";
 	}
 
 	// 5) 일반회원/강사 과목 수정 페이지로 이동
-	@RequestMapping(value = { "/user/user_subjectModifyForm.do",
-			"/ins/user_subjectModifyForm.do" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/user/user_subjectModifyForm.do","/ins/user_subjectModifyForm.do" }, method = RequestMethod.GET)
 	public String subUpdateSubject(SubjectVo sVo, Model model, Authentication user, @RequestParam String sub_num) {
-		log.info("********* Welcome SubjectController! subUpdateSubject 로 이동합니다. subUpdateSubject *********");
+		log.info("********* SubjectController - subUpdateSubject 과목 일반회원/강사 과목 수정 페이지로 이동 *********");
 
 		SubjectVo results = sService.userSubjectDetail(sub_num);
-
 		model.addAttribute("results", results);
 
 		return "user/user_subjectModifyForm";
