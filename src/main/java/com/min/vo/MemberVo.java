@@ -1,5 +1,7 @@
 package com.min.vo;
 
+import java.io.Serializable;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +13,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class MemberVo {
+public class MemberVo implements Serializable {
 	
+	private static final long serialVersionUID = 4314604266898526606L;
 	private String id;
 	private String pw;
 	private String name;

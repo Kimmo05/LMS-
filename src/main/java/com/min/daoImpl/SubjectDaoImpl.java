@@ -127,26 +127,23 @@ public class SubjectDaoImpl implements SubjectDao{
 	//4) 과목 승인
 	//4-1) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'A'으로 변경
 	@Override
-	public int subUpdateStatusA(Map<String, Object> map) {
+	public int subUpdateStatusA(String sub_num) {
 		log.info("========== SubjectDaoImpl/subUpdateStatusA ==========");
-		log.info("========== subUpdateStatusA : "+map+" ==========");
-		int n = sqlSession.update(NS+"subUpdateStatusA");
-		return sqlSession.update(NS+"subUpdateStatusA",map);
+		log.info("========== subUpdateStatusA : "+sub_num+" ==========");
+		return sqlSession.update(NS+"subUpdateStatusA",sub_num);
 	}
 	//4-2) 과목 등록 후 관리자의 과목 검수 후 과목상태를 삭제'D'으로 변경
 	@Override
-	public int subUpdateStatusD(Map<String, Object> map) {
+	public int subUpdateStatusD(String sub_num) {
 		log.info("========== SubjectDaoImpl/subUpdateStatusD ==========");
-		log.info("========== subUpdateStatusD : "+map+" ==========");
-		int n = sqlSession.update(NS+"subUpdateStatusD");
-		return sqlSession.update(NS+"subUpdateStatusD",map);
+		log.info("========== subUpdateStatusD : "+sub_num+" ==========");
+		return sqlSession.update(NS+"subUpdateStatusD",sub_num);
 	}
 	//4-3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 반려'R'으로 변경
 	@Override
 	public int subUpdateStatusR(Map<String, Object> map) {
 		log.info("========== SubjectDaoImpl/subUpdateStatusR ==========");
 		log.info("========== subUpdateStatusR : "+map+" ==========");
-		int n = sqlSession.update(NS+"subUpdateStatusR");
 		return sqlSession.update(NS+"subUpdateStatusR",map);
 	}
 	//4-4) 과목 반려시 관리자의 과목 반려 사유 입력
@@ -154,7 +151,7 @@ public class SubjectDaoImpl implements SubjectDao{
 	public int subUpdateRejection(Map<String, Object> map) {
 		log.info("========== SubjectDaoImpl/subUpdateRejection ==========");
 		log.info("========== subUpdateRejection : "+map+" ==========");
-		int n = sqlSession.update(NS+"subUpdateRejection");
+	
 		return sqlSession.update(NS+"subUpdateRejection",map);
 	}
 	
@@ -164,7 +161,7 @@ public class SubjectDaoImpl implements SubjectDao{
 	public int subUpdateSubject(Map<String, Object> map) {
 		log.info("========== SubjectDaoImpl/subUpdateSubject ==========");
 		log.info("========== subUpdateSubject : "+map+" ==========");
-		int n = sqlSession.update(NS+"subUpdateSubject");
+		
 		return sqlSession.update(NS+"subUpdateSubject",map);
 	}
 	//5-2) 일반회원/강사 과목 수정시 커리큘럼 정보 수정
@@ -172,7 +169,7 @@ public class SubjectDaoImpl implements SubjectDao{
 	public int subUpdateCurriculum(Map<String, Object> map) {
 		log.info("========== SubjectDaoImpl/subUpdateCurriculum ==========");
 		log.info("========== subUpdateCurriculum : "+map+" ==========");
-		int n = sqlSession.update(NS+"subUpdateCurriculum");
+	
 		return sqlSession.update(NS+"subUpdateCurriculum",map);
 	}
 

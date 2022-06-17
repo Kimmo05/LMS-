@@ -11,7 +11,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous" type="text/javascript"></script>
   <script type="text/javascript" src="./resources/js/pay/pay.js"></script>
 </head>
-<%@ include file="../admin/admin_header.jsp" %>
+<%@ include file="./admin/admin_header.jsp" %>
 <body>
   
         <div class="page-body">
@@ -125,7 +125,7 @@
 
 
 
-<%@include file="../admin/admin_footer.jsp" %>
+<%@include file="./admin/admin_footer.jsp" %>
 
 
   

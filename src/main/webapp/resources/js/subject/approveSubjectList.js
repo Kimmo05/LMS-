@@ -20,7 +20,7 @@ var pagingAjax= function (){
 	console.log(obj);
 	
 	$.ajax({
-		url:"./page.do",
+		url:"./approvePage.do",
 		type:"post",
 		async:true,
 		data:$("#frm").serialize(),
@@ -33,21 +33,18 @@ var pagingAjax= function (){
 				if(key=="lists"){
 				varHtml += "	 <thead class='bg-primary'>";
 	            varHtml += "     <tr>";
-		        varHtml += "       <th><input type='checkbox' name='chkAll' onclick='checkAlls(this.checked)''></td>";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>과목번호</h6></th>";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>과목명</h6></th>  ";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>카테고리</h6></th>";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>등록자</h6></th>  ";
-	            varHtml += "       <th scope='col'><h6 class='f-w-700'>담당강사</h6></th>";
+	            varHtml += "       <th scope='col'><h6 class='f-w-700'>등록일</h6></th>";
 	            varHtml += "       <th scope='col'><h6 class='f-w-700'>승인상태</h6></th>";
-	            varHtml += "       <th scope='col'><h6 class='f-w-700'>관리</h6></th>";
 				varHtml += "     </tr>";
 	            varHtml += "   </thead>";
 				varHtml += "	<tbody>";
 					
 					$.each(value, function(k,v){
 					varHtml += "  <tr>";
-					varHtml += "     <td><input type='checkbox' name='chkVal'></td>";
 					varHtml += "   <td ><a href='./admin_subjectDetail.do?sub_num="+v.sub_num+"'>"+v.sub_num+"</a></td>";
 	                varHtml += " <td><a href='./admin_subjectDetail.do?sub_num="+v.sub_num+"'>"+v.sub_title+"</a></td>";
 	                varHtml += " <td>";
@@ -96,11 +93,8 @@ var pagingAjax= function (){
 	                }
 	                varHtml += "  </td>                                                                                                 ";
 	                varHtml += "  <td>"+v.sub_reg_id+"</td>                                                                             ";
-	                if(m==30){
-	                varHtml += "  <td>"+v.sub_ins+"</td>                                                                                ";
-	                }else if(m==31){
-	                varHtml += "  <td>담당 강사 미정</td>                                                                               ";
-	                }
+	                varHtml += "  <td>"+v.sub_regdate+"</td>                                                                             ";
+	                
 			              if(v.sub_status === "A"){
 			              varHtml += "    		<td><span class='badge rounded-pill' style='background-color: 	#1E90FF'>승인</span></td>       ";            	  
 			              }else if(v.sub_status === "W"){
@@ -110,7 +104,6 @@ var pagingAjax= function (){
 			              }else if(v.sub_status === "D"){
 			              varHtml += "    		<td><span class='badge rounded-pill badge-danger'>삭제</span></td>                              ";
 			              }
-			                 varHtml += "     	 <td><button type='button' class='btn btn-pill btn-outline-danger-2x btn-xs' onclick='del("+v.sub_num+")'>삭제</button></td>";
 			                 varHtml += "  </tr>                                                                                                      ";	
 					
 				});
@@ -223,8 +216,71 @@ function pageLast(pNum,total,pageListNum,pageList){
 	pagingAjax()
 }
 
-function del(val){
-	console.log("삭제 : ",val);
-	location.href="./subUpdateStatusD.do?chk="+val;
+
+
+
+
+
+
+
+//과목 승인처리를 위한 부분
+/*window.onload = function(){
+	var buttons = document.getElementsByTagName("button");
+	console.log(buttons.length);
+	for(var i=0; i<buttons.length; i++){
+		buttons[i].onclick=function(){
+			console.log(this.innerHTML);
+			console.log("1",this.parentNode.innerHTML); //승인
+			console.log("2",this.parentNode.parentNode.innerHTML);//승인,반려
+			console.log(this.parentNode.parentNode.childNodes[1].innerHTML);//반려
+			console.log(this.parentNode.parentNode.parentNode.childNodes[1].innerHTML);//과목번호
+			console.log(this.parentNode.parentNode.parentNode.parentNode.childNodes[1].innerHTML);//과목번호
+			console.log(this.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[7].innerHTML);//과목상태!!!가 아니라 승인상태 태그를 못찾음,,,,
+			var id = this.parentNode.parentNode.childNodes[1].innerHTML;
+			
+			var tmp = this;
+			$.ajax({
+				url:"./user/subUpdateStatusA.do",
+				type:"post",
+				data:{"id":id},
+				success:function(msg){
+					console.log(msg.isc);
+					console.log(tmp);
+					if(msg.isc){
+						tmp.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[9].innerHTML
+						= (tmp.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[9].innerHTML=="대기중"?"승인완료":"검토중");
+						tmp.innerHTML=(tmp.innerhtml=="승인"?"승인완료":"승인");
+					}
+				},
+				error:function(){
+					alert("잘못된 요청입니다.");
+				}
+			});
+		}
+	}
 }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
