@@ -80,6 +80,7 @@ public class ClassBoardController {
 	@RequestMapping(value = "/classVideoInsert.do", method = RequestMethod.POST)
 	public String classVideoInsert(@SessionAttribute("cla_num") String cla_num, @RequestParam String title, 
 								   @RequestParam String content, @RequestParam String videoAdd, Authentication user) {
+		log.info("classVideoInsert : 동영상 자료 입력");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cbo_cla_num", cla_num);
 		map.put("cbo_cate", "동영상");
@@ -96,6 +97,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classDocumentInsertForm.do", method = RequestMethod.GET)
 	public String classDocumentInsertForm(@SessionAttribute("cla_num") String cla_num) {
+		log.info("classVideoInsert : 파일 자료 입력폼");
 		File file = new File("C:/upload/tmp");
 		// 디렉토리 생성
 		boolean directoryCreated = file.mkdirs();
