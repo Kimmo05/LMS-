@@ -339,6 +339,7 @@ public class ClassController {
 	
     @RequestMapping(value = "/votedResult.do", method = RequestMethod.GET)
 	public String votedResult(@SessionAttribute("cla_num") String cla_num) throws IOException, org.json.simple.parser.ParseException {
+    	log.info("votedResult : 투표결과 도출");
 		ClassVo voed = new ClassVo();
  		voed.setCla_num(cla_num);
 		List<VoteVo> tm = service.classTimeSearch(voed);
