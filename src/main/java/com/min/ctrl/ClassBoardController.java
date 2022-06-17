@@ -97,7 +97,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classDocumentInsertForm.do", method = RequestMethod.GET)
 	public String classDocumentInsertForm(@SessionAttribute("cla_num") String cla_num) {
-		log.info("classVideoInsert : 파일 자료 입력폼");
+		log.info("classDocumentInsertForm : 파일 자료 입력폼");
 		File file = new File("C:/upload/tmp");
 		// 디렉토리 생성
 		boolean directoryCreated = file.mkdirs();
@@ -110,8 +110,8 @@ public class ClassBoardController {
 	@RequestMapping(value = "/classDocumentInsert.do", method = RequestMethod.POST)
 	public String classDocumentInsert(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map,
 			@RequestParam List<MultipartFile> filename, @SessionAttribute("cla_num") String cla_num, Authentication user) throws IOException {
+		log.info("classDocumentInsert : 파일 자료 입력폼");
 		String uploadFolder = "C:/upload/tmp";
-		
 		for (MultipartFile multipartFile : uploadFile) {
 			System.out.println("--------------------------------------");
 			System.out.println("Upload File Name : " + multipartFile.getOriginalFilename());
@@ -139,6 +139,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/documentUpdateForm.do", method = RequestMethod.GET)
 	public String documentUpdateForm() {
+		log.info("documentUpdateForm : 파일 자료 업데이트폼");
 		File file = new File("C:/upload/tmp");
 		// 디렉토리 생성
 		boolean directoryCreated = file.mkdirs();
