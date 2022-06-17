@@ -61,6 +61,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classBoardSelectDetail.do", method = RequestMethod.GET)
 	public String classBoardSelectDetail(HttpSession session, Model model, @RequestParam int cbo_seq) {
+		log.info("classBoardSelectDetail : 과정 게시판 상세조회");
 		ClassBoardVo result = service.classBoardSelectDetail(cbo_seq);
 		session.setAttribute("cbo_seq", cbo_seq);
 		session.setAttribute("cbo_doc_seq", result.getCbo_doc_seq());
@@ -72,6 +73,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classVideoInsertForm.do", method = RequestMethod.GET)
 	public String classVideoInsertForm(@SessionAttribute("cla_num") String cla_num) {
+		log.info("classVideoInsertForm : 동영상 자료 입력 폼 이동");
 		return "app/admin/admin_classVideoInsertForm";
 	}
 	
