@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -160,7 +161,8 @@
 											<div class="mb-3" id="inputBox">
 												<label>임시 파일업로드</label>
 												<div class="form-control-static">임시 파일업로드</div>
-												<textarea class="form-control" id="cur_file" name="cur_file" rows="3" a></textarea>
+												 <input id="cur_file" name="cur_file" type="file" name='uploadFile' multiple>
+												<!-- <textarea class="form-control" id="cur_file" name="cur_file" rows="3" a></textarea> -->
 											</div>
 										</div>
 									</div>

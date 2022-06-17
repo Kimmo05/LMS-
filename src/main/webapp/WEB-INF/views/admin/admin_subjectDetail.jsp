@@ -284,72 +284,106 @@
            <div class="col-sm-12">
             <div class="card">
             <div class="col-sm-12 col-xl-2">
-              <div class="row product-page-main">
-                             <button id="confirm" class="btn btn-outline-primary-2x" type="button" onclick="_gaq.push(['_trackEvent', 'example', 'try', 'sweet-5']);">승인하기</button>
+              <div class="row product-page-main" id="button">
+              <c:if test="${results.sub_status eq 'W'}">
+                     <button id="btnA" class="btn btn-outline-primary-2x" type="button">승인하기</button>
+                     <button id="btnD" class="btn btn-outline-danger-2x" type="button">과목종료</button>
+                     <button id="btnR" class="btn btn-outline-warning-2x" type="button">반려하기</button>
+              </c:if>
+              <c:if test="${results.sub_status eq 'A'}">
+                     <button id="btnD" class="btn btn-outline-danger-2x" type="button">과목종료</button>
+              </c:if>
                 </div>
                 </div>
               </div>
             </div>
             </div>
-            
+           
 
             </div>
             </div>
      
       <script type="text/javascript">
-/*      $('.approve').on("click",function(){
-    	alert('승인 클릭 이벤트 발생'); 
-     }); */
-     
-/*      var btn = "test";
-     $(document).ready(function(){
-    	 $("button[name=approve]").click(function(){
-    		 btn=$(this).attr("value");
-    	 });
-     }); */
-/*      
-     function changeStatus(){
-    	 alert("승인 버튼이 클릭이되었습니다.");
-     } */
-      $("#confirm").click(function () {
-    	 Swal.fire({
-       	  title: '해당 과목을 승인하시겠습니까?',
-       	  showDenyButton: true,
-       	  showCancelButton: true,
-       	  confirmButtonText: '승인',
-       	  denyButtonText: '반려',
-       	}).then((result) => { //버튼 클릭시 결과
-       	  if (result.isConfirmed) {
-       	    Swal.fire('승인처리되었습니다!', './subUpdateStatusA.do', 'success');
-	       	history.back();
-       	  } else if (result.isDenied) {
-       		const { value: text } = Swal.fire({
-       		  input: 'textarea',
-       		  inputLabel: '반려사유',
-       		  inputPlaceholder: '반려사유를 입력해주세요.',
-       		  inputAttributes: {
-       		    'aria-label': '반려사유를 입력해주세요.'
-       		  },
-       		  showCancelButton: true,
-       		confirmButtonText: '저장'
-       		}).then((result) => {
-       			if (result.isConfirmed) {
-       	       	    Swal.fire('반려사유가 등록되었습니다!', '', 'success')
-       	       	  } else if (result.isDenied) {
-       	       		Swal.fire('Changes are not saved', '', 'info')
-       	       	  }
-       		})
 
-       		if (text) {
-       		  Swal.fire(text)
-       		} 
-       	   /*  Swal.fire('Changes are not saved', '', 'info') */
-       	  }
-       	})
+ 
+    	  
+    	  
+    	  
+    	  $(function(){
+    		  $("#btnA").click(function(){
+    	 		  console.log("btnA 눌림"); 
+    	 		  
+    	 		 var sub_num = '${results.sub_num}'
+   	 		 	 console.log(sub_num); 
+        	
+    	 		  $.ajax({
+           			 url:'./subUpdateStatusA.do?sub_num='+sub_num,
+           			type:'get',
+           			success: function(){
+           				console.log("해당 과목 승인 성공");
+           				console.log(sub_num);
+           				alert("승인 완료");
+           				window.location.href='./admin_subjectApprove.do';
+           			},
+           			error:function(){
+           				console.log("실패");
+           			}
+           		  });
+    	 		 
+        		  
+    		  });
     	  });
-
- 	
-     
+    	  $(function(){
+    		  $("#btnD").click(function(){
+    	 		  console.log("btnD 눌림"); 
+    	 		  
+    	 		 var sub_num = '${results.sub_num}'
+   	 		 	 console.log(sub_num); 
+        	
+    	 		  $.ajax({
+           			 url:'./subUpdateStatusD.do?sub_num='+sub_num,
+           			type:'get',
+           			success: function(){
+           				console.log("해당 과목 과목종료 처리 성공");
+           				console.log(sub_num);
+           				alert("과목종료처리 완료");
+           				window.location.href='./admin_subjectApprove.do';
+           			},
+           			error:function(){
+           				console.log("실패");
+           			}
+           		  });
+    	 		 
+        		  
+    		  });
+    	  });
+    	  
+    	  $(function(){
+    		  $("#btnR").click(function(){
+    	 		  console.log("btnR 눌림"); 
+    	 		  
+    	 		 var sub_num = '${results.sub_num}'
+   	 		 	 console.log(sub_num); 
+        		 $("#button").append("<div class='row'>");
+        		 $("#button").append("<div class='col'>");
+        		 $("#button").append("<div class='mb-3'>");
+        		 $("#button").append("<label>반려사유</label>");
+        		 $("#button").append("<input class='form-control' type='text' name='sub_rejection' placeholder='과목 반려사유'>");
+        		 $("#button").append("</div>");
+        		 $("#button").append("</div>");
+        		 $("#button").append("</div>");
+    	 		
+        		  
+    		  });
+    	  });
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  
      </script>
 </body>
 <%@include file="./admin_footer.jsp" %>

@@ -72,7 +72,7 @@
 												<h5 class="mb-0 p-0">
 													<button class="btn btn-link ps-0" data-bs-toggle="collapse"
 														data-bs-target="#collapseicon" aria-expanded="true"
-														aria-controls="collapseicon">Filter</button>
+														aria-controls="collapseicon">등록자</button>
 												</h5>
 											</div>
 											<div class="collapse show" id="collapseicon"
@@ -88,10 +88,9 @@
 													<div class="checkbox-animated">
 														<label class="d-block" for="chk-ani"> <input
 															class="checkbox_animated" id="chk-ani" type="checkbox">
-															Full-time (8688)
+															강사
 														</label> <label class="d-block" for="chk-ani1"> <input
-															class="checkbox_animated" id="chk-ani1" type="checkbox">Contract
-															(503)
+															class="checkbox_animated" id="chk-ani1" type="checkbox">학생
 														</label>
 													</div>
 													<button class="btn btn-primary text-center" type="button">Find
@@ -100,28 +99,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-xl-12">
-										<div class="card">
-											<div class="card-header">
-												<h5 class="mb-0 p-0">
-													<button class="btn btn-link ps-0" data-bs-toggle="collapse"data-bs-target="#collapseicon1" aria-expanded="true" aria-controls="collapseicon1">Location</button>
-												</h5>
-											</div>
-											<div class="collapse show" id="collapseicon1"
-												aria-labelledby="collapseicon1" data-parent="#accordion">
-												<div class="card-body animate-chk">
-													<div class="location-checkbox">
-														<label class="d-block" for="chk-ani6"> <input class="checkbox_animated" id="chk-ani6" type="checkbox">미정 <span class="d-block">NY (399)</span></label> 
-														<label class="d-block" for="chk-ani7"> <input class="checkbox_animated" id="chk-ani7" type="checkbox">미정 <span class="d-block">CA (252)</span></label>
-													</div>
-												</div>
-												<button class="btn btn-block btn-primary text-center"
-													type="button">미정</button>
-											</div>
-										</div>
-									</div>
-
-									<div class="col-xl-12">
+								<div class="col-xl-12">
 										<div class="card">
 											<div class="card-header">
 												<h5 class="mb-0 p-0">
@@ -164,7 +142,7 @@
 							<div class="job-search">
 								<div class="card-body">
 									<div class="media">
-										<img class="img-40 img-fluid m-r-20" src="./assets/images/job-search/2.jpg" alt="">
+										<img class="img-40 img-fluid m-r-20" src="../assets/images/job-search/2.jpg" alt="">
 										<div class="media-body">
 											<c:choose>
 												<c:when test="${sVo.cod_name  eq 'JAVA'}">
@@ -275,31 +253,7 @@
 			</div>
 		</div>
 		
-		<div class="col-sm-12">
-                <div class="card">
-                
-                  <div class="card-body btn-showcase">
-                      <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
-                      <div class="modal-dialog modal modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content text-center d-block">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">과목 상세보기<small class="text-muted">과목 상세정보</small></h5>
-                            <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close" data-bs-original-title="" title=""></button>
-                          </div>
-                          <div class="modal-body">
-                          	<br><br>
-                          	<h6 id="modalTitle">ㅇㅇㅇ</h6>
-                          	<div id="modalText">dㅇㅇd</div>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-light" type="button" data-bs-dismiss="modal" data-bs-original-title="" title="">돌아가기</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+		
 		
 		
 		

@@ -47,6 +47,7 @@
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <!-- Loader starts-->
@@ -168,8 +169,6 @@
                     <ul class="nav-submenu menu-content">
                       <li><a href="./user_subjectInsertForm.do">내 과목 만들기</a></li>
                       <li><a href="./user_subjectList.do">전체과목 보러가기</a></li>
-                      <li><a href="./usersubject.do">과목 조회 연습용</a></li>
-                      <li><a href="./uploadForm.do">과목 파일업로드</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
