@@ -34,7 +34,7 @@ public class MainController {
 	//첫 메인페이지
 	@RequestMapping(value = "/app/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		log.info("MainController : 로그인전 메인 페이지");
+		log.info("로그인전 메인 페이지");
 		System.out.println("SecurityContextHolder 에 등록된 정보 확인");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
@@ -54,7 +54,7 @@ public class MainController {
 	//메인페이지 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String LoginHome(Locale locale, Model model) {
-		log.info("MainController : LoginHome 로그인전 메인 페이지");
+		log.info("LoginHome 로그인전 메인 페이지");
 		
 		return "main";
 	}
@@ -63,7 +63,7 @@ public class MainController {
 		@RequestMapping(value = "/app/loginPage.do", method = {RequestMethod.GET})
 		public String loginPage(
 				Locale locale, Model model,Authentication user) {
-			System.out.println("MainController : loginPage 로그인 선택창 이동");
+			System.out.println(" loginPage 로그인 선택창 이동");
 
 			return "loginForm";
 		}
@@ -72,7 +72,7 @@ public class MainController {
 		@RequestMapping(value = {"/user/myProfile.do", "/ins/myProfile.do"}, method = {RequestMethod.GET})
 		public String myProfile(
 				Locale locale, Model model,Authentication user) {
-			log.info("MainController : myProfile 마이페이지 이동 ");
+			log.info(" myProfile 마이페이지 이동 ");
 			Map<String, Object> cmap = new HashMap<String, Object>();
 			cmap.put("cou_tra_id", user.getPrincipal());
 			cmap.put("cou_delflag", "Y");
@@ -90,7 +90,7 @@ public class MainController {
 		@RequestMapping(value = {"/user/editProfile.do", "/ins/editProfile.do"}, method = {RequestMethod.GET})
 		public String editProfile(
 		        Locale locale, Model model,Authentication user) {
-			log.info("MainController : editProfile 개인정보 수정페이지 이동 ");
+			log.info("editProfile 개인정보 수정페이지 이동 ");
 					
 				return "user/editProfile";
 		}
