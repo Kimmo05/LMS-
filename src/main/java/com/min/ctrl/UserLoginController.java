@@ -179,7 +179,7 @@ public class UserLoginController {
 	//아이디 찾기
 		@RequestMapping(value = "/findTraIdView.do", method = RequestMethod.GET)
 		public String findTraIdView() {
-			
+			log.info("findTraIdView 아이디 찾기");
 			return "findTraId";
 		}
 
@@ -188,10 +188,10 @@ public class UserLoginController {
 		@RequestMapping(value = "/findTraId.do", method = RequestMethod.POST)
 		public @ResponseBody  Map<String, String> findTraId (@RequestParam Map<String, Object> map, Model model) {
 			Map<String, String> rMap = new HashMap<String, String>();
-			log.info("********* Welcome Member_Controller findTraId! : {} *********", map);
+			log.info("  Member_Controller findTraId : {} ", map);
 			MemberVo mVo = service.findTraId(map);
 			
-			log.info("********* Welcome! Member_Controller findTraId : {} *********", mVo);
+			log.info(" Member_Controller findTraId : {} ", mVo);
 			if(mVo == null) {
 				rMap.put("isc", "실패");
 			}else {
@@ -204,7 +204,7 @@ public class UserLoginController {
 		/* 비밀번호 찾기 */
 		@RequestMapping(value = "/findTraPwView", method = RequestMethod.GET)
 		public String findTraPw(){
-			
+			log.info("findTraPw : 비밀번호 찾기 페이지 이동");
 			return "findTraPw";
 		}
 
@@ -212,10 +212,10 @@ public class UserLoginController {
 		public @ResponseBody String findPw (@RequestParam Map<String, Object> map, Model model) throws Exception {
 			
 			String result=null;
-			System.out.println(map);
+			
 			//회원정보 불러오기
 			MemberVo vo1 = service.findTraPw(map);
-			System.out.println(vo1);
+			log.info("findPw : 일반회원 비밀번호 찾기 ");
 			
 			//가입된 이메일이 존재한다면 이메일 전송
 			if(vo1!=null) {
