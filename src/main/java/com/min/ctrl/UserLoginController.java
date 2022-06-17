@@ -163,7 +163,7 @@ public class UserLoginController {
 		
 		log.info("개인정보 수정",mvo);
 		System.out.println(map);
-	   service.updateTra(map);
+		service.updateTra(map);
 		
 		
 		
