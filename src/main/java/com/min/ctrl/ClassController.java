@@ -480,6 +480,7 @@ public class ClassController {
 	@RequestMapping(value = "/voteBoxInsert.do", method = RequestMethod.POST)
 	public String voteBoxInsert(@RequestParam String sub_num, @SessionAttribute("cla_num") String cla_num, 
 			Authentication user) {
+		log.info("voteBoxInsert : 강사가 해당 과목에 지원을 한다");
 		VoteVo vo = new VoteVo();
 		vo.setVot_cla_num(cla_num);
 		vo.setVot_sub_num(sub_num);
@@ -500,13 +501,11 @@ public class ClassController {
 		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 	}
 	
-
-
 	
 	@RequestMapping(value = "/updateVote.do", method = RequestMethod.POST)
 	public String updateVote(@SessionAttribute("cla_num") String cla_num, HttpServletRequest req, @RequestParam String vot_sub_num, @RequestParam String ins_id, 
 			Authentication user) throws ParseException {
-		
+		log.info("updateVote : 해당 과정에 지원한 강사를 학생이 투표한다");
 		JSONParser parser = new JSONParser();
 		JSONArray id = new JSONArray();
 		JSONArray arr = new JSONArray();
