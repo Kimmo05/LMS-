@@ -118,10 +118,8 @@ public class SubjectUserController {
 //		log.info("SubjectController subjectList");
 //		log.info("SubjectController subjectList 세션확인 : {}", user);
 //		MemberVo mvo = (MemberVo) user.getDetails();
-//		
 //		List<SubjectVo> lists = null;
 //		RowNumVo rowVo = null;
-//		
 //		if(session.getAttribute("row")==null) {
 //			rowVo = new  RowNumVo();
 //		}else {
@@ -134,13 +132,12 @@ public class SubjectUserController {
 //			rowVo.setTotal(sService.subjectTotalUser());
 //			lists=sService.subSelectAllUser(rowVo);
 //		}
-//		
 //			System.out.println(lists);
 //		model.addAttribute("lists",lists);
 //		model.addAttribute("row",rowVo);
-//		
 //		return "user/user_subjectList";
 //	}
+	
 //	@RequestMapping(value = "/user/user_subjectList.do", method = {RequestMethod.GET, RequestMethod.POST})
 //	public ModelAndView selectSubjectUser(RowNumVo rVo) {
 //		ModelAndView mav = new ModelAndView();
@@ -156,7 +153,7 @@ public class SubjectUserController {
 	// 2-4) 일반회원 과목 상세조회
 	@RequestMapping(value = { "/app/user_subjectDetail.do","/user/user_subjectDetail.do", "/ins/user_subjectDetail.do" }, method = RequestMethod.GET)
 	public String userSubjectDetail(SubjectVo sVo, HttpSession session, Model model, @RequestParam String sub_num) {
-		log.info("********* Welcome SubjectController! userSubjectDetail 상세조회 subSelectDetail *********");
+		log.info("********* SubjectController - userSubjectDetail 상세조회 *********");
 		SubjectVo results = sService.userSubjectDetail(sub_num);
 
 		model.addAttribute("results", results);
@@ -164,20 +161,9 @@ public class SubjectUserController {
 	}
 
 	// 2-5) 일반회원 과목 마이페이지 과목조회 페이지로 이동
-	/*
-	 * @RequestMapping(value =
-	 * {"/user/user_mySubjectList.do","/ins/user_mySubjectList.do"}, method =
-	 * RequestMethod.GET) public String subSelectMySubjectPage(Authentication user,
-	 * Model model) { log.
-	 * info("********* Welcome SubjectController! subSelectMySubject 과목 마이페이지 과목조회 페이지로 이동합니다. subSelectMySubject *********"
-	 * ); return "user/user_mySubjectList"; }
-	 */
-	@RequestMapping(value = { "/user/user_subSelectMySubject.do",
-			"/ins/user_subSelectMySubject.do" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "/user/user_subSelectMySubject.do","/ins/user_subSelectMySubject.do" }, method = RequestMethod.GET)
 	public String subSelectMySubject(SubjectVo sVo, HttpSession session, Model model, Authentication user) {
-		log.info(
-				"********* Welcome SubjectController! subSelectMySubject 과목 마이페이지 과목조회 페이지로 이동합니다. subSelectMySubject *********");
-		log.info("********* Welcome SubjectController! subSelectMySubject 마이페이지 목록 조회 subSelectMySubject *********");
+		log.info("********* SubjectController - subSelectMySubject 과목 마이페이지 과목조회 페이지로 이동 *********");
 		MemberVo mvo = (MemberVo) user.getDetails();
 		System.out.println(mvo);
 
