@@ -8,8 +8,10 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.maven.doxia.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.test.context.annotation.SecurityTestExecutionListeners;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.min.service.IMessageBoardService;
 import com.min.vo.MessageBoardVo;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping(value = "/user/*")
 public class MessageBoardController {
@@ -29,6 +34,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/messendBoardSelectAll.do", method = RequestMethod.GET)
 	public String mesBoardQSelectAll(@RequestParam(required = false) String mes_cate, Model model , Authentication user) {
+		log.info("mesBoardQSelectAll : 쪽지 게시판 전체조회");
 		MessageBoardVo vo = new MessageBoardVo();
 		System.out.println(mes_cate);
 		if(mes_cate==null) {
@@ -59,6 +65,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/messageSelectDetail.do", method = RequestMethod.GET)
 	public String MessageSelectDetail(@RequestParam int mes_seq, Model model, HttpServletRequest req, HttpSession session) {
+		log.info("MessageSelectDetail : 쪽지 게시판 상세조회");
 		String query_string = req.getQueryString();
 		System.out.println(query_string);
 		String num = query_string.substring(8);
