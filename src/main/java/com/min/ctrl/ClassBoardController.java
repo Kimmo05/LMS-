@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.maven.doxia.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.min.service.IClassBoardService;
 import com.min.vo.ClassBoardVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 @RequestMapping(value = "/user/*")
 public class ClassBoardController {
 
@@ -38,6 +42,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classBoardSelectedAll.do", method = RequestMethod.GET)
 	public String classBoardSelectedAll(Model model , @SessionAttribute("cla_num") String cla_num, @RequestParam(required = false) String cbo_cate, HttpSession session) {
+		log.info("classBoardSelectedAll : 과정 게시판 전체조회");
 		session.setAttribute("cla_num", cla_num);
 		ClassBoardVo vo = new ClassBoardVo();
 		if(cbo_cate == null) {
