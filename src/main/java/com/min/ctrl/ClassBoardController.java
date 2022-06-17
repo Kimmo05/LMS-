@@ -184,6 +184,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/documentDownload.do", method = RequestMethod.GET)
 	public String documentDownload(HttpServletRequest request, HttpServletResponse response, @RequestParam String doc_originname, Model model) {
+		log.info("documentDownload : 파일 다운로드");
 		try {
 			String filePath = "C:/upload/tmp/";
 			System.out.println(doc_originname);
@@ -230,6 +231,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classBoardDocDelete.do", method = RequestMethod.GET)
 	public String classBoardDocDelete(@SessionAttribute("cbo_doc_seq") int cbo_doc_seq) {
+		log.info("classBoardDocDelete : 자료 게시판 글 삭제");
 		service.classBoardDocDelete(cbo_doc_seq);
 		return "redirect:/user/classBoardSelectedAll.do";
 	}
