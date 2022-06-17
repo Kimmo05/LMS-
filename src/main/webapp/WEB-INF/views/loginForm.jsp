@@ -186,8 +186,12 @@
                    
                   </div>
                   <div>
-                  
+                  <sec:authorize access="isAnonymous()">
+                    <p>메인화면으로 돌아가시겠습니까?<a class="ms-2" href="./main.do">이동</a></p>
+                  </sec:authorize>
+                  <sec:authorize access="isAuthenticated()">
                   <input class="btn btn-warning btn-block btn-xs " type="button" style="margin: 20px;" value="뒤로가기" onclick="history.back(-1)">
+              	  </sec:authorize>
                </div>
               </div>
               
