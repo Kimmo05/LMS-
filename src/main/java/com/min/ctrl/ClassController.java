@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,12 +13,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.min.service.ITagService;
+import net.sf.json.JSON;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -25,6 +28,8 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.test.context.annotation.SecurityTestExecutionListeners;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,24 +44,28 @@ import com.min.vo.InstructorVo;
 import com.min.vo.SubjectVo;
 import com.min.vo.VoteVo;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping(value = "/user/*")
 public class ClassController {
 
-	@Autowired
-	private IClassService service;
-	@Autowired
-	private ITagService tagService;
+    @Autowired
+    private IClassService service;
+    @Autowired
+    private ITagService tagService;
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	@RequestMapping(value = "/classListForm.do", method = RequestMethod.GET)
-	public String classListForm(Model model, HttpSession session) {
-		List<ClassVo> lists = service.classSelectAll();
-		model.addAttribute("lists", lists);
-		return "admin/admin_classList";
-	}
-	
+//    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @RequestMapping(value = "/classListForm.do", method = RequestMethod.GET)
+    public String classListForm(Model model, HttpSession session) throws ParseException {
+    	log.info("classListForm : 과정 리스트 폼 생성");
+        List<ClassVo> lists = service.classSelectAll();
+        model.addAttribute("lists", lists);
+        return "admin/admin_classList";
+    }
+
 //	@RequestMapping(value = "/classListed.do", method = RequestMethod.GET)
 //	public String classListed(Model model) {
 //		List<ClassVo> lists = service.classSelectAll();
@@ -66,6 +75,13 @@ public class ClassController {
 	
 	@RequestMapping(value = "/classSelectDetail.do", method = RequestMethod.GET, produces = "application/json")
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) throws org.json.simple.parser.ParseException {
+		log.info("classSelectDetail : 과정 상세 조회");
+		ClassPeopleVo vo = new ClassPeopleVo();
+		vo.setCpe_cla_num(cla_num);
+		List<String> list = service.classVotedSelectAll(vo);
+		System.out.println(list);
+		model.addAttribute("idList", list);
+		
 		JSONParser parser = new JSONParser();
 		session.setAttribute("cla_num", cla_num);
 		ClassVo result = service.classSelectDetail(cla_num);
@@ -80,7 +96,6 @@ public class ClassController {
 		
 		List<InstructorVo> insList = service.classInsInfo(cla_num);
 		model.addAttribute("insList", insList);
-		System.out.println(insList);
 		
 		System.out.println(insList);
 		
@@ -94,7 +109,8 @@ public class ClassController {
 		JSONObject json = new JSONObject();
 		try {
 			for (int i = 0; i < insList.size(); i++) {
-				res = insList.get(i).getVoteVo().getVot_voter();
+				res = insList.get(i).getVot_voter();
+//				res = insList.get(i).getVot_voter();
 				System.out.println("원본 : "+res);
 				if(res==null) {
 					res = "0";
@@ -129,8 +145,6 @@ public class ClassController {
 		} catch (Exception e) {
 			System.out.println("투표자가 없습니다.");
 		}
-		
-		
 		model.addAttribute("percent", per);
 		
 		return "admin/admin_classDetail";
@@ -139,7 +153,7 @@ public class ClassController {
 	
 	@RequestMapping(value = "/classInsertForm.do", method = RequestMethod.GET)
 	public String classInsertForm(Model model) {
-		logger.info("classInsertForm : 과정 생성폼");
+		log.info("classInsertForm : 과정 생성폼");
 		List<SubjectVo> lists = service.subjectSelected();
 		model.addAttribute("lists", lists);
 		return "admin/admin_classInsertForm";
@@ -148,31 +162,34 @@ public class ClassController {
 	@RequestMapping(value = "/classInsert.do", method = RequestMethod.POST)
 	public String classInsert(@RequestParam String title, @RequestParam String content, @RequestParam List<String> subList) throws ParseException {
 		JSONParser parser = new JSONParser();
-		logger.info("classInsert : 과정 생성");
+		log.info("classInsert : 과정 생성");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cla_title", title);
 		map.put("cla_content", content);
 		int n = service.classFormInsert(map);
-		ClassVo classVo = service.classSelectLastInsert();
-		String classNum = classVo.getCla_num();
+		
+//		ClassVo classVo = service.classSelectLastInsert();
+//		String classNum = classVo.getCla_num();
+		
 		map.clear();
 		for (String listed : subList) {
 			map.put("csu_sub_num", listed);
 			map.put("vot_sub_num", listed);
 			int m = service.classSubjectInsert(map);
-			map.clear();
-			String tag = tagService.selectSubjectTag(listed);
-			Matcher matcher = TagController.TAG_REGEX.matcher(tag);
-			while (matcher.find()){
-				String temp = matcher.group().replace(" ", "_").replace("#", "").toString().toLowerCase();
-				JSONObject object = (JSONObject) parser.parse(tagService.selectTagJson(temp));
-				JSONArray array = (JSONArray) object.get("class");
-				array.add(classNum);
-				object.replace("class",array);
-				map.put("id",object.toJSONString());
-				map.put("name",temp);
-				tagService.updateTag(map);
-			}
+			
+//			map.clear();
+//			String tag = tagService.selectSubjectTag(listed);
+//			Matcher matcher = TagController.TAG_REGEX.matcher(tag);
+//			while (matcher.find()){
+//				String temp = matcher.group().replace(" ", "_").replace("#", "").toString().toLowerCase();
+//				JSONObject object = (JSONObject) parser.parse(tagService.selectTagJson(temp));
+//				JSONArray array = (JSONArray) object.get("class");
+//				array.add(classNum);
+//				object.replace("class",array);
+//				map.put("id",object.toJSONString());
+//				map.put("name",temp);
+//				tagService.updateTag(map);
+//			}
 			map.clear();
 		}
 		service.classTimeUpdate();
@@ -181,97 +198,101 @@ public class ClassController {
 	
 	
 	@RequestMapping(value = "/classModifyForm.do", method = RequestMethod.GET)
-	public String classModifyForm(@SessionAttribute("cla_num") String cla_num) {
-		logger.info("classModifyForm : 과정 수정 화면이동");
+	public String classModifyForm(@SessionAttribute("cla_num") String cla_num, Model model) {
+		log.info("classModifyForm : 과정 수정 화면이동");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 15); // one day increment
+		String result = String.valueOf(cal.get(Calendar.YEAR))+"-"+ String.format("%02d", cal.get(Calendar.MONTH)+1)+"-"+String.format("%02d", cal.get(Calendar.DATE));
+		
+		model.addAttribute("now", result);
 		return "admin/admin_classModifyForm";
 	}
 	
-	@RequestMapping(value = "/classModify.do", method = RequestMethod.POST)
-	public String classModify(@RequestParam Map<String,Object> map, @RequestParam String cla_startdate, @SessionAttribute("cla_num") String cla_num) throws IOException, org.json.simple.parser.ParseException{
-		logger.info("classModify : 과정 수정");
-		map.put("cla_num", cla_num);
-		List<String> res = new ArrayList<String>();
-		int cla_addtime = 0;
-		Calendar calen = Calendar.getInstance();
- 		int nowYear = calen.get(Calendar.YEAR);
-		int ch = nowYear;
-		do {
-		for (int j = 1; j < 13; j++) {
-		String serviceKey = "zy%2FZZCSwzH2XN%2FGYNR%2FGFFKJ2z6s368WViy%2FwfzkHNxge5pG99WjgHiLmuFP9KQl60hNZPmAU9D8jExKOL9AiQ%3D%3D";
-        String addr = "http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService";
-        String query = "/getRestDeInfo?";
-        StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append(addr);
-        stringBuffer.append(query);
-        stringBuffer.append("solYear="+ch);
-        stringBuffer.append("&solMonth="+String.format("%02d", j));
-        stringBuffer.append("&_type=json");
-        stringBuffer.append("&ServiceKey=" + serviceKey);
-        
-        try {
-            URL url = new URL(stringBuffer.toString());
-            URLConnection conn = url.openConnection();
-            BufferedReader rd = null;
-            rd = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
-            
-            String line= rd.readLine();
-            
-            JSONParser jsonParser = new JSONParser();//JSON데이터를 넣어 JSON Object 로 만들어 준다.
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(line);
-            JSONObject obj = (JSONObject) jsonObject.get("response");
-            JSONObject obj2 = (JSONObject) obj.get("body");
-            
-            try {
-            	JSONObject obj3 = (JSONObject) obj2.get("items");
-                JSONArray holidays = (JSONArray) obj3.get("item");
-                
-                System.out.println(holidays);
-                
-                System.out.println("■■■■■■■■■■■■■■■ 휴일 ■■■■■■■■■■■■■■■");
-                for (int i = 0; i < holidays.size(); i++) {
-                	JSONObject holiday = (JSONObject) holidays.get(i);
-                	long selholi = (long) holiday.get("locdate");
-                	res.add(String.valueOf(selholi));
-                	System.out.println(selholi);
-    			}
-                System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
-                System.out.println(res);
-                
-			} 
-            catch (Exception e) {
-            	try {
-            		JSONObject obj3 = (JSONObject) obj2.get("items");
+
+    @RequestMapping(value = "/classModify.do", method = RequestMethod.POST)
+    public String classModify(@RequestParam Map<String, Object> map, @RequestParam String cla_startdate, @SessionAttribute("cla_num") String cla_num) throws IOException, org.json.simple.parser.ParseException {
+        log.info("classModify : 과정 수정");
+        map.put("cla_num", cla_num);
+        List<String> res = new ArrayList<String>();
+        int cla_addtime = 0;
+        Calendar calen = Calendar.getInstance();
+        int nowYear = calen.get(Calendar.YEAR);
+        int ch = nowYear;
+        do {
+            for (int j = 1; j < 13; j++) {
+                String serviceKey = "zy%2FZZCSwzH2XN%2FGYNR%2FGFFKJ2z6s368WViy%2FwfzkHNxge5pG99WjgHiLmuFP9KQl60hNZPmAU9D8jExKOL9AiQ%3D%3D";
+                String addr = "http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService";
+                String query = "/getRestDeInfo?";
+                StringBuffer stringBuffer = new StringBuffer();
+                stringBuffer.append(addr);
+                stringBuffer.append(query);
+                stringBuffer.append("solYear=" + ch);
+                stringBuffer.append("&solMonth=" + String.format("%02d", j));
+                stringBuffer.append("&_type=json");
+                stringBuffer.append("&ServiceKey=" + serviceKey);
+
+                try {
+                    URL url = new URL(stringBuffer.toString());
+                    URLConnection conn = url.openConnection();
+                    BufferedReader rd = null;
+                    rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+                    String line = rd.readLine();
+
+                    JSONParser jsonParser = new JSONParser();//JSON데이터를 넣어 JSON Object 로 만들어 준다.
+                    JSONObject jsonObject = (JSONObject) jsonParser.parse(line);
+                    JSONObject obj = (JSONObject) jsonObject.get("response");
+                    JSONObject obj2 = (JSONObject) obj.get("body");
+
+                    try {
+                        JSONObject obj3 = (JSONObject) obj2.get("items");
+                        JSONArray holidays = (JSONArray) obj3.get("item");
+
+                        System.out.println(holidays);
+
+                        System.out.println("■■■■■■■■■■■■■■■ 휴일 ■■■■■■■■■■■■■■■");
+                        for (int i = 0; i < holidays.size(); i++) {
+                            JSONObject holiday = (JSONObject) holidays.get(i);
+                            long selholi = (long) holiday.get("locdate");
+                            res.add(String.valueOf(selholi));
+                            System.out.println(selholi);
+                        }
+                        System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+                        System.out.println(res);
+
+                    } catch (Exception e) {
+                        try {
+                            JSONObject obj3 = (JSONObject) obj2.get("items");
 //    	            System.out.println(obj3);
-    	            JSONObject obj4 = (JSONObject) obj3.get("item");
+                            JSONObject obj4 = (JSONObject) obj3.get("item");
 //    	            System.out.println(obj4);
-    	            long selholi = (long) obj4.get("locdate");
-    	            System.out.println("■■■■■■■■■■■■■■■ 휴일 ■■■■■■■■■■■■■■■");
-    	            System.out.println(selholi);
-    	            System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
-				} catch (Exception e2) {
-					System.out.println("==해당 월에는 공휴일이 없습니다==");
-				}
-			}
-            rd.close();
-        } 
-        catch (IOException e) {
-        	e.printStackTrace();
-        }
-    }
-		ch++;	
-		} while (ch<nowYear+2);
-		
-		 Calendar cal = Calendar.getInstance();
-		// 사용자가 등록하는 월, 일을 여기다 매핑
- 		// Calendar의 Month는 0부터 시작하므로 -1 해준다.
-		
-		String first = cla_startdate.substring(0, 4);
-		int year = Integer.parseInt(first)-1;
-		String second = cla_startdate.substring(5, 7);
-		int month = Integer.parseInt(second)-1;
-		String last = cla_startdate.substring(8, 10);
-		int date = Integer.parseInt(last)-1;
- 		cal.set(year , month, date);
+                            long selholi = (long) obj4.get("locdate");
+                            System.out.println("■■■■■■■■■■■■■■■ 휴일 ■■■■■■■■■■■■■■■");
+                            System.out.println(selholi);
+                            System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■");
+                        } catch (Exception e2) {
+                            System.out.println("==해당 월에는 공휴일이 없습니다==");
+                        }
+                    }
+                    rd.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            ch++;
+        } while (ch < nowYear + 2);
+
+        Calendar cal = Calendar.getInstance();
+        // 사용자가 등록하는 월, 일을 여기다 매핑
+        // Calendar의 Month는 0부터 시작하므로 -1 해준다.
+
+        String first = cla_startdate.substring(0, 4);
+        int year = Integer.parseInt(first) - 1;
+        String second = cla_startdate.substring(5, 7);
+        int month = Integer.parseInt(second) - 1;
+        String last = cla_startdate.substring(8, 10);
+        int date = Integer.parseInt(last) - 1;
+        cal.set(year, month, date);
 // 		System.out.println(cal.getTime());
  		map.put("cla_addtime", cla_addtime);
  		service.classUpdate(map);
@@ -279,6 +300,8 @@ public class ClassController {
  		// 이걸 사용 ---------------
  		ClassVo voed = new ClassVo();
  		voed.setCla_num(cla_num);
+ 		
+ 		
  		int cnt = 0;
  		List<VoteVo> tm = service.classTimeSearch(voed);
  		for (VoteVo voteVo : tm) {
@@ -310,18 +333,23 @@ public class ClassController {
 		System.out.println(month);
 		System.out.println(date);
 		
-		
-		
-		// 투표 초기화 및 업데이트
-//		String sub[] = {"20220523SUB100","20220523SUB101"};
+		return "redirect:/user/classListForm.do";
+	}
+	
+	
+    @RequestMapping(value = "/votedResult.do", method = RequestMethod.GET)
+	public String votedResult(@SessionAttribute("cla_num") String cla_num) throws IOException, org.json.simple.parser.ParseException {
+		ClassVo voed = new ClassVo();
+ 		voed.setCla_num(cla_num);
+		List<VoteVo> tm = service.classTimeSearch(voed);
 		
 		for (int h = 0; h < tm.size(); h++) {
 		
 		VoteVo vo = new VoteVo();
 		vo.setVot_sub_num(tm.get(h).getVot_sub_num());
+//		vo.setVot_sub_num(sub);
 		vo.setVot_cla_num(cla_num);
 		List<VoteVo> lists = service.voteRatio(vo);
-//		String cla_num = "CLA026";
 //		String vot_sub_num = "20220523SUB100";
 		
 		JSONParser parser = new JSONParser();
@@ -339,6 +367,10 @@ public class ClassController {
 				JSONObject obj = new JSONObject();
 				resu = lists.get(i).getVot_voter();
 				ins = lists.get(i).getVot_ins_id();
+				
+				System.out.println("원본 : "+resu);
+				System.out.println("강사 : "+ins);
+				
 				if(lists.get(i).getVot_voter() == null) {
 					continue;
 				}
@@ -350,8 +382,7 @@ public class ClassController {
 					arr.add(obj2);
 				}
 				
-				System.out.println("원본 : "+resu);
-				System.out.println("강사 : "+ins);
+				
 				if(resu==null) {
 					resu = "0";
 					obj.put("voted", resu);
@@ -365,7 +396,6 @@ public class ClassController {
 						voted++;
 						
 					}
-					
 					
 					System.out.println("횟수 : "+voted);
 					obj.put("voted", voted);
@@ -391,8 +421,13 @@ public class ClassController {
 			}
 			
 			System.out.println("최종 뽑힌 강사 : "+re);
+			
+			
 			for (int i = 0; i < re.size(); i++) {
 				json = (JSONObject) parser.parse(re.get(i).toString());
+			}
+			if(json.get("id").equals(null)) {
+				continue;
 			}
 			System.out.println(json.get("id"));
 			
@@ -409,26 +444,67 @@ public class ClassController {
 			service.votedInsert(mapped);
 			System.out.println(mapped);
 			
+			
+			
+			
 		} catch (Exception e) {
 			System.out.println("투표자가 없습니다.");
 		}
 	}
+		System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■");
+		VoteVo vo = new VoteVo();
+		vo.setVot_cla_num("CLA032");
+		List<VoteVo> list = service.votedPeople(vo);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).getVot_voter();
+			System.out.println("널값 체크 : "+list.get(i).getVot_voter());
+			System.out.println("널값 체크용 서브 : "+list.get(i).getVot_sub_num());
+			if(list.get(i).getVot_voter()==null) {
+				System.out.println("삭제 : "+list.get(i).getVot_sub_num());
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("vot_cla_num", "CLA032");
+				map.put("vot_sub_num", list.get(i).getVot_sub_num());
+				service.voteDelete(map);
+			}
+		}
 		
-		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
-	}
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("cla_num", cla_num);
+			map.put("cla_status", "개강전");
+			service.classStatusUpdate(map);
+			return "redirect:/user/classListForm.do";
+		}
+	
 	
 	@RequestMapping(value = "/voteBoxInsert.do", method = RequestMethod.POST)
-	public String voteBoxInsert(@RequestParam String sub_num, @SessionAttribute("cla_num") String cla_num) {
+	public String voteBoxInsert(@RequestParam String sub_num, @SessionAttribute("cla_num") String cla_num, 
+			Authentication user) {
+		VoteVo vo = new VoteVo();
+		vo.setVot_cla_num(cla_num);
+		vo.setVot_sub_num(sub_num);
+		List<VoteVo> list = service.voteRatio(vo);
+		for (int i = 0; i < list.size(); i++) {
+//			if(list.get(i).getVot_ins_id().equals(user.toString())) {
+			if(list.get(i).getVot_ins_id().equals("thdwndrlrkdtk123")) {
+				return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
+			}
+		}
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("vot_sub_num", sub_num);
 		map.put("vot_cla_num", cla_num);
+//		map.put("vot_ins_id", user.getPrincipal());
 		map.put("vot_ins_id", "thdwndrlrkdtk123");
 		service.voteBoxInsert(map);
 		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 	}
 	
+
+
+	
 	@RequestMapping(value = "/updateVote.do", method = RequestMethod.POST)
-	public String updateVote(@SessionAttribute("cla_num") String cla_num, HttpServletRequest req, @RequestParam String vot_sub_num, @RequestParam String ins_id) throws ParseException {
+	public String updateVote(@SessionAttribute("cla_num") String cla_num, HttpServletRequest req, @RequestParam String vot_sub_num, @RequestParam String ins_id, 
+			Authentication user) throws ParseException {
 		
 		JSONParser parser = new JSONParser();
 		JSONArray id = new JSONArray();
@@ -436,7 +512,7 @@ public class ClassController {
 //		String cla_num = "CLA027";
 //		String vot_sub_num = "20220523SUB101";
 //		String ins_id = "thdwndrlrkdtk123";
-		String inputId = "altkdlf2273";
+//		String inputId = user.getPrincipal();
 		Map<String, Object> mapped = new HashMap<String, Object>();
 		
 		
@@ -513,7 +589,7 @@ public class ClassController {
 		if(arr.equals("")) {
 			System.out.println("투표한 사람이 없습니다.");
 			
-			fin.put("id", inputId);
+			fin.put("id", user.getPrincipal());
 			fin.put("pay", "before");
 			id.add(fin);
 			
@@ -530,12 +606,12 @@ public class ClassController {
 			
 			ClassPeopleVo voed = new ClassPeopleVo();
 			voed.setCpe_cla_num(cla_num);
-			voed.setCpe_mem_id(inputId);
+			voed.setCpe_mem_id(user.getPrincipal().toString());
 			int n = service.classPeoSelectAll(voed);
 			if(n>0) {
-				return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
+				return "redirect:/app/classSelectDetail.do?cla_num="+cla_num;
 			}else {
-				mapped.put("cpe_mem_id", inputId);
+				mapped.put("cpe_mem_id", user.getPrincipal());
 				mapped.put("cpe_cla_num", cla_num);
 				service.classPeoInsert(mapped);
 				System.out.println("maped : "+mapped);
@@ -551,7 +627,7 @@ public class ClassController {
 			
 //			JSONObject ided = (JSONObject)parser.parse(list.toJSONString());
 //			
-			if(ids.equals(inputId)) {
+			if(ids.equals(user.getPrincipal())) {
 				System.out.println("중복된 아이디가 있습니다.");
 				return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 			}
@@ -561,7 +637,7 @@ public class ClassController {
 		System.out.println("result2 : "+ arr);
 		
 		
-		fin.put("id", inputId);
+		fin.put("id", user.getPrincipal());
 		fin.put("pay", "before");
 		id.add(fin);
 		
@@ -578,12 +654,12 @@ public class ClassController {
 	
 		ClassPeopleVo voed = new ClassPeopleVo();
 		voed.setCpe_cla_num(cla_num);
-		voed.setCpe_mem_id(inputId);
+		voed.setCpe_mem_id(user.getPrincipal().toString());
 		int n = service.classPeoSelectAll(voed);
 		if(n>0) {
 			return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 		}else {
-			mapped.put("cpe_mem_id", inputId);
+			mapped.put("cpe_mem_id", user.getPrincipal());
 			mapped.put("cpe_cla_num", cla_num);
 			service.classPeoInsert(mapped);
 			System.out.println("maped : "+mapped);
@@ -591,9 +667,6 @@ public class ClassController {
 		
 		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 	}
-	
-	
-	
-	
-	
+
+
 }
