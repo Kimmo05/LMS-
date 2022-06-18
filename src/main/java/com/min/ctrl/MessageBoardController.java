@@ -123,6 +123,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/mesBoardReply.do", method = RequestMethod.POST)
 	public String mesBoardReply(@RequestParam Map<String, Object> map,@RequestParam String mes_content ,@RequestParam String mes_recipient, Authentication user) {
+		log.info("mesBoardReply : 쪽지 답글 작성");
 		map.put("mes_sender", user.getPrincipal().toString());
 		map.put("mes_recipient", mes_recipient);
 		map.put("mes_content", mes_content);
