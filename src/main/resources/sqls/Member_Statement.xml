@@ -330,7 +330,7 @@ WHERE TRA_ID =#{id}
 </update>
 
 <!-- 강사 목록 페이징 -->
-<select id="adminInsListRow"  resultMap="insResult" parameterType="RowNumVo" resultType="MemberVo">
+<select id="adminInsListRow"  resultMap="InsResult" parameterType="RowNumVo" resultType="MemberVo">
 SELECT  RN, INS_ID ,
 		INS_NAME ,
 		INS_EMAIL ,
@@ -356,7 +356,7 @@ SELECT  RN, INS_ID ,
 	WHERE INS_DELFLAG IN ('N','W')
 </select>
 
-<select id="adminInsCareer" resultMap="insResult" parameterType="map" resultType="MemberVo">
+<select id="adminInsCareer" resultMap="InsResult" parameterType="map" resultType="MemberVo">
 	SELECT INS_ID,  
 INS_NAME, 
 INS_EMAIL, 
