@@ -68,6 +68,7 @@ public class ClassController {
 
 	@RequestMapping(value = "/classListed.do", method = RequestMethod.GET)
 	public String classListed(Model model, @RequestParam String cla_status) {
+		log.info("classListed : 과정 상태에 따른 조회");
 		ClassVo vo = new ClassVo();
 		vo.setCla_status(cla_status);
 		List<ClassVo> lists = service.classSelected(vo);
