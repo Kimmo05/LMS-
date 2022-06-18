@@ -6,9 +6,17 @@
 <title>Insert title here</title>
 <%@ include file="./admin_header.jsp" %>
 <body>
+<script type="text/javascript">
+function cla(val){
+	location.href="./classListed.do?cla_status="+val;
+}
+</script>
 <div class="page-body">
     <div class="container-fluid">
       <div class="page-header">
+              <div class="col-md-6 p-0" style="float: right;">
+                <div class="form-group mb-0 me-0"></div><a class="btn btn-primary" href="./classInsertForm.do" style="margin-top: 20px;"> <i data-feather="plus-square" style="float: left; padding: 1px 5px 4px;"> </i>  과정 등록하기</a>
+              </div>
         <div class="row">
           <div class="col-sm-6">
             <h3>모든 과정</h3>
@@ -27,16 +35,16 @@
           <div class="card">
             <div class="row">
               <div class="col-md-6 p-0">
+                  <i data-feather="info" style="color: gray; float: left; margin-top: 5px; margin-right: 7px;"></i>
                 <ul class="nav nav-tabs border-tab" id="top-tab" role="tablist">
-                  <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-home" role="tab" aria-controls="top-home" aria-selected="true" style="font-size: 13px;"><i data-feather="target"></i>모든 과정</a></li>
-                  <li class="nav-item"><a class="nav-link active" id="top-home-tab" data-bs-toggle="tab" href="#top-profile" role="tab" aria-controls="top-home" aria-selected="true" style="font-size: 13px;"><i data-feather="info"></i>모집중</a></li>
-                  <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="#top-profile" role="tab" aria-controls="top-profile" aria-selected="false" style="font-size: 13px;"><i data-feather="info"></i>투표중</a></li>
-                  <li class="nav-item"><a class="nav-link" id="profile-top-tab" data-bs-toggle="tab" href="#top-profile" role="tab" aria-controls="top-profile" aria-selected="false" style="font-size: 13px;"><i data-feather="info"></i>수강중</a></li>
-                  <li class="nav-item"><a class="nav-link" id="contact-top-tab" data-bs-toggle="tab" href="#top-contact" role="tab" aria-controls="top-contact" aria-selected="false" style="font-size: 13px;"><i data-feather="check-circle"></i>종강</a></li>
+                  <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="전체조회" id="top-home-tab" onclick="location.href='./classListForm.do'" style="font-size: 100%; width: 100%; max-width: 150px; cursor: pointer;"></li>
+                  <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="모집중" id="top-home-tab" onclick="cla(this.value)"style="font-size: 100%; width: 100%; max-width: 150px; cursor: pointer;"></li>
+                  <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="승인중" id="top-home-tab" onclick="cla(this.value)" style="font-size: 100%;  width: 100%; max-width: 150px; cursor: pointer;"></li>
+                  <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="투표중" id="top-home-tab" onclick="cla(this.value)" style="font-size: 100%;  width: 100%; max-width: 150px; cursor: pointer;"></li>
+                  <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="개강전" id="top-home-tab" onclick="cla(this.value)" style="font-size: 100%;  width: 100%; max-width: 150px; cursor: pointer;"></li>
+                  <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="강의중" id="top-home-tab" onclick="cla(this.value)" style="font-size: 100%;  width: 100%; max-width: 150px; cursor: pointer;"></li>
+                  <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="종강" id="top-home-tab" onclick="cla(this.value)" style="font-size: 100%;  width: 100%; max-width: 150px; cursor: pointer;"></li>
                 </ul>
-              </div>
-              <div class="col-md-6 p-0">
-                <div class="form-group mb-0 me-0"></div><a class="btn btn-primary" href="./classInsertForm.do"> <i data-feather="plus-square"> </i>과정 등록하기</a>
               </div>
             </div>
           </div>

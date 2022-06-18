@@ -66,12 +66,14 @@ public class ClassController {
         return "admin/admin_classList";
     }
 
-//	@RequestMapping(value = "/classListed.do", method = RequestMethod.GET)
-//	public String classListed(Model model) {
-//		List<ClassVo> lists = service.classSelectAll();
-//		model.addAttribute("lists", lists);
-//		return "admin/admin_classList";
-//	}
+	@RequestMapping(value = "/classListed.do", method = RequestMethod.GET)
+	public String classListed(Model model, @RequestParam String cla_status) {
+		ClassVo vo = new ClassVo();
+		vo.setCla_status(cla_status);
+		List<ClassVo> lists = service.classSelected(vo);
+		model.addAttribute("lists", lists);
+		return "admin/admin_classList";
+	}
 	
 	@RequestMapping(value = "/classSelectDetail.do", method = RequestMethod.GET, produces = "application/json")
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) throws org.json.simple.parser.ParseException {

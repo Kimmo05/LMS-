@@ -34,9 +34,9 @@ public class ClassDaoImpl implements IClassDao{
 	}
 	
 	@Override
-	public List<ClassVo> classSelected() {
+	public List<ClassVo> classSelected(ClassVo vo) {
 		logger.info("ClassDaoImpl classSelectAll / 구분조회");
-		return sqlSession.selectList(NS+"classSelected");
+		return sqlSession.selectList(NS+"classSelected",vo);
 	}
 	
 	@Override
