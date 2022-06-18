@@ -52,7 +52,7 @@ public class MainController {
 		return "main";
 	}
 	//메인페이지 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/app/", method = RequestMethod.GET)
 	public String LoginHome(Locale locale, Model model) {
 		log.info("LoginHome 로그인전 메인 페이지");
 		

@@ -46,13 +46,14 @@
             <th >이메일</th>
             <th >가입일</th>
  	        <th >회원상태</th>
+ 	        <th >경력</th>
           </tr>
         </thead>
         <tbody>
-          <jsp:useBean id="traMemberList" class="com.min.bean.MemberListBean" scope="page"/>
-          <jsp:setProperty property="lists" name="traMemberList" value="${lists}"/>
-          <jsp:setProperty property="user" name="traMemberList" value="${user}"/>
-          <jsp:getProperty property="listForm" name="traMemberList"/>
+          <jsp:useBean id="insMemberList" class="com.min.bean.InstructorListBean" scope="page"/>
+          <jsp:setProperty property="lists" name="insMemberList" value="${lists}"/>
+          <jsp:setProperty property="user" name="insMemberList" value="${user}"/>
+          <jsp:getProperty property="listForm" name="insMemberList"/>
         </tbody>
       </table>
       
