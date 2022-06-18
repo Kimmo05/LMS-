@@ -16,7 +16,7 @@
                 <div class="col-sm-6">
                   <h3>결제완료</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.do">Home</a></li>
+                  <li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">결제</li>
                     <li class="breadcrumb-item active">결제완료</li>
                   </ol>

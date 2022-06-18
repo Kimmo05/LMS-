@@ -20,7 +20,7 @@
 					<div class="col-sm-6">
 						<h3>Create Subject</h3>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+						<li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
 							<li class="breadcrumb-item">Subject</li>
 							<li class="breadcrumb-item active">Create Subject</li>
 						</ol>

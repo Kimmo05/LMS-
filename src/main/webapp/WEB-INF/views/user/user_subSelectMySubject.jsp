@@ -15,7 +15,7 @@
 					<div class="col-sm-6">
 	                 <h3>내 과목 조회</h3>
 	                    <ol class="breadcrumb">
-	                    <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-ui-home"></i></a></li>
+	                    <li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
 	                    <li class="breadcrumb-item">마이페이지</li>
 	                    <li class="breadcrumb-item active">내가 등록한 과목 조회</li>
 	                  </ol>

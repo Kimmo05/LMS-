@@ -20,7 +20,7 @@
                 <div class="col-sm-6">
                   <h3>Dash Board</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./main.do">메인</a></li>
+                  <li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">회원</li>
                     <li class="breadcrumb-item active">대시보드</li>
                   </ol>

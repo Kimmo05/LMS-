@@ -23,7 +23,7 @@
                 <div class="col-sm-6">
                     <h3>내 좋아요 목록</h3>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.do">Home</a></li>
+                    <li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
                         <li class="breadcrumb-item">마이페이지</li>
                         <li class="breadcrumb-item active">내 좋아요 목록</li>
                     </ol>

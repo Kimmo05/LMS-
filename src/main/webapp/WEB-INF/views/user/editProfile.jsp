@@ -26,7 +26,7 @@
                   <h3>개인정보 수정</h3>
                     <sec:authentication property="Details" var="info" /><br>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">메인</a></li>
+                  <li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">회원</li>
                     <li class="breadcrumb-item active">개인정보 수정</li>
                   </ol>
