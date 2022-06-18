@@ -124,14 +124,14 @@
               <h6 class="mt-3 f-14 f-w-600">${info.name}</h6></a>
             <p class="mb-0 font-roboto">${id}<br>${info.email}</p>
             <ul>
-              <li><span><span class="counter"></span>k</span>
-                <p>정보1</p>
+              <li><span>좋아요</span>
+                <p>12</p>
               </li>
-              <li><span>수치2</span>
-                <p>정보2</p>
+              <li><span>마일리지</span>
+                <p>1000</p>
               </li>
-              <li><span><span class="counter"></span>k</span>
-                <p>정보3 </p>
+              <li><span>보유쿠폰</span>
+                <p>2장</p>
               </li>
             </ul><br>
             <div>
