@@ -106,6 +106,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/mesBoardDelete.do", method = RequestMethod.GET)
 	public String mesBoardDelete(@RequestParam int mes_seq) {
+		log.info("mesBoardDelete : 쪽지 삭제");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mes_seq", mes_seq);
 		service.mesBoardDelete(map);
