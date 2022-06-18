@@ -79,6 +79,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/messageBoardInsertForm.do", method = RequestMethod.GET)
 	public String classVideoInsertForm() {
+		log.info("messageBoardInsertForm : 쪽지 게시판 등록 폼 이동");
 		return "admin/admin_messageBoardInsertForm";
 	}
 	
