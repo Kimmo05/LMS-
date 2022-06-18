@@ -159,29 +159,15 @@
                       <h6>General </h6>
                     </div>
                   </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>회원관리</span></a>
-                    <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목</span></a>
+                  <li class=""><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./user_subjectInsertForm.do">내 과목 만들기</a></li>
                       <li><a href="./user_subjectList.do">전체과목 보러가기</a></li>
                     </ul>
                   </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./classListForm.do">과정 리스트</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a>
-                    <ul class="nav-submenu menu-content">
-                      <li><a href="./pay.do">결제하기</a></li>
-                      <li><a href="./user_Mypay.do">결제조회</a></li>
-                      <li><a href="./user_MyDiscount.do">내 마일리지,쿠폰</a></li>
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>
