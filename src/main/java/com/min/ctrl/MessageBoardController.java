@@ -115,6 +115,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/mesBoardReplyForm.do", method = RequestMethod.GET)
 	public String mesBoardReplyForm(Model model, @SessionAttribute("mes_recipient") String mes_recipient,HttpSession session ,@SessionAttribute("mes_reffer") int mes_reffer) {
+		log.info("mesBoardReplyForm : 쪽지 답글 작성 폼");
 		model.addAttribute("mes_recipient", mes_recipient);
 		session.setAttribute("mes_reffer", mes_reffer);
 		return "admin/admin_messageBoardReplyForm";
