@@ -85,6 +85,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/mesBoardInsert.do", method = RequestMethod.POST)
 	public String mesBoardInsert(@RequestParam Map<String, Object> map, @RequestParam String mes_recipient, @SessionAttribute("mes_reffer") int mes_reffer, @RequestParam String mes_content,Authentication user) {
+		log.info("mesBoardInsert : 쪽지 작성");
 		map.put("mes_sender", user.getPrincipal().toString());
 		map.put("mes_recipient", mes_recipient);
 		map.put("mes_content", mes_content);
