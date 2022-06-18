@@ -21,7 +21,7 @@
                 <div class="col-sm-6">
                   <h3>회원결제 전체조회</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.do">Home</a></li>
+                  <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">결제관리</li>
                     <li class="breadcrumb-item">회원 결제정보 전체조회</li>
                   </ol>

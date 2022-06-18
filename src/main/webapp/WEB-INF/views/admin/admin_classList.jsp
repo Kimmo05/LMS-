@@ -13,7 +13,7 @@
                 <div class="col-sm-6">
                   <h3>모든 과정</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+                  <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item active">모든 과정</li>
                   </ol>
                 </div>

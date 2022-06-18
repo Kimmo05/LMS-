@@ -15,7 +15,7 @@
         <div class="col-sm-6">
                   <h3>일반회원</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./main.do">관리자 메인</a></li>
+                  <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">관리자</li>
                     <li class="breadcrumb-item">회원 관리</li>
                     <li class="breadcrumb-item active">일반 회원 전체 목록</li>

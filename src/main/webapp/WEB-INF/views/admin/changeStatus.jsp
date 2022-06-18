@@ -25,7 +25,7 @@
                 <div class="col-sm-6">
                   <h3>환불대기/승인</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.do">Home</a></li>
+                  <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">결제관리</li>
                     <li class="breadcrumb-item active">환불대기/승인</li>
                   </ol>
