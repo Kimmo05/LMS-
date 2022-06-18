@@ -152,7 +152,7 @@ public class ClassBoardController {
 	public String documentUpdate(@RequestParam Map<String, Object> map, MultipartFile[] uploadFile,
 			@RequestParam List<MultipartFile> filename, @SessionAttribute("cla_num") String cla_num, @SessionAttribute("cbo_seq") int cbo_seq,@SessionAttribute("doc_seq") int doc_seq) throws IOException{
 		String uploadFolder = "C:/upload/tmp";
-		
+		log.info("documentUpdate : 파일 업데이트");
 		for (MultipartFile multipartFile : uploadFile) {
 			System.out.println("--------------------------------------");
 			System.out.println("Upload File Name : " + multipartFile.getOriginalFilename());
