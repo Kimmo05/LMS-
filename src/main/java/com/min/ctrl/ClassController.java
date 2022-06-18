@@ -529,6 +529,7 @@ public class ClassController {
 		
 		// 첫번째 =================================
 		// 기존 투표자들을 추출해서 다시 업데이트 과정 전초
+		log.info("기존 투표자 조회");
 		try {
 			VoteVo result = service.voteIns(vo);
 			System.out.println(result);
@@ -550,7 +551,7 @@ public class ClassController {
 		
 		// 두번째 =================================
 		// 새로 투표하는 사람이 전에 투표했는지 확인 과정
-		
+		log.info("기존 투표자 중복 확인");
 		String ids = "";
 		VoteVo all = new VoteVo();
 		JSONArray array = new JSONArray();
