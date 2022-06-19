@@ -66,5 +66,26 @@ public class UserAdminController {
 		return "admin/admin_traList";
 	}
 	
+	//관리자 강사 페이징목록
+		@RequestMapping(value = "/adminInsList.do", method = RequestMethod.GET)
+		public String adminInsPage(Authentication user, Model model , HttpSession session) {
+			log.info("UserAdminController adminInsList 세션 확인 : {}",user);
+		
+		
+			List<MemberVo> lists = null;
+			RowNumVo rVo = null;
+			if(session.getAttribute("row")==null) {
+				rVo = new RowNumVo();
+			}else {
+			rVo =(RowNumVo) session.getAttribute("row");
+			}
+			rVo.setTotal(service.adminInsListTotal());
+			lists = service.adminInsListRow(rVo);
+			model.addAttribute("lists",lists);
+			model.addAttribute("row",rVo);
+			
+			return "admin/admin_insList";
+		}
+	
 
 }

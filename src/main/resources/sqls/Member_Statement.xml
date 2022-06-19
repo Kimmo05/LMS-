@@ -32,7 +32,13 @@
 	<result column="Ins_profile" property="profile" />	
 	<result column="Ins_milage" property="milage" />		
 	<result column="Ins_delflag" property="delflag" />		
-	<result column="Ins_regdate" property="regdate" />				
+	<result column="Ins_regdate" property="regdate" />
+	<result column="Car_file" property="car_file"	/>
+	<result column="Car_depart" property="car_depart"	/>
+	<result column="Car_position" property="car_position"	/>
+	<result column="Car_period" property="car_period"	/>
+	<result column="Car_content" property="car_content"	/>
+				
 </resultMap>
 
 
@@ -323,5 +329,53 @@ UPDATE TRAINEE SET TRA_DELFLAG ='Y'
 WHERE TRA_ID =#{id}
 </update>
 
+<!-- 강사 목록 페이징 -->
+<select id="adminInsListRow"  resultMap="InsResult" parameterType="RowNumVo" resultType="MemberVo">
+SELECT  RN, INS_ID ,
+		INS_NAME ,
+		INS_EMAIL ,
+		INS_PROFILE ,
+		INS_AUTH ,
+		INS_REGDATE ,
+		INS_CAREER ,
+		INS_DELFLAG 
+	FROM (SELECT ROW_NUMBER() OVER(ORDER BY INS_REGDATE DESC) RN,
+         INS_ID ,
+		INS_NAME ,
+		INS_EMAIL ,
+		INS_PROFILE ,
+		INS_AUTH ,
+		INS_CAREER ,
+		INS_DELFLAG 
+		FROM INSTRUCTOR 
+		WHERE  INS_DELFLAG IN ('N','W'))
+			WHERE RN BETWEEN #{start} AND #{last}
+</select>
+<select id="adminInsListTotal" resultType="Integer">
+	SELECT COUNT(*) FROM INSTRUCTOR s
+	WHERE INS_DELFLAG IN ('N','W')
+</select>
+
+<select id="adminInsCareer" resultMap="InsResult" parameterType="map" resultType="MemberVo">
+	SELECT INS_ID,  
+INS_NAME, 
+INS_EMAIL, 
+INS_PHONE, 
+INS_BIRTH, 
+INS_PROFILE, 
+INS_AUTH,  
+INS_RATING, 
+INS_CAREER, 
+INS_BANKNUM, 
+INS_BANK, 
+INS_REGDATE, 
+c.CAR_FILE ,
+c.CAR_DEPART ,
+c.CAR_POSITION ,
+c.CAR_PERIOD ,
+c.CAR_CONTENT 
+INS_DELFLAG FROM INSTRUCTOR i JOIN CAREER c ON i.INS_CAREER =c.CAR_SEQ  
+WHERE INS_ID =#{id};
+</select>
 
 </mapper>

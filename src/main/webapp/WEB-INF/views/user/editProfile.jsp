@@ -13,7 +13,7 @@
          <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
      
 <meta charset="UTF-8">
-<title>일반회원 과목 등록 양식 페이지</title>
+<title>일반회원 정보 수정 페이지</title>
   <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <%@ include file="../header.jsp" %>
@@ -26,7 +26,7 @@
                   <h3>개인정보 수정</h3>
                     <sec:authentication property="Details" var="info" /><br>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">메인</a></li>
+                  <li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">회원</li>
                     <li class="breadcrumb-item active">개인정보 수정</li>
                   </ol>

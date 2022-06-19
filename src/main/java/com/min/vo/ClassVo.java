@@ -1,6 +1,7 @@
 package com.min.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,5 +30,8 @@ public class ClassVo implements Serializable{
 	private String cla_status;
 	private String cla_regdate;
 	private String cla_enddate;
+	private String cla_endrecruit;
+	private String cla_endvote;
 	private int cla_addtime;
+	private List<String> cla_tags;
 }

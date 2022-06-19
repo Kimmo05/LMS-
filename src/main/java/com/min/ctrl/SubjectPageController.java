@@ -23,17 +23,18 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/user/*")
 public class SubjectPageController {
 	
 	@Autowired
 	private SubjectService sService;
 
-	@RequestMapping(value = "/page.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8;")
+	@RequestMapping(value = "/user/page.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8;")
 	public String paging(HttpSession session, RowNumVo rowVo,Authentication user) {
 		log.info("PageController row : {}", session.getAttribute("row"));
 		log.info("PageController rowVo : {}", session.getAttribute("rowVo"));
 		log.info("SubjectController subjectList 세션확인 : {}", user);
+		
+		System.out.println("확인해보자"+"rowVo");
 		
 		MemberVo mvo = (MemberVo) user.getDetails();
 		System.out.println("**********************************************pageController"+mvo);
@@ -61,7 +62,7 @@ public class SubjectPageController {
 		
 	}
 	
-	@RequestMapping(value = "/approvePage.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8;")
+	@RequestMapping(value = "/user/approvePage.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8;")
 	public String approvePaging(HttpSession session, RowNumVo rowVo,Authentication user) {
 		log.info("PageController approvePaging row : {}", session.getAttribute("row"));
 		log.info("PageController approvePaging rowVo : {}", session.getAttribute("rowVo"));

@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                   <h3>쪽 지</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+                  <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">쪽지 게시판</li>
                   </ol>
                 </div>
@@ -35,6 +35,7 @@
                         <div class="col">
                           <div class="mb-3">
                             <label class="form-label" for="exampleInputPassword2">송신자</label>
+                            <input name="mes_sender" class="form-control" id="exampleInputPassword2" type="text" value="${id}" readonly="readonly">
                           </div>
                         </div>
                       </div>

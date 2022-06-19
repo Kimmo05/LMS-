@@ -45,8 +45,8 @@ public class InsLoginController {
 	
 	//강사로 로그인 후 메인페이지 
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public String home(Locale locale, Model model,Authentication user) {
-		log.info("Welcome home! The client locale is {}.", locale);
+	public String insMainPage(Locale locale, Model model,Authentication user) {
+		log.info("insMainPage 메인페이지 이동");
 		
 		
 		return "main";
@@ -55,17 +55,17 @@ public class InsLoginController {
 	//메인페이지 헤더초기화
 	@RequestMapping(value = "/reMain.do", method = RequestMethod.GET)
 	public String redirectHome(Locale locale, Model model,Authentication user) {
-		log.info("Welcome home! 리다이렉트 {}.", locale);
+		log.info("redirectHome 메인페이지 이동");
 		
 		
-		return "redirect:/";
+		return "redirect:/app/";
 	}
 	// 로그인 페이지로 가는 매핑
 	@RequestMapping(value = "/loginPage.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String login(@RequestParam(value = "error", required = false) String error,
+	public String insLogin(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Authentication user, Model model, HttpServletRequest req) {
 		
-		log.info("강사 로그인");
+		log.info("insLogin 일반회원 로그인 페이지 이동");
 //		UserDetails userdto = (UserDetails) user.getPrincipal();
 //		System.out.println("---------------"+userdto);
 //		model.addAttribute("user", userdto.toString());
@@ -125,6 +125,7 @@ public class InsLoginController {
 	//회원가입으로 가는 매핑
 	@RequestMapping(value = "/InsSingUpgo.do", method = RequestMethod.GET)
 	public String SignUpgo() {
+		log.info("InsSingUpgo 회원가입 페이지 이동");
 		return "insRegister";
 	}
    
@@ -132,7 +133,7 @@ public class InsLoginController {
 	@RequestMapping(value = "/CheckInsId.do", method = RequestMethod.GET)
 	@ResponseBody
 	public int idCheck(@RequestParam("id") String id) {
-		log.info("*id : ", id);
+		log.info("아이디 중복 체크 : ", id);
 		return service.checkInsId(id);
 	}
 	//강사 개인정보 수정
@@ -170,13 +171,13 @@ public class InsLoginController {
 	// 강사 경력 등록 페이지 이동
 	@RequestMapping(value = "/InsCareer.do", method = RequestMethod.GET)
 	public String InsCareer( ) {
-		log.info("강사 경력등록 페이지 ");
+		log.info("InsCareer : 강사 경력등록 페이지 이동  ");
 		return "InsCareer";
 	}
 	
 	@RequestMapping(value="/insertCar.do",method = RequestMethod.POST)
 	public String insertCar(@RequestParam Map<String,Object> map, Model model,Authentication user) {
-		log.info("경력 등록 :",map);
+		log.info("insertCar :경력 등록 :",map);
 		MemberVo mvo = (MemberVo) user.getDetails();
 		map.put("id", mvo.getId() );
 		service.updateCar(map);
@@ -190,7 +191,7 @@ public class InsLoginController {
 			//아이디 찾기
 			@RequestMapping(value = "/findInsIdView.do", method = RequestMethod.GET)
 			public String findTraIdView() {
-				
+				log.info("findInsIdView : 강사 아이디 찾기 이동");
 				return "findInsId";
 			}
 
@@ -199,10 +200,10 @@ public class InsLoginController {
 			@RequestMapping(value = "/findInsId.do", method = RequestMethod.POST)
 			public @ResponseBody  Map<String, String> findTraId (@RequestParam Map<String, Object> map, Model model) {
 				Map<String, String> rMap = new HashMap<String, String>();
-				log.info("********* Welcome Member_Controller findTraId! : {} *********", map);
+				log.info("Member_Controller findTraId! : {}", map);
 				MemberVo mVo = service.findInsId(map);
 				
-				log.info("********* Welcome! Member_Controller findTraId : {} *********", mVo);
+				log.info("Member_Controller findTraId : {}", mVo);
 				if(mVo == null) {
 					rMap.put("isc", "실패");
 				}else {
@@ -215,7 +216,7 @@ public class InsLoginController {
 			/* 비밀번호 찾기 */
 			@RequestMapping(value = "/findInsPwView", method = RequestMethod.GET)
 			public String findInsPw(){
-				
+				log.info("findInsPwView : 강사 비밀번호 찾기 페이지 이동");
 				return "findInsPw";
 			}
 
@@ -226,7 +227,7 @@ public class InsLoginController {
 				System.out.println(map);
 				//회원정보 불러오기
 				MemberVo vo1 = service.findInsPw(map);
-				System.out.println(vo1);
+				log.info("findInsPw : 강사 비밀번호 찾기 ");
 				
 				//가입된 이메일이 존재한다면 이메일 전송
 				if(vo1!=null) {
@@ -254,7 +255,7 @@ public class InsLoginController {
 	//관리자 페이지
 	@RequestMapping(value = "/admin/adminPage.do", method = RequestMethod.GET)
 	public String adminPasge(Model model) {
-		System.out.println("관리자 페이지");
+		log.info("adminPasge 관리자 페이지 이동");
 		System.out.println();
 		return "adminPage";
 	}

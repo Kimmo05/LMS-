@@ -26,7 +26,7 @@ function reply(){
 <%--           <h3>${result.mes_cate}</h3> --%>
 <%--           <input type="hidden" name="doc_originname" value="${doc_originname}" readonly="readonly"> --%>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+          <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
             <li class="breadcrumb-item">쪽지 게시판</li>
             <li class="breadcrumb-item active">쪽지 게시판 상세보기</li>
           </ol>
@@ -67,9 +67,7 @@ function reply(){
   <c:if test="${result.mes_cate eq 'R'}">
   <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" onclick="reply()">답장하기</button>
   </c:if>
-  <c:if test="${result.mes_cate eq 'Q'}">
   <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-danger" value="${result.mes_seq}" onclick="del(this)">삭제하기</button>
-  </c:if>
 </div>
 </body>
 <%@include file="./admin_footer.jsp" %>

@@ -88,7 +88,7 @@ public class SubjectApproveListBeanAdmin {
 		}else if(subVo.getSub_status().equals("R")) {
 			sb.append("   		<td><span class='badge rounded-pill badge-warning'>반려</span></td>                          ");
 		}else if(subVo.getSub_status().equals("D")) {
-			sb.append("   		<td><span class='badge rounded-pill badge-danger'>삭제</span></td>                           ");
+			sb.append("   		<td><span class='badge rounded-pill badge-danger'>종료</span></td>                           ");
 		}
 		sb.append("</tr>                                                                                                       ");
 		return sb.toString();

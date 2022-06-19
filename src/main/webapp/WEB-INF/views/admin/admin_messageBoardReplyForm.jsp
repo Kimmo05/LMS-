@@ -12,7 +12,7 @@
                 <div class="col-sm-6">
                   <h3>쪽 지</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+                  <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">쪽지 게시판</li>
                   </ol>
                 </div>
@@ -50,7 +50,7 @@
                         <div class="col">
                           <div class="mb-3">
                             <label class="form-label" for="exampleInputPassword2">내용</label>
-                            <textarea name="content" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                            <textarea name="mes_content" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
                           </div>
                         </div>
                       </div>

@@ -20,7 +20,7 @@
                 <div class="col-sm-6">
                   <h3>Dash Board</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./main.do">메인</a></li>
+                  <li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">회원</li>
                     <li class="breadcrumb-item active">대시보드</li>
                   </ol>
@@ -152,13 +152,13 @@
                         <div class="card">
                           <div class="card-header">
                             <h5 class="p-0">
-                              <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon8" aria-expanded="true" aria-controls="collapseicon8">과목</button>
+                              <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon8" aria-expanded="true" aria-controls="collapseicon8">내 과목</button>
                             </h5>
                           </div>
                           <div class="collapse show" id="collapseicon8" aria-labelledby="collapseicon8" data-parent="#accordion">
                             <div class="card-body social-list filter-cards-view">
                               <div class="media"><!-- <img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/2.png"> -->
-                                <div class="media-body"><span class="d-block">1</span><a href="./user_subSelectMySubject.do">등록한 과목 보러가기</a></div>
+                                <div class="media-body"><span class="d-block"><a href="./user_subSelectMySubject.do">등록한 과목 보러가기</a></span></div>
                               </div>
                               <!-- <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.png">
                                 <div class="media-body"><span class="d-block">Sarah Loren</span><a href="javascript:void(0)">Add Friend</a></div>
@@ -180,27 +180,8 @@
                         <div class="card">
                           <div class="card-header">
                             <h5 class="p-0">
-                              <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon11" aria-expanded="true" aria-controls="collapseicon11">Followings</button>
+                              <a href="./myLikelist.do">내 좋아요 목록</a>
                             </h5>
-                          </div>
-                          <div class="collapse show" id="collapseicon11" aria-labelledby="collapseicon11" data-parent="#accordion">
-                            <div class="card-body social-list filter-cards-view">
-                              <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.png">
-                                <div class="media-body"><span class="d-block">Sarah Loren</span><a href="javascript:void(0)">Add Friend</a></div>
-                              </div>
-                              <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/2.png">
-                                <div class="media-body"><span class="d-block">Bucky Barnes</span><a href="javascript:void(0)">Add Friend</a></div>
-                              </div>
-                              <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/10.jpg">
-                                <div class="media-body"><span class="d-block">Comeren Diaz</span><a href="javascript:void(0)">Add Friend</a></div>
-                              </div>
-                              <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/3.jpg">
-                                <div class="media-body"><span class="d-block">Jason Borne</span><a href="javascript:void(0)">Add Friend</a></div>
-                              </div>
-                              <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle" alt="" src="../assets/images/user/11.png">
-                                <div class="media-body"><span class="d-block">Andew Jon</span><a href="javascript:void(0)">Add Friend</a></div>
-                              </div>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -208,42 +189,12 @@
                         <div class="card">
                           <div class="card-header">
                             <h5 class="p-0">
-                              <button class="btn btn-link ps-0" data-bs-toggle="collapse" data-bs-target="#collapseicon4" aria-expanded="true" aria-controls="collapseicon4">Latest Photos</button>
+                              <a href="./prefer.do">선호조건 바꾸기</a>
                             </h5>
-                          </div>
-                          <div class="collapse show" id="collapseicon4" data-parent="#accordion" aria-labelledby="collapseicon4">
-                            <div class="card-body photos filter-cards-view">
-                              <ul>
-                                <li>
-                                  <div class="latest-post"><img class="img-fluid" alt="" src="../assets/images/social-app/post-1.png"></div>
-                                </li>
-                                <li>
-                                  <div class="latest-post"><img class="img-fluid" alt="" src="../assets/images/social-app/post-2.png"></div>
-                                </li>
-                                <li>
-                                  <div class="latest-post"><img class="img-fluid" alt="" src="../assets/images/social-app/post-3.png"></div>
-                                </li>
-                                <li>
-                                  <div class="latest-post"><img class="img-fluid" alt="" src="../assets/images/social-app/post-4.png"></div>
-                                </li>
-                                <li>
-                                  <div class="latest-post"><img class="img-fluid" alt="" src="../assets/images/social-app/post-5.png"></div>
-                                </li>
-                                <li>
-                                  <div class="latest-post"><img class="img-fluid" alt="" src="../assets/images/social-app/post-6.png"></div>
-                                </li>
-                                <li>
-                                  <div class="latest-post"><img class="img-fluid" alt="" src="../assets/images/social-app/post-7.png"></div>
-                                </li>
-                                <li>
-                                  <div class="latest-post"><img class="img-fluid" alt="" src="../assets/images/social-app/post-8.png"></div>
-                                </li>
-                              </ul>
-                            </div>
                           </div>
                         </div>
                       </div>
-                      <div class="col-xl-12 col-lg-6 col-md-12 col-sm-6">
+                      <!-- <div class="col-xl-12 col-lg-6 col-md-12 col-sm-6">
                         <div class="card">
                           <div class="card-header">
                             <h5 class="p-0">
@@ -267,7 +218,7 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -280,8 +231,8 @@
                           <div class="post-header">
                             <div class="media"><img class="img-thumbnail rounded-circle me-3" src="../assets/images/user/7.jpg" alt="Generic placeholder image">
                               <div class="media-body align-self-center"><a href="social-app.html">
-                                  <h5 class="user-name">Emay Walter</h5></a>
-                                <h6>22 Hours ago</h6>
+                                  <h5 class="user-name">관리자</h5></a>
+                                <h6>22 시간 전</h6>
                               </div>
                             </div>
                             <div class="post-setting"><i class="fa fa-ellipsis-h"></i></div>
@@ -289,8 +240,8 @@
                           <div class="post-body">
                             <div class="img-container">
                               <div class="my-gallery" id="aniimated-thumbnials" itemscope="">
-                                <figure itemprop="associatedMedia" itemscope=""><a href="../assets/images/user-profile/post1.jpg" itemprop="contentUrl" data-size="1600x950"><img class="img-fluid rounded" src="../assets/images/user-profile/post1.jpg" itemprop="thumbnail" alt="gallery"></a>
-                                  <figcaption itemprop="caption description">Image caption  1</figcaption>
+                                <figure itemprop="associatedMedia" itemscope=""><a href="../assets/images/user-profile/post1.jpg" itemprop="contentUrl" data-size="1600x950"><img class="img-fluid rounded" src="../resources/images/myPage01.png" itemprop="thumbnail" alt="gallery"></a>
+                                  <figcaption itemprop="caption description"></figcaption>
                                 </figure>
                               </div>
                             </div>
@@ -300,72 +251,24 @@
                                 <li><img class="rounded-circle" src="../assets/images/user/5.jpg" alt=""></li>
                                 <li><img class="rounded-circle" src="../assets/images/user/1.jpg" alt=""></li>
                               </ul>
-                              <h6>+5 people react this post</h6>
+                              <h6>+5 명 외 여러명이 좋아요를 눌렀습니다.</h6>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.                                     </p>
+                            <p>[ 2022년 하반기 코딩테스트 주최 ! ] <br>자세한 사항은 게시글을 확인해주세요.</p>
                             <ul class="post-comment">
                               <li>
-                                <label><a href="#"><i data-feather="heart"></i>&nbsp;&nbsp;Like<span class="counter">50</span></a></label>
+                                <label><a href="#"><i data-feather="heart"></i>&nbsp;&nbsp;좋아요<span class="counter">50+</span></a></label>
                               </li>
                               <li>
-                                <label><a href="#"><i data-feather="message-square"></i>&nbsp;&nbsp;Comment<span class="counter">70</span></a></label>
+                                <label><a href="#"><i data-feather="message-square"></i>&nbsp;&nbsp;댓글<span class="counter">70</span></a></label>
                               </li>
                               <li>
-                                <label><a href="#"><i data-feather="share"></i>&nbsp;&nbsp;share<span class="counter">20</span></a></label>
+                                <label><a href="#"><i data-feather="share"></i>&nbsp;&nbsp;스크랩<span class="counter">20</span></a></label>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <!-- profile post end-->
-                   
-                    <!-- profile post start-->
-                    <div class="col-sm-12">
-                      <div class="card">
-                        <div class="profile-post">
-                          <div class="post-header">
-                            <div class="media"><img class="img-thumbnail rounded-circle me-3" src="../assets/images/user/7.jpg" alt="Generic placeholder image">
-                              <div class="media-body align-self-center"><a href="social-app.html">
-                                  <h5 class="user-name">Emay Walter</h5></a>
-                                <h6>2 Hours ago</h6>
-                              </div>
-                            </div>
-                            <div class="post-setting"><i class="fa fa-ellipsis-h"></i></div>
-                          </div>
-                          <div class="post-body">
-                            <div class="img-container">
-                              <div class="my-gallery" id="aniimated-thumbnials" itemscope="">
-                                <figure itemprop="associatedMedia" itemscope=""><a href="../assets/images/user-profile/post4.jpg" itemprop="contentUrl" data-size="1600x950"><img class="img-fluid rounded" src="../assets/images/user-profile/post4.jpg" itemprop="thumbnail" alt="gallery"></a>
-                                  <figcaption itemprop="caption description">Image caption  1</figcaption>
-                                </figure>
-                              </div>
-                            </div>
-                            <div class="post-react">
-                              <ul>
-                                <li><img class="rounded-circle" src="../assets/images/user/3.jpg" alt=""></li>
-                                <li><img class="rounded-circle" src="../assets/images/user/5.jpg" alt=""></li>
-                                <li><img class="rounded-circle" src="../assets/images/user/1.jpg" alt=""></li>
-                              </ul>
-                              <h6>+20 people react this post</h6>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.                                     </p>
-                            <ul class="post-comment">
-                              <li>
-                                <label><a href="#"><i data-feather="heart"></i>&nbsp;&nbsp;Like<span class="counter">407</span></a></label>
-                              </li>
-                              <li>
-                                <label><a href="#"><i data-feather="message-square"></i>&nbsp;&nbsp;Comment<span class="counter">302</span></a></label>
-                              </li>
-                              <li>
-                                <label><a href="#"><i data-feather="share"></i>&nbsp;&nbsp;share<span class="counter">180</span></a></label>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- profile post end                           -->
                   </div>
                 </div>
                 

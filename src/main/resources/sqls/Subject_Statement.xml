@@ -150,13 +150,14 @@ SELECT RN, SUB_NUM, SUB_TITLE, SUB_CONTENT, SUB_REG_ID, COD_NAME, SUB_REGDATE
 		#{sub_num}
 	</foreach> -->
 <!-- 4-1) 과목 승인 후 'A'로 상태 변경 -->
-<update id="subUpdateStatusA" parameterType="map">
-	UPDATE SUBJECT SET SUB_STATUS = 'A' WHERE SUB_NUM = #{sub_num}
+<update id="subUpdateStatusA" parameterType="java.lang.String" >
+	UPDATE SUBJECT SET SUB_STATUS = 'A' WHERE SUB_NUM = #{sub_num} AND SUB_STATUS = 'W'
 </update>
 <!-- 4-2) 과목 삭제 후 'D'로 상태 변경 -->
-<update id="subUpdateStatusD" parameterType="map">
-	UPDATE SUBJECT SET SUB_STATUS = 'D' WHERE SUB_NUM = #{sub_num}
+<update id="subUpdateStatusD" parameterType="java.lang.String">
+	UPDATE SUBJECT SET SUB_STATUS = 'D' WHERE SUB_NUM = #{sub_num} AND SUB_STATUS IN ('A','W')
 </update>
+
 <!-- 4-3) 과목 반려 후 'R'로 상태 변경 -->
 <update id="subUpdateStatusR" parameterType="map">
 	UPDATE SUBJECT SET SUB_STATUS = 'R' WHERE SUB_NUM = #{sub_num}
@@ -179,6 +180,9 @@ SELECT RN, SUB_NUM, SUB_TITLE, SUB_CONTENT, SUB_REG_ID, COD_NAME, SUB_REGDATE
 			WHERE CUR_SUB_NUM = #{cur_sub_num}
 </update>
 
-
+<!-- 6) 일반회원/강사 마이페이지에서 자신이 등록한 목록 갯수 조회 -->
+<select id="subCountMySubject" parameterType="java.lang.Integer">
+	SELECT COUNT(*) FROM SUBJECT WHERE SUB_REG_ID =#{sub_reg_id}
+</select>
 
 </mapper>
