@@ -97,11 +97,13 @@ public class ClassDaoImpl implements IClassDao{
 	
 	@Override
 	public List<InstructorVo> classInsInfo(String id) {
+		log.info("classInsInfo / 과정 상세 페이지 강사 정보 출력");
 		return sqlSession.selectList(NS+"classInsInfo",id);
 	}
 	
 	@Override
 	public List<VoteVo> voteRatio(VoteVo vo) {
+		log.info("voteRatio / 투표자 비율을 위한 인원 출력");
 		return sqlSession.selectList(NS+"voteRatio",vo);
 	}
 	
