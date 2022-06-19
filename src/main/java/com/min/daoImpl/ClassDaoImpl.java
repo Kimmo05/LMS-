@@ -146,23 +146,26 @@ public class ClassDaoImpl implements IClassDao{
 	
 	@Override
 	public List<SubjectVo> subjectSelected() {
-		logger.info("ClassDaoImpl subjectSelected / 과목 선택 리스트");
+		log.info("ClassDaoImpl subjectSelected / 과목 선택 리스트");
 		return sqlSession.selectList(NS+"subjectSelected");
 	}
 
 	@Override
 	public int classPeoSelectAll(ClassPeopleVo vo) {
+		log.info("classPeoSelectAll : {}",vo);
 		return sqlSession.selectOne(NS+"classPeoSelectAll",vo);
 	}
 	
 	
 	@Override
 	public ClassVo classSelectLastInsert() {
+		log.info("classSelectLastInsert");
 		return sqlSession.selectOne(NS+"classSelectLastInsert");
 	}
 
 	@Override
 	public List<String> classVotedSelectAll(ClassPeopleVo vo) {
+		log.info("classPeoSelectAll : {}",vo);
 		return sqlSession.selectList(NS+"classVotedSelectAll",vo);
 	}
 
