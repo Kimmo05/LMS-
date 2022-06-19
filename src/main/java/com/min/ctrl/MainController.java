@@ -95,4 +95,9 @@ public class MainController {
 				return "user/editProfile";
 		}
 
+		@RequestMapping(value = "/app/logout.do", method = RequestMethod.GET)
+		public String logout() {
+			log.info("로그아웃 완료");
+			return "redirect:/app/main";
+		}
 }

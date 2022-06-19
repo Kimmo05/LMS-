@@ -39,7 +39,48 @@
     <link id="color" rel="stylesheet" href="./assets/css/color-1.css" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
-
+<!-- <script type="text/javascript"> 
+ 	function loginCheck(){
+ 		console.log('로그인 작동합니다');
+ 		var id = document.getElementById('inputId');
+ 		var pw = document.getElementById('inputPw');
+ 		console.log(id.value, pw.value);
+		
+ 		var frm = document.forms[0];
+ 		frm.action = "./logingo.do";
+ 		console.log(frm);
+		
+ 		//유효성 검사 후 Ajax 로그인
+ 		if(id.value == "" || id.value.trim() == ""){
+ 			id.value = "";
+ 			id.focus();
+ 			swal ("로그인", "아이디를 입력해주세요.");
+ 		}else if(pw.value == "" || pw.value.trim()==""){
+ 			pw.value="";
+ 			pw.focus();
+ 			swal("로그인", "비밀번호를 입력해주세요.");
+ 		}else{
+ 			$.ajax({
+				url:"./loginCheckTraMap.do",
+ 				method:"post",
+ 				data:"id=" + id.value + "&pw=" + pw.value,
+ 				success : function(msg){
+ 					console.log(msg, typeof msg); //msg 형태 확인
+ 					console.log(msg.isc);
+ 					if(msg.isc == "성공"){
+ 						console.log(msg.isc);
+ 						frm.submit();
+ 					}else{
+ 						swal("로그인", "해당 사용자는 존재하지 않습니다.");
+ 					}
+				},
+ 				error:function(){
+ 					swal("로그인", "로그인에 장애가 발생하였습니다.");
+ 				}
+ 			})
+ 		}
+ 	}
+ </script> -->
  <style type="text/css">
  body {
   margin: 0;
@@ -146,7 +187,7 @@
                   </div>
                   <div>
                   <sec:authorize access="isAnonymous()">
-                    <p style="text-align: center;">  <b>메인화면</b>으로 돌아가시겠습니까?<a class="ms-2" href="./main.do"><b>이동</b></a></p>
+                    <p>메인화면으로 돌아가시겠습니까?<a class="ms-2" href="./main.do">이동</a></p>
                   </sec:authorize>
                   <sec:authorize access="isAuthenticated()">
                   <input class="btn btn-warning btn-block btn-xs " type="button" style="margin: 20px;" value="뒤로가기" onclick="history.back(-1)">

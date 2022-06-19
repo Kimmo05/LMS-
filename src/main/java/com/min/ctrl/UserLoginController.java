@@ -164,8 +164,10 @@ public class UserLoginController {
 		MemberVo mvo = (MemberVo) user.getDetails();
 		map.put("id", mvo.getId());
 		
+
 		log.info("editUserProfile 개인정보 수정",mvo);
 		service.updateTra(map);
+
 		
 		log.info("editUserProfile 개인정보 수정 완료");
 		
