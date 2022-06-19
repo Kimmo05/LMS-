@@ -358,7 +358,7 @@
     		  });
     	  });
     	  
-    	  $(function(){
+    	 /*  $(function(){
     		  $("#btnR").click(function(){
     	 		  console.log("btnR 눌림"); 
     	 		  
@@ -375,9 +375,32 @@
     	 		
         		  
     		  });
+    	  }); */
+    	  
+    	  $(function(){
+    		  $("#btnR").click(function(){
+    	 		  console.log("btnR 눌림"); 
+    	 		  
+    	 		 var sub_num = '${results.sub_num}'
+   	 		 	 console.log(sub_num); 
+        	
+    	 		  $.ajax({
+           			 url:'./subUpdateStatusR.do?sub_num='+sub_num,
+           			type:'get',
+           			success: function(){
+           				console.log("해당 과목 과목반려 처리 성공");
+           				console.log(sub_num);
+           				alert("과목반려처리 완료");
+           				window.location.href='./admin_subjectApprove.do';
+           			},
+           			error:function(){
+           				console.log("실패");
+           			}
+           		  });
+    	 		 
+        		  
+    		  });
     	  });
-    	  
-    	  
     	  
     	  
     	  

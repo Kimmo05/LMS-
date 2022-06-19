@@ -168,9 +168,9 @@ public class SubjectUserController {
 
 		sVo.setSub_reg_id(mvo.getId());
 		System.out.println("mvo 체크용 mvo.getId()" + mvo.getId());
-		List<SubjectVo> list = sService.subSelectMySubject(sVo);
-		model.addAttribute("list 체크용 list", list);
-		log.info("컨트롤러에서 찍는 아이디에 해당하는 리스트 " + list);
+		List<SubjectVo> lists = sService.subSelectMySubject(sVo);
+		model.addAttribute("lists", lists);
+		log.info("컨트롤러에서 찍는 아이디에 해당하는 리스트 " + lists);
 		log.info("세션 저장된 아이디 : " + mvo.getId());
 		return "user/user_subSelectMySubject";
 	}

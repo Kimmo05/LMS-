@@ -17,11 +17,11 @@
 			<div class="page-header">
 				<div class="row">
 					<div class="col-sm-6">
-						<h3>Create Subject</h3>
+						<h3>Modify Subject</h3>
 						<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
-							<li class="breadcrumb-item">Subject</li>
-							<li class="breadcrumb-item active">Create Subject</li>
+							<li class="breadcrumb-item"><a href="./user_subjectList.do">과목</a></li>
+							<li class="breadcrumb-item active">과목 수정</li>
 						</ol>
 					</div>
 				</div>
@@ -81,8 +81,8 @@
 												<label>과목 카테고리</label> <select class="form-select"
 													id="sub_cod_code" name="sub_cod_code"
 													onchange="showCategory()">
-													<option value="">${results.sub_cod_code}</option>
-													<option value="">------- 선택 -------</option>
+													<option value="">${results.cod_name}</option>
+													<option value="">---- 수정할 카테고리를 선택해주세요 ----</option>
 													<option value="SUB101">JAVA</option>
 													<option value="SUB102">C</option>
 													<option value="SUB103">HTML</option>
@@ -118,7 +118,7 @@
 												<label>과목 난이도</label> <select class="form-select"
 													id="cur_level" name="cur_level" onchange="showLevel()">
 													<option value="">${results.cur_level}</option>
-													<option value="">------- 선택 -------</option>
+													<option value="">---- 수정할 난이도를 선택해주세요 ----</option>
 													<option value="초급">초급</option>
 													<option value="중급">중급</option>
 													<option value="고급">고급</option>

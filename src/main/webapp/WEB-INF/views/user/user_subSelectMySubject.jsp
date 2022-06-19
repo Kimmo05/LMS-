@@ -147,7 +147,6 @@
                   </div>
                 </div>
               
-                
                 <div class="col-xl-9 col-md-12 box-col-8 xl-70">
                   <div class="email-right-aside bookmark-tabcontent contacts-tabs">
                     <div class="card email-body radius-left">
@@ -159,123 +158,151 @@
                               <div class="card-header d-flex">
                                 <h5>내가 등록한 과목</h5><span class="f-14 pull-right mt-0">5 Contacts</span>
                               </div>
-                              <div class="card-body p-0">
-                                <div class="row list-persons" id="addcon">
-                                  <div class="col-xl-4 xl-50 col-md-5 box-col-6">
-                                  <!-- 과목 간략 정보 보여주기 -->
-                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="contact-tab-0 nav-link active" id="v-pills-user-tab" data-bs-toggle="pill" onclick="activeDiv(0)" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="true">
-                                   <c:forEach var="sVo" items="${list}"  varStatus="vs">
-                                        <div class="media"><img class="img-50 img-fluid m-r-20 rounded-circle update_img_0" src="./assets/images/user/2.png" alt="">
-                                          <div class="media-body">
-                                            <h6> ${sVo.sub_title}</h6>
-                                            <p class="email_add_0">담당 강사 : ${sVo.sub_ins}</p><span><p class="email_add_1">등록일 : ${sVo.sub_regdate}</p></span>
-                                          </div>
-                                        </div>
-                      				</c:forEach>
-                                     </a>
-                                     
-                                     
-                      				</div>
-                                  </div>
-                                  
-                                  <div class="col-xl-8 xl-50 col-md-7 box-col-6">
-                                   <c:forEach var="sVo" items="${list}"  varStatus="vs">
-                                    <div class="tab-content" id="v-pills-tabContent">
-                                      <div class="tab-pane contact-tab-0 tab-content-child fade show active" id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
-                                        <div class="profile-mail">
-                                          <div class="media align-items-center"><img class="img-100 img-fluid m-r-20 rounded-circle update_img_0" src="../assets/images/user/2.png" alt="">
-                                            <input class="updateimg" type="file" name="img" onchange="readURL(this,0)">
-                                            <div class="media-body mt-0">
-                                              <h5><span class="first_name_0">${sVo.sub_ins} </span><span class="last_name_0"> </span></h5>
-                                              <p class="email_add_0">강사 정보</p>
-                                              <ul>
-                                                <li><a href="javascript:void(0)" onclick="editContact(0)">Edit</a></li>
-                                                <li><a href="javascript:void(0)" onclick="deleteContact(0)">Delete</a></li>
-                                                <li><a href="javascript:void(0)" onclick="history(0)">History</a></li>
-                                                <li><a href="javascript:void(0)" onclick="printContact(0)" data-bs-toggle="modal" data-bs-target="#printModal">Print</a></li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                          
-                                           <div class="email-general">
-                                            <h6 class="mb-3">과목 소개</h6>
-                                            <ul>
-                                              <li>과목 명 <span class="font-primary first_name_0">${sVo.sub_title}</span></li>
-                                              <li>카테고리 <span class="font-primary first_name_0">${sVo.cod_name}</span></li>
-                                              <li>등록일<span class="font-primary"> <span class="birth_day_0">${sVo.sub_regdate}</span></span></li>
-                                              <li>등록자 <span class="font-primary">${sVo.sub_reg_id}</span></li>
-                                            </ul>
-                                          </div>
-                                        </div>
-                                      </div>
-                                  <div class="tab-pane contact-tab-1 tab-content-child fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                        <div class="profile-mail">
-                                          <div class="media"><img class="img-100 img-fluid m-r-20 rounded-circle update_img_1" src="../assets/images/user/8.jpg" alt="">
-                                            <input class="updateimg" type="file" name="img" onchange="readURL(this,1)">
-                                            <div class="media-body mt-0">
-                                              <h5><span class="first_name_1">Comeren </span><span class="last_name_1">Diaz</span></h5>
-                                              <p class="email_add_1">comeren@gmail.com</p>
-                                              <ul>
-                                                <li><a href="javascript:void(0)" onclick="editContact(1)">Edit</a></li>
-                                                <li><a href="javascript:void(0)" onclick="deleteContact(1)">Delete</a></li>
-                                                <li><a href="javascript:void(0)" onclick="history(1)">History</a></li>
-                                                <li><a href="javascript:void(0)" onclick="printContact(1)" data-bs-toggle="modal" data-bs-target="#printModal">Print</a></li>
-                                              </ul>
-                                            </div>
-                                          </div>
-                                  
-                                  <div class="email-general">
-                                            <h6 class="mb-3">General</h6>
-                                            <ul>
-                                              <li>Name <span class="font-primary first_name_1">Comeren</span></li>
-                                              <li>Gender <span class="font-primary">Female</span></li>
-                                              <li>Birthday<span class="font-primary"> <span class="birth_day_1">7</span><span class="birth_month_1 ms-1">Feb</span><span class="birth_year_1 ms-1">1995</span></span></li>
-                                              <li>Personality<span class="font-primary personality_1">Cool</span></li>
-                                              <li>City<span class="font-primary city_1">Delhi</span></li>
-                                              <li>Mobile No<span class="font-primary mobile_num_1">+0 1800 55812</span></li>
-                                              <li>Email Address <span class="font-primary email_add_1">comeren@gmail.com</span></li>
-                                              <li>Website<span class="font-primary url_add_1">www.cometest@.com</span></li>
-                                              <li>Interest<span class="font-primary interest_1">sports</span></li>
-                                            </ul>
-                                          </div>
-                                  
-                </div>
-                </div>
-                </div>
-                
-                 <!-- 밑에 과목 간략 정보 보여주기 -->
-                                    <div class="contact-editform">
-                                      <form>
-                                        <div class="row g-2">
-                                       <div class="mb-3 col-md-12">
-                                            <label>과목 설명</label>
-                                            <div class="row">
-                                              <div class="col-12">
-                                                ${sVo.sub_content}
-                                              </div>
-                                            </div>
-                                          </div>
-                                                     <div class="mt-0 mb-3 col-md-12">
-                                            <label>태그</label>
-                                            ${sVo.sub_tag}${sVo.cod_tag}
-                                          </div>
-                                        
-                                        </div>
-                                        <!-- 자세히 보기 누르면 모달 창이나 페이지 이동 -->
-                                    <span><a class="ps-0 edit-information f-w-600" href="./user_subjectDetail.do?sub_num=${sVo.sub_num}">자세히 보기</a><span><a href="./user_subjectModifyForm.do?sub_num=${sVo.sub_num}">수정하러 가기</a></span></span>
-                                      </form>
-                                      
-                                      
-                </div>
+               			 	</div>
+               			 	</div>
+              	<c:forEach var="sVo" items="${lists}"  varStatus="vs">	 
+                  <div class="card">
+                    <div class="card-header pb-0">
+                      <h5 class="pull-left">
+                      <c:choose>
+												<c:when test="${sVo.cod_name  eq 'JAVA'}">
+													<span class="badge rounded-pill"
+														style="background-color: #006400">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'C'}">
+													<span class="badge rounded-pill"
+														style="background-color: #AFEEEE">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'HTML'}">
+													<span class="badge rounded-pill"
+														style="background-color: #6A5ACD">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'PYTHON'}">
+													<span class="badge rounded-pill"
+														style="background-color: #C71585">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'CSS'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FFF8DC">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'LINUX'}">
+													<span class="badge rounded-pill"
+														style="background-color: #40E0D0">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'C#'}">
+													<span class="badge rounded-pill"
+														style="background-color: #8FBC8F">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'JAVASCRIPT'}">
+													<span class="badge rounded-pill"
+														style="background-color: #8A2BE2">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'AI'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FFB6C1">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'BIGDATA'}">
+													<span class="badge rounded-pill"
+														style="background-color: #000080">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'DEEPLEARNING'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FA8072">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'VR'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FFA500">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'AR'}">
+													<span class="badge rounded-pill"
+														style="background-color: #F0E68C">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'EXCEL'}">
+													<span class="badge rounded-pill"
+														style="background-color: #B0C4DE">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'POWERPOINT'}">
+													<span class="badge rounded-pill"
+														style="background-color: #2F4F4F">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'KOTLIN'}">
+													<span class="badge rounded-pill"
+														style="background-color: #D8BFD8">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'SPRING'}">
+													<span class="badge rounded-pill"
+														style="background-color: #1E90FF">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq '기타'}">
+													<span class="badge rounded-pill"
+														style="background-color: #008080">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq '형상관리'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FFD700">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'DATABASE'}">
+													<span class="badge rounded-pill"
+														style="background-color: #A52A2A">${sVo.cod_name}</span>
+												</c:when>
+												<c:otherwise>
+													<span class="badge rounded-pill"
+														style="background-color: #556B2F">${sVo.cod_name}</span>
+												</c:otherwise>
+											</c:choose>
+                      <a href='./user_subjectDetail.do?sub_num=${sVo.sub_num}'>${sVo.sub_title}</a>
+                      
+                      </h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="tabbed-card">
+                        <ul class="pull-right nav nav-pills nav-primary" id="pills-clrtab" role="tablist">
+                          <li class="nav-item"><a class="nav-link active" id="pills-clrhome-tab" data-bs-toggle="pill" href="#pills-clrhome" role="tab" aria-controls="pills-clrhome" aria-selected="true"><i class="icofont icofont-ui-home"></i>과목정보 </a></li>
+                          <li class="nav-item"><a class="nav-link" id="pills-clrprofile-tab" data-bs-toggle="pill" href="#pills-clrprofile" role="tab" aria-controls="pills-clrprofile" aria-selected="false"><i class="icofont icofont-man-in-glasses"></i>강사&자료 </a></li>
+						<c:choose>
+							<c:when test="${sVo.sub_status eq 'W'}">
+	                          <li class="nav-item"><a class="nav-link" id="pills-clrcontact-tab" href="./user_subjectModifyForm.do?sub_num=${sVo.sub_num}" aria-controls="pills-clrcontact" aria-selected="false"><i class="icofont icofont-ui-add"></i>수정하러 가기</a></li>
+							</c:when>
+							<c:when test="${sVo.sub_status eq 'A'}">
+								<li class="nav-item"><a class="nav-link" id="pills-clrcontact-tab" aria-controls="pills-clrcontact" aria-selected="false" style="color: blue;"><i class="icofont icofont-ui-check"></i>승인완료</a></li>
+							</c:when>
+							<c:when test="${sVo.sub_status eq 'R'}">
+								<li class="nav-item"><a class="nav-link" id="pills-clrcontact-tab" aria-controls="pills-clrcontact" aria-selected="false" style="color: red;"><i class="icofont icofont-ui-close"></i>반려</a></li>
+							</c:when>
+							<c:when test="${sVo.sub_status eq 'D'}">
+								<li class="nav-item"><a class="nav-link" id="pills-clrcontact-tab" aria-controls="pills-clrcontact" aria-selected="false" style="color: gray;"><i class="icofont icofont-ui-block"></i>과목종료</a></li>
+							</c:when>
+						</c:choose>
+						
+						
+						
+                        </ul>
+                        <div class="tab-content" id="pills-clrtabContent">
+                          <div class="tab-pane fade show active" id="pills-clrhome" role="tabpanel" aria-labelledby="pills-clrhome-tab">
+                          	
+                          
+                          	<div> [ 과목설명 ]
+                            <p>${sVo.sub_content}</p>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="pills-clrprofile" role="tabpanel" aria-labelledby="pills-clrprofile-tab">
+                          	<div> [ 강사 및 과목 부가정보 ]
+                          		<p>강사 : ${sVo.sub_ins}<br>등록일 : ${sVo.sub_regdate}</p>
+                          	</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    
+                  </div>	
                 </c:forEach>
+               			 	
                 </div>
                 </div>
                 </div>
-                </div>
-                </div>
-                </div>
-                  </div>
+ <%-- <span><a class="ps-0 edit-information f-w-600" href="./user_subjectDetail.do?sub_num=${sVo.sub_num}">자세히 보기</a><span><a href="./user_subjectModifyForm.do?sub_num=${sVo.sub_num}">수정하러 가기</a></span></span> --%>
+                 
                 
                 
                 
@@ -285,7 +312,6 @@
                 	</div>
                 	</div>
                 	</div>
-                </div>	
 <%@include file="../footer.jsp" %>
 </body>
 </html>

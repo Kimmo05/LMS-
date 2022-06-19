@@ -56,7 +56,7 @@
                       <div class="align-self-center text-center"><i data-feather="database"></i></div>
                       <div class="media-body"><span class="m-0">신규 과목</span>
                         <h4 class="mb-0 counter">121</h4><i class="icon-bg" data-feather="database"></i>
-                      </div>
+                      </div></a>
                     </div>
                   </div>
                 </div>

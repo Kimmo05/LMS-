@@ -48,7 +48,7 @@ public interface SubjectDao {
 		public int subUpdateStatusA(String sub_num);
 		//4-2) 과목 등록 후 관리자의 과목 검수 후 과목상태를 삭제'D'으로 변경
 		public int subUpdateStatusD(String sub_num);
-		
+		public int subUpdateStatusR(String sub_num);
 		//4-3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 반려'R'으로 변경
 		public int subUpdateStatusR(Map<String, Object> map);
 		//4-4) 과목 반려시 관리자의 과목 반려 사유 입력
