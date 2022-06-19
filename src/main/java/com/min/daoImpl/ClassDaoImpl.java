@@ -97,45 +97,49 @@ public class ClassDaoImpl implements IClassDao{
 	
 	@Override
 	public List<InstructorVo> classInsInfo(String id) {
-		log.info("classInsInfo / 과정 상세 페이지 강사 정보 출력");
+		log.info("classInsInfo / 과정 상세 페이지 강사 정보 출력 : {}",id);
 		return sqlSession.selectList(NS+"classInsInfo",id);
 	}
 	
 	@Override
 	public List<VoteVo> voteRatio(VoteVo vo) {
-		log.info("voteRatio / 투표자 비율을 위한 인원 출력");
+		log.info("voteRatio / 투표자 비율을 위한 인원 출력 : {}", vo);
 		return sqlSession.selectList(NS+"voteRatio",vo);
 	}
 	
 	@Override
 	public VoteVo voteIns(VoteVo vo) {
+		log.info("voteIns / 강사투표를 위한 정보 출력 : {}");
 		return sqlSession.selectOne(NS+"voteIns",vo);
 	}
 	
 	@Override
 	public List<VoteVo> votedPeople(VoteVo vo) {
+		log.info("voteIns / 강사투표를 위한 정보 출력 : {}",vo);
 		return sqlSession.selectList(NS+"votedPeople",vo);
 	}
 	
 	@Override
 	public int voteDelete(Map<String, Object> map) {
-		logger.info("ClassDaoImpl voteDelete : {}",map);
+		log.info("ClassDaoImpl voteDelete : {}",map);
 		return sqlSession.delete(NS+"voteDelete",map);
 	}
 
 	@Override
 	public int votedInsert(Map<String, Object> map) {
-		logger.info("ClassDaoImpl votedInsert : {}",map);
+		log.info("ClassDaoImpl votedInsert : {}",map);
 		return sqlSession.insert(NS+"votedInsert", map);
 	}
 
 	@Override
 	public int classStatusUpdate(Map<String, Object> map) {
+		log.info("classStatusUpdate : {}",map);
 		return sqlSession.update(NS+"classStatusUpdate",map);
 	}
 	
 	@Override
 	public int classPeoInsert(Map<String, Object> map) {
+		log.info("classPeoInsert : {}",map);
 		return sqlSession.insert(NS+"classPeoInsert",map);
 	}
 	
