@@ -171,43 +171,51 @@ public class ClassDaoImpl implements IClassDao{
 
 	@Override
 	public int endRecruit() {
+		log.info("endRecruit / 모집 종료");
 		return sqlSession.update(NS+"endRecruit");
 	}
 
 	@Override
 	public int endVote() {
+		log.info("endVote / 투표 종료");
 		return sqlSession.update(NS+"endVote");
 	}
 
 	@Override
 	public int classStart() {
+		log.info("classStart / 강의 시작");
 		return sqlSession.update(NS+"classStart");
 	}
 
 	@Override
 	public int classEnd() {
+		log.info("classEnd / 강의 종료");
 		return sqlSession.update(NS+"classEnd");
 	}
 
 	
 	@Override
 	public int classPeoDelete(String cla_num) {
+		log.info("classPeoDelete / 강의 삭제");
 		return sqlSession.delete(NS+"classPeoDelete",cla_num);
 	}
 	
 	
 	@Override
 	public int classSubDelete(String cla_num) {
+		log.info("classSubDelete / 강의 삭제");
 		return sqlSession.delete(NS+"classSubDelete",cla_num);
 	}
 	
 	@Override
 	public int classDelete(String cla_num) {
+		log.info("classDelete / 강의 삭제");
 		return sqlSession.delete(NS+"classDelete",cla_num);
 	}
 	
 	@Override
 	public int classVoteDelete(String cla_num) {
+		log.info("classVoteDelete / 투표 박스 삭제");
 		return sqlSession.delete(NS+"classVoteDelete",cla_num);
 	}
 	
