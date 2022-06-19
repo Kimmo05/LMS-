@@ -259,7 +259,9 @@
                         <ul class="pull-right nav nav-pills nav-primary" id="pills-clrtab" role="tablist">
                           <li class="nav-item"><a class="nav-link active" id="pills-clrhome-tab" data-bs-toggle="pill" href="#pills-clrhome" role="tab" aria-controls="pills-clrhome" aria-selected="true"><i class="icofont icofont-ui-home"></i>과목정보</a></li>
                           <li class="nav-item"><a class="nav-link" id="pills-clrprofile-tab" data-bs-toggle="pill" href="#pills-clrprofile" role="tab" aria-controls="pills-clrprofile" aria-selected="false"><i class="icofont icofont-man-in-glasses"></i>강사&자료</a></li>
+						<c:if test="${sVo.sub_status eq 'W'}">
                           <li class="nav-item"><a class="nav-link" id="pills-clrcontact-tab" href="./user_subjectModifyForm.do?sub_num=${sVo.sub_num}" aria-controls="pills-clrcontact" aria-selected="false"><i class="icofont icofont-contacts"></i>수정하러 가기</a></li>
+						</c:if>
                         </ul>
                         <div class="tab-content" id="pills-clrtabContent">
                           <div class="tab-pane fade show active" id="pills-clrhome" role="tabpanel" aria-labelledby="pills-clrhome-tab">
