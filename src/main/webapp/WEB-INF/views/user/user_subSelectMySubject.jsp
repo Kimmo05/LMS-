@@ -159,27 +159,120 @@
                                 <h5>내가 등록한 과목</h5><span class="f-14 pull-right mt-0">5 Contacts</span>
                               </div>
                			 	</div>
+               			 	</div>
               	<c:forEach var="sVo" items="${lists}"  varStatus="vs">	 
                   <div class="card">
                     <div class="card-header pb-0">
-                      <h5 class="pull-left">${sVo.sub_title}</h5>
+                      <h5 class="pull-left">
+                      <c:choose>
+												<c:when test="${sVo.cod_name  eq 'JAVA'}">
+													<span class="badge rounded-pill"
+														style="background-color: #006400">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'C'}">
+													<span class="badge rounded-pill"
+														style="background-color: #AFEEEE">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'HTML'}">
+													<span class="badge rounded-pill"
+														style="background-color: #6A5ACD">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'PYTHON'}">
+													<span class="badge rounded-pill"
+														style="background-color: #C71585">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'CSS'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FFF8DC">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'LINUX'}">
+													<span class="badge rounded-pill"
+														style="background-color: #40E0D0">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'C#'}">
+													<span class="badge rounded-pill"
+														style="background-color: #8FBC8F">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'JAVASCRIPT'}">
+													<span class="badge rounded-pill"
+														style="background-color: #8A2BE2">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'AI'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FFB6C1">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'BIGDATA'}">
+													<span class="badge rounded-pill"
+														style="background-color: #000080">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'DEEPLEARNING'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FA8072">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'VR'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FFA500">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'AR'}">
+													<span class="badge rounded-pill"
+														style="background-color: #F0E68C">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'EXCEL'}">
+													<span class="badge rounded-pill"
+														style="background-color: #B0C4DE">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'POWERPOINT'}">
+													<span class="badge rounded-pill"
+														style="background-color: #2F4F4F">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'KOTLIN'}">
+													<span class="badge rounded-pill"
+														style="background-color: #D8BFD8">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq 'SPRING'}">
+													<span class="badge rounded-pill"
+														style="background-color: #1E90FF">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq '기타'}">
+													<span class="badge rounded-pill"
+														style="background-color: #008080">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name  eq '형상관리'}">
+													<span class="badge rounded-pill"
+														style="background-color: #FFD700">${sVo.cod_name}</span>
+												</c:when>
+												<c:when test="${sVo.cod_name eq 'DATABASE'}">
+													<span class="badge rounded-pill"
+														style="background-color: #A52A2A">${sVo.cod_name}</span>
+												</c:when>
+												<c:otherwise>
+													<span class="badge rounded-pill"
+														style="background-color: #556B2F">${sVo.cod_name}</span>
+												</c:otherwise>
+											</c:choose>
+                      <a href='./user_subjectDetail.do?sub_num=${sVo.sub_num}'>${sVo.sub_title}</a>
+                      
+                      </h5>
                     </div>
                     <div class="card-body">
                       <div class="tabbed-card">
                         <ul class="pull-right nav nav-pills nav-primary" id="pills-clrtab" role="tablist">
-                          <li class="nav-item"><a class="nav-link active" id="pills-clrhome-tab" data-bs-toggle="pill" href="#pills-clrhome" role="tab" aria-controls="pills-clrhome" aria-selected="true"><i class="icofont icofont-ui-home"></i>Home</a></li>
-                          <li class="nav-item"><a class="nav-link" id="pills-clrprofile-tab" data-bs-toggle="pill" href="#pills-clrprofile" role="tab" aria-controls="pills-clrprofile" aria-selected="false"><i class="icofont icofont-man-in-glasses"></i>Profile</a></li>
-                          <li class="nav-item"><a class="nav-link" id="pills-clrcontact-tab" data-bs-toggle="pill" href="#pills-clrcontact" role="tab" aria-controls="pills-clrcontact" aria-selected="false"><i class="icofont icofont-contacts"></i>Contact</a></li>
+                          <li class="nav-item"><a class="nav-link active" id="pills-clrhome-tab" data-bs-toggle="pill" href="#pills-clrhome" role="tab" aria-controls="pills-clrhome" aria-selected="true"><i class="icofont icofont-ui-home"></i>과목정보</a></li>
+                          <li class="nav-item"><a class="nav-link" id="pills-clrprofile-tab" data-bs-toggle="pill" href="#pills-clrprofile" role="tab" aria-controls="pills-clrprofile" aria-selected="false"><i class="icofont icofont-man-in-glasses"></i>강사&자료</a></li>
+                          <li class="nav-item"><a class="nav-link" id="pills-clrcontact-tab" href="./user_subjectModifyForm.do?sub_num=${sVo.sub_num}" aria-controls="pills-clrcontact" aria-selected="false"><i class="icofont icofont-contacts"></i>수정하러 가기</a></li>
                         </ul>
                         <div class="tab-content" id="pills-clrtabContent">
                           <div class="tab-pane fade show active" id="pills-clrhome" role="tabpanel" aria-labelledby="pills-clrhome-tab">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                          	
+                          
+                          	<div> [ 과목설명 ]
+                            <p>${sVo.sub_content}</p>
+                            </div>
                           </div>
                           <div class="tab-pane fade" id="pills-clrprofile" role="tabpanel" aria-labelledby="pills-clrprofile-tab">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
-                          </div>
-                          <div class="tab-pane fade" id="pills-clrcontact" role="tabpanel" aria-labelledby="pills-clrcontact-tab">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+                          	<div> [ 강사 및 과목 부가정보 ]
+                          		<p>강사 : ${sVo.sub_ins}<br>등록일 : ${sVo.sub_regdate}</p>
+                          	</div>
                           </div>
                         </div>
                       </div>
@@ -191,7 +284,7 @@
                 </div>
                 </div>
  <%-- <span><a class="ps-0 edit-information f-w-600" href="./user_subjectDetail.do?sub_num=${sVo.sub_num}">자세히 보기</a><span><a href="./user_subjectModifyForm.do?sub_num=${sVo.sub_num}">수정하러 가기</a></span></span> --%>
-                  </div>
+                 
                 
                 
                 
