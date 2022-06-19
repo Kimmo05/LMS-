@@ -69,9 +69,14 @@ public interface IMemberDao {
 	public int updateInsPw(Map<String, Object> map);
 	
 	
-	//페이징처리
+	//일반회원 페이징처리
 	public List<MemberVo> adminUserListRow(RowNumVo rvo);
 	public int adminUserListTotal();
+	
+
+	//강사 페이징처리
+	public List<MemberVo> adminInsListRow(RowNumVo rvo);
+	public int adminInsListTotal();
 	
 	
 }

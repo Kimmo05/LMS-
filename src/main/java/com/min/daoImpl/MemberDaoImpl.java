@@ -189,4 +189,16 @@ public class MemberDaoImpl implements IMemberDao{
 		return sqlSession.update(NS+"updateInsPw",map);
 	}
 
+	@Override
+	public List<MemberVo> adminInsListRow(RowNumVo rvo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NS+"adminInsListRow",rvo);
+	}
+
+	@Override
+	public int adminInsListTotal() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NS+"adminInsListTotal");
+	}
+
 }

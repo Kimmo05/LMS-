@@ -66,8 +66,8 @@ public class UserLoginController {
 	
 	//로그인 후 일반회원 메인페이지
 	@RequestMapping(value = "/main.do", method = RequestMethod.GET)
-	public String home(Locale locale, Model model,Authentication user) {
-		log.info("Welcome home! The client locale is {}.", locale);
+	public String traMainPage(Locale locale, Model model,Authentication user) {
+		log.info("traMainPage 메인페이지 이동");
 		
 		
 		return "main";
@@ -75,17 +75,17 @@ public class UserLoginController {
 	//일반회원 로그인페이지에서 로그인페이지로
 	@RequestMapping(value = "/reMain.do", method = RequestMethod.GET)
 	public String redirectHome(Locale locale, Model model,Authentication user) {
-		log.info("Welcome home! The client locale is {}.", locale);
+		log.info("redirectHome 메인페이지 이동");
 		
 		
 		return "redirect:/app/";
 	}
 	// 로그인 페이지로 가는 매핑
 	@RequestMapping(value = "/loginPage.do", method = {RequestMethod.GET,RequestMethod.POST})
-	public String login(@RequestParam(value = "error", required = false) String error,
+	public String traLogin(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout, Authentication user, Model model, HttpServletRequest req) {
 		
-		log.info("일반회원 로그인");
+		log.info("traLogin 일반회원 로그인 페이지 이동");
 //		UserDetails userdto = (UserDetails) user.getPrincipal();
 //		System.out.println("---------------"+userdto);
 //		model.addAttribute("user", userdto.toString());
@@ -101,15 +101,15 @@ public class UserLoginController {
 		if(user != null) {
 			return "redirect:/user/result.do";
 		}
-		log.info("일반회원 로그인 페이지로 이동");
+		
 		return "TraLoginForm";
 	}
 
 	//로그인 완료 후 메인 페이지로 가는 매핑
 	@RequestMapping(value = "/result.do", method = RequestMethod.GET)
-	public String maingo(Authentication user, Model model , HttpSession session) {
+	public String mainLoginTra(Authentication user, Model model , HttpSession session) {
 		
-		System.out.println("인증후  생성된 세션 확인");
+		log.info("인증후  생성된 세션 확인");
 		Enumeration<?> session_attributes = session.getAttributeNames();
 		while(session_attributes.hasMoreElements()) {
 	        String session_name  = session_attributes.nextElement().toString();
@@ -118,7 +118,7 @@ public class UserLoginController {
 	        System.out.println("세션값: " +session_value);
 		}
 		
-		System.out.println("SecurityContextHolder 에 등록된 정보 확인");
+		log.info("SecurityContextHolder 에 등록된 정보 확인");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		if ( auth != null) {
@@ -131,7 +131,7 @@ public class UserLoginController {
 			System.out.println("Authentication isAuthenticated: " + auth.isAuthenticated());
 			
 		}
-	
+		log.info("mainLoginTra 로그인 완료");
 //		UserDetails userdto = (UserDetails) auth.getDetails();
 //		model.addAttribute("user", userdto.toString());
 //		System.out.println(":::::::::::::::::::::::: " +auth.getPrincipal());
@@ -143,15 +143,18 @@ public class UserLoginController {
 	//회원가입으로 가는 매핑
 	@RequestMapping(value = "/traSignUp.do", method = RequestMethod.GET)
 	public String traSignUp() {
+		log.info("traSignUp 회원가입 페이지 이동");
 		return "traRegister";
 	}
 
 
 	// 회원가입 성공 매핑
 	@RequestMapping(value = "/traSingUpSc.do", method = RequestMethod.POST)
-	public String maingo(@RequestParam Map<String, Object> map, Model model) {
+	public String traSingUpSc(@RequestParam Map<String, Object> map, Model model) {
 		System.out.println("회원가입 정보"+map);
+		log.info("traSingUpSc 회원가입 정보 {} ",map);
 		service.traSignUp(map);
+		log.info("traSingUpSc 회원가입완료 로그인 페이지 이동");
 		return "redirect:/user/loginPage.do";
 	}
 	
@@ -161,10 +164,10 @@ public class UserLoginController {
 		MemberVo mvo = (MemberVo) user.getDetails();
 		map.put("id", mvo.getId());
 		
-		log.info("개인정보 수정",mvo);
-		System.out.println(map);
-	   service.updateTra(map);
+		log.info("editUserProfile 개인정보 수정",mvo);
+		service.updateTra(map);
 		
+		log.info("editUserProfile 개인정보 수정 완료");
 		
 		
 		return "redirect:/user/logout.do";
@@ -176,7 +179,7 @@ public class UserLoginController {
 	//아이디 찾기
 		@RequestMapping(value = "/findTraIdView.do", method = RequestMethod.GET)
 		public String findTraIdView() {
-			
+			log.info("findTraIdView 아이디 찾기");
 			return "findTraId";
 		}
 
@@ -185,10 +188,10 @@ public class UserLoginController {
 		@RequestMapping(value = "/findTraId.do", method = RequestMethod.POST)
 		public @ResponseBody  Map<String, String> findTraId (@RequestParam Map<String, Object> map, Model model) {
 			Map<String, String> rMap = new HashMap<String, String>();
-			log.info("********* Welcome Member_Controller findTraId! : {} *********", map);
+			log.info("  Member_Controller findTraId : {} ", map);
 			MemberVo mVo = service.findTraId(map);
 			
-			log.info("********* Welcome! Member_Controller findTraId : {} *********", mVo);
+			log.info(" Member_Controller findTraId : {} ", mVo);
 			if(mVo == null) {
 				rMap.put("isc", "실패");
 			}else {
@@ -201,7 +204,7 @@ public class UserLoginController {
 		/* 비밀번호 찾기 */
 		@RequestMapping(value = "/findTraPwView", method = RequestMethod.GET)
 		public String findTraPw(){
-			
+			log.info("findTraPw : 비밀번호 찾기 페이지 이동");
 			return "findTraPw";
 		}
 
@@ -209,10 +212,10 @@ public class UserLoginController {
 		public @ResponseBody String findPw (@RequestParam Map<String, Object> map, Model model) throws Exception {
 			
 			String result=null;
-			System.out.println(map);
+			
 			//회원정보 불러오기
 			MemberVo vo1 = service.findTraPw(map);
-			System.out.println(vo1);
+			log.info("findPw : 일반회원 비밀번호 찾기 ");
 			
 			//가입된 이메일이 존재한다면 이메일 전송
 			if(vo1!=null) {
@@ -250,8 +253,8 @@ public class UserLoginController {
 		//이메일 중복 체크
 		@RequestMapping(value = "/CheckTraEmail.do", method = RequestMethod.GET)
 		@ResponseBody
-		public int emailCheck(@RequestParam("email") String email) {
-			log.info("일반회원 이메일 중복체크 : ", email);
+		public int traEmailCheck(@RequestParam("email") String email) {
+			log.info("traEmailCheck 일반회원 이메일 중복체크 : ", email);
 			
 			return service.checkTraEmail(email);
 		}

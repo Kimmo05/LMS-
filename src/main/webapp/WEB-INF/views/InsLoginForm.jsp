@@ -124,7 +124,7 @@
                 </div>
                 <p>계정이 없으신가요??<a class="ms-2" href="./InsSingUpgo.do">회원가입</a></p>
                 <p>메인화면으로 돌아가시겠습니까?<a class="ms-2" href="../app/main.do">이동</a></p>
-                  <input class="btn btn-warning btn-block btn-xs " type="button" value="뒤로가기" onclick="history.back(-1)">
+<!--                   <input class="btn btn-warning btn-block btn-xs " type="button" value="뒤로가기" onclick="history.back(-1)"> -->
               </form>
             </div>
           </div>

@@ -23,33 +23,35 @@ public class MemberServiceImpl implements IMemberService{
 
 	@Override
 	public MemberVo loginTra(Map<String, Object> map) {
-		log.info("MemberVo loginTra 서비스 실행");
+		log.info("MemberVo loginTra 로그인 서비스 실행");
 		return dao.loginTra(map);
 	}
 	@Override
 	public CareerVo loginCar(Map<String, Object> map) {
-		log.info("MemberVo loginCar 서비스 실행");
+		log.info("MemberVo loginCar 강사 경력등록 서비스 실행");
 		return dao.loginCar(map);
 	}
 	@Override
 	public int traSignUp(Map<String, Object> map) {
-		log.info("MemberVo traSignUp");
+		log.info("MemberVo traSignUp 일반회원 회원가입 서비스 실행");
 		return dao.traSignUp(map);
 	}
 
 	@Override
 	public MemberVo loginIns(Map<String, Object> map) {
+		log.info("MemberVo loginIns 강사 로그인 서비스 실행");
 		return dao.loginIns(map);
 	}
 
 	@Override
 	public int InsSignUp(Map<String, Object> map) {
+		log.info("MemberVo InsSignUp 강사 회원가입 서비스 실행");
 		return dao.InsSignUp(map);
 	}
 
 	@Override
 	public List<MemberVo> adminUserListRow(RowNumVo rvo) {
-		log.info("MemberServiceImpl adminUserListRow {}", rvo);
+		log.info("MemberServiceImpl adminUserListRow 일반회원 리스트 {}", rvo);
 		return dao.adminUserListRow(rvo);
 	}
 
@@ -67,7 +69,7 @@ public class MemberServiceImpl implements IMemberService{
 
 	@Override
 	public MemberVo findTraId(Map<String, Object> map) {
-		log.info("MemberServiceImpl findTraId");
+		log.info("MemberServiceImpl findTraId 일반회원 아이디 찾기 서비스 실행");
 		return dao.findTraId(map);
 	}
 
@@ -79,13 +81,13 @@ public class MemberServiceImpl implements IMemberService{
 
 	@Override
 	public int updateTra(Map<String, Object> map) {
-		log.info("MemberServiceImpl updateTra");
+		log.info("MemberServiceImpl updateTra 일반회원 회원정보 수정 서비스 실행");
 		return dao.updateTra(map);
 	}
 
 	@Override
 	public MemberVo findInsId(Map<String, Object> map) {
-		log.info("MemberServiceImpl findInsId");
+		log.info("MemberServiceImpl findInsId 강사 아이디 찾기 서비스 실행");
 		return dao.findInsId(map);
 	}
 
@@ -97,7 +99,7 @@ public class MemberServiceImpl implements IMemberService{
 
 	@Override
 	public int updateIns(Map<String, Object> map) {
-		log.info("MemberServiceImpl updateIns");
+		log.info("MemberServiceImpl updateIns 강사 회원정보 수정 서비스 실행");
 		return dao.updateIns(map);
 	}
 
@@ -109,20 +111,19 @@ public class MemberServiceImpl implements IMemberService{
 
 	@Override
 	public int checkTraId(String id) {
-		log.info("MemberServiceImpl CheckTraId");
-		log.info(id);
+		log.info("MemberServiceImpl CheckTraId 일반회원 아이디 중복 서비스 실행");
 		return dao.checkTraId(id);
 	}
 
 	@Override
 	public int checkInsId(String id) {
-		log.info("MemberServiceImpl checkInsId");
+		log.info("MemberServiceImpl checkInsId 강사 아이디 중복 서비스 실행");
 		return dao.checkInsId(id);
 	}
 
 	@Override
 	public int insertCar(Map<String, Object> map) {
-		log.info("MemberServiceImpl insertCar");
+		log.info("MemberServiceImpl insertCar 강사 경력 등록 서비스 실행");
 
 		int n = dao.insertCar(map);
 		int m = dao.insCarUpdate(map);
@@ -139,33 +140,43 @@ public class MemberServiceImpl implements IMemberService{
 	}
 	@Override
 	public int checkTraEmail(String id) {
-		// TODO Auto-generated method stub
+		log.info("MemberServiceImpl checkTraEmail 일반회원 이메일발송 서비스 실행");
 		return dao.checkTraEmail(id);
 	}
 	@Override
 	public int checkInsEmail(String id) {
-		// TODO Auto-generated method stub
+		log.info("MemberServiceImpl checkInsEmail 강사 이메일발송 서비스 실행");
 		return dao.checkInsEmail(id);
 	}
 	@Override
 	public MemberVo findTraPw(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		log.info("MemberServiceImpl findTraPw 일반회원 비밀번호 찾기 서비스 실행");
 		return dao.findTraPw(map);
 	}
 	@Override
 	public int updateTraPw(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		log.info("MemberServiceImpl updateTraPw 일반회원 비밀번호 변경 서비스 실행");
 		return dao.updateTraPw(map);
 	}
 	@Override
 	public MemberVo findInsPw(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		log.info("MemberServiceImpl findInsPw 강사 비밀번호 찾기 서비스 실행");
 		return dao.findInsPw(map);
 	}
 	@Override
 	public int updateInsPw(Map<String, Object> map) {
-		// TODO Auto-generated method stub
+		log.info("MemberServiceImpl updateInsPw 강사 비밀번호 변경 서비스 실행");
 		return dao.updateInsPw(map);
+	}
+	@Override
+	public List<MemberVo> adminInsListRow(RowNumVo rvo) {
+		log.info("MemberServiceImpl adminInsListRow 강사 페이징 서비스 실행");
+		return null;
+	}
+	@Override
+	public int adminInsListTotal() {
+		log.info("MemberServiceImpl adminInsListTotal 강사 페이징 서비스 실행");
+		return 0;
 	}
 
 	

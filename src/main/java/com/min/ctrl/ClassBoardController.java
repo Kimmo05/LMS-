@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.maven.doxia.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.min.service.IClassBoardService;
 import com.min.vo.ClassBoardVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 @RequestMapping(value = "/user/*")
 public class ClassBoardController {
 
@@ -38,6 +42,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classBoardSelectedAll.do", method = RequestMethod.GET)
 	public String classBoardSelectedAll(Model model , @SessionAttribute("cla_num") String cla_num, @RequestParam(required = false) String cbo_cate, HttpSession session) {
+		log.info("classBoardSelectedAll : 과정 게시판 전체조회");
 		session.setAttribute("cla_num", cla_num);
 		ClassBoardVo vo = new ClassBoardVo();
 		if(cbo_cate == null) {
@@ -56,6 +61,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classBoardSelectDetail.do", method = RequestMethod.GET)
 	public String classBoardSelectDetail(HttpSession session, Model model, @RequestParam int cbo_seq) {
+		log.info("classBoardSelectDetail : 과정 게시판 상세조회");
 		ClassBoardVo result = service.classBoardSelectDetail(cbo_seq);
 		session.setAttribute("cbo_seq", cbo_seq);
 		session.setAttribute("cbo_doc_seq", result.getCbo_doc_seq());
@@ -67,17 +73,19 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classVideoInsertForm.do", method = RequestMethod.GET)
 	public String classVideoInsertForm(@SessionAttribute("cla_num") String cla_num) {
-		return "admin/admin_classVideoInsertForm";
+		log.info("classVideoInsertForm : 동영상 자료 입력 폼 이동");
+		return "app/admin/admin_classVideoInsertForm";
 	}
 	
 	@RequestMapping(value = "/classVideoInsert.do", method = RequestMethod.POST)
 	public String classVideoInsert(@SessionAttribute("cla_num") String cla_num, @RequestParam String title, 
-								   @RequestParam String content, @RequestParam String videoAdd) {
+								   @RequestParam String content, @RequestParam String videoAdd, Authentication user) {
+		log.info("classVideoInsert : 동영상 자료 입력");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cbo_cla_num", cla_num);
 		map.put("cbo_cate", "동영상");
 		// 강사 본인 아이디 들어가는 곳
-		map.put("cbo_ins_id", "thdwndrlrkdtk123");
+		map.put("cbo_ins_id", user.getPrincipal());
 		map.put("cbo_title", title);
 		map.put("cbo_content", content);
 		map.put("cbo_youtubeadd", videoAdd);
@@ -89,6 +97,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classDocumentInsertForm.do", method = RequestMethod.GET)
 	public String classDocumentInsertForm(@SessionAttribute("cla_num") String cla_num) {
+		log.info("classDocumentInsertForm : 파일 자료 입력폼");
 		File file = new File("C:/upload/tmp");
 		// 디렉토리 생성
 		boolean directoryCreated = file.mkdirs();
@@ -100,9 +109,9 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classDocumentInsert.do", method = RequestMethod.POST)
 	public String classDocumentInsert(MultipartFile[] uploadFile, @RequestParam Map<String, Object> map,
-			@RequestParam List<MultipartFile> filename, @SessionAttribute("cla_num") String cla_num) throws IOException {
+			@RequestParam List<MultipartFile> filename, @SessionAttribute("cla_num") String cla_num, Authentication user) throws IOException {
+		log.info("classDocumentInsert : 파일 자료 입력폼");
 		String uploadFolder = "C:/upload/tmp";
-		
 		for (MultipartFile multipartFile : uploadFile) {
 			System.out.println("--------------------------------------");
 			System.out.println("Upload File Name : " + multipartFile.getOriginalFilename());
@@ -118,32 +127,32 @@ public class ClassBoardController {
 			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + multipartFile.getOriginalFilename().substring(0, multipartFile.getOriginalFilename().indexOf("."));
 			map.put("cbo_cla_num", cla_num);
 			map.put("cbo_cate", "자료");
-			// 강사 본인 아이디 들어가는 곳
-			map.put("cbo_ins_id", "thdwndrlrkdtk123");
+			map.put("cbo_ins_id", user.getPrincipal());
 			map.put("doc_originname", multipartFile.getOriginalFilename());
 			map.put("doc_savename", storedFileName);
 			map.put("doc_path", uploadFolder);
 			map.put("doc_extention", multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().indexOf(".")));
 		}
 		service.classDocInsert(map);
-		return "redirect:/classBoardSelectedAll.do";
+		return "redirect:/user/classBoardSelectedAll.do";
 	}
 	
 	@RequestMapping(value = "/documentUpdateForm.do", method = RequestMethod.GET)
 	public String documentUpdateForm() {
+		log.info("documentUpdateForm : 파일 자료 업데이트폼");
 		File file = new File("C:/upload/tmp");
 		// 디렉토리 생성
 		boolean directoryCreated = file.mkdirs();
 		// 결과 출력
 		System.err.println(directoryCreated);
-		return "admin/admin_classBoardModifyForm";
+		return "admin_classBoardModifyForm";
 	}
 	
 	@RequestMapping(value = "/documentUpdate.do", method = RequestMethod.POST)
 	public String documentUpdate(@RequestParam Map<String, Object> map, MultipartFile[] uploadFile,
 			@RequestParam List<MultipartFile> filename, @SessionAttribute("cla_num") String cla_num, @SessionAttribute("cbo_seq") int cbo_seq,@SessionAttribute("doc_seq") int doc_seq) throws IOException{
 		String uploadFolder = "C:/upload/tmp";
-		
+		log.info("documentUpdate : 파일 업데이트");
 		for (MultipartFile multipartFile : uploadFile) {
 			System.out.println("--------------------------------------");
 			System.out.println("Upload File Name : " + multipartFile.getOriginalFilename());
@@ -175,6 +184,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/documentDownload.do", method = RequestMethod.GET)
 	public String documentDownload(HttpServletRequest request, HttpServletResponse response, @RequestParam String doc_originname, Model model) {
+		log.info("documentDownload : 파일 다운로드");
 		try {
 			String filePath = "C:/upload/tmp/";
 			System.out.println(doc_originname);
@@ -221,6 +231,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classBoardDocDelete.do", method = RequestMethod.GET)
 	public String classBoardDocDelete(@SessionAttribute("cbo_doc_seq") int cbo_doc_seq) {
+		log.info("classBoardDocDelete : 자료 게시판 글 삭제");
 		service.classBoardDocDelete(cbo_doc_seq);
 		return "redirect:/user/classBoardSelectedAll.do";
 	}
@@ -228,6 +239,7 @@ public class ClassBoardController {
 	
 	@RequestMapping(value = "/classBoardVideoDelete.do", method = RequestMethod.GET)
 	public String classBoardVideoDelete(@SessionAttribute("cbo_seq") int cbo_seq) {
+		log.info("classBoardVideoDelete : 자료 게시판 동영상 삭제");
 		service.classBoardVideoDelete(cbo_seq);
 		return "redirect:/user/classBoardSelectedAll.do";
 	}
