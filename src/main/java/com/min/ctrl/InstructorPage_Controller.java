@@ -29,7 +29,7 @@ public class InstructorPage_Controller {
 	@Autowired
 	private IMemberService iService;
 	
-	@RequestMapping(value = "/userpage.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8;")
+	@RequestMapping(value = "/insuserpage.do", method = RequestMethod.POST, produces = "application/text; charset=UTF-8;")
 	public String userPaging(HttpSession session,
 						RowNumVo rowVo,Authentication user) {
 		logger.info("Page_Controller \t 요청 값 확인 rowVo : {}", rowVo);

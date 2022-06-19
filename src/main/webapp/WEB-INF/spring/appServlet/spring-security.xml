@@ -30,9 +30,6 @@
 		<security:intercept-url pattern="./images/**" access="permitAll" />
 		<security:intercept-url pattern="/**" access="permitAll" />
 		
-	
-		
-<!-- 				<security:intercept-url pattern="/user/**" access="permitAll"/> -->
 		
 		<security:logout invalidate-session="true" 
 		logout-url="/logout.do" 
@@ -56,7 +53,7 @@
 		
 		<security:logout invalidate-session="true" 
 		logout-url="/app/logout.do" 
-		logout-success-url="/loginPage.do?logout" delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
+		logout-success-url="/app/loginPage.do?logout" delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"/>
 		<security:session-management invalid-session-url="/app/loginPage.do">
 			<security:concurrency-control max-sessions="1" 
 			expired-url="/app/duplicateLogin.do" error-if-maximum-exceeded="false"/>
