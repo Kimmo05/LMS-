@@ -14,7 +14,7 @@ public interface IClassDao {
 	// 과정 전체조회
 	public List<ClassVo> classSelectAll();
 	// 과정 전체조회
-	public List<ClassVo> classSelected();
+	public List<ClassVo> classSelected(ClassVo vo);
 	// 과정 상세조회
 	public ClassVo classSelectDetail(String vo);
 	// 과정 상세조회 > 과목 리스트 조회

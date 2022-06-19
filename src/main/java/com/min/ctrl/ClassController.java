@@ -66,12 +66,15 @@ public class ClassController {
         return "admin/admin_classList";
     }
 
-//	@RequestMapping(value = "/classListed.do", method = RequestMethod.GET)
-//	public String classListed(Model model) {
-//		List<ClassVo> lists = service.classSelectAll();
-//		model.addAttribute("lists", lists);
-//		return "admin/admin_classList";
-//	}
+	@RequestMapping(value = "/classListed.do", method = RequestMethod.GET)
+	public String classListed(Model model, @RequestParam String cla_status) {
+		log.info("classListed : 과정 상태에 따른 조회");
+		ClassVo vo = new ClassVo();
+		vo.setCla_status(cla_status);
+		List<ClassVo> lists = service.classSelected(vo);
+		model.addAttribute("lists", lists);
+		return "admin/admin_classList";
+	}
 	
 	@RequestMapping(value = "/classSelectDetail.do", method = RequestMethod.GET, produces = "application/json")
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) throws org.json.simple.parser.ParseException {
@@ -526,6 +529,7 @@ public class ClassController {
 		
 		// 첫번째 =================================
 		// 기존 투표자들을 추출해서 다시 업데이트 과정 전초
+		log.info("기존 투표자 조회");
 		try {
 			VoteVo result = service.voteIns(vo);
 			System.out.println(result);
@@ -547,7 +551,7 @@ public class ClassController {
 		
 		// 두번째 =================================
 		// 새로 투표하는 사람이 전에 투표했는지 확인 과정
-		
+		log.info("기존 투표자 중복 확인");
 		String ids = "";
 		VoteVo all = new VoteVo();
 		JSONArray array = new JSONArray();

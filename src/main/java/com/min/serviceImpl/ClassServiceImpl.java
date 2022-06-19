@@ -30,8 +30,8 @@ public class ClassServiceImpl implements IClassService {
 	}
 
 	@Override
-	public List<ClassVo> classSelected() {
-		return dao.classSelected();
+	public List<ClassVo> classSelected(ClassVo vo) {
+		return dao.classSelected(vo);
 	}
 	
 	@Override

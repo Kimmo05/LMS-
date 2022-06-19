@@ -79,11 +79,13 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/messageBoardInsertForm.do", method = RequestMethod.GET)
 	public String classVideoInsertForm() {
+		log.info("messageBoardInsertForm : 쪽지 게시판 등록 폼 이동");
 		return "admin/admin_messageBoardInsertForm";
 	}
 	
 	@RequestMapping(value = "/mesBoardInsert.do", method = RequestMethod.POST)
 	public String mesBoardInsert(@RequestParam Map<String, Object> map, @RequestParam String mes_recipient, @SessionAttribute("mes_reffer") int mes_reffer, @RequestParam String mes_content,Authentication user) {
+		log.info("mesBoardInsert : 쪽지 작성");
 		map.put("mes_sender", user.getPrincipal().toString());
 		map.put("mes_recipient", mes_recipient);
 		map.put("mes_content", mes_content);
@@ -104,6 +106,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/mesBoardDelete.do", method = RequestMethod.GET)
 	public String mesBoardDelete(@RequestParam int mes_seq) {
+		log.info("mesBoardDelete : 쪽지 삭제");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mes_seq", mes_seq);
 		service.mesBoardDelete(map);
@@ -112,6 +115,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/mesBoardReplyForm.do", method = RequestMethod.GET)
 	public String mesBoardReplyForm(Model model, @SessionAttribute("mes_recipient") String mes_recipient,HttpSession session ,@SessionAttribute("mes_reffer") int mes_reffer) {
+		log.info("mesBoardReplyForm : 쪽지 답글 작성 폼");
 		model.addAttribute("mes_recipient", mes_recipient);
 		session.setAttribute("mes_reffer", mes_reffer);
 		return "admin/admin_messageBoardReplyForm";
@@ -119,6 +123,7 @@ public class MessageBoardController {
 	
 	@RequestMapping(value = "/mesBoardReply.do", method = RequestMethod.POST)
 	public String mesBoardReply(@RequestParam Map<String, Object> map,@RequestParam String mes_content ,@RequestParam String mes_recipient, Authentication user) {
+		log.info("mesBoardReply : 쪽지 답글 작성");
 		map.put("mes_sender", user.getPrincipal().toString());
 		map.put("mes_recipient", mes_recipient);
 		map.put("mes_content", mes_content);
