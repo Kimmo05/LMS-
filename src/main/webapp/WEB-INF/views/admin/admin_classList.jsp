@@ -6,6 +6,7 @@
 <title>Insert title here</title>
 <%@ include file="./admin_header.jsp" %>
 <body>
+
 <script type="text/javascript">
 function cla(val){
 	location.href="./classListed.do?cla_status="+val;
@@ -21,7 +22,7 @@ function cla(val){
           <div class="col-sm-6">
             <h3>모든 과정</h3>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+               <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
               <li class="breadcrumb-item active">모든 과정</li>
             </ol>
           </div>
@@ -45,6 +46,7 @@ function cla(val){
                   <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="강의중" id="top-home-tab" onclick="cla(this.value)" style="font-size: 100%;  width: 100%; max-width: 150px; cursor: pointer;"></li>
                   <li class="nav-item"><input spellcheck="false" class="nav-link active" name="cla_status" value="종강" id="top-home-tab" onclick="cla(this.value)" style="font-size: 100%;  width: 100%; max-width: 150px; cursor: pointer;"></li>
                 </ul>
+
               </div>
             </div>
           </div>

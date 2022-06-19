@@ -26,7 +26,7 @@ function filechk(){
                 <div class="col-sm-6">
                   <h3>과정 등록</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">과정 전체조회</li>
                     <li class="breadcrumb-item">과정 상세조회</li>
                     <li class="breadcrumb-item">과정 자료게시판</li>

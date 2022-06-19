@@ -15,8 +15,7 @@
 					<div class="col-sm-6">
 						<h3>과목 전체 조회</h3>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="./main.do"><i
-									class="icofont icofont-ui-home"></i></a></li>
+						<li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
 							<li class="breadcrumb-item">과목</li>
 							<li class="breadcrumb-item active">과목 전체 조회</li>
 						</ol>

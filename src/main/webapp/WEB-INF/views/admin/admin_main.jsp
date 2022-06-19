@@ -131,11 +131,11 @@
                             <div sclass="card-body faq-body">
                               <div class="navigation-option">
                                 <ul>
-                                  <li><a href="javascript:void(0)"><i data-feather="globe"></i>Help center</a></li>
-                                  <li><a href="javascript:void(0)"><i data-feather="file-text"></i>Articles</a><span class="badge badge-primary badge-pill pull-right">42</span></li>
-                                  <li><a href="javascript:void(0)"><i data-feather="youtube"></i>Video Tutorials</a><span class="badge badge-primary badge-pill pull-right">648</span></li>
-                                  <li><a href="javascript:void(0)"><i data-feather="message-circle"></i>Ask our community</a></li>
-                                  <li><a href="javascript:void(0)"><i data-feather="mail"></i>Contact us                                         </a></li>
+                                  <li><a href="javascript:void(0)"><i data-feather="globe"></i>이용안내</a></li>
+                                  <li><a href="javascript:void(0)"><i data-feather="file-text"></i>과목안내</a><span class="badge badge-primary badge-pill pull-right">42</span></li>
+                                  <li><a href="javascript:void(0)"><i data-feather="youtube"></i>과정안내</a><span class="badge badge-primary badge-pill pull-right">648</span></li>
+                                  <li><a href="javascript:void(0)"><i data-feather="message-circle"></i>고객센터</a></li>
+                                  <li><a href="javascript:void(0)"><i data-feather="mail"></i>FAQ</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -172,7 +172,7 @@
                   <div class="card-body">
                     <div class="media faq-widgets">
                       <div class="media-body">
-                        <h5>Knowledgebase</h5>
+                        <h5>관리자 입력사항</h5>
                         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
                       </div><i data-feather="aperture"></i>
                     </div>

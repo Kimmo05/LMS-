@@ -71,7 +71,7 @@ function selectAll(selectAll)  {
                   <input type="hidden" value="${result.cla_num}" id="claid">
                   <h3>${result.cla_title}</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+                    <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">모든 과정</li>
                     <li class="breadcrumb-item active">과정 상세</li>
                   </ol>

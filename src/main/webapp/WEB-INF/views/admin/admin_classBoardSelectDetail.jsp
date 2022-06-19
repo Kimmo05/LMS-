@@ -32,7 +32,7 @@ function delVideo(val){
         <div class="col-sm-6">
 <%--           <input type="hidden" name="doc_originname" value="${doc_originname}" readonly="readonly"> --%>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+            <li class="breadcrumb-item"><a href="index.html"><i class="icofont icofont-ui-home"></i></a></li>
             <li class="breadcrumb-item">과정 게시판</li>
             <li class="breadcrumb-item active">과정 게시판 상세</li>
           </ol>

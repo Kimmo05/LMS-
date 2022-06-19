@@ -15,7 +15,7 @@
                 <div class="col-sm-6">
                     <h3>설문조사</h3>
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.do">Home</a></li>
+                    <li class="breadcrumb-item"><a href="./main.do"><i class="icofont icofont-ui-home"></i></a></li>
                         <li class="breadcrumb-item">중분류</li>
                         <li class="breadcrumb-item active">소분류</li>
                     </ol>

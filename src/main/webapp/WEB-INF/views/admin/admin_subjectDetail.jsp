@@ -24,7 +24,7 @@
                 <div class="col-sm-6">
                   <h3>과목 상세</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">관리자</li>
                     <li class="breadcrumb-item">과목</li>
                     <li class="breadcrumb-item active">과목 상세보기</li>

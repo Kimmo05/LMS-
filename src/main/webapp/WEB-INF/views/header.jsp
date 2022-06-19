@@ -124,14 +124,14 @@
               <h6 class="mt-3 f-14 f-w-600">${info.name}</h6></a>
             <p class="mb-0 font-roboto">${id}<br>${info.email}</p>
             <ul>
-              <li><span><span class="counter"></span>k</span>
-                <p>정보1</p>
+              <li><span>좋아요</span>
+                <p>12</p>
               </li>
-              <li><span>수치2</span>
-                <p>정보2</p>
+              <li><span>마일리지</span>
+                <p>1000</p>
               </li>
-              <li><span><span class="counter"></span>k</span>
-                <p>정보3 </p>
+              <li><span>보유쿠폰</span>
+                <p>2장</p>
               </li>
             </ul><br>
             <div>
@@ -159,6 +159,7 @@
                       <h6>General </h6>
                     </div>
                   </li>
+
                 
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목</span></a>
                     <ul class="nav-submenu menu-content">
@@ -166,19 +167,13 @@
                       <li><a href="./user_subjectList.do">전체과목 보러가기</a></li>
                     </ul>
                   </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정관리</span></a>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="layout"></i><span>과정</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./classListForm.do">과정 리스트</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+
                     </ul>
                   </li>
-<!--                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="box"></i><span>결제관리</span></a> -->
-<!--                     <ul class="nav-submenu menu-content"> -->
-<!--                       <li><a href="./pay.do">결제하기</a></li> -->
-<!--                       <li><a href="./user_Mypay.do">결제조회</a></li> -->
-<!--                       <li><a href="./user_MyDiscount.do">내 마일리지,쿠폰</a></li> -->
-<!--                     </ul> -->
-<!--                   </li> -->
+
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./tag.do">태그</a></li>

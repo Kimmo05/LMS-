@@ -37,7 +37,7 @@ function insertForm(){
                 <div class="col-sm-6">
                   <h3>과정 등록</h3>
                   <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+                  <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
                     <li class="breadcrumb-item">쪽지 게시판</li>
                   </ol>
                 </div>

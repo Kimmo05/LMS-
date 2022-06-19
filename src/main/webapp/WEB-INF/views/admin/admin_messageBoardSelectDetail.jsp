@@ -26,7 +26,7 @@ function reply(){
 <%--           <h3>${result.mes_cate}</h3> --%>
 <%--           <input type="hidden" name="doc_originname" value="${doc_originname}" readonly="readonly"> --%>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./adminMain.do">Home</a></li>
+          <li class="breadcrumb-item"><a href="./adminMain.do"><i class="icofont icofont-ui-home"></i></a></li>
             <li class="breadcrumb-item">쪽지 게시판</li>
             <li class="breadcrumb-item active">쪽지 게시판 상세보기</li>
           </ol>

@@ -233,6 +233,7 @@
                     <ul class="nav-submenu menu-content">
                        <li><a href="./adminTraList.do">일반회원 관리</a></li>
                       <li><a href="./adminInsList.do">강사 관리</a></li>
+
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>
@@ -254,8 +255,8 @@
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="folder-plus"></i><span>통계</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="./index.do">메뉴1</a></li>
-                      <li><a href="./index.do">메뉴2</a></li>
+                      <li><a href="./index.do">통계 전체 조회</a></li>
+                      <li><a href="./index.do">년도별 통계자료</a></li>
                     </ul>
                   </li>
                  
