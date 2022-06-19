@@ -56,8 +56,6 @@ public class ClassController {
     @Autowired
     private ITagService tagService;
 
-//    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @RequestMapping(value = "/classListForm.do", method = RequestMethod.GET)
     public String classListForm(Model model, HttpSession session) throws ParseException {
     	log.info("classListForm : 과정 리스트 폼 생성");
@@ -113,7 +111,6 @@ public class ClassController {
 		try {
 			for (int i = 0; i < insList.size(); i++) {
 				res = insList.get(i).getVot_voter();
-//				res = insList.get(i).getVot_voter();
 				System.out.println("원본 : "+res);
 				if(res==null) {
 					res = "0";
@@ -134,7 +131,6 @@ public class ClassController {
 			
 			// 총 투표자
 			System.out.println("투표자 수 : "+cnt);
-//			ClassVo result2 = service.classSelectDetail("CLA027");
 			Double total = (double) result.getCla_maxpeo();
 			System.out.println("정원 : "+total);
 			for (int j = 0; j < cnt.size(); j++) {
@@ -170,9 +166,6 @@ public class ClassController {
 		map.put("cla_title", title);
 		map.put("cla_content", content);
 		int n = service.classFormInsert(map);
-		
-//		ClassVo classVo = service.classSelectLastInsert();
-//		String classNum = classVo.getCla_num();
 		
 		map.clear();
 		for (String listed : subList) {
@@ -351,15 +344,12 @@ public class ClassController {
 		
 		VoteVo vo = new VoteVo();
 		vo.setVot_sub_num(tm.get(h).getVot_sub_num());
-//		vo.setVot_sub_num(sub);
 		vo.setVot_cla_num(cla_num);
 		List<VoteVo> lists = service.voteRatio(vo);
-//		String vot_sub_num = "20220523SUB100";
 		
 		JSONParser parser = new JSONParser();
 		String resu = "";
 		String ins = "";
-//		String sub_num = "";
 		int max = 0;
 		int voted = 0;
 		JSONArray cnted = new JSONArray();
@@ -489,8 +479,8 @@ public class ClassController {
 		vo.setVot_sub_num(sub_num);
 		List<VoteVo> list = service.voteRatio(vo);
 		for (int i = 0; i < list.size(); i++) {
-//			if(list.get(i).getVot_ins_id().equals(user.toString())) {
-			if(list.get(i).getVot_ins_id().equals("thdwndrlrkdtk123")) {
+			if(list.get(i).getVot_ins_id().equals(user.toString())) {
+//			if(list.get(i).getVot_ins_id().equals("thdwndrlrkdtk123")) {
 				return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 			}
 		}
@@ -498,8 +488,8 @@ public class ClassController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("vot_sub_num", sub_num);
 		map.put("vot_cla_num", cla_num);
-//		map.put("vot_ins_id", user.getPrincipal());
-		map.put("vot_ins_id", "thdwndrlrkdtk123");
+		map.put("vot_ins_id", user.getPrincipal());
+//		map.put("vot_ins_id", "thdwndrlrkdtk123");
 		service.voteBoxInsert(map);
 		return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 	}
@@ -536,7 +526,6 @@ public class ClassController {
 			JSONArray json = (JSONArray) parser.parse(result.getVot_voter());
 			
 			for (int i = 0; i < json.size(); i++) {
-//				System.out.println("listed : "+listed);
 				JSONObject obj = (JSONObject) parser.parse(json.get(i).toString());
 				System.out.println(obj.get("id"));
 				obj.put("id", obj.get("id")); 
@@ -560,22 +549,13 @@ public class ClassController {
 		List<VoteVo> lists = service.voteRatio(all);
 		System.out.println("원본 : "+lists);
 		System.out.println("■■■■■■■■■■");
-//		for (int i = 0; i < lists.size(); i++) {
-//			JSONArray list = (JSONArray) parser.parse(lists.toString());
-		
-		
-//		JSONArray list = (JSONArray) parser.parse(lists.toString());
-//		System.out.println(list.toJSONString());
 		for (int i = 0; i < lists.size(); i++) {
 			
 			System.out.println("lists : "+ lists.get(i).getVot_voter());
 			String res = lists.get(i).getVot_voter();
 			
 			if(lists.get(i).getVot_voter() == null) {
-//				result = lists.get(i).getVot_voter();
-//				res = "";
 				continue;
-//				System.out.println("result1 : "+res);
 			}
 			
 			array = (JSONArray) parser.parse(res);
@@ -628,16 +608,12 @@ public class ClassController {
 			System.out.println("obj : "+list2);
 			ids = list2.get("id").toString();
 			System.out.println(ids);
-			
-//			JSONObject ided = (JSONObject)parser.parse(list.toJSONString());
-//			
 			if(ids.equals(user.getPrincipal())) {
 				System.out.println("중복된 아이디가 있습니다.");
 				return "redirect:/user/classSelectDetail.do?cla_num="+cla_num;
 			}
 			
 		}
-//		System.out.println("id값 구하기 : "+list.get("id"));
 		System.out.println("result2 : "+ arr);
 		
 		
