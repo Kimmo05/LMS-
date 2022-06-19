@@ -114,11 +114,8 @@
 					console.log(data);
 					if(data ==true){
 						console.log(data);
-						Swal.fire({
-		                    icon: 'success',
-		                    title: '임시 비밀번호가<Br> 발급되었습니다.',
-		                    text: '메일함을 확인해 주세요.',
-		                });
+						alert("임시 비밀번호가 발급되었습니다.메일함을 확인해 주세요");
+
 					}else{
 					
 						Swal.fire({

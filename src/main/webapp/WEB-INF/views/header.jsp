@@ -159,6 +159,7 @@
                       <h6>General </h6>
                     </div>
                   </li>
+
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="./user_subjectInsertForm.do">내 과목 만들기</a></li>
