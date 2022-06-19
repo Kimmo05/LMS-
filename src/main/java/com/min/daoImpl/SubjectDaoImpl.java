@@ -154,6 +154,12 @@ public class SubjectDaoImpl implements SubjectDao{
 	
 		return sqlSession.update(NS+"subUpdateRejection",map);
 	}
+	@Override
+	public int subUpdateStatusR(String sub_num) {
+		log.info("========== SubjectDaoImpl/subUpdateStatusR ==========");
+		log.info("========== subUpdateStatusR : "+sub_num+" ==========");
+		return sqlSession.update(NS+"subUpdateStatusR",sub_num);
+	}
 	
 	//5) 과목 수정
 	//5-1) 일반회원/강사 과목 수정시 과목 정보 수정
@@ -172,6 +178,7 @@ public class SubjectDaoImpl implements SubjectDao{
 	
 		return sqlSession.update(NS+"subUpdateCurriculum",map);
 	}
+
 
 
 	}

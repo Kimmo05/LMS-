@@ -182,6 +182,15 @@ public class SubjectAdminController {
 			int n =  sService.subUpdateStatusD(sub_num);
 			System.out.println("상태가 종료로 업데이트 된 과목 수 : "+ n);
 	}
+
+	//4-2) 과목 등록 후 관리자의 과목 검수 후 과목상태를 승인'D'로 변경
+	@RequestMapping(value = "/user/subUpdateStatusR.do", method = {RequestMethod.POST, RequestMethod.GET})
+	@ResponseBody
+	public void subUpdateStatusR(@RequestParam(value="sub_num") String sub_num){
+		log.info("********* SubjectController subUpdateStatusR 관리자의 상태변경 *********");
+			int n =  sService.subUpdateStatusR(sub_num);
+			System.out.println("상태가 반려로 업데이트 된 과목 수 : "+ n);
+	}
 	
 	//4-3) 과목 등록 후 관리자의 과목 검수 후 과목상태를 반려시 상태 'R'로 변경 및 반려사유 입력
 	@RequestMapping(value = "/user/subReject.do", method = RequestMethod.POST)

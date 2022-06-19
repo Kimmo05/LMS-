@@ -121,13 +121,18 @@ public class SubjectServiceImpl implements SubjectService{
 	//4-3) 과목 반려시 과목상태 반려 'R'로 변경 및 반려사유 입력
 	@Override
 	public int subReject(Map<String, Object> map) {
-		log.info("========== SubjectServiceImpl/subUpdateStatusD 과목 반려시 과목상태 반려'R'로 변경 및 반려사유 입력 ==========");
-		log.info("========== SubjectServiceImpl/subUpdateStatusD 과목 반려시 과목상태 반려'R'로 변경 및 반려사유 입력 : {} "+map+"==========");
+		log.info("========== SubjectServiceImpl/subUpdateStatusR 과목 반려시 과목상태 반려'R'로 변경 및 반려사유 입력 ==========");
+		log.info("========== SubjectServiceImpl/subUpdateStatusR 과목 반려시 과목상태 반려'R'로 변경 및 반려사유 입력 : {} "+map+"==========");
 		int n = sDao.subUpdateStatusR(map);
 		int m = sDao.subInsertRegister(map);
 		return (n>0||m>0)?1:0;
 	}
-
+	@Override
+	public int subUpdateStatusR(String sub_num) {
+		log.info("========== SubjectServiceImpl/subUpdateStatusR 과목 반려시 과목상태 반려'R'로 변경 및 반려사유 입력 ==========");
+		log.info("========== SubjectServiceImpl/subUpdateStatusR 과목 반려시 과목상태 반려'R'로 변경 및 반려사유 입력 : {} "+sub_num+"==========");
+		return sDao.subUpdateStatusR(sub_num);
+	}
 	//5) 과목 수정
 	//5-1) 일반회원/강사 과목 수정시 과목 정보 수정
 	@Override
@@ -143,6 +148,7 @@ public class SubjectServiceImpl implements SubjectService{
 		log.info("========== SubjectServiceImpl/subUpdateCurriculum 일반회원/강사 과목 수정시 커리큘럼 정보 수정 : {} "+map+"==========");
 		return sDao.subUpdateCurriculum(map);
 	}
+
 
 
 
