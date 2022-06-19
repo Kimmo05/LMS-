@@ -47,11 +47,9 @@
 		var name = document.getElementById('inputName');
 		var email = document.getElementById('inputEmail');
 		console.log(name.value, email.value);
-		
 		var frm = document.forms[0];
-// 		frm.action = "./login.do";
+		frm.action = "./login.do";
 		console.log(frm);
-		
 		// 유효성 검사 후 Ajax 로그인
 		if(name.value == "" || name.value.trim() == ""){
 			name.value = "";
@@ -73,7 +71,6 @@
                    clearInterval(timerInterval)
                  }
                }).then((result) => {
-                 /* Read more about handling dismissals below */
                  if (result.dismiss === Swal.DismissReason.timer) {
                    console.log('I was closed by the timer')
                  }
@@ -105,8 +102,7 @@
              });
 		}else{
 			$.ajax({
-// 				url:"./loginCheckText.do", // 반환되는 값을 Text 로 처리
-				url:"./findInsId.do", // 반환되는 값을 Map(JSON) 으로 처리
+				url:"./findInsId.do", 
 				method:"post",
 				data:"name=" + name.value + "&email=" + email.value,
 				success:function(msg){
@@ -156,8 +152,6 @@
                   <label>이메일</label>
                   <div class="input-group"><span class="input-group-text"><i class="icon-email"></i></span>
                     <input class="form-control" type="email" name="email" id="inputEmail"required="" placeholder="email">
-                    
-                  
                   </div>
                 </div>
               

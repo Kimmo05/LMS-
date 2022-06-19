@@ -232,6 +232,8 @@
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>회원관리</span></a>
                     <ul class="nav-submenu menu-content">
                        <li><a href="./adminTraList.do">일반회원 관리</a></li>
+                      <li><a href="./adminInsList.do">강사 관리</a></li>
+
                     </ul>
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="airplay"></i><span>과목관리</span></a>

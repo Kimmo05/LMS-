@@ -32,7 +32,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.min.service.SubjectService;
 import com.min.vo.ClassBoardVo;
-import com.min.vo.InfoUser;
 import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 import com.min.vo.RowNumVo;

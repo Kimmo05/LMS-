@@ -1,24 +1,18 @@
 package com.min.ctrl;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Enumeration;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.min.service.IMemberService;
 import com.min.service.IPayService;
@@ -40,7 +34,7 @@ public class MainController {
 	//첫 메인페이지
 	@RequestMapping(value = "/app/main.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		log.info("로그인전 메인 {}.", locale);
+		log.info("로그인전 메인 페이지");
 		System.out.println("SecurityContextHolder 에 등록된 정보 확인");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
@@ -58,19 +52,18 @@ public class MainController {
 		return "main";
 	}
 	//메인페이지 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/app/", method = RequestMethod.GET)
 	public String LoginHome(Locale locale, Model model) {
-		log.info("로그인 후 메인 {}", locale);
+		log.info("LoginHome 로그인전 메인 페이지");
 		
 		return "main";
 	}
 	
 	// 로그인 페이지로 가는 매핑
 		@RequestMapping(value = "/app/loginPage.do", method = {RequestMethod.GET})
-		public String selectlogin(
+		public String loginPage(
 				Locale locale, Model model,Authentication user) {
-			System.out.println("로그인 선택창 이동");
-			System.out.println("로그인 선택창으로 이동 합시다");
+			System.out.println(" loginPage 로그인 선택창 이동");
 
 			return "loginForm";
 		}
@@ -79,7 +72,7 @@ public class MainController {
 		@RequestMapping(value = {"/user/myProfile.do", "/ins/myProfile.do"}, method = {RequestMethod.GET})
 		public String myProfile(
 				Locale locale, Model model,Authentication user) {
-			log.info("myProfile 마이페이지 이동 ");
+			log.info(" myProfile 마이페이지 이동 ");
 			Map<String, Object> cmap = new HashMap<String, Object>();
 			cmap.put("cou_tra_id", user.getPrincipal());
 			cmap.put("cou_delflag", "Y");

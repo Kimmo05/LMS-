@@ -17,8 +17,8 @@ public class MailUtil {
 		//Mail Server 설정
 		String charSet="utf-8";
 		String hostSMTP="smtp.naver.com";
-		String hostSMTPid=""; //관리자 이메일 아이디
-		String hostSMTPpw=""; //관리자 이메일 비밀번호
+		String hostSMTPid="modali05"; //관리자 이메일 아이디
+		String hostSMTPpw="rlaah123!@"; //관리자 이메일 비밀번호
 		
 		//보내는 사람 
 		String fromEmail="modali05@naver.com"; //보내는 사람 이메일 
@@ -30,7 +30,7 @@ public class MailUtil {
 		msg +="<div align='lift'";
 		msg +="<h3>";
 		msg +=vo.getId() + "님의 임시 비밀번호입니다. <br>로그인 후 비밀번호를 변경해 주세요</h3>";
-		msg +="<p>임시 비밀번호:";
+		msg +="<p><b>임시 비밀번호<b> : ";
 		msg +=vo.getPw() + "</p></div>";
 		
 		//email전송

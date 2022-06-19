@@ -14,7 +14,7 @@ public interface IClassDao {
 	// 과정 전체조회
 	public List<ClassVo> classSelectAll();
 	// 과정 전체조회
-	public List<ClassVo> classSelected();
+	public List<ClassVo> classSelected(ClassVo vo);
 	// 과정 상세조회
 	public ClassVo classSelectDetail(String vo);
 	// 과정 상세조회 > 과목 리스트 조회
@@ -54,11 +54,22 @@ public interface IClassDao {
 	public int classPeoInsert(Map<String, Object> map);
 	// 투표자 찾기
 	public int classPeoSelectAll(ClassPeopleVo vo);
+	// 해당 과정 수강생과 강사 리스트
+	public List<String> classVotedSelectAll(ClassPeopleVo vo);
 	
+	// 과정 상태 변경 cron 처리 (투표중 / 강의중 / 종강)
+	public int endRecruit();
+	public int endVote();
+	public int classStart();
+	public int classEnd();
 	
-	
-	//최근에 등록된 과정 출력
+	// 최근에 등록된 과정 출력
 	public ClassVo classSelectLastInsert();
+	// 과정 삭제
+	public int classPeoDelete(String cla_num);
+	public int classSubDelete(String cla_num);
+	public int classDelete(String cla_num);
+	public int classVoteDelete(String cla_num);
 	
 	// 과목 리스트 뽑기(임시)
 	public List<SubjectVo> subjectSelected();
