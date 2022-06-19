@@ -168,6 +168,16 @@ public class MemberServiceImpl implements IMemberService{
 		log.info("MemberServiceImpl updateInsPw 강사 비밀번호 변경 서비스 실행");
 		return dao.updateInsPw(map);
 	}
+	@Override
+	public List<MemberVo> adminInsListRow(RowNumVo rvo) {
+		log.info("MemberServiceImpl adminInsListRow 강사 페이징 서비스 실행");
+		return null;
+	}
+	@Override
+	public int adminInsListTotal() {
+		log.info("MemberServiceImpl adminInsListTotal 강사 페이징 서비스 실행");
+		return 0;
+	}
 
 	
 
