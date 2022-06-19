@@ -119,15 +119,11 @@
                     <li><a href="https://www.instagram.com/login" target="_blank"><i data-feather="instagram">                  </i></a></li>
                   </ul>
                 </div>
-<<<<<<< HEAD
+
                 <p>계정이 없으신가요?<a class="ms-2" href="./traSignUp.do">회원가입</a></p>
                   <p>메인화면으로 돌아가시겠습니까?<a class="ms-2" href="../app/main.do">이동</a></p>
 <!--                   <input class="btn btn-warning btn-block btn-lg" type="button" value="돌아가기" onclick="history.back(-1)"> -->
-=======
-                <p>Don't have account?<a class="ms-2" href="./traSignUp.do">회원가입</a></p>
-                <p><a class="ms-2" href="../app/main.do">돌아가기</a></p>
-                  <input class="btn btn-warning btn-block btn-lg" type="button" value="돌아가기" onclick="history.back(-1)">
->>>>>>> parent of ba9c40f (2022-06-17)
+
               </form>
             </div>
           </div>
