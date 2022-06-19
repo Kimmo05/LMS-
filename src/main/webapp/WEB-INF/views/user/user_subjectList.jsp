@@ -102,7 +102,7 @@
 										<div class="card">
 											<div class="card-header">
 												<h5 class="mb-0 p-0">
-													<button class="btn btn-link ps-0" data-bs-toggle="collapse"data-bs-target="#collapseicon4" aria-expanded="true"aria-controls="collapseicon4">Specific skills</button>
+													<button class="btn btn-link ps-0" data-bs-toggle="collapse"data-bs-target="#collapseicon4" aria-expanded="true"aria-controls="collapseicon4">프로그래밍 언어</button>
 												</h5>
 											</div>
 											<div class="collapse show" id="collapseicon4"data-parent="#accordion" aria-labelledby="collapseicon4">

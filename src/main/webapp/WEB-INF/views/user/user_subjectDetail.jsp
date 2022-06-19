@@ -136,7 +136,7 @@
                             <table>
                               <tbody>
                                 <tr>
-                                  <td> <b>${results.sub_tag}${results.cod_tag}</b></td>
+                                  <td> <b>${results.sub_tag}</b></td>
                                 </tr>
                               </tbody>
                             </table>
