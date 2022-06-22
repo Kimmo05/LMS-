@@ -22,4 +22,6 @@ public interface IClassBoardService {
 	public int classBoardDocDelete(int seq);
 	
 	public int classBoardVideoDelete(int seq);
+	
+	public int classVideoUpdate(Map<String, Object> map);
 }

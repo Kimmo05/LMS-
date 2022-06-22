@@ -28,7 +28,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.min.service.IClassBoardService;
+import com.min.service.IClassService;
 import com.min.vo.ClassBoardVo;
+import com.min.vo.InstructorVo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +41,9 @@ public class ClassBoardController {
 
 	@Autowired
 	private IClassBoardService service;
+	
+	@Autowired
+	private IClassService cService;
 	
 	@RequestMapping(value = "/classBoardSelectedAll.do", method = RequestMethod.GET)
 	public String classBoardSelectedAll(Model model , @SessionAttribute("cla_num") String cla_num, @RequestParam(required = false) String cbo_cate, HttpSession session) {
@@ -53,18 +58,21 @@ public class ClassBoardController {
 		}
 		vo.setCbo_cla_num(cla_num);
 		List<ClassBoardVo> lists = service.classBoardSelectedAll(vo);
+		List<InstructorVo> ins = cService.classInsInfo(cla_num);
 		model.addAttribute("lists", lists);
 		model.addAttribute("cbo_cate", cbo_cate);
+		model.addAttribute("ins", ins);
 		return "admin/admin_classBoardSelectAll";
 	}
 	
 	
 	@RequestMapping(value = "/classBoardSelectDetail.do", method = RequestMethod.GET)
-	public String classBoardSelectDetail(HttpSession session, Model model, @RequestParam int cbo_seq) {
+	public String classBoardSelectDetail(HttpSession session, Model model, @RequestParam int cbo_seq, @SessionAttribute("cla_num") String cla_num) {
 		log.info("classBoardSelectDetail : 과정 게시판 상세조회");
 		ClassBoardVo result = service.classBoardSelectDetail(cbo_seq);
 		session.setAttribute("cbo_seq", cbo_seq);
 		session.setAttribute("cbo_doc_seq", result.getCbo_doc_seq());
+		session.setAttribute("cla_num", cla_num);
 		model.addAttribute("result", result);
 		String doc_originname = service.findFile(cbo_seq);
 		model.addAttribute("doc_originname", doc_originname);
@@ -74,7 +82,7 @@ public class ClassBoardController {
 	@RequestMapping(value = "/classVideoInsertForm.do", method = RequestMethod.GET)
 	public String classVideoInsertForm(@SessionAttribute("cla_num") String cla_num) {
 		log.info("classVideoInsertForm : 동영상 자료 입력 폼 이동");
-		return "app/admin/admin_classVideoInsertForm";
+		return "admin/admin_classVideoInsertForm";
 	}
 	
 	@RequestMapping(value = "/classVideoInsert.do", method = RequestMethod.POST)
@@ -93,7 +101,17 @@ public class ClassBoardController {
 		return "redirect:/user/classBoardSelectedAll.do";
 	}
 	
-	
+	@RequestMapping(value = "/classVideoUpdate.do", method = RequestMethod.POST)
+	public String classVideoUpdate(@SessionAttribute("cbo_seq") int cbo_seq, Model model, @RequestParam String title, 
+			   @RequestParam String content, @RequestParam String videoAdd) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cbo_title", title);
+		map.put("cbo_content", content);
+		map.put("cbo_youtubeadd", videoAdd);
+		map.put("cbo_seq", cbo_seq);
+		service.classVideoUpdate(map);
+		return "redirect:/user/classBoardSelectedAll.do";
+	}
 	
 	@RequestMapping(value = "/classDocumentInsertForm.do", method = RequestMethod.GET)
 	public String classDocumentInsertForm(@SessionAttribute("cla_num") String cla_num) {
@@ -138,14 +156,19 @@ public class ClassBoardController {
 	}
 	
 	@RequestMapping(value = "/documentUpdateForm.do", method = RequestMethod.GET)
-	public String documentUpdateForm() {
-		log.info("documentUpdateForm : 파일 자료 업데이트폼");
+	public String documentUpdateForm(@SessionAttribute("cbo_seq") int cbo_seq, @SessionAttribute("cbo_doc_seq") int doc_seq , Model model, HttpSession session) {
+		log.info("documentUpdateForm : 자료 업데이트폼");
+		ClassBoardVo result = service.classBoardSelectDetail(cbo_seq);
+		model.addAttribute("result", result);
+		session.setAttribute("doc_seq", doc_seq);
+		
 		File file = new File("C:/upload/tmp");
 		// 디렉토리 생성
 		boolean directoryCreated = file.mkdirs();
 		// 결과 출력
 		System.err.println(directoryCreated);
-		return "admin_classBoardModifyForm";
+		
+		return "admin/admin_classBoardModifyForm";
 	}
 	
 	@RequestMapping(value = "/documentUpdate.do", method = RequestMethod.POST)

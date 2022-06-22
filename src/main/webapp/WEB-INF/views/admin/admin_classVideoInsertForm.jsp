@@ -5,11 +5,6 @@
 <title>Insert title here</title>
 <%@ include file="./admin_header.jsp" %>
 <body>
-<script type="text/javascript">
-function del(){
-	location.href="./"
-}
-</script>
 <div class="page-body">
           <div class="container-fluid">
             <div class="page-header">
@@ -65,7 +60,7 @@ function del(){
                       </div>
                     </div>
                     <div class="card-footer text-end">
-                      <button class="btn btn-primary" type="submit" onclick="del()">신청</button>
+                      <button class="btn btn-primary" type="submit">등록</button>
                       <input class="btn btn-light" type="reset" value="취소">
                     </div>
                   </form>

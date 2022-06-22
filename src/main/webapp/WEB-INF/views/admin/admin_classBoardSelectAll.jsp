@@ -64,7 +64,12 @@ function insertForm(val){
                 	<option id="video" value="동영상" <c:if test="${cbo_cate == '동영상'}">selected="selected"</c:if>>동영상</option>
                 	<option id="doc" value="자료" <c:if test="${cbo_cate == '자료'}">selected="selected"</c:if>>자료</option>
                 </select>
+                <sec:authentication property="principal"  var="id"/>
+                <c:forEach var="insId" items="${ins}">
+                <c:if test="${insId.vot_ins_id eq id}">
                 <input id="insertFrom" style="float: right; margin-right: 30px;" class="btn btn-primary" onclick="insertForm()" value="글 등록하기">
+                </c:if>
+                </c:forEach>
 <!--                  <div> -->
 <!--              <a href="./subjectInsertForm.do" style="align-content: right;"><input class="btn btn-primary" type="button" value="과목 등록"></a> -->
 <!--                    </div> -->

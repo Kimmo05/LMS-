@@ -64,6 +64,10 @@ public class ClassBoardServiceImpl implements IClassBoardService {
 		return dao.classBoardVideoDelete(seq);
 	}
 	
+	@Override
+	public int classVideoUpdate(Map<String, Object> map) {
+		return dao.classVideoUpdate(map);
+	}
 	
 	
 }

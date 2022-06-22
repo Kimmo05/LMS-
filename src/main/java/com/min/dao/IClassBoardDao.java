@@ -28,5 +28,6 @@ public interface IClassBoardDao {
 	//과정 자료게시판 삭제 (비디오 자료 삭제)
 	public int classBoardVideoDelete(int seq);
 	
+	public int classVideoUpdate(Map<String, Object> map);
 	
 }

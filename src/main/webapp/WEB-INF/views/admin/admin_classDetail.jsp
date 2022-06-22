@@ -89,7 +89,8 @@ function selectAll(selectAll)  {
                       <div class="card-body">
                         <div class="blog-details">
                           <ul class="blog-social">
-                            <li>${result.cla_startdate}</li>
+                            <li>과정 시작일 : ${result.cla_startdate}</li>
+                            <li>과정 종료일 : ${result.cla_enddate}</li>
                             <li><i class="icofont icofont-user"></i></li>
                             <sec:authorize access="isAnonymous()">
 
@@ -143,13 +144,13 @@ function selectAll(selectAll)  {
                     </div>
                   </div>
                  </c:forEach>
-                 <sec:authentication property="principal"  var="id" /><br>
-				 <sec:authentication property="Details" var="info" /><br>
+                 <sec:authentication property="principal"  var="id"/>
+				 <sec:authentication property="Details" var="info"/>
 				 <!-- 테스트 하려면 c:if문 밖으로 빼고 test -->
-                 <c:if test="${info.auth eq 'ROLE_INSTRUCTOR' and result.cla_regdate < now and now < result.cla_endrecruit}">
-                 </c:if>
+<%--                  <c:if test="${info.auth eq 'ROLE_INSTRUCTOR' and result.cla_regdate < now and now < result.cla_endrecruit}"> --%>
+                 <c:if test="${info.auth eq 'ROLE_INSTRUCTOR'}">
                  <button style="margin-left: 30px; margin-bottom: 30px; width: 132px;" type="submit" class="btn btn-outline-primary">지원하기</button>
-                 
+                 </c:if>
                 </div>
               </div>
             </div>
@@ -217,16 +218,18 @@ function selectAll(selectAll)  {
                      </div>
                     </div>
                     <!-- 테스트 하려면 c:if문 밖으로 빼고 test -->
-                    <c:if test="${info.auth eq 'ROLE_USER' and result.cla_endrecruit < now and now < result.cla_endvote}">
-                    </c:if>
+<%--                     <c:if test="${info.auth eq 'ROLE_USER' and result.cla_endrecruit < now and now < result.cla_endvote}"> --%>
+                    <c:if test="${info.auth eq 'ROLE_USER'}">
                     	  <button style="margin-left : 30px; width: 132px;" type="submit" class="btn btn-outline-primary">투표하기</button>
+                    </c:if>
                     </form>
                   </div>
                   <br>
                     <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-secondary" href="./classListForm.do">뒤로가기</a>
-          <c:if test="${info.auth eq 'ROLE_ADMIN' and now > result.cla_endvote and now < result.cla_startdate}">
-          </c:if>
+<%--           <c:if test="${info.auth eq 'ROLE_ADMIN' and now > result.cla_endvote and now < result.cla_startdate}"> --%>
+          <c:if test="${info.auth eq 'ROLE_ADMIN'}">
           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-danger" href="./votedResult.do">승 인</a>
+          </c:if>
           
           <c:forEach items="${idList}" var="ids">
           <c:if test="${ids.cpe_mem_id eq id}">
@@ -234,7 +237,8 @@ function selectAll(selectAll)  {
           </c:if>
           
           <!-- 테스트 하려면 c:if문 밖으로 빼고 test -->
-          <c:if test="${ids.cpe_mem_id eq id and info.auth eq 'ROLE_INSTRUCTOR' and now > result.cla_endvote and now < result.cla_startdate and result.cla_status eq '개강전'}">
+<%--           <c:if test="${ids.cpe_mem_id eq id and info.auth eq 'ROLE_INSTRUCTOR' and now > result.cla_endvote and now < result.cla_startdate and result.cla_status eq '개강전'}"> --%>
+          <c:if test="${ids.cpe_mem_id eq id and info.auth eq 'ROLE_INSTRUCTOR'}">
           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classModifyForm.do?cla_num=">글 수정하기</a>
           </c:if>
           
@@ -242,14 +246,13 @@ function selectAll(selectAll)  {
           <c:if test="${ids.cpe_mem_id eq id and now > cla_endvote and now < result.cla_enddate}">
 <%--           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./pay.do?cla_title=${result.cla_title}&cla_content=${result.cla_content}&cla_price=${result.cla_price}">결제하기</a> --%>
           </c:if>
-          
           </c:forEach>
           
           
-          
-          <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classBoardSelectedAll.do">자료게시판</a>
-          <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classModifyForm.do?cla_num=">글 수정하기</a>
-          <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./pay.do?cla_title=${result.cla_title}&cla_content=${result.cla_content}&cla_price=${result.cla_price}">결제하기</a>
+          <!-- 테스트 용 -->
+<!--           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classBoardSelectedAll.do">자료게시판</a> -->
+<!--           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classModifyForm.do?cla_num=">글 수정하기</a> -->
+<%--           <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./pay.do?cla_title=${result.cla_title}&cla_content=${result.cla_content}&cla_price=${result.cla_price}">결제하기</a> --%>
           
           <!-- Container-fluid Ends-->
         </div>

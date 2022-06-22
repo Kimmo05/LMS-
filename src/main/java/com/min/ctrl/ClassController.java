@@ -336,9 +336,18 @@ public class ClassController {
     @RequestMapping(value = "/votedResult.do", method = RequestMethod.GET)
 	public String votedResult(@SessionAttribute("cla_num") String cla_num) throws IOException, org.json.simple.parser.ParseException {
     	log.info("votedResult : 투표결과 도출");
+    	
 		ClassVo voed = new ClassVo();
  		voed.setCla_num(cla_num);
 		List<VoteVo> tm = service.classTimeSearch(voed);
+		System.out.println("tm : "+tm);
+		
+		if(tm.isEmpty()) {
+			System.out.println("삭제");
+			service.classAllDelete(cla_num);
+			return "redirect:/user/classListForm.do";
+		}
+		
 		
 		for (int h = 0; h < tm.size(); h++) {
 		
@@ -416,7 +425,6 @@ public class ClassController {
 			
 			System.out.println("최종 뽑힌 강사 : "+re);
 			
-			
 			for (int i = 0; i < re.size(); i++) {
 				json = (JSONObject) parser.parse(re.get(i).toString());
 			}
@@ -438,16 +446,13 @@ public class ClassController {
 			service.votedInsert(mapped);
 			System.out.println(mapped);
 			
-			
-			
-			
 		} catch (Exception e) {
 			System.out.println("투표자가 없습니다.");
 		}
 	}
 		System.out.println("■■■■■■■■■■■■■■■■■■■■■■■■");
 		VoteVo vo = new VoteVo();
-		vo.setVot_cla_num("CLA032");
+		vo.setVot_cla_num(cla_num);
 		List<VoteVo> list = service.votedPeople(vo);
 		for (int i = 0; i < list.size(); i++) {
 			list.get(i).getVot_voter();
@@ -456,7 +461,7 @@ public class ClassController {
 			if(list.get(i).getVot_voter()==null) {
 				System.out.println("삭제 : "+list.get(i).getVot_sub_num());
 				Map<String, Object> map = new HashMap<String, Object>();
-				map.put("vot_cla_num", "CLA032");
+				map.put("vot_cla_num", cla_num);
 				map.put("vot_sub_num", list.get(i).getVot_sub_num());
 				service.voteDelete(map);
 			}
@@ -466,6 +471,8 @@ public class ClassController {
 			map.put("cla_num", cla_num);
 			map.put("cla_status", "개강전");
 			service.classStatusUpdate(map);
+			
+			
 			return "redirect:/user/classListForm.do";
 		}
 	

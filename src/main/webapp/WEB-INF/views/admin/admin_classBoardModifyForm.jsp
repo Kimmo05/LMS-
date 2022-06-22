@@ -48,8 +48,9 @@ function modify(){
               <div class="col-sm-12">
 				<div class="card">
                   <div class="card-header pb-0">
-                    <h5>자료 등록</h5>
+                    <h5>자료 수정</h5>
                   </div>
+                  <c:if test="${result.cbo_cate eq '자료'}">
                   <form class="form theme-form" action="./documentUpdate.do" method="post" enctype="multipart/form-data">
                     <div class="card-body">
                     <div class="row">
@@ -87,10 +88,45 @@ function modify(){
                     </div>
 					<hr>
                     <div class="card-footer text-end">
-                      <button class="btn btn-primary" type="submit" onclick="modify()">수정</button>
+                      <button class="btn btn-primary" type="submit">수정</button>
+                      <input class="btn btn-light" type="button" onclick="javascript:history.back(-1)" value="취소">
+                    </div>
+                  </form>
+                  </c:if>
+                   <c:if test="${result.cbo_cate eq '동영상'}">
+                   <form class="form theme-form" action="./classVideoUpdate.do" method="post">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label class="form-label" for="exampleFormControlInput1">제목</label>
+                            <input name="title" class="form-control" id="exampleFormControlInput1" type="text" placeholder="제목을 입력해주세요">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label class="form-label" for="exampleFormControlInput1">동영상 주소</label>
+                            <input name="videoAdd" class="form-control" id="exampleFormControlInput1" type="text" placeholder="제목을 입력해주세요">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <div>
+                            <label class="form-label" for="exampleFormControlTextarea4">과정 신청 상세내용</label>
+                            <textarea name="content" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer text-end">
+                      <button class="btn btn-primary" type="submit">수정</button>
                       <input class="btn btn-light" type="reset" value="취소">
                     </div>
                   </form>
+                   </c:if>
                 </div>
 			</div>
 		</div>

@@ -81,6 +81,7 @@ function cla(val){
                         <div class="media"><img class="img-20 me-2 rounded-circle" src="../assets/images/user/3.jpg" alt="" data-original-title="" title="">
                           <div class="media-body">
                             <p>과정 시작일 : ${vo.cla_startdate}</p>
+                            <p>과정 종료일 : ${vo.cla_enddate}</p>
                           </div>
                         </div>
                         <p>${vo.cla_content}</p>

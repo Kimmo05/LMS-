@@ -29,12 +29,14 @@
                   <div class="card-header pb-0">
                     <h5>쪽지 작성</h5>
                   </div>
+                  <sec:authentication property="principal"  var="id"/>
                   <form class="form theme-form" action="./mesBoardReply.do" method="post">
                     <div class="card-body">
                     <div class="row">
                         <div class="col">
                           <div class="mb-3">
                             <label class="form-label" for="exampleInputPassword2">송신자</label>
+                            <input name="mes_sender" class="form-control" id="exampleInputPassword2" type="text" placeholder="내용을 입력해주세요" readonly="readonly" value="${id}">
                           </div>
                         </div>
                       </div>
@@ -42,7 +44,7 @@
                         <div class="col">
                           <div class="mb-3">
                             <label class="form-label" for="exampleInputPassword2">수신자</label>
-                            <input name="mes_recipient" class="form-control" id="exampleInputPassword2" type="text" placeholder="내용을 입력해주세요" readonly="readonly" value="${mes_recipient}">
+                            <input name="mes_recipient" class="form-control" id="exampleInputPassword2" type="text" placeholder="내용을 입력해주세요" readonly="readonly" value="${mes_sender}">
                           </div>
                         </div>
                       </div>

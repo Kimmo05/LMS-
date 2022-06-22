@@ -81,7 +81,7 @@
                     </div>
                     <div class="card-footer text-end">
                       <button class="btn btn-primary" type="submit" onclick="deleteOne()">신청</button>
-                      <input class="btn btn-light" type="reset" value="취소">
+                      <input class="btn btn-light" type="button" onclick="javascript:history.back()" value="취소">
                     </div>
                   </form>
                 </div>

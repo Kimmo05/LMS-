@@ -1,171 +1,86 @@
-//package com.min;
-//
-//
-//import static org.hamcrest.CoreMatchers.endsWith;
-//
-//import java.io.BufferedReader;
-//import java.io.File;
-//import java.io.IOException;
-//import java.io.InputStreamReader;
-//import java.io.UnsupportedEncodingException;
-//import java.net.HttpURLConnection;
-//import java.net.MalformedURLException;
-//import java.net.ProtocolException;
-//import java.net.URL;
-//import java.net.URLConnection;
-//import java.net.URLEncoder;
-//import java.text.ParseException;
-//import java.text.SimpleDateFormat;
-//import java.time.Year;
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.Calendar;
-//import java.util.Collection;
-//import java.util.Date;
-//import java.util.HashMap;
-//import java.util.HashSet;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Set;
-//import java.util.UUID;
-//import java.util.stream.Collectors;
-//import java.util.stream.Stream;
-//
-//import org.json.simple.JSONArray;
-//import org.json.simple.JSONObject;
-//import org.json.simple.parser.JSONParser;
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.scheduling.annotation.Scheduled;
-//import org.springframework.test.context.ContextConfiguration;
-//import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-//
-//import com.fasterxml.jackson.annotation.JsonInclude;
-//import com.fasterxml.jackson.core.JsonProcessingException;
-//import com.fasterxml.jackson.databind.JsonNode;
-//import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.google.gson.Gson;
-//import com.google.gson.JsonObject;
-//import com.min.dao.IClassBoardDao;
-//import com.min.dao.IClassDao;
-//import com.min.service.IClassService;
-//import com.min.vo.ClassBoardVo;
-//import com.min.vo.ClassPeopleVo;
-//import com.min.vo.ClassVo;
-//import com.min.vo.InstructorVo;
-//import com.min.vo.SubjectVo;
-//import com.min.vo.VoteVo;
-//
-//import lombok.EqualsAndHashCode.Include;
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
-//public class Class_Test {
-//
-//	@Autowired
-//	private IClassDao dao;
-//
-//	@Autowired
-//	private IClassBoardDao bDao;
-//
-//	@Autowired
-//	private IClassService service;
-////
-////
-//////	@Test
-////	public void classSelectAll() {
-////		List<ClassVo> lists = dao.classSelectAll();
-////		System.out.println(lists);
-////	}
-////
-//////	@Test
-////	public void classSelectDetail() {
-////		ClassVo vo = new ClassVo();
-//////		String like = vo.cla_like.toString();
-////		ClassVo list = dao.classSelectDetail("CLA001");
-////		System.out.println(list);
-////	}
-////
-//////	@Test
-////	public void classFormInsert() {
-////		Map<String, Object> lists = new HashMap<String, Object>();
-////		lists.put("cla_title", "JAVA 전문가 과정 배우기");
-////		lists.put("cla_content", "JAVA 전문가 과정을 통해 현장에서도 문제없이!");
-////		int n = dao.classFormInsert(lists);
-////	}
-////
-//////	@Test
-////	public void classSubjectInsert() {
-////		Map<String, Object> lists = new HashMap<String, Object>();
-////		lists.put("csu_sub_num", "20220523SUB100");
-////		int n = dao.classSubjectInsert(lists);
-////	}
-////
-//////	@Test
-//////package com.min;
-//////
-//////
-//////import static org.hamcrest.CoreMatchers.endsWith;
-//////
-//////import java.io.BufferedReader;
-//////import java.io.File;
-//////import java.io.IOException;
-//////import java.io.InputStreamReader;
-//////import java.io.UnsupportedEncodingException;
-//////import java.net.HttpURLConnection;
-//////import java.net.MalformedURLException;
-//////import java.net.ProtocolException;
-//////import java.net.URL;
-//////import java.net.URLConnection;
-//////import java.net.URLEncoder;
-//////import java.text.ParseException;
-//////import java.text.SimpleDateFormat;
-//////import java.util.ArrayList;
-//////import java.util.Calendar;
-//////import java.util.Date;
-//////import java.util.HashMap;
-//////import java.util.List;
-//////import java.util.Map;
-//////import java.util.UUID;
-//////
-//////import org.json.simple.JSONArray;
-//////import org.json.simple.JSONObject;
-//////import org.json.simple.parser.JSONParser;
-//////import org.junit.Test;
-//////import org.junit.runner.RunWith;
-//////import org.springframework.beans.factory.annotation.Autowired;
-//////import org.springframework.test.context.ContextConfiguration;
-//////import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-//////
-//////import com.google.gson.JsonObject;
-//////import com.min.dao.IClassBoardDao;
-//////import com.min.dao.IClassDao;
-//////import com.min.service.IClassService;
-//////import com.min.vo.ClassBoardVo;
-//////import com.min.vo.ClassVo;
-//////import com.min.vo.InstructorVo;
-//////import com.min.vo.SubjectVo;
-//////import com.min.vo.VoteVo;
-//////
-//////@RunWith(SpringJUnit4ClassRunner.class)
-//////@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
-//////public class Class_Test {
-//////
-//////	@Autowired
-//////	private IClassDao dao;
-//////
-//////	@Autowired
-//////	private IClassBoardDao bDao;
-//////
-//////	@Autowired
-//////	private IClassService service;
-//////
-//////
-////////	@Test
-//////	public void classSelectAll() {
-//////		List<ClassVo> lists = dao.classSelectAll();
-//////		System.out.println(lists);
-//////	}
+package com.min;
+
+
+import static org.hamcrest.CoreMatchers.endsWith;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import com.google.gson.JsonObject;
+import com.min.dao.IClassBoardDao;
+import com.min.dao.IClassDao;
+import com.min.service.IClassService;
+import com.min.vo.ClassBoardVo;
+import com.min.vo.ClassVo;
+import com.min.vo.InstructorVo;
+import com.min.vo.SubjectVo;
+import com.min.vo.VoteVo;
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/appServlet/*.xml"})
+public class Class_Test {
+
+	@Autowired
+	private IClassDao dao;
+
+	@Autowired
+	private IClassBoardDao bDao;
+
+	@Autowired
+	private IClassService service;
+	
+	@Test
+	public void classSelectAll() {
+		
+		VoteVo vo = new VoteVo();
+		vo.setVot_cla_num("CLA039");
+		List<VoteVo> list = service.votedPeople(vo);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).getVot_voter();
+			System.out.println("널값 체크 : "+list.get(i).getVot_voter());
+			System.out.println("널값 체크용 서브 : "+list.get(i).getVot_sub_num());
+			if(list.get(i).getVot_voter()==null) {
+				System.out.println("삭제 : "+list.get(i).getVot_sub_num());
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("vot_cla_num", "CLA032");
+				map.put("vot_sub_num", list.get(i).getVot_sub_num());
+				service.voteDelete(map);
+			}
+		}
+		
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("cla_num", "CLA039");
+			map.put("cla_status", "개강전");
+			service.classStatusUpdate(map);
+	}
 //////
 ////////	@Test
 //////	public void classSelectDetail() {
@@ -1484,5 +1399,5 @@
 //
 //
 //
-//}
+}
 //////

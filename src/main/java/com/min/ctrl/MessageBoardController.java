@@ -73,6 +73,7 @@ public class MessageBoardController {
 		MessageBoardVo result = service.mesBoardSelectDetail(seq);
 		model.addAttribute("result", result);
 		session.setAttribute("mes_recipient", result.getMes_recipient());
+		session.setAttribute("mes_sender", result.getMes_sender());
 		session.setAttribute("mes_reffer", result.getMes_reffer());
 		return "admin/admin_messageBoardSelectDetail";
 	}
@@ -84,7 +85,7 @@ public class MessageBoardController {
 	}
 	
 	@RequestMapping(value = "/mesBoardInsert.do", method = RequestMethod.POST)
-	public String mesBoardInsert(@RequestParam Map<String, Object> map, @RequestParam String mes_recipient, @SessionAttribute("mes_reffer") int mes_reffer, @RequestParam String mes_content,Authentication user) {
+	public String mesBoardInsert(@RequestParam Map<String, Object> map, @RequestParam String mes_recipient, @RequestParam String mes_content,Authentication user) {
 		log.info("mesBoardInsert : 쪽지 작성");
 		map.put("mes_sender", user.getPrincipal().toString());
 		map.put("mes_recipient", mes_recipient);
@@ -114,9 +115,9 @@ public class MessageBoardController {
 	}
 	
 	@RequestMapping(value = "/mesBoardReplyForm.do", method = RequestMethod.GET)
-	public String mesBoardReplyForm(Model model, @SessionAttribute("mes_recipient") String mes_recipient,HttpSession session ,@SessionAttribute("mes_reffer") int mes_reffer) {
+	public String mesBoardReplyForm(Model model, @SessionAttribute("mes_recipient") String mes_sender,HttpSession session ,@SessionAttribute("mes_reffer") int mes_reffer) {
 		log.info("mesBoardReplyForm : 쪽지 답글 작성 폼");
-		model.addAttribute("mes_recipient", mes_recipient);
+		model.addAttribute("mes_recipient", mes_sender);
 		session.setAttribute("mes_reffer", mes_reffer);
 		return "admin/admin_messageBoardReplyForm";
 	}

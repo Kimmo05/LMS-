@@ -14,6 +14,10 @@ function delDoc(val){
 	location.href="./classBoardDocDelete.do?cbo_doc_seq="+val.value;
 }
 
+function modify(){
+	location.href="./documentUpdateForm.do"
+}
+
 function delVideo(val){
 	location.href="./classBoardVideoDelete.do?cbo_seq="+val.value;
 }
@@ -86,14 +90,16 @@ function delVideo(val){
       </div>
     </div>
   </div>
-    
+  <sec:authentication property="principal"  var="id"/>
+   
   <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-light" onclick="javascript:history.back(-1)">뒤로가기</button>
+  <c:if test="${result.cbo_ins_id eq id}">
   <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" onclick="modify()">글 수정하기</button>
-  <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" onclick="modify()">글 수정하기</button>
-  <c:if test="${result.cbo_cate eq '자료'}">
+  </c:if>
+  <c:if test="${result.cbo_cate eq '자료' and result.cbo_ins_id eq id}">
   <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-danger" value="${result.cbo_doc_seq}" onclick="delDoc(this)">삭제하기</button>
   </c:if>
-  <c:if test="${result.cbo_cate eq '동영상'}">
+  <c:if test="${result.cbo_cate eq '동영상' and result.cbo_ins_id eq id}">
   <button style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-danger" value="${result.cbo_seq}" onclick="delVideo(this)">삭제하기</button>
   </c:if>
 <%--   <a style="float: right; margin-right: 30px; width: 132px;" type="button" class="btn btn-outline-primary" href="./classModifyForm.do?cla_num=${result.cla_num}">글 수정하기</a> --%>
