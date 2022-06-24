@@ -77,18 +77,19 @@
                         <div class="follow">
                           <ul class="follow-list">
                             <li>
-                              <div class="follow-num counter">325</div><span>등록한 과목</span>
+                              <div class="follow-num counter">12</div><span>좋아요</span>
                             </li>
                             <li>
-                              <div class="follow-num counter">${mile}</div><span>내 마일리지</span>
+                              <div class="follow-num counter">${mile}1000</div><span>내 마일리지</span>
                             </li>
                             <li>
-                              <div class="follow-num counter">${coup}</div><span>내 쿠폰</span>
+                              <div class="follow-num counter">${coup}2</div><span>내 쿠폰</span>
                             </li>
                           </ul>
                         </div>
                       </div>
                     </div>
+                    
                   </div>
                 </div>
                 <!-- user profile header end-->
@@ -104,7 +105,18 @@
                           </div>
                           <div class="collapse show" id="collapseicon2" aria-labelledby="collapseicon2" data-parent="#accordion">
                             <div class="card-body post-about">
+                              <sec:authentication property="Authorities" var="auth" />
                               <ul>
+                                <c:if test = "${auth eq '[ROLE_INSTROCTUR]'}">
+                              <li>
+                                  <div class="icon"><i data-feather="briefcase"></i></div>
+                                  <div><a href="./InsCareer.do">
+                                    <h5>경력보기</h5>
+                                    <p>${info.career}</p>
+                                    </a>
+                                  </div>
+                                </li>
+                               </c:if>
                                 <li>
                                   <div class="icon"><i data-feather="briefcase"></i></div>
                                   <div>

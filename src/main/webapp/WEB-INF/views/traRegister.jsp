@@ -134,7 +134,7 @@ LMS에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(LMS
                           <button class="btn btn-secondary" id="prevBtn" type="button" onclick="nextPrev(-1)">Previous</button>
                           <button class="btn btn-primary next-button" id="nextBtn"  type="submit" onclick="nextPrev(1)" disabled>Next</button>
                         </div>
-                                          <input class="btn btn-warning btn-block btn-xs " type="button" value="뒤로가기" onclick="history.back(-1)">
+<!--                                           <input class="btn btn-warning btn-block btn-xs " type="button" value="뒤로가기" onclick="history.back(-1)"> -->
                         
                         <form  id="form__wrap">
                       </div>

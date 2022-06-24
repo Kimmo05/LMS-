@@ -17,8 +17,8 @@ public class MailUtil {
 		//Mail Server 설정
 		String charSet="utf-8";
 		String hostSMTP="smtp.naver.com";
-		String hostSMTPid=""; //관리자 이메일 아이디
-		String hostSMTPpw=""; //관리자 이메일 비밀번호
+		String hostSMTPid="modali05"; //관리자 이메일 아이디
+		String hostSMTPpw="rlaah123!@"; //관리자 이메일 비밀번호
 		
 		//보내는 사람 
 		String fromEmail="modali05@naver.com"; //보내는 사람 이메일 

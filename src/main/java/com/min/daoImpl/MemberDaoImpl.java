@@ -3,6 +3,7 @@ package com.min.daoImpl;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.maven.doxia.logging.Log;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,8 +14,11 @@ import com.min.vo.CareerVo;
 import com.min.vo.MemberVo;
 import com.min.vo.RowNumVo;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Repository
+@Slf4j
 public class MemberDaoImpl implements IMemberDao{
 	
 	@Autowired
@@ -33,7 +37,9 @@ public class MemberDaoImpl implements IMemberDao{
 
 	@Override
 	public int traSignUp(Map<String, Object> map) {
+		log.info("암호화 전 비밀번호 : {}",map.get("pw"));
 		String enPassword = passwordEncoder.encode((String)map.get("pw"));
+		log.info("암호화 후 비밀번호 : {}",enPassword);
 		map.put("pw", enPassword);
 			
 		return sqlSession.insert(NS+"traSignUp",map);
@@ -46,6 +52,10 @@ public class MemberDaoImpl implements IMemberDao{
 
 	@Override
 	public int InsSignUp(Map<String, Object> map) {
+		log.info("암호화 전 비밀번호 : {}",map.get("pw"));
+		String enPassword = passwordEncoder.encode((String)map.get("pw"));
+		log.info("암호화 후 비밀번호 : {}",enPassword);
+		map.put("pw", enPassword);
 		return sqlSession.insert(NS+"InsSignUp",map);
 	}
 
@@ -79,7 +89,10 @@ public class MemberDaoImpl implements IMemberDao{
 
 	@Override
 	public int updateTra(Map<String, Object> map) {
+		log.info("암호화 전 비밀번호 : {} ",map.get("pw"));
+
 		String enPassword = passwordEncoder.encode((String)map.get("pw"));
+		log.info("암호화 후 비밀번호 : {}",enPassword);
 		map.put("pw", enPassword);
 		return sqlSession.update(NS+"updateTra",map);
 	}

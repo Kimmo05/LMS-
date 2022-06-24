@@ -133,7 +133,7 @@ public class InsLoginController {
 	@RequestMapping(value = "/CheckInsId.do", method = RequestMethod.GET)
 	@ResponseBody
 	public int idCheck(@RequestParam("id") String id) {
-		log.info("아이디 중복 체크 : ", id);
+		log.info("아이디 중복 체크 : {} ", id);
 		return service.checkInsId(id);
 	}
 	//강사 개인정보 수정
@@ -142,7 +142,7 @@ public class InsLoginController {
 		MemberVo mvo = (MemberVo) user.getDetails();
 		map.put("id", mvo.getId());
 		
-		log.info("개인정보 수정",mvo);
+		log.info("개인정보 수정 {}",mvo);
 		System.out.println(map);
 	   service.updateIns(map);
 		
@@ -155,7 +155,7 @@ public class InsLoginController {
 			@RequestMapping(value = "/CheckInsEmail.do", method = RequestMethod.GET)
 			@ResponseBody
 			public int emailCheck(@RequestParam("email") String email) {
-				log.info("일반회원 이메일 중복체크 : ", email);
+				log.info("일반회원 이메일 중복체크 : {} ", email);
 				
 				return service.checkInsEmail(email);
 			}
@@ -177,7 +177,7 @@ public class InsLoginController {
 	
 	@RequestMapping(value="/insertCar.do",method = RequestMethod.POST)
 	public String insertCar(@RequestParam Map<String,Object> map, Model model,Authentication user) {
-		log.info("insertCar :경력 등록 :",map);
+		log.info("insertCar :경력 등록 : {}",map);
 		MemberVo mvo = (MemberVo) user.getDetails();
 		map.put("id", mvo.getId() );
 		service.updateCar(map);
@@ -239,8 +239,10 @@ public class InsLoginController {
 					vo1.setPw(tempPw);//임시 비밀번호 담기
 					MailUtil mail=new MailUtil(); //메일 전송하기
 					mail.sendEmail(vo1);
-					
+					log.info("암호화전 임시 비밀번호 : {} ",tempPw );
 					String securePw = password.encode(tempPw);//회원 비밀번호를 암호화하면 vo객체에 다시 저장
+					log.info("암호화후 임시 비밀번호 : {} ",tempPw );
+
 					map.put("pw", securePw);
 					service.updateInsPw(map);
 					result="true";

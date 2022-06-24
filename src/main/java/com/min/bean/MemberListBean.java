@@ -38,7 +38,6 @@ public class MemberListBean {
 		StringBuffer sb = new StringBuffer();
 	    sb.append("<tr>                                                                                                					" );
 	    sb.append("  <td><input type='checkbox' name='chk' value='"+memberVo.getId()+"'></td>                                       " );                                    	         
-	    sb.append("  <td>"+replyImage(memberVo.getProfile())+"</td>                                                                  " );                                                                                    
 	    sb.append("   <td onclick='modalOpen("+memberVo.getId()+")'><a href='#' data-bs-toggle='modal' data-original-title='test' data-bs-target='#exampleModal'>"+memberVo.getId()+"</a></td>");                                                                                        
 	    sb.append("  <td>"+memberVo.getName()+"</td>                                                                  " );  
 	    sb.append("  <td>"+memberVo.getEmail()+"</td>                                                                  " );  

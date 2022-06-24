@@ -43,18 +43,18 @@ public class UserAuthService  implements AuthenticationProvider{
 		try{
 			 dto = service.loginTra(map);
 			 if ( dto.getAuth() == null || dto.getAuth() == ""  ) {
-				throw new BadCredentialsException("Member 로그인 암호가 없습니다." + dto.getAuth() );
+				throw new BadCredentialsException("로그인 암호가 없습니다.");
 				}
 			 if(!passwordEncoder.matches(user_pw, dto.getPw())) {
-					throw new BadCredentialsException("아이디 및 비밀번호가 틀렸습니다." + dto.getAuth() );
+					throw new BadCredentialsException("아이디 및 비밀번호가 틀렸습니다.");
 
 			 }
 				// 정보가 없으면 나간다.
 				if ( username == null || username == "" ) {
-					throw new BadCredentialsException("Member 로그인 아이디가 없습니다." + username );
+					throw new BadCredentialsException("로그인 아이디가 없습니다.");
 				}
 				if ( user_pw == null || user_pw == ""  ) {
-					throw new BadCredentialsException("Member 로그인 암호가 없습니다." + user_pw );
+					throw new BadCredentialsException("로그인 암호가 없습니다.");
 				}
 			} catch (NullPointerException e){
 				e.printStackTrace();
