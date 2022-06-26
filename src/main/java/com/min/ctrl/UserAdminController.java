@@ -29,6 +29,7 @@ import com.min.vo.RowNumVo;
 import lombok.extern.slf4j.Slf4j;
 
 
+@SuppressWarnings("unused")
 @Controller
 @Slf4j
 @RequestMapping(value = "/user/*")

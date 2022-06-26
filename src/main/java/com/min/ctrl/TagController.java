@@ -49,7 +49,8 @@ public class TagController {
         return tags;
     }
 
-    @RequestMapping(value = "*/searchTag.do", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "*/searchTag.do", method = RequestMethod.POST, produces = "application/json; charset=utf-8")
     @ResponseBody
     public String searchTag(String tag, String category) throws ParseException {
         JSONParser parser = new JSONParser();

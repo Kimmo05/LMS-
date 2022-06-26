@@ -28,6 +28,7 @@ import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.test.context.annotation.SecurityTestExecutionListeners;
 import org.springframework.stereotype.Controller;
@@ -55,8 +56,7 @@ public class ClassController {
 
     @Autowired
     private IClassService service;
-    @SuppressWarnings("unused")
-	@Autowired
+    @Autowired
     private ITagService tagService;
 
     @RequestMapping(value = "/classListForm.do", method = RequestMethod.GET)
@@ -77,7 +77,7 @@ public class ClassController {
 		return "admin/admin_classList";
 	}
 	
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked" })
 	@RequestMapping(value = "/classSelectDetail.do", method = RequestMethod.GET, produces = "application/json")
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) throws org.json.simple.parser.ParseException {
 		log.info("classSelectDetail : 과정 상세 조회");
@@ -162,10 +162,8 @@ public class ClassController {
 		return "admin/admin_classInsertForm";
 	}
 	
-	@SuppressWarnings("unused")
 	@RequestMapping(value = "/classInsert.do", method = RequestMethod.POST)
 	public @ResponseBody String classInsert(@RequestParam String title, @RequestParam String content, @RequestParam List<String> subList) throws ParseException {
-		@SuppressWarnings("unused")
 		JSONParser parser = new JSONParser();
 		log.info("classInsert : 과정 생성");
 		Map<String, Object> map = new HashMap<String, Object>();
