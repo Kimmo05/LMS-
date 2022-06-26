@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.min.dao.IClassSubjectDao;
 import com.min.service.IClassSubjectService;
 import com.min.vo.ClassSubjectVo;
+@SuppressWarnings("unused")
 @Service
 public class ClassSubjectServiceImpl implements IClassSubjectService {
 

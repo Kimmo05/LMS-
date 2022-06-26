@@ -20,6 +20,7 @@ import com.min.vo.CareerVo;
 import com.min.vo.MemberVo;
 
 
+@SuppressWarnings("unused")
 public class UserAuthService  implements AuthenticationProvider{
 
 	@Autowired

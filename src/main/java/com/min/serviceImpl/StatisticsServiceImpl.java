@@ -51,7 +51,8 @@ public class StatisticsServiceImpl implements IStatisticsService {
      * @return 좋아요가 추가될 시 1을 반환 삭제될 시 0이 반환
      * @throws ParseException
      */
-    @Override
+    @SuppressWarnings({ "unused", "unchecked" })
+	@Override
     public int updateLike(String userId, String num) throws ParseException {
         logger.info("STAT002_HJM StatisticsServiceImpl updateLike 실행");
         int result = 0;

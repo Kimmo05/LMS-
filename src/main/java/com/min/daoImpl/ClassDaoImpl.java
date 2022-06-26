@@ -19,6 +19,7 @@ import com.min.vo.VoteVo;
 
 import lombok.extern.slf4j.Slf4j;
 
+@SuppressWarnings("unused")
 @Slf4j
 @Repository
 public class ClassDaoImpl implements IClassDao{

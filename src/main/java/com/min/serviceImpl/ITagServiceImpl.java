@@ -19,7 +19,8 @@ import java.util.Map;
 @Service
 public class ITagServiceImpl implements ITagService {
 
-    private final Logger logger = LoggerFactory.getLogger(ITagServiceImpl.class);
+    @SuppressWarnings("unused")
+	private final Logger logger = LoggerFactory.getLogger(ITagServiceImpl.class);
 
     @Autowired
     private ITagDao dao;
@@ -35,7 +36,8 @@ public class ITagServiceImpl implements ITagService {
         return cnt;
     }
 
-    @Transactional
+    @SuppressWarnings("unused")
+	@Transactional
     @Override
     public List<String> insertClassTag(List<String> sub_num) throws ParseException {
         List<String> list = new ArrayList<String>();

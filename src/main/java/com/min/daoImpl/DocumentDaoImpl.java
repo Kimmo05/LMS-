@@ -10,9 +10,8 @@ import com.min.dao.IDocumentDao;
 
 @Repository
 public class DocumentDaoImpl implements IDocumentDao{
-
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	@SuppressWarnings("unused")
 	@Autowired 
 	private SqlSessionTemplate sqlSession;
 }

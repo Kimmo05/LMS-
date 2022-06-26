@@ -15,9 +15,11 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
+@SuppressWarnings("unused")
 public class UploadFileUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
+    @SuppressWarnings("unused")
+	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
 
     // 파일 업로드 처리
     public static String uploadFile(String uploadPath, String originalName, byte[] fileData) throws Exception {

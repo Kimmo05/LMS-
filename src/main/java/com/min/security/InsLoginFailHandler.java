@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.stereotype.Service;
 
 /* 로그인 실패 대응 로직 */
+@SuppressWarnings("unused")
 @Service
 public class InsLoginFailHandler implements AuthenticationFailureHandler {
 

@@ -32,6 +32,7 @@ import com.siot.IamportRestClient.response.PaymentBalance;
 
 import oracle.jdbc.proxy.annotation.Post;
 
+@SuppressWarnings("unused")
 @Controller
 @RequestMapping(value = "/user/payment/**")
 public class IamportController {

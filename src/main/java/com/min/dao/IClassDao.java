@@ -10,6 +10,7 @@ import com.min.vo.InstructorVo;
 import com.min.vo.SubjectVo;
 import com.min.vo.VoteVo;
 
+@SuppressWarnings("unused")
 public interface IClassDao {
 	// 과정 전체조회
 	public List<ClassVo> classSelectAll();

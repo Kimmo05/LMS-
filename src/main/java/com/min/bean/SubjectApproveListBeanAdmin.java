@@ -8,6 +8,7 @@ import com.min.vo.SubjectVo;
 public class SubjectApproveListBeanAdmin {
 
 	private List<SubjectVo> lists;
+	@SuppressWarnings("unused")
 	private MemberVo mem;
 
 	public void setLists(List<SubjectVo> lists) {

@@ -17,6 +17,7 @@ import com.min.dao.SubjectDao;
 
 import lombok.extern.slf4j.Slf4j;
 
+@SuppressWarnings("unused")
 @Slf4j
 @Service
 public class SubjectServiceImpl implements SubjectService{

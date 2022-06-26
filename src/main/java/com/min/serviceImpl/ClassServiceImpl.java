@@ -17,6 +17,7 @@ import com.min.vo.InstructorVo;
 import com.min.vo.SubjectVo;
 import com.min.vo.VoteVo;
 
+@SuppressWarnings("unused")
 @Service
 @Transactional
 public class ClassServiceImpl implements IClassService {

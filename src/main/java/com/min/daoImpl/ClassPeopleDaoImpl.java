@@ -11,8 +11,10 @@ import com.min.dao.IClassPeopleDao;
 @Repository
 public class ClassPeopleDaoImpl implements IClassPeopleDao{
 
+	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	@SuppressWarnings("unused")
 	@Autowired 
 	private SqlSessionTemplate sqlSession;
 }

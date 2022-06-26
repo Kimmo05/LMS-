@@ -13,6 +13,7 @@ import com.min.dao.IClassSubjectDao;
 import com.min.vo.ClassBoardVo;
 import com.min.vo.ClassSubjectVo;
 
+@SuppressWarnings("unused")
 @Repository
 public class ClassSubjectDaoImpl implements IClassSubjectDao{
 

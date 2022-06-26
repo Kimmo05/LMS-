@@ -354,7 +354,6 @@ public class UserLoginController {
 				return contentType.startsWith("image");
 
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -379,7 +378,6 @@ public class UserLoginController {
 				header.add("Content-Type", Files.probeContentType(file.toPath()));
 				result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			log.info("file이름 : "+result);
@@ -410,7 +408,6 @@ public class UserLoginController {
 				
 					result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				log.info("file 후 : "+result.toString());

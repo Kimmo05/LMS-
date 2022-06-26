@@ -15,6 +15,7 @@ import com.min.vo.ClassBoardVo;
 @Repository
 public class ClassBoardDaoImpl implements IClassBoardDao{
 
+	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired 

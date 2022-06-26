@@ -7,6 +7,7 @@ import com.min.vo.MemberVo;
 import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
 
+@SuppressWarnings("unused")
 public interface SubjectService {
 	
 

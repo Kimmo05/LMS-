@@ -63,7 +63,6 @@ public class TagController {
         List<SubjectVo> subjectVoList = new ArrayList<SubjectVo>();
         JSONArray temp;
 
-        //TODO 과목 상세보기가 완료되면 주소를 매핑해주기
         //카테고리에 따라 검색 결과 나눠주기
         if (category.equals("과정")) {
             temp = (JSONArray) jsonObject.get("class");

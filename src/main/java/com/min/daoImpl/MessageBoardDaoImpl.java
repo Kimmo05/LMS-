@@ -15,6 +15,7 @@ import com.min.vo.MessageBoardVo;
 @Repository
 public class MessageBoardDaoImpl implements IMessageBoardDao{
 
+	@SuppressWarnings("unused")
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired 

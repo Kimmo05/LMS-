@@ -66,7 +66,6 @@ public class StatisticsController {
             map.put("prefer", obj.toJSONString());
 
             service.updatePrefer(map);
-            //TODO 다음페이지로 넘기기
             return "redirect:/main.do";
         }
     }
@@ -89,7 +88,6 @@ public class StatisticsController {
     //내 좋아요 목록보기
     @RequestMapping(value = "user/myLikelist.do", method = RequestMethod.GET)
     public String myLikelist(Authentication authentication, Model model) throws ParseException {
-        //TODO 좋아요를 누르면 세션에 있는 좋아요 리스트 값이 안바껴서 문제임
         MemberVo vo = (MemberVo) authentication.getDetails();
         String likeList = vo.getLike();
         JSONArray likeArr;
@@ -122,7 +120,6 @@ public class StatisticsController {
 
             return "/user/classCheckList";
         }else{
-            //TODO 평가를 했던 회원과 강의를 듣지 않은 학생은 평가가 불가능 하도록 막기
             logger.info("StatisticsController classCheckList POST {}", result);
             String score = service.selectSubjectScore(result.get("sub_num"));
             String id = (String)authentication.getPrincipal();

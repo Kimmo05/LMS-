@@ -7,6 +7,7 @@ import com.min.vo.CouponVo;
 import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
+@SuppressWarnings("unused")
 public interface IPayService {
 	
 	//관리자 전체조회

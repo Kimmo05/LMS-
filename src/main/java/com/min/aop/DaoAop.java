@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 public class DaoAop {
 
+	@SuppressWarnings("unused")
 	private static final Logger logger = LoggerFactory.getLogger(DaoAop.class);
 
 	public void before(JoinPoint j) {

@@ -12,6 +12,7 @@ import com.min.vo.CouponVo;
 import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
+@SuppressWarnings("unused")
 @Service
 public class PayServiceImpl implements IPayService{
 
