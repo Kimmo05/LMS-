@@ -35,6 +35,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.min.service.IClassService;
@@ -46,6 +47,7 @@ import com.min.vo.VoteVo;
 
 import lombok.extern.slf4j.Slf4j;
 
+@SuppressWarnings("unused")
 @Slf4j
 @Controller
 @RequestMapping(value = "/user/*")
@@ -53,7 +55,8 @@ public class ClassController {
 
     @Autowired
     private IClassService service;
-    @Autowired
+    @SuppressWarnings("unused")
+	@Autowired
     private ITagService tagService;
 
     @RequestMapping(value = "/classListForm.do", method = RequestMethod.GET)
@@ -74,6 +77,7 @@ public class ClassController {
 		return "admin/admin_classList";
 	}
 	
+	@SuppressWarnings({ "unchecked", "unused" })
 	@RequestMapping(value = "/classSelectDetail.do", method = RequestMethod.GET, produces = "application/json")
 	public String classSelectDetail(@RequestParam String cla_num, Model model, HttpSession session) throws org.json.simple.parser.ParseException {
 		log.info("classSelectDetail : 과정 상세 조회");
@@ -158,8 +162,10 @@ public class ClassController {
 		return "admin/admin_classInsertForm";
 	}
 	
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "/classInsert.do", method = RequestMethod.POST)
-	public String classInsert(@RequestParam String title, @RequestParam String content, @RequestParam List<String> subList) throws ParseException {
+	public @ResponseBody String classInsert(@RequestParam String title, @RequestParam String content, @RequestParam List<String> subList) throws ParseException {
+		@SuppressWarnings("unused")
 		JSONParser parser = new JSONParser();
 		log.info("classInsert : 과정 생성");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -333,7 +339,8 @@ public class ClassController {
 	}
 	
 	
-    @RequestMapping(value = "/votedResult.do", method = RequestMethod.GET)
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "/votedResult.do", method = RequestMethod.GET)
 	public String votedResult(@SessionAttribute("cla_num") String cla_num) throws IOException, org.json.simple.parser.ParseException {
     	log.info("votedResult : 투표결과 도출");
     	
@@ -502,6 +509,7 @@ public class ClassController {
 	}
 	
 	
+	@SuppressWarnings({ "unchecked", "rawtypes", "unlikely-arg-type" })
 	@RequestMapping(value = "/updateVote.do", method = RequestMethod.POST)
 	public String updateVote(@SessionAttribute("cla_num") String cla_num, HttpServletRequest req, @RequestParam String vot_sub_num, @RequestParam String ins_id, 
 			Authentication user) throws ParseException {

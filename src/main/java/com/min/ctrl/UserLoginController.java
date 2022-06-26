@@ -51,6 +51,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 import okhttp3.internal.framed.Header;
 
 
+@SuppressWarnings("unused")
 @Controller
 @Slf4j
 @RequestMapping(value = "/user/*")

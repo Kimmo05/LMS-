@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.min.vo.PayVo;
 
 
+@SuppressWarnings("unused")
 @Controller
 public class TestController {
 

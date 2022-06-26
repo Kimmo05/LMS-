@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+@SuppressWarnings("unused")
 @Controller
 public class StatisticsController {
 
@@ -41,7 +42,8 @@ public class StatisticsController {
     }
 
     //선호 조사 페이지
-    @RequestMapping(value = "user/prefer.do", method = {RequestMethod.GET, RequestMethod.POST})
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "user/prefer.do", method = {RequestMethod.GET, RequestMethod.POST})
     public String prefer(HttpServletRequest request, String time, String date, String[] subjects,String difficulty, Authentication authentication) {
 
         if (request.getMethod().equals("GET")) {
@@ -108,7 +110,8 @@ public class StatisticsController {
         return "user/myLikelist";
     }
 
-    @RequestMapping(value = "user/classCheckList.do", method = {RequestMethod.GET,RequestMethod.POST})
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "user/classCheckList.do", method = {RequestMethod.GET,RequestMethod.POST})
     public String classCheckList(@RequestParam Map<String,String> result, HttpServletRequest request,
                                  Authentication authentication,Model model) throws ParseException {
         if(request.getMethod().equals("GET")){
@@ -163,7 +166,8 @@ public class StatisticsController {
         return "subjectChart";
     }
 
-    @RequestMapping(value = "/getSubjectChart.do",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
+    @SuppressWarnings("unchecked")
+	@RequestMapping(value = "/getSubjectChart.do",method = RequestMethod.POST,produces = "application/json; charset=utf-8")
     @ResponseBody
     public String getSubjectChart(String sub_num) throws ParseException {
         String score = service.selectSubjectScore(sub_num);

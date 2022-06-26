@@ -28,6 +28,7 @@ import com.min.vo.RowNumVo;
 import com.min.vo.SubjectVo;
 
 import lombok.extern.slf4j.Slf4j;
+@SuppressWarnings("unused")
 @Slf4j
 @Controller
 public class SubjectAdminController {

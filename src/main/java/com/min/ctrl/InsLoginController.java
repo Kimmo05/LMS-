@@ -32,6 +32,7 @@ import com.min.vo.MemberVo;
 import lombok.extern.slf4j.Slf4j;
 
 
+@SuppressWarnings("unused")
 @Controller
 @Slf4j
 @RequestMapping(value = "/ins/*")

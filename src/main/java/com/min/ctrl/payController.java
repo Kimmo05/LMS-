@@ -24,6 +24,7 @@ import com.min.vo.MemberVo;
 import com.min.vo.PayVo;
 
 
+@SuppressWarnings("unused")
 @Controller
 @RequestMapping(value = "/user/*")
 public class payController{
