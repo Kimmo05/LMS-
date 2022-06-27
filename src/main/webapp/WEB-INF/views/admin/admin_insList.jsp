@@ -40,9 +40,6 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>
-                <input type="checkbox" id="checkAll" onclick="checkAlls(this.checked)">
-            </th>
           	<th >프로필</th>
             <th>아이디</th>
             <th >이름</th>
@@ -58,10 +55,12 @@
 <%--           <jsp:setProperty property="user" name="insMemberList" value="${user}"/> --%>
 <%--           <jsp:getProperty property="listForm" name="insMemberList"/> --%>
          <c:forEach var="user" items="${lists}" varStatus="vs">
-		      <tr><td>${user.profile}</td><td>${user.id}</td><td>${user.name}</td><td>${user.email}</td>
-		        <td>${user.auth == "ROLE_INSTRUCTOR"?"강사":"일반회원"}</td>
+		      <tr>
+		      <td>${user.profile}</td><td>${user.id}</td><td>${user.name}</td><td>${user.email}</td>
+<%-- 		        <td>${user.auth == "ROLE_INSTRUCTOR"?"강사":"일반회원"}</td> --%>
 		        <td>${user.regdate}</td>
 		        <td><button class="btn btn-default">${user.delflag=="Y"?"복구":"탈퇴"}</button></td>
+		         <td>${user.career}</td>
 		      </tr>
 		    </c:forEach>
         </tbody>
