@@ -33,8 +33,7 @@
       	  <option value="10">10</option>
       	  <option value="15">15</option>
       	</select>
-      </span>
-          <span><input type="submit" class="btn btn-danger" value="다중삭제"></span>      
+    
       </div>
       
       <table class="table table-hover">
@@ -66,9 +65,9 @@
         </tbody>
       </table>
       
-      <input type="text" name="index" id="index" value="${row.index}" >
-      <input type="text" name="pageStartNum" id="pageStartNum" value="${row.pageStartNum}" >
-      <input type="text" name="pageListNum" id="pageListNum" value="${row.pageListNum}" >
+      <input type="text" name="index" id="index" value="${row.index}" hidden="" >
+      <input type="text" name="pageStartNum" id="pageStartNum" value="${row.pageStartNum}" hidden="true">
+      <input type="text" name="pageListNum" id="pageListNum" value="${row.pageListNum}" hidden="true">
      
    
        <!-- pagination with active and disabled state-->
