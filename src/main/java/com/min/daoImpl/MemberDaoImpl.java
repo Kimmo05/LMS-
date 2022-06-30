@@ -214,4 +214,10 @@ public class MemberDaoImpl implements IMemberDao{
 		return sqlSession.selectOne(NS+"adminInsListTotal");
 	}
 
+	
+	@Override
+	public boolean changeIns(Map<String, Object> map) {
+		return (sqlSession.update(NS+"changeIns", map)) > 0 ? true : false; 
+	}
+
 }

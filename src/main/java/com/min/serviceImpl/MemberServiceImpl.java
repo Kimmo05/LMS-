@@ -178,6 +178,11 @@ public class MemberServiceImpl implements IMemberService{
 		log.info("MemberServiceImpl adminInsListTotal 강사 페이징 서비스 실행");
 		return dao.adminInsListTotal();
 	}
+	@Override
+	public boolean changeIns(Map<String, Object> map) {
+		log.info("MemberServiceImpl changeIns 강사 회원상태 변경 서비스 실행");
+		return dao.changeIns(map);
+	}
 
 	
 

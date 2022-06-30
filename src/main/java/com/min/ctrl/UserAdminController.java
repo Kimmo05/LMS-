@@ -108,14 +108,14 @@ public class UserAdminController {
 		// 값은 id Map 으로 처리
 		// SQL 문은 Simple Case 문을 사용해서 N > Y , Y > N 으로 변경되게 만듬
 		// 반환 값은 Map -> Jackson databind -> JSON
-		/*
-		 * @RequestMapping(value = "/changeUser.do", method = RequestMethod.POST)
-		 * 
-		 * @ResponseBody public Map<String, String> changeUser(@RequestParam Map<String,
-		 * Object> map) { logger.info("Welcome! Member_Controller changeUser {} : ",
-		 * map); Map<String, String> rMap = new HashMap<String, String>(); boolean isc =
-		 * iService.changeUser(map); rMap.put("isc", String.valueOf(isc)); return rMap;
-		 * }
-		 * 
-		 */
+		
+		  @RequestMapping(value = "/changeUser.do", method = RequestMethod.POST) 
+		  @ResponseBody public Map<String, String> changeUser(@RequestParam Map<String,Object> map) { 
+			  log.info("Welcome! Member_Controller changeUser {} : ",map); 
+			  Map<String, String> rMap = new HashMap<String, String>(); 
+			  boolean isc =service.changeIns(map); 
+			  rMap.put("isc", String.valueOf(isc)); return rMap;
+		  }
+		  
+		 
 }

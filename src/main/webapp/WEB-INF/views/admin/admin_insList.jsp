@@ -16,7 +16,7 @@
    <div class="page-body">
         <div id="container" class="container">
         <div class="col-sm-6">
-                  <h3>일반회원</h3>
+                  <h3>강사</h3>
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="./main.do">관리자 메인</a></li>
                     <li class="breadcrumb-item">관리자</li>
@@ -255,8 +255,8 @@
 						console.log(msg.isc);
 						console.log(tmp);
 						if(msg.isc){
-							tmp.parentNode.parentNode.childNodes[3].innerHTML = 
-		 					(tmp.parentNode.parentNode.childNodes[3].innerHTML == "Y") ? "N" : "Y";
+							tmp.parentNode.parentNode.childNodes[7].innerHTML = 
+		 					(tmp.parentNode.parentNode.childNodes[7].innerHTML == "Y") ? "N" : "Y";
 						  
 							tmp.innerHTML = (tmp.innerHTML == "복구" ? "탈퇴" : "복구");	
 						}

@@ -378,4 +378,10 @@ INS_DELFLAG FROM INSTRUCTOR i JOIN CAREER c ON i.INS_CAREER =c.CAR_SEQ
 WHERE INS_ID =#{id};
 </select>
 
+<update id="changeIns" parameterType="map">
+	UPDATE INSTRUCTOR 
+	SET INS_DELFLAG = CASE INS_DELFLAG WHEN 'N' THEN 'Y' ELSE 'N' END
+	WHERE INS_ID = #{id}
+</update>
+
 </mapper>
