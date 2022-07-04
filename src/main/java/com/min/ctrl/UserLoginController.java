@@ -165,7 +165,7 @@ public class UserLoginController {
 		map.put("id", mvo.getId());
 		
 
-		log.info("editUserProfile 개인정보 수정",mvo);
+		log.info("editUserProfile 개인정보 수정 {}",mvo);
 		service.updateTra(map);
 
 		
@@ -248,7 +248,7 @@ public class UserLoginController {
 		@RequestMapping(value = "/CheckTraId.do", method = RequestMethod.GET)
 		@ResponseBody
 		public int idCheck(@RequestParam("id") String id) {
-			log.info("일반회원 아이디 중복체크 : ", id);
+			log.info("일반회원 아이디 중복체크 : {} ", id);
 			
 			return service.checkTraId(id);
 		}
@@ -256,7 +256,7 @@ public class UserLoginController {
 		@RequestMapping(value = "/CheckTraEmail.do", method = RequestMethod.GET)
 		@ResponseBody
 		public int traEmailCheck(@RequestParam("email") String email) {
-			log.info("traEmailCheck 일반회원 이메일 중복체크 : ", email);
+			log.info("traEmailCheck 일반회원 이메일 중복체크 : {} ", email);
 			
 			return service.checkTraEmail(email);
 		}

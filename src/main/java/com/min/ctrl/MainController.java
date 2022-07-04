@@ -79,9 +79,9 @@ public class MainController {
 			Map<String, Object> milemap = new HashMap<String, Object>();
 			milemap.put("tra_id", user.getPrincipal());
 			int coup = payService.countCoupon(cmap);
-			int mile = payService.myMilage(milemap);
+//			int mile = payService.myMilage(milemap);
 			model.addAttribute("coup",coup);
-			model.addAttribute("mile",mile);
+//			model.addAttribute("mile",mile);
 			
 			return "user/myProfile";
 		}

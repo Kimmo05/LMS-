@@ -5,8 +5,8 @@
 <head>
 <title>관리자 일반회원</title>
 </head>
-<script type="text/javascript" src="./js/jquery-3.5.1.min.js"></script>
-<script type="text/javascript" src="./js/memberList.js"></script>
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="../js/memberList.js"></script>
 
 <%@ include file="./admin_header.jsp" %>
 <body>
@@ -40,7 +40,6 @@
             <th>
                 <input type="checkbox" id="checkAll" onclick="checkAlls(this.checked)">
             </th>
-          	<th >프로필</th>
             <th>아이디</th>
             <th >이름</th>
             <th >이메일</th>

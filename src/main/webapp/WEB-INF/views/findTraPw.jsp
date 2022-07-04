@@ -54,13 +54,39 @@
 		console.log(frm);
 		
 		// 유효성 검사 후 Ajax 로그인
-		if(name.value == "" || name.value.trim() == ""){
+		if(id.value == "" || id.value.trim() == ""){
+			id.value = "";
+			id.focus();
+			
+			 Swal.fire({
+                 icon: 'warning',
+                 title: '아이디를 입력해주세요.',
+                 timer: 1500,
+                 timerProgressBar: true,
+                 didOpen: () => {
+                   Swal.showLoading()
+                   const b = Swal.getHtmlContainer().querySelector('b')
+                   timerInterval = setInterval(() => {
+                     b.textContent = Swal.getTimerLeft()
+                   }, 100)
+                 },
+                 willClose: () => {
+                   clearInterval(timerInterval)
+                 }
+               }).then((result) => {
+                 /* Read more about handling dismissals below */
+                 if (result.dismiss === Swal.DismissReason.timer) {
+                   console.log('I was closed by the timer')
+                 }
+             });
+			
+		}else if(name.value == "" || name.value.trim() == ""){
 			name.value = "";
 			name.focus();
 			
 			 Swal.fire({
                  icon: 'warning',
-                 title: '아이디를 입력해주세요.',
+                 title: '이름을 입력해주세요.',
                  timer: 1500,
                  timerProgressBar: true,
                  didOpen: () => {
@@ -124,7 +150,7 @@
 						Swal.fire({
 							  icon: 'error',
 							  title: 'Oops...',
-							  text: '정확하게 입력해 주세요!',
+							  text: '이메일을 정확하게 입력해 주세요!',
 							})
 						console.log(data);
 					}

@@ -76,12 +76,21 @@
             <div class="page-header">
               <div class="row">
                 <div class="col-sm-6">
-                  <h3>강사 경력등록</h3>
+                
                     <sec:authentication property="Details" var="info" /><br>
+                    <c:if test="${info.car_position eq '직위'}">
+                    
+                  <h3>강사 경력등록</h3>
+                    </c:if>
+                  <h3>강사 경력 조회 및 수정</h3>
+                    
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">메인</a></li>
                     <li class="breadcrumb-item">강사</li>
+                      <c:if test="${info.car_position eq '직위'}">
                     <li class="breadcrumb-item active">강사 경력 등록</li>
+                    </c:if>
+                    <li class="breadcrumb-item active">강사 경력 조회 및 수정</li>
                   </ol>
                 </div>
                 <div class="col-sm-6">
@@ -138,7 +147,7 @@
                           <div class="col-sm-6 col-md-6">
                           <div class="mb-3">
                             <label class="form-label" for="validationCustom02">직위</label>
-                            <input class="form-control" type="text" id="validationCustom02" name="car_position" required="" placeholder="직위">
+                            <input class="form-control" type="text" id="validationCustom02" name="car_position" required="" value="${info.car_position}">
                             <div class="valid-feedback">Looks good!</div>
                                   <div class="invalid-feedback">직위를 입력해주세요.</div>
                           </div>
@@ -149,14 +158,14 @@
                       <div class="col-sm-6 col-md-6">
                           <div class="mb-3">
                             <label>재직시 소속</label>
-                            <input class="form-control" type="text" name="car_depart" placeholder="소속">
+                            <input class="form-control" type="text" name="car_depart" value="${info.car_depart }">
                           </div>
                         </div>
                      <div class="col-sm-6 col-md-6">
                           <div class="mb-3">
                             <label>재직기간</label>
                             <div class="form-group">
-                             <input class="form-control digits" type="text" name="daterange" value="01/15/2017 - 02/15/2017">
+                             <input class="form-control digits" type="text" name="daterange" value="${info.car_period}">
                         </div>
                           </div>
                         </div>
@@ -166,7 +175,7 @@
                         <div class="col">
                           <div class="mb-3">
                             <label>담당 업무 내용</label>
-                            <textarea class="form-control" name="car_content" id="exampleFormControlTextarea4" rows="3"></textarea>
+                            <textarea class="form-control" name="car_content"  id="exampleFormControlTextarea4" rows="3">${info.car_content }</textarea>
                           </div>
                         </div>
                       </div>
@@ -175,7 +184,7 @@
                           <div class="mb-3">
                             <label>파일 등록</label>
                           
-					<input class="form-control " type="file" name="car_file" aria-label="file example" required="" multiple >                              </div>
+					<input class="form-control " type="file" value="${info.car_file }" name="car_file" aria-label="file example" required="" multiple >                              </div>
                           
                           </div>
                         </div>

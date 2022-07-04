@@ -177,7 +177,6 @@ var pageAjax = function(){
             varHtml += "<thead>                                                                  ";
             varHtml += "   <tr>                                                                 ";
             varHtml += "      <th><input type='checkbox' id='checkAll' onclick='checkAll(this.checked)'></th>";
-            varHtml += "      <th>프로필</th>                                                  ";
             varHtml += "      <th>아이디</th>                                                    ";
             varHtml += "      <th>이름</th>                                                    ";
             varHtml += "      <th>이메일</th>                                                  ";
@@ -189,7 +188,6 @@ var pageAjax = function(){
             $.each(value, function(k,v){
                varHtml +="<tr>                                                                                                                                ";
 	           varHtml +="  <td><input type='checkbox' name='chk' value='"+v.id+"'></td>                                                                           ";			
-               varHtml +="  <td>"+replyImage(v.profile)+"</td>                                                                                                                              ";
                varHtml +="    <td onclick='modalOpen("+v.Id+")'><a href='#' data-bs-toggle='modal' data-original-title='test' data-bs-target='#exampleModal'>"+v.id+"</a></td>                                   ";
                varHtml +="  <td>"+v.name+"</td>                                                                                                                    ";
                varHtml +="  <td>"+v.email+"</td>                                                                                                                        ";

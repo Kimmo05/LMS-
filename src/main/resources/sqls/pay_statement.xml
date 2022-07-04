@@ -202,11 +202,11 @@
 	</update>
 	
 	<!-- 내 마일리지 조회 -->
-	<select id="myMilage" resultType="int" parameterType="java.util.Map">
+	<select id="myMilage" resultType="Integer" parameterType="map">
 		SELECT 
 	 	TRA_MILAGE
 		FROM TRAINEE
-		WHERE TRA_ID ='${tra_id}'
+		WHERE TRA_ID =${tra_id}
 	</select>
 	
 	<!-- 내 보유쿠폰 조회 -->
